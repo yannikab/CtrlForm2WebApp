@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UserControls.CtrlForm2.FormElements.FormGroup">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <Members>
+      <Field Name="contents" Hidden="true" />
+      <Field Name="elementOrder" Hidden="true" />
+      <Method Name="FormGroup" Hidden="true" />
+      <Field Name="isRequired" Hidden="true" />
+      <Field Name="requiredMark" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AkIAAAAAAAAAAAAEAAAABAAgAAAgIAAAIAAAAAJAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormItem">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="baseId" Hidden="true" />
+      <Field Name="container" Hidden="true" />
+      <Field Name="formId" Hidden="true" />
+      <Method Name="FormItem" Hidden="true" />
+      <Field Name="isHidden" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAQAAQAAAAAAAAAAAAAAAAAACAAAAAgCAAAAAgAEAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormTitle">
+    <Position X="14.5" Y="6.25" Width="1.5" />
+    <Members>
+      <Method Name="FormTitle" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormTitle.cs</FileName>
+      <NewMemberFileName>CtrlForm2\FormElements\FormItems\FormLabel.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput.FormItemInput">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <Members>
+      <Field Name="elementOrder" Hidden="true" />
+      <Method Name="FormItemInput" Hidden="true" />
+      <Field Name="isReadOnly" Hidden="true" />
+      <Field Name="isRequired" Hidden="true" />
+      <Field Name="label" Hidden="true" />
+      <Field Name="requiredMark" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAEAAAABAQAAAAAAAgAAAgIAAQIAAAAAIAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormItemInput.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput.FormTextArea">
+    <Position X="3.25" Y="9.75" Width="1.5" />
+    <Members>
+      <Field Name="columns" Hidden="true" />
+      <Method Name="FormTextArea" Hidden="true" />
+      <Field Name="rows" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAABAAAAAAAAAAAAACAAAAAgAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormTextArea.cs</FileName>
+      <NewMemberFileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormTextBox.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormSubmit">
+    <Position X="12.25" Y="3.75" Width="1.5" />
+    <Members>
+      <Method Name="FormSubmit" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAACAAAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormSubmit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput.FormCheckBox">
+    <Position X="1" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="FormCheckBox" Hidden="true" />
+      <Field Name="isChecked" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormCheckBox.cs</FileName>
+      <NewMemberFileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormTextBox.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput.FormTextBox">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="FormTextBox" Hidden="true" />
+      <Field Name="icon" Hidden="true" />
+      <Field Name="initialText" Hidden="true" />
+      <Field Name="placeHolder" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAABAAEAAAAAAAAAAAAAEAIAQBACAEAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput.FormRadioGroup">
+    <Position X="5.5" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="FormRadioGroup" Hidden="true" />
+      <Field Name="options" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormRadioGroup.cs</FileName>
+      <NewMemberFileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormSelect.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput.FormSelect">
+    <Position X="7.75" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="FormSelect" Hidden="true" />
+      <Field Name="options" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormSelect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.FormElements.FormItems.FormLabel">
+    <Position X="14.5" Y="3.75" Width="1.5" />
+    <Members>
+      <Method Name="FormLabel" Hidden="true" />
+      <Field Name="label" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAABAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\FormElements\FormItems\FormLabel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrClass">
+    <Position X="0.5" Y="12" Width="1.5" />
+    <Members>
+      <Method Name="AttrClass" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.HtmlMultiValueAttribute&lt;T&gt;">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <Members>
+      <Method Name="HtmlMultiValueAttribute" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlMultiValueAttribute.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlAttribute.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

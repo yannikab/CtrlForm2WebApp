@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlGroups.HtmlGroup">
+    <Position X="11" Y="5.75" Width="1.5" />
+    <Members>
+      <Field Name="contents" Hidden="true" />
+      <Method Name="HtmlGroup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlGroups\HtmlGroup.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HTMLElements\HTMLGroups\HTMLGroup.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlItems.HtmlItem">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="container" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlItems\HtmlItem.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HTMLElements\HTMLItems\HTMLItem.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlItems.HtmlElement">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <Members>
+      <Field Name="@class" Hidden="true" />
+      <Field Name="hidden" Hidden="true" />
+      <Method Name="HtmlElement" Hidden="true" />
+      <Field Name="id" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAEAAIIAAAAAAAIAAAAAAQAAAAEAgA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlItems\HtmlElement.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HTMLElements\HTMLItems\HTMLElement.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlItems.HtmlText">
+    <Position X="17.75" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="HtmlText" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAACAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlItems\HtmlText.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HTMLElements\HTMLItems\HtmlText.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlItems.HtmlInput">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <Members>
+      <Method Name="HtmlInput" Hidden="true" />
+      <Field Name="name" Hidden="true" />
+      <Field Name="readOnly" Hidden="true" />
+      <Field Name="type" Hidden="true" />
+      <Field Name="value" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAAAAQAAAAFACAAAQAoAAAACAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlItems\HtmlInput.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HTMLElements\HTMLItems\HtmlInput.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlItems.HtmlTextArea">
+    <Position X="2" Y="9" Width="1.5" />
+    <Members>
+      <Field Name="cols" Hidden="true" />
+      <Method Name="HtmlTextArea" Hidden="true" />
+      <Field Name="placeHolder" Hidden="true" />
+      <Field Name="rows" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgBEAAAABAAIAAAACIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlItems\HtmlTextArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlItems.HtmlTextBox">
+    <Position X="4.25" Y="9" Width="1.5" />
+    <Members>
+      <Method Name="HtmlTextBox" Hidden="true" />
+      <Field Name="placeHolder" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAABAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlItems\HtmlTextBox.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HTMLElements\HTMLItems\HtmlTextBox.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlGroups.HtmlSubmit">
+    <Position X="13.25" Y="8.5" Width="1.5" />
+    <Members>
+      <Method Name="HtmlSubmit" Hidden="true" />
+      <Field Name="type" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAJAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlGroups\HtmlSubmit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlGroups.HtmlLabel">
+    <Position X="15.5" Y="8.5" Width="1.5" />
+    <Members>
+      <Field Name="@for" Hidden="true" />
+      <Method Name="HtmlLabel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAgAAAAAAAAAAAAIAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlGroups\HtmlLabel.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HTMLElements\HTMLGroups\HTMLLabel.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlGroups.HtmlDiv">
+    <Position X="11" Y="8.5" Width="1.5" />
+    <Members>
+      <Method Name="HtmlDiv" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlGroups\HtmlDiv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlGroups.HtmlItalic">
+    <Position X="8.75" Y="8.5" Width="1.5" />
+    <Members>
+      <Method Name="HtmlItalic" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlGroups\HtmlItalic.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlGroups\HtmlSpan.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlGroups.HtmlSpan">
+    <Position X="6.5" Y="8.5" Width="1.5" />
+    <Members>
+      <Method Name="HtmlSpan" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlGroups\HtmlSpan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

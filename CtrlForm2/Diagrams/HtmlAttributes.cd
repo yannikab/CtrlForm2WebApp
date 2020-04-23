@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrClass" Collapsed="true">
+    <Position X="0.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrCols" Collapsed="true">
+    <Position X="3.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrCols.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrRows.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrFor" Collapsed="true">
+    <Position X="5.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrFor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrHidden" Collapsed="true">
+    <Position X="12.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrHidden.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrId" Collapsed="true">
+    <Position X="0.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrId.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrName" Collapsed="true">
+    <Position X="3" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrPlaceHolder" Collapsed="true">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrPlaceHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrReadOnly" Collapsed="true">
+    <Position X="14.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrReadOnly.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrRows" Collapsed="true">
+    <Position X="1" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrRows.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrType" Collapsed="true">
+    <Position X="5.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrValue" Collapsed="true">
+    <Position X="10" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.BooleanAttribute" Collapsed="true">
+    <Position X="13.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\BooleanAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.HtmlAttribute&lt;T&gt;" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAACAAACAgAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.HtmlMultiValueAttribute&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlMultiValueAttribute.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlAttribute.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.HtmlReadOnlyAttribute&lt;T&gt;" Collapsed="true">
+    <Position X="3" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAACAAACAgAAAAAAA=</HashCode>
+      <FileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlReadOnlyAttribute.cs</FileName>
+      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlAttribute.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
