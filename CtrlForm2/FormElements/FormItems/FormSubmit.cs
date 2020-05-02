@@ -41,9 +41,14 @@ namespace UserControls.CtrlForm2.FormElements.FormItems
 
         #endregion
 
+
+        #region Object
+
         public override string ToString()
         {
             return string.Format("{0}: {1}, Text: {2}", GetType().Name, BaseId, Text);
         }
+
+        #endregion
     }
 }

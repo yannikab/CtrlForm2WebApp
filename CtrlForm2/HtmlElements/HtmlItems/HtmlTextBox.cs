@@ -12,7 +12,7 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
     {
         #region Fields
 
-        private readonly AttrPlaceHolder placeHolder;
+        private readonly AttrPlaceHolder attrPlaceHolder;
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
 
         public AttrPlaceHolder PlaceHolder
         {
-            get { return placeHolder; }
+            get { return attrPlaceHolder; }
         }
 
         #endregion
@@ -37,7 +37,7 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
         public HtmlTextBox(string baseId)
             : base(baseId, "text")
         {
-            placeHolder = new AttrPlaceHolder();
+            attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
         }
 
         #endregion

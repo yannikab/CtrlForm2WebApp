@@ -26,6 +26,16 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
         #endregion
 
 
+        #region IRequired
+
+        public override bool IsEntered
+        {
+            get;
+        }
+
+        #endregion
+
+
         #region Constructors
 
         public FormCheckBox(string baseId, string formId)
@@ -40,9 +50,14 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
 
         #endregion
 
+
+        #region Object
+
         public override string ToString()
         {
             return string.Format("{0}: {1}, Label: {2}, IsChecked: {3}", GetType().Name, BaseId, Label, IsChecked);
         }
+
+        #endregion
     }
 }

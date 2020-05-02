@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserControls.CtrlForm2.HtmlElements.HtmlAttributes
 {
-    public class AttrValue : HtmlAttribute<string>
+    public class AttrValue : StringAttribute
     {
         #region Properties
 

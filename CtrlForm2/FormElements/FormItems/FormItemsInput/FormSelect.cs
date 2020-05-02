@@ -40,6 +40,16 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
         #endregion
 
 
+        #region IRequired
+        
+        public override bool IsEntered
+        {
+            get;
+        }
+
+        #endregion
+
+
         #region Constructors
 
         public FormSelect(string baseId, string formId)

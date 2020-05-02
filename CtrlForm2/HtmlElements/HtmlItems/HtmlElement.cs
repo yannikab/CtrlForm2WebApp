@@ -6,21 +6,18 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using UserControls.CtrlForm2.HtmlElements.HtmlAttributes;
-using UserControls.CtrlForm2.Interfaces;
 
 namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
 {
-    public abstract class HtmlElement : HtmlItem //, IClassAtribute
+    public abstract class HtmlElement : HtmlItem
     {
         #region Fields
 
-        //protected readonly List<string> classNames;
+        private readonly AttrId attrId;
 
-        private readonly AttrId id;
+        private readonly AttrClass attrClass;
 
-        private readonly AttrClass @class;
-
-        private readonly AttrHidden hidden;
+        private readonly AttrHidden attrHidden;
 
         #endregion
 
@@ -39,38 +36,20 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
 
         public AttrId Id
         {
-            get { return id; }
+            get { return attrId; }
         }
 
         public AttrClass Class
         {
-            get { return @class; }
+            get { return attrClass; }
         }
 
         public AttrHidden Hidden
         {
-            get { return hidden; }
+            get { return attrHidden; }
         }
 
         #endregion
-
-
-        //#region IClassAttribute
-
-        //public IReadOnlyList<string> ClassNames
-        //{
-        //    get { return classNames; }
-        //}
-
-        //public void AddClassName(string className)
-        //{
-        //    if (new Regex("-?[_a-zA-Z]+[_a-zA-Z0-9-]*").IsMatch(className) == false)
-        //        throw new ArgumentException();
-
-        //    classNames.Add(className.Trim());
-        //}
-
-        //#endregion
 
 
         #region Constructors
@@ -83,13 +62,11 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
             if (string.IsNullOrEmpty(IdPrefix) || IdPrefix.Trim().Length != IdPrefix.Length)
                 throw new ApplicationException();
 
-            id = new AttrId(baseId != "" ? string.Format("{0}{1}", IdPrefix, baseId) : null);
+            attributes.Add(attrId = new AttrId(baseId != "" ? string.Format("{0}{1}", IdPrefix, baseId) : null));
 
-            //classNames = new List<string>();
+            attributes.Add(attrClass = new AttrClass());
 
-            @class = new AttrClass();
-
-            hidden = new AttrHidden();
+            attributes.Add(attrHidden = new AttrHidden());
         }
 
         #endregion

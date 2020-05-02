@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace UserControls.CtrlForm2.HtmlElements.HtmlGroups
 {
-    public class HtmlItalic : HtmlGroup
+    public class HtmlDiv : HtmlContainer
     {
         #region Properties
 
         public override string Tag
         {
-            get { return "i"; }
+            get { return "div"; }
         }
 
         protected override string IdPrefix
         {
-            get { return "itl"; }
+            get { return "div"; }
         }
 
         #endregion
@@ -26,12 +25,12 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlGroups
 
         #region Constructors
 
-        public HtmlItalic(string baseId)
+        public HtmlDiv(string baseId)
             : base(baseId)
         {
         }
 
-        public HtmlItalic()
+        public HtmlDiv()
             : this("")
         {
         }

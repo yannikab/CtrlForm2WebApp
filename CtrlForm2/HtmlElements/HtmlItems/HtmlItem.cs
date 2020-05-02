@@ -9,37 +9,43 @@ using UserControls.CtrlForm2.Interfaces;
 
 namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
 {
-    public class HtmlItem : IContainable
+    public abstract class HtmlItem
     {
         #region Fields
 
-        private IContainer container;
+        private HtmlContainer container;
+
+        protected readonly List<IHtmlAttribute> attributes;
 
         #endregion
 
 
         #region Properties
 
+        public HtmlContainer Container
+        {
+            get { return container; }
+            set { container = value; }
+        }
+
+        public IReadOnlyList<IHtmlAttribute> Attributes
+        {
+            get { return attributes; }
+        }
+
         public int Depth
         {
-            get { return (container as HtmlGroup) == null ? 1 : (container as HtmlGroup).Depth + 1; }
+            get { return container == null ? 1 : container.Depth + 1; }
         }
 
         #endregion
 
 
-        #region IContainable
+        #region Constructors
 
-        public IContainer Container
+        public HtmlItem()
         {
-            get { return container; }
-            set
-            {
-                if (value != null && value as HtmlGroup == null)
-                    throw new ArgumentException();
-
-                container = value;
-            }
+            attributes = new List<IHtmlAttribute>();
         }
 
         #endregion

@@ -8,8 +8,12 @@ namespace UserControls.CtrlForm2.Interfaces
 {
     interface IRequired
     {
-        bool IsRequired { get; set; }
+        bool? IsRequired { get; set; }
 
         string RequiredMark { get; set; }
+
+        string RequiredMessage { get; set; }
+
+        bool IsEntered { get; }
     }
 }

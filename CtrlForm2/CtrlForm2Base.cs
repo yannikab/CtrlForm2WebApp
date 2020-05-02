@@ -24,7 +24,7 @@ namespace UserControls.CtrlForm2
 
         private FormGroup formContainer;
 
-        private HtmlGroup htmlContainer;
+        private HtmlContainer htmlContainer;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace UserControls.CtrlForm2
             set { formContainer = value; }
         }
 
-        private HtmlGroup HtmlContainer
+        private HtmlContainer HtmlContainer
         {
             get { return htmlContainer; }
             set { htmlContainer = value; }
@@ -44,16 +44,19 @@ namespace UserControls.CtrlForm2
 
         #endregion
 
-        protected override void OnInit(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            base.OnInit(e);
+            base.OnLoad(e);
 
             CreateForm();
 
             if (FormContainer == null)
                 return;
 
-            HtmlContainer = new Form2HtmlVisitor(FormContainer).Html;
+            if (IsPostBack)
+                new FormPostBackVisitor(FormContainer, Request.Form);
+
+            HtmlContainer = new Form2HtmlVisitor(FormContainer, IsPostBack).Html;
 
             LtrContent.Text = new Html2TextVisitor(HtmlContainer).Text;
         }
@@ -67,7 +70,11 @@ namespace UserControls.CtrlForm2
             if (groups.Count == 0)
             {
                 FormContainer = g;
+                FormContainer.IsHidden = false;
+                FormContainer.IsReadOnly = false;
+                FormContainer.IsRequired = false;
                 FormContainer.RequiredMark = "*";
+                FormContainer.RequiredMessage = "!";
                 FormContainer.ElementOrder = ElementOrder.InputLabelMark;
             }
             else
@@ -81,34 +88,132 @@ namespace UserControls.CtrlForm2
         protected void CloseGroup()
         {
             if (groups.Count == 0)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("No form group is currently open. Can not close group.");
 
             groups.Pop();
         }
 
-        protected void SetRequiredMark(string mark)
+        protected bool? IsHidden
         {
-            if (groups.Count == 0)
-                throw new InvalidOperationException();
+            get
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get IsHidden default property.");
 
-            groups.Peek().RequiredMark = mark;
+                return groups.Peek().IsHidden;
+            }
+
+            set
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set IsHidden default property.");
+
+                groups.Peek().IsHidden = value;
+            }
         }
 
-        protected void SetElementOrder(ElementOrder order)
+        protected bool? IsReadOnly
         {
-            if (groups.Count == 0)
-                throw new InvalidOperationException();
+            get
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get IsReadOnly default property.");
 
-            groups.Peek().ElementOrder = order;
+                return groups.Peek().IsReadOnly;
+            }
+
+            set
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set IsReadOnly default property.");
+
+                groups.Peek().IsReadOnly = value;
+            }
+        }
+
+        protected bool? IsRequired
+        {
+            get
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get IsRequired default property.");
+
+                return groups.Peek().IsRequired;
+            }
+
+            set
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set IsRequired default property.");
+
+                groups.Peek().IsRequired = value;
+            }
+        }
+
+        protected string RequiredMark
+        {
+            get
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMark default property.");
+
+                return groups.Peek().RequiredMark;
+            }
+
+            set
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMark default property.");
+
+                groups.Peek().RequiredMark = value;
+            }
+        }
+
+        protected string RequiredMessage
+        {
+            get
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMessage default property.");
+
+                return groups.Peek().RequiredMessage;
+            }
+
+            set
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMessage default property.");
+
+                groups.Peek().RequiredMessage = value;
+            }
+        }
+
+        protected ElementOrder ElementOrder
+        {
+            get
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get ElementOrder default property.");
+
+                return groups.Peek().ElementOrder;
+            }
+
+            set
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set ElementOrder default property.");
+
+                groups.Peek().ElementOrder = value;
+            }
         }
 
         protected void AddItem(FormItem formItem)
         {
             if (formItem is FormGroup)
-                throw new ArgumentException();
+                throw new InvalidOperationException("Only form items can be added to a group. Can not add form group.");
 
             if (groups.Count == 0)
-                throw new ApplicationException();
+                throw new InvalidOperationException("No form group is currently open. Can not add form item.");
 
             groups.Peek().Add(formItem);
         }

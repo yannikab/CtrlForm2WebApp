@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,24 +15,26 @@ namespace CtrlForm2WebApp.UserControls
 {
     public partial class CtrlForm2Contact : CtrlForm2Base
     {
-        protected override void OnInit(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             LtrContent = ltrContent;
 
-            base.OnInit(e);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+            base.OnLoad(e);
         }
 
         protected override void CreateForm()
         {
             OpenGroup("Container");
 
-            SetElementOrder(ElementOrder.LabelMarkInput);
+            IsReadOnly = false;
 
-            //SetRequiredMark("(required)");
+            IsRequired = false;
+
+            //RequiredMark = "(required)";
+
+            RequiredMessage = "Field is required";
+
+            //ElementOrder = ElementOrder.LabelMarkInput;
 
 
             AddItem(new FormTitle("Title")
@@ -46,49 +49,84 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "First Name",
 
-                InitialText = "John",
+                Text = "John",
 
-                IsRequired = true,
+                IsRequired = false,
 
                 PlaceHolder = "Enter your first name",
-
-                Icon = FormIcon.Phone,
             });
 
             AddItem(new FormTextBox("LastName")
             {
                 Label = "Last Name",
 
-                InitialText = "Doe",
+                Text = "Doe",
 
                 IsRequired = true,
 
                 PlaceHolder = "Enter your last name",
-
-                Icon = FormIcon.Envelope,
             });
 
             CloseGroup();
 
 
-            OpenGroup("Message");
+            OpenGroup("Email-Phone");
+
+            AddItem(new FormTextBox("Email")
+            {
+                Label = "Email",
+
+                IsRequired = false,
+
+                PlaceHolder = "Enter your email",
+
+                Icon = FormIcon.Envelope,
+
+                Validator = (t) =>
+                {
+                    return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(t.Text) ? "Invalid Email" : "";
+                },
+            });
+
+            AddItem(new FormTextBox("Phone")
+            {
+                Label = "Phone",
+
+                IsRequired = true,
+
+                PlaceHolder = "Enter your phone number",
+
+
+                Icon = FormIcon.Phone,
+
+                Validator = (t) =>
+                {
+                    int digits = t.Text.Where(c => char.IsDigit(c)).Count();
+
+                    if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(t.Text) || digits < 10 || digits > 15)
+                        return "Invalid Phone";
+
+                    return "";
+                }
+            });
+
+            CloseGroup();
+
 
             AddItem(new FormTextArea("Message")
             {
                 Label = "Message",
 
-                InitialText = "",
+                Text = "My Message",
 
                 IsRequired = false,
 
-                PlaceHolder = "Message",
+                PlaceHolder = "Enter your message",
 
                 Rows = 4,
 
                 Columns = 50,
             });
-
-            CloseGroup();
 
 
             AddItem(new FormSubmit("Submit")

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using UserControls.CtrlForm2.Interfaces;
-
 namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
 {
-    class HtmlText : HtmlItem
+    public class HtmlText : HtmlItem
     {
         #region Fields
 
@@ -31,14 +30,19 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
 
         public HtmlText(string text)
         {
-            this.text = text;
+            this.text = text ?? "";
         }
 
         #endregion
+
+
+        #region Object
 
         public override string ToString()
         {
             return string.Format(@"{0}: ""{1}""", GetType().Name, Text);
         }
+
+        #endregion
     }
 }

@@ -12,11 +12,11 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
     {
         #region Fields
 
-        private readonly AttrPlaceHolder placeHolder;
+        private readonly AttrPlaceHolder attrPlaceHolder;
 
-        private readonly AttrRows rows;
+        private readonly AttrRows attrRows;
 
-        private readonly AttrCols cols;
+        private readonly AttrCols attrCols;
 
         #endregion
 
@@ -35,17 +35,17 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
 
         public AttrPlaceHolder PlaceHolder
         {
-            get { return placeHolder; }
+            get { return attrPlaceHolder; }
         }
 
         public AttrRows Rows
         {
-            get { return rows; }
+            get { return attrRows; }
         }
 
         public AttrCols Cols
         {
-            get { return cols; }
+            get { return attrCols; }
         }
 
         #endregion
@@ -56,11 +56,11 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
         public HtmlTextArea(string baseId, int rows, int cols)
             : base(baseId, null)
         {
-            placeHolder = new AttrPlaceHolder();
+            attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
 
-            this.rows = new AttrRows(rows);
+            attributes.Add(attrRows = new AttrRows(rows));
 
-            this.cols = new AttrCols(cols);
+            attributes.Add(attrCols = new AttrCols(cols));
         }
 
         #endregion

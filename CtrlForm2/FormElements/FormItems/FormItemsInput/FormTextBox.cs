@@ -4,19 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using UserControls.CtrlForm2.Interfaces;
+
 namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
 {
-    public class FormTextBox : FormItemInput
+    public class FormTextBox : FormItemInput, IValidate<FormTextBox>
     {
         #region Fields
 
         private string text;
 
-        private string initialText;
-
         private string placeHolder;
 
         private FormIcon icon;
+
+        private Func<FormTextBox, string> validationResult;
+
+        private Action<FormTextBox> actionInvalid;
 
         #endregion
 
@@ -27,12 +31,6 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
         {
             get { return text; }
             set { text = value; }
-        }
-
-        public string InitialText
-        {
-            get { return initialText; }
-            set { initialText = value; }
         }
 
         public string PlaceHolder
@@ -50,15 +48,53 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
         #endregion
 
 
+        #region IRequired
+
+        public override bool IsEntered
+        {
+            get { return !string.IsNullOrEmpty(Text); }
+        }
+
+        #endregion
+
+
+        #region IValidate<FormTextBox>
+
+        public Func<FormTextBox, string> Validator
+        {
+            get { return validationResult; }
+            set { validationResult = value; }
+        }
+
+        public Action<FormTextBox> ActionInvalid
+        {
+            get { return actionInvalid; }
+            set { actionInvalid = value; }
+        }
+
+        public string ValidationMessage
+        {
+            get { return Validator(this); }
+        }
+
+        public bool IsValid
+        {
+            get { return (IsReadOnly ?? false) || string.IsNullOrEmpty(ValidationMessage); }
+        }
+
+        #endregion
+
+
         #region Constructors
 
         public FormTextBox(string baseId, string formId)
             : base(baseId, formId)
         {
             text = "";
-            initialText = "";
             placeHolder = "";
             icon = FormIcon.NotSet;
+            validationResult = (s) => { return null; };
+            actionInvalid = (s) => { return; };
         }
 
         public FormTextBox(string baseId)
@@ -68,9 +104,14 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
 
         #endregion
 
+
+        #region Object
+
         public override string ToString()
         {
             return string.Format("{0}: {1}, Label: {2}, Text: {3}", GetType().Name, BaseId, Label, Text);
         }
+
+        #endregion
     }
 }

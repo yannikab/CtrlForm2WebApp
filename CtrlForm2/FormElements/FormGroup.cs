@@ -6,21 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UserControls.CtrlForm2.FormElements.FormItems;
+using UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput;
 using UserControls.CtrlForm2.Interfaces;
 
 namespace UserControls.CtrlForm2.FormElements
 {
-    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-
-    public class FormGroup : FormItem, IContainer, IRequired
+    public class FormGroup : FormItem, IRequired
     {
         #region Fields
 
-        private readonly List<IContainable> contents;
+        private readonly List<FormItem> items;
 
-        private bool isRequired;
+        private bool? isReadOnly;
+
+        private bool? isRequired;
 
         private string requiredMark;
+
+        private string requiredMessage;
 
         private ElementOrder elementOrder;
 
@@ -29,6 +32,30 @@ namespace UserControls.CtrlForm2.FormElements
 
         #region Properties
 
+        public IReadOnlyList<FormItem> Items
+        {
+            get { return items; }
+        }
+
+        public bool? IsReadOnly
+        {
+            get
+            {
+                if (isReadOnly.HasValue)
+                    return isReadOnly.Value;
+
+                if (Group == null)
+                    return null;
+
+                return Group.IsReadOnly;
+            }
+
+            set
+            {
+                isReadOnly = value;
+            }
+        }
+
         public ElementOrder ElementOrder
         {
             get
@@ -36,12 +63,10 @@ namespace UserControls.CtrlForm2.FormElements
                 if (elementOrder != ElementOrder.NotSet)
                     return elementOrder;
 
-                FormGroup container = Container as FormGroup;
-
-                if (container == null)
+                if (Group == null)
                     return ElementOrder.NotSet;
 
-                return container.ElementOrder;
+                return Group.ElementOrder;
             }
 
             set
@@ -55,10 +80,23 @@ namespace UserControls.CtrlForm2.FormElements
 
         #region IRequired
 
-        public bool IsRequired
+        public bool? IsRequired
         {
-            get { return isRequired; }
-            set { isRequired = value; }
+            get
+            {
+                if (isRequired.HasValue)
+                    return isRequired.Value;
+
+                if (Group == null)
+                    return null;
+
+                return Group.IsRequired;
+            }
+
+            set
+            {
+                isRequired = value;
+            }
         }
 
         public string RequiredMark
@@ -68,12 +106,10 @@ namespace UserControls.CtrlForm2.FormElements
                 if (requiredMark != null)
                     return requiredMark;
 
-                FormGroup container = Container as FormGroup;
-
-                if (container == null)
+                if (Group == null)
                     return null;
 
-                return container.RequiredMark;
+                return Group.RequiredMark;
             }
             set
             {
@@ -81,40 +117,52 @@ namespace UserControls.CtrlForm2.FormElements
             }
         }
 
+        public string RequiredMessage
+        {
+            get
+            {
+                if (requiredMessage != null)
+                    return requiredMessage;
+
+                if (Group == null)
+                    return null;
+
+                return Group.RequiredMessage;
+            }
+            set
+            {
+                requiredMessage = value;
+            }
+        }
+
+        public bool IsEntered
+        {
+            get { return Items.OfType<FormItemInput>().All(i => i.IsEntered); }
+        }
+
         #endregion
 
 
-        #region IContainer
+        #region Methods
 
-        public IReadOnlyList<IContainable> Contents
+        public void Add(FormItem item)
         {
-            get { return contents; }
-        }
-
-        public void Add(IContainable c)
-        {
-            if (c != null && c as FormGroup == null && c as FormItem == null)
-                throw new ArgumentException();
-
-            if (contents.Contains(c))
+            if (items.Contains(item))
                 return;
 
-            contents.Add(c);
+            items.Add(item);
 
-            c.Container = this;
+            item.Group = this;
         }
 
-        public bool Remove(IContainable c)
+        public bool Remove(FormItem item)
         {
-            if (c != null && c as FormGroup == null && c as FormItem == null)
-                throw new ArgumentException();
-
-            if (!contents.Contains(c))
+            if (!items.Contains(item))
                 return false;
 
-            c.Container = null;
+            item.Group = null;
 
-            return contents.Remove(c);
+            return items.Remove(item);
         }
 
         #endregion
@@ -125,7 +173,7 @@ namespace UserControls.CtrlForm2.FormElements
         public FormGroup(string baseId, string formId)
             : base(baseId, formId)
         {
-            contents = new List<IContainable>();
+            items = new List<FormItem>();
 
             requiredMark = null;
             elementOrder = ElementOrder.NotSet;
@@ -138,9 +186,14 @@ namespace UserControls.CtrlForm2.FormElements
 
         #endregion
 
+
+        #region Object
+
         public override string ToString()
         {
-            return string.Format("{0}: {1}, FormName: {2}", GetType().Name, BaseId, FormId);
+            return string.Format("{0}: {1}, FormId: {2}", GetType().Name, BaseId, FormId);
         }
+
+        #endregion
     }
 }

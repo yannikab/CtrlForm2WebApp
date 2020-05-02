@@ -8,10 +8,12 @@ namespace UserControls.CtrlForm2.Interfaces
 {
     public interface IValidate<T>
     {
-        Func<T, string> ValidationError { get; }
+        Func<T, string> Validator { get; set; }
+
+        Action<T> ActionInvalid { get; set; }
 
         bool IsValid { get; }
 
-        Action<T> ActionInvalid { get; }
+        string ValidationMessage { get; }
     }
 }

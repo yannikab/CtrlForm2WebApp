@@ -9,7 +9,7 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
     public class FormRadioGroup : FormItemInput
     {
         #region Fields
-        
+
         private readonly List<string> options;
 
         #endregion
@@ -35,6 +35,16 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
         public string this[int index]
         {
             get { return options[index]; }
+        }
+
+        #endregion
+
+
+        #region IRequired
+
+        public override bool IsEntered
+        {
+            get;
         }
 
         #endregion

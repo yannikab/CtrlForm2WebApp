@@ -44,15 +44,5 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlAttributes
         }
 
         #endregion
-
-
-        #region Object
-
-        public override string ToString()
-        {
-            return IsSet ? string.Format(@" {0}=""{1}""", Name, Value) : "";
-        }
-
-        #endregion
     }
 }

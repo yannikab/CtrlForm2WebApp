@@ -12,14 +12,14 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
     {
         #region Fields
 
-        private readonly AttrName name;
+        private readonly AttrReadOnly attrReadOnly;
 
-        private readonly AttrReadOnly readOnly;
+        private readonly AttrType attrType;
 
-        private readonly AttrValue value;
+        private readonly AttrName attrName;
 
-        private readonly AttrType type;
-
+        private readonly AttrValue attrValue;
+                
         #endregion
 
 
@@ -29,27 +29,27 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
         {
             get { return "input"; }
         }
-
-        public AttrName Name
-        {
-            get { return name; }
-        }
-
+                
         public AttrReadOnly ReadOnly
         {
-            get { return readOnly; }
-        }
-
-        public AttrValue Value
-        {
-            get { return value; }
+            get { return attrReadOnly; }
         }
 
         public AttrType Type
         {
-            get { return type; }
+            get { return attrType; }
         }
 
+        public AttrName Name
+        {
+            get { return attrName; }
+        }
+
+        public AttrValue Value
+        {
+            get { return attrValue; }
+        }
+        
         #endregion
 
 
@@ -58,13 +58,13 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
         public HtmlInput(string baseId, string type)
             : base(baseId)
         {
-            name = new AttrName();
+            attributes.Add(attrReadOnly = new AttrReadOnly());
 
-            readOnly = new AttrReadOnly();
+            attributes.Add(attrType = new AttrType(type));
 
-            value = new AttrValue();
-
-            this.type = new AttrType(type);
+            attributes.Add(attrName = new AttrName(baseId));
+            
+            attributes.Add(attrValue = new AttrValue());
         }
 
         #endregion
@@ -78,23 +78,5 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlItems
         }
 
         #endregion
-
-        //private static class Prefix
-        //{
-        //    public static string Get(InputType inputType)
-        //    {
-        //        switch (inputType)
-        //        {
-        //            case InputType.Password:
-        //                return "pas";
-        //            case InputType.CheckBox:
-        //                return "cbx";
-        //            case InputType.Radio:
-        //                return "rdo";
-        //            default:
-        //                throw new ArgumentException();
-        //        }
-        //    }
-        //}
     }
 }

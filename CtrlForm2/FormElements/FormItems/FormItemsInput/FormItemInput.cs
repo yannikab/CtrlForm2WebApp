@@ -17,11 +17,13 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
 
         private string label;
 
-        private bool isReadOnly;
+        private bool? isReadOnly;
 
-        private bool isRequired;
+        private bool? isRequired;
 
         private string requiredMark;
+
+        private string requiredMessage;
 
         private ElementOrder elementOrder;
 
@@ -36,10 +38,25 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
             set { label = value; }
         }
 
-        public bool IsReadOnly
+        public bool? IsReadOnly
         {
-            get { return isReadOnly; }
-            set { isReadOnly = value; }
+            get
+            {
+                if (isReadOnly.HasValue)
+                    return isReadOnly.Value;
+
+                FormGroup container = Group as FormGroup;
+
+                if (container == null)
+                    return null;
+
+                return container.IsReadOnly;
+            }
+
+            set
+            {
+                isReadOnly = value;
+            }
         }
 
         public ElementOrder ElementOrder
@@ -49,7 +66,7 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
                 if (elementOrder != ElementOrder.NotSet)
                     return elementOrder;
 
-                FormGroup container = Container as FormGroup;
+                FormGroup container = Group as FormGroup;
 
                 if (container == null)
                     return ElementOrder.NotSet;
@@ -68,10 +85,25 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
 
         #region IRequired
 
-        public bool IsRequired
+        public bool? IsRequired
         {
-            get { return isRequired; }
-            set { isRequired = value; }
+            get
+            {
+                if (isRequired.HasValue)
+                    return isRequired.Value;
+
+                FormGroup container = Group as FormGroup;
+
+                if (container == null)
+                    return null;
+
+                return container.IsRequired;
+            }
+
+            set
+            {
+                isRequired = value;
+            }
         }
 
         public string RequiredMark
@@ -81,7 +113,7 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
                 if (requiredMark != null)
                     return requiredMark;
 
-                FormGroup container = Container as FormGroup;
+                FormGroup container = Group as FormGroup;
 
                 if (container == null)
                     return null;
@@ -94,8 +126,33 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
             }
         }
 
+        public string RequiredMessage
+        {
+            get
+            {
+                if (requiredMessage != null)
+                    return requiredMessage;
+
+                if (Group == null)
+                    return null;
+
+                return Group.RequiredMessage;
+            }
+            set
+            {
+                requiredMessage = value;
+            }
+        }
+
+        public abstract bool IsEntered
+        {
+            get;
+        }
+
         #endregion
 
+
+        #region Constructors
 
         public FormItemInput(string baseId, string formId)
             : base(baseId, formId)
@@ -104,5 +161,7 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
             requiredMark = null;
             elementOrder = ElementOrder.NotSet;
         }
+
+        #endregion
     }
 }

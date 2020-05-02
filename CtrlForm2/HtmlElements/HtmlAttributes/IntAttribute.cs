@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserControls.CtrlForm2.HtmlElements.HtmlAttributes
 {
-    public abstract class BooleanAttribute : HtmlAttribute<bool?>
+    public abstract class IntAttribute : HtmlAttribute<int?>
     {
         #region Properties
 
@@ -15,22 +15,17 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlAttributes
             get { return Value.HasValue; }
         }
 
-        public bool IsTrue
-        {
-            get { return IsSet && Value.Value; }
-        }
-
         #endregion
 
 
         #region Constructors
 
-        public BooleanAttribute(bool? value)
+        public IntAttribute(int? value)
             : base(value)
         {
         }
 
-        public BooleanAttribute()
+        public IntAttribute()
             : this(null)
         {
         }
@@ -42,7 +37,7 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlAttributes
 
         public override string ToString()
         {
-            return IsTrue ? string.Format(" {0}", Name) : "";
+            return IsSet ? string.Format(@" {0}=""{1}""", Name, Value) : "";
         }
 
         #endregion

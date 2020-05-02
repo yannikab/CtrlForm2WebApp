@@ -20,13 +20,13 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlAttributes
 
         #region Constructors
 
-        public AttrReadOnly(bool value)
+        public AttrReadOnly(bool? value)
             : base(value)
         {
         }
 
         public AttrReadOnly()
-            : this(false)
+            : this(null)
         {
         }
 

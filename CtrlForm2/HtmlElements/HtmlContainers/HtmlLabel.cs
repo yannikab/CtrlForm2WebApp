@@ -8,29 +8,30 @@ using UserControls.CtrlForm2.HtmlElements.HtmlAttributes;
 
 namespace UserControls.CtrlForm2.HtmlElements.HtmlGroups
 {
-    public class HtmlSubmit : HtmlGroup
+    public class HtmlLabel : HtmlContainer
     {
-        #region fields
+        #region Fields
 
-        private readonly AttrType type;
+        private readonly AttrFor attrFor;
 
         #endregion
+
 
         #region Properties
 
         public override string Tag
         {
-            get { return "button"; }
+            get { return "label"; }
         }
 
         protected override string IdPrefix
         {
-            get { return "btn"; }
+            get { return "lbl"; }
         }
 
-        public AttrType Type
+        public AttrFor For
         {
-            get { return type; }
+            get { return attrFor; }
         }
 
         #endregion
@@ -38,10 +39,10 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlGroups
 
         #region Constructors
 
-        public HtmlSubmit(string baseId)
+        public HtmlLabel(string baseId)
             : base(baseId)
         {
-            type = new AttrType("submit");
+            attributes.Add(attrFor = new AttrFor());
         }
 
         #endregion

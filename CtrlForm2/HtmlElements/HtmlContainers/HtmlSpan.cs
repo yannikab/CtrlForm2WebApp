@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace UserControls.CtrlForm2.HtmlElements.HtmlGroups
 {
-    public class HtmlDiv : HtmlGroup
+    public class HtmlSpan : HtmlContainer
     {
         #region Properties
 
         public override string Tag
         {
-            get { return "div"; }
+            get { return "span"; }
         }
 
         protected override string IdPrefix
         {
-            get { return "div"; }
+            get { return "spn"; }
         }
 
         #endregion
@@ -25,12 +25,12 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlGroups
 
         #region Constructors
 
-        public HtmlDiv(string baseId)
+        public HtmlSpan(string baseId)
             : base(baseId)
         {
         }
 
-        public HtmlDiv()
+        public HtmlSpan()
             : this("")
         {
         }

@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using UserControls.CtrlForm2.Interfaces;
-
 namespace UserControls.CtrlForm2.FormElements.FormItems
 {
-    public abstract class FormItem : IContainable
+    public abstract class FormItem
     {
         #region Fields
 
-        private IContainer container;
+        private FormGroup group;
 
         private readonly string baseId;
 
         private readonly string formId;
 
-        private bool isHidden;
+        private bool? isHidden;
 
         #endregion
 
 
         #region Properties
+
+        public FormGroup Group
+        {
+            get { return group; }
+            set { group = value; }
+        }
 
         public string BaseId
         {
@@ -35,32 +40,28 @@ namespace UserControls.CtrlForm2.FormElements.FormItems
             get { return formId; }
         }
 
-        public bool IsHidden
+        public bool? IsHidden
         {
-            get { return isHidden; }
-            set { isHidden = value; }
+            get
+            {
+                if (isHidden.HasValue)
+                    return isHidden.Value;
+
+                if (group == null)
+                    return null;
+
+                return group.IsHidden;
+            }
+
+            set
+            {
+                isHidden = value;
+            }
         }
 
         public int Depth
         {
-            get { return (container as FormGroup) == null ? 0 : (container as FormGroup).Depth + 1; }
-        }
-
-        #endregion
-
-
-        #region IContainable
-
-        public IContainer Container
-        {
-            get { return container; }
-            set
-            {
-                if (value != null && value as FormGroup == null)
-                    throw new ArgumentException();
-
-                container = value;
-            }
+            get { return group == null ? 0 : group.Depth + 1; }
         }
 
         #endregion

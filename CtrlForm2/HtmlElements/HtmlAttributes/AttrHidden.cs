@@ -20,13 +20,13 @@ namespace UserControls.CtrlForm2.HtmlElements.HtmlAttributes
 
         #region Constructors
 
-        public AttrHidden(bool value)
+        public AttrHidden(bool? value)
             : base(value)
         {
         }
 
         public AttrHidden()
-            : this(false)
+            : this(null)
         {
         }
 
