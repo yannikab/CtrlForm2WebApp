@@ -7,38 +7,38 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrClass.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\MultiValueAttributes\AttrClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrCols">
-    <Position X="3" Y="12.5" Width="1.5" />
+    <Position X="3.25" Y="12.5" Width="1.5" />
     <Members>
       <Method Name="AttrCols" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrCols.cs</FileName>
-      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlAttributes\AttrRows.cs</NewMemberFileName>
+      <FileName>HtmlElements\HtmlAttributes\IntAttributes\AttrCols.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrFor">
-    <Position X="5.25" Y="12" Width="1.5" />
+    <Position X="5.5" Y="12" Width="1.5" />
     <Members>
       <Method Name="AttrFor" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrFor.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\StringAttributes\AttrFor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrHidden">
-    <Position X="12" Y="12.5" Width="1.5" />
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrChecked">
+    <Position X="12.25" Y="12.5" Width="1.5" />
     <Members>
-      <Method Name="AttrHidden" Hidden="true" />
+      <Method Name="AttrChecked" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrHidden.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\BooleanAttributes\AttrChecked.cs</FileName>
+      <NewMemberFileName>HtmlElements\HtmlAttributes\BooleanAttributes\AttrHidden.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrId">
@@ -48,7 +48,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrId.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\ReadOnlyAttributes\AttrId.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrName">
@@ -58,37 +58,37 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrName.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\ReadOnlyAttributes\AttrName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrPlaceHolder">
-    <Position X="7.5" Y="12" Width="1.5" />
+    <Position X="7.75" Y="12" Width="1.5" />
     <Members>
       <Method Name="AttrPlaceHolder" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrPlaceHolder.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\StringAttributes\AttrPlaceHolder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrReadOnly">
-    <Position X="14.25" Y="12.5" Width="1.5" />
+    <Position X="16.75" Y="12.5" Width="1.5" />
     <Members>
       <Method Name="AttrReadOnly" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrReadOnly.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\BooleanAttributes\AttrReadOnly.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrRows">
-    <Position X="0.75" Y="12.5" Width="1.5" />
+    <Position X="1" Y="12.5" Width="1.5" />
     <Members>
       <Method Name="AttrRows" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrRows.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\IntAttributes\AttrRows.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrType">
@@ -98,17 +98,17 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrType.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\ReadOnlyAttributes\AttrType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrValue">
-    <Position X="9.75" Y="12" Width="1.5" />
+    <Position X="10" Y="12" Width="1.5" />
     <Members>
       <Method Name="AttrValue" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\AttrValue.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\StringAttributes\AttrValue.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.IntAttribute">
@@ -118,12 +118,11 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\IntAttribute.cs</FileName>
-      <NewMemberFileName>HtmlElements\HtmlAttributes\BooleanAttribute.cs</NewMemberFileName>
+      <FileName>HtmlElements\HtmlAttributes\IntAttributes\IntAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.HtmlAttribute&lt;T&gt;">
-    <Position X="7.5" Y="7.75" Width="1.5" />
+    <Position X="8.75" Y="7.75" Width="1.5" />
     <Members>
       <Method Name="HtmlAttribute" Hidden="true" />
       <Field Name="value" Hidden="true" />
@@ -141,8 +140,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\HtmlMultiValueAttribute.cs</FileName>
-      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlAttribute.cs</NewMemberFileName>
+      <FileName>HtmlElements\HtmlAttributes\MultiValueAttributes\HtmlMultiValueAttribute.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -154,30 +152,38 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAACAAACAgAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\HtmlReadOnlyAttribute.cs</FileName>
-      <NewMemberFileName>CtrlForm2\HtmlElements\HtmlAttributes\HtmlAttribute.cs</NewMemberFileName>
+      <FileName>HtmlElements\HtmlAttributes\ReadOnlyAttributes\HtmlReadOnlyAttribute.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.StringAttribute">
-    <Position X="7.5" Y="10" Width="1.5" />
+    <Position X="7.75" Y="10" Width="1.5" />
     <Members>
       <Method Name="StringAttribute" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\StringAttribute.cs</FileName>
-      <NewMemberFileName>HtmlElements\HtmlAttributes\BooleanAttribute.cs</NewMemberFileName>
+      <FileName>HtmlElements\HtmlAttributes\StringAttributes\StringAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.BooleanAttribute">
-    <Position X="13.25" Y="10" Width="1.5" />
+    <Position X="14.5" Y="10" Width="1.5" />
     <Members>
       <Method Name="BooleanAttribute" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgEAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>HtmlElements\HtmlAttributes\BooleanAttribute.cs</FileName>
+      <FileName>HtmlElements\HtmlAttributes\BooleanAttributes\BooleanAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserControls.CtrlForm2.HtmlElements.HtmlAttributes.AttrHidden">
+    <Position X="14.5" Y="12.5" Width="1.5" />
+    <Members>
+      <Method Name="AttrHidden" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HtmlElements\HtmlAttributes\BooleanAttributes\AttrHidden.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

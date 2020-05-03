@@ -129,6 +129,20 @@ namespace CtrlForm2WebApp.UserControls
             });
 
 
+            AddItem(new FormCheckBox("AcceptTerms")
+            {
+                Label = "Accept Terms",
+
+                TextChecked = "Yes",
+
+                TextNotChecked = "No",
+
+                IsRequired = true,
+
+                RequiredMessage = "You must agree with the terms of use"
+            });
+
+
             AddItem(new FormSubmit("Submit")
             {
                 Text = "Submit"

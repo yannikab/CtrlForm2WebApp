@@ -57,6 +57,11 @@ namespace UserControls.CtrlForm2.Visitors
             formTextArea.Text = form[formTextArea.BaseId];
         }
 
+        public virtual void Visit(FormCheckBox formCheckBox)
+        {
+            formCheckBox.IsChecked = form[formCheckBox.BaseId] == "on";
+        }
+
         #endregion
 
 

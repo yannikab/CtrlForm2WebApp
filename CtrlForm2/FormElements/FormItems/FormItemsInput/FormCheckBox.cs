@@ -12,6 +12,10 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
 
         private bool isChecked;
 
+        private string textChecked;
+
+        private string textNotChecked;
+
         #endregion
 
 
@@ -23,6 +27,18 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
             set { isChecked = value; }
         }
 
+        public string TextChecked
+        {
+            get { return textChecked; }
+            set { textChecked = value; }
+        }
+
+        public string TextNotChecked
+        {
+            get { return textNotChecked; }
+            set { textNotChecked = value; }
+        }
+
         #endregion
 
 
@@ -30,7 +46,7 @@ namespace UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput
 
         public override bool IsEntered
         {
-            get;
+            get { return isChecked; }
         }
 
         #endregion

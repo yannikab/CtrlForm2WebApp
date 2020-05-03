@@ -88,9 +88,11 @@
     <Members>
       <Method Name="FormCheckBox" Hidden="true" />
       <Field Name="isChecked" Hidden="true" />
+      <Field Name="responseChecked" Hidden="true" />
+      <Field Name="responseUnChecked" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAIAAAACAAAAAEAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAIAIAACACABAAAEAAAAAAAAAAABAAAAACAAAAAAAAA=</HashCode>
       <FileName>FormElements\FormItems\FormItemsInput\FormCheckBox.cs</FileName>
       <NewMemberFileName>CtrlForm2\FormElements\FormItems\FormItemsInput\FormTextBox.cs</NewMemberFileName>
     </TypeIdentifier>

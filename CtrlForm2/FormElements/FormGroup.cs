@@ -137,7 +137,7 @@ namespace UserControls.CtrlForm2.FormElements
 
         public bool IsEntered
         {
-            get { return Items.OfType<FormItemInput>().All(i => i.IsEntered); }
+            get { return Items.OfType<FormItemInput>().Any(i => i.IsEntered); }
         }
 
         #endregion
