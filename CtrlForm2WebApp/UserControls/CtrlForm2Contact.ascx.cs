@@ -6,10 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using UserControls.CtrlForm2;
-using UserControls.CtrlForm2.FormElements;
-using UserControls.CtrlForm2.FormElements.FormItems;
-using UserControls.CtrlForm2.FormElements.FormItems.FormItemsInput;
+using CtrlForm2.Form.Enums;
+using CtrlForm2.Form.Items;
+using CtrlForm2.Form.Items.Input;
+using CtrlForm2.Form.Items.Input.Selectors;
+using CtrlForm2.Form.Selectables;
+using CtrlForm2.UserControls;
 
 namespace CtrlForm2WebApp.UserControls
 {
@@ -108,6 +110,26 @@ namespace CtrlForm2WebApp.UserControls
 
                     return "";
                 }
+            });
+
+            CloseGroup();
+
+
+            OpenGroup("Select");
+
+            AddItem(new FormSelect("Colors", false)
+            {
+                IsRequired = true,
+
+                Label = "Favorite color",
+
+                Options = new FormOption[] {
+                    new FormOption(0, "Red"),
+                    new FormOption(1, "Green") { IsSelected = true },
+                    new FormOption(2, "Blue"),
+                    new FormOption(2, "Brown") { IsSelected = true },
+                    new FormOption(2, "Grey"),
+                    }
             });
 
             CloseGroup();
