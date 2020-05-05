@@ -12,6 +12,8 @@ namespace CtrlForm2.Form.Items
 
         private string text;
 
+        private bool isDisabled;
+
         #endregion
 
 
@@ -21,6 +23,12 @@ namespace CtrlForm2.Form.Items
         {
             get { return text; }
             set { text = value; }
+        }
+
+        public bool IsDisabled
+        {
+            get { return isDisabled; }
+            set { isDisabled = value; }
         }
 
         #endregion

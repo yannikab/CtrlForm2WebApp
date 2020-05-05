@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\Items\Input\FormDatePicker.cs" />
+    <Compile Include="Form\Items\Input\FormPasswordBox.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormDatePicker.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormPasswordBox.cs" />
+    <Compile Include="Html\Elements\Items\HtmlDatePicker.cs" />
+    <Compile Include="Html\Elements\Items\HtmlPasswordBox.cs" />
     <Compile Include="UserControls\CtrlForm2Base.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

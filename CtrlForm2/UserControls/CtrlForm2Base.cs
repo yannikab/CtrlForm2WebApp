@@ -32,7 +32,7 @@ namespace CtrlForm2.UserControls
 
         #region Properties
 
-        private FormGroup FormContainer
+        private FormGroup FormGroup
         {
             get { return formContainer; }
             set { formContainer = value; }
@@ -52,13 +52,13 @@ namespace CtrlForm2.UserControls
 
             CreateForm();
 
-            if (FormContainer == null)
+            if (FormGroup == null)
                 return;
 
             if (IsPostBack)
-                new FormPostBackVisitor(FormContainer, Request.Form);
+                new FormPostBackVisitor(FormGroup, Request.Form);
 
-            HtmlContainer = new Form2HtmlVisitor(FormContainer, IsPostBack).Html;
+            HtmlContainer = new Form2HtmlVisitor(FormGroup, IsPostBack).Html;
 
             LtrContent.Text = new Html2TextVisitor(HtmlContainer).Text;
         }
@@ -67,24 +67,24 @@ namespace CtrlForm2.UserControls
 
         protected void OpenGroup(string baseId)
         {
-            FormGroup g = new FormGroup(baseId);
+            FormGroup formGroup = new FormGroup(baseId);
 
             if (groups.Count == 0)
             {
-                FormContainer = g;
-                FormContainer.IsHidden = false;
-                FormContainer.IsReadOnly = false;
-                FormContainer.IsRequired = false;
-                FormContainer.RequiredMark = "*";
-                FormContainer.RequiredMessage = "!";
-                FormContainer.ElementOrder = ElementOrder.InputLabelMark;
+                FormGroup = formGroup;
+                FormGroup.IsHidden = false;
+                FormGroup.IsReadOnly = false;
+                FormGroup.IsRequired = false;
+                FormGroup.RequiredMark = "*";
+                FormGroup.RequiredMessage = "!";
+                FormGroup.ElementOrder = ElementOrder.InputLabelMark;
             }
             else
             {
-                groups.Peek().Add(g);
+                groups.Peek().Add(formGroup);
             }
 
-            groups.Push(g);
+            groups.Push(formGroup);
         }
 
         protected void CloseGroup()
@@ -218,6 +218,14 @@ namespace CtrlForm2.UserControls
                 throw new InvalidOperationException("No form group is currently open. Can not add form item.");
 
             groups.Peek().Add(formItem);
+        }
+
+        protected T GetItem<T>(string baseId) where T : FormItem
+        {
+            if (FormGroup == null)
+                throw new InvalidOperationException("No form container exists. Can not get any form item.");
+
+            return FormGroup.Get<T>(baseId);
         }
     }
 }

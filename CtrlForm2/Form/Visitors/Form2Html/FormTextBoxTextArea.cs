@@ -42,6 +42,7 @@ namespace CtrlForm2.Form.Visitors
             htmlTextBox.ReadOnly.Value = formTextBox.IsReadOnly;
             htmlTextBox.Value.Value = formTextBox.Text;
             htmlTextBox.PlaceHolder.Value = formTextBox.PlaceHolder;
+            htmlTextBox.Disabled.Value = formTextBox.IsDisabled;
 
             HtmlLabel htmlLabel = new HtmlLabel(formTextBox.BaseId);
             htmlLabel.Hidden.Value = formTextBox.IsHidden;
@@ -205,6 +206,7 @@ namespace CtrlForm2.Form.Visitors
             htmlTextArea.ReadOnly.Value = formTextArea.IsReadOnly;
             htmlTextArea.Value.Value = formTextArea.Text;
             htmlTextArea.PlaceHolder.Value = formTextArea.PlaceHolder;
+            htmlTextArea.Disabled.Value = formTextArea.IsDisabled;
 
             HtmlLabel htmlLabel = new HtmlLabel(formTextArea.BaseId);
             htmlLabel.Hidden.Value = formTextArea.IsHidden;

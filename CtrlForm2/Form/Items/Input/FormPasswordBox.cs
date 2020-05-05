@@ -9,7 +9,7 @@ using CtrlForm2.Form.Interfaces;
 
 namespace CtrlForm2.Form.Items.Input
 {
-    public class FormTextBox : FormItemInput, IValidate<FormTextBox>
+    public class FormPasswordBox : FormItemInput, IValidate<FormPasswordBox>
     {
         #region Fields
 
@@ -21,9 +21,9 @@ namespace CtrlForm2.Form.Items.Input
 
         private FormIcon icon;
 
-        private Func<FormTextBox, string> validator;
+        private Func<FormPasswordBox, string> validator;
 
-        private Action<FormTextBox> actionInvalid;
+        private Action<FormPasswordBox> actionInvalid;
 
         #endregion
 
@@ -69,13 +69,13 @@ namespace CtrlForm2.Form.Items.Input
 
         #region IValidate<FormTextBox>
 
-        public Func<FormTextBox, string> Validator
+        public Func<FormPasswordBox, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<FormTextBox> ActionInvalid
+        public Action<FormPasswordBox> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -96,7 +96,7 @@ namespace CtrlForm2.Form.Items.Input
 
         #region Constructors
 
-        public FormTextBox(string baseId, string formId)
+        public FormPasswordBox(string baseId, string formId)
             : base(baseId, formId)
         {
             text = "";
@@ -106,7 +106,7 @@ namespace CtrlForm2.Form.Items.Input
             actionInvalid = (s) => { return; };
         }
 
-        public FormTextBox(string baseId)
+        public FormPasswordBox(string baseId)
             : this(baseId, baseId.ToLower())
         {
         }

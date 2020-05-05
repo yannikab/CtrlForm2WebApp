@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using CtrlForm2.Html.Attributes.ReadOnly.String;
+using CtrlForm2.Html.Attributes.Variable.Boolean;
 
 namespace CtrlForm2.Html.Elements.Containers
 {
@@ -14,7 +15,10 @@ namespace CtrlForm2.Html.Elements.Containers
 
         private readonly AttrType attrType;
 
+        private readonly AttrDisabled attrDisabled;
+
         #endregion
+
 
         #region Properties
 
@@ -33,6 +37,11 @@ namespace CtrlForm2.Html.Elements.Containers
             get { return attrType; }
         }
 
+        public AttrDisabled Disabled
+        {
+            get { return attrDisabled; }
+        }
+
         #endregion
 
 
@@ -42,6 +51,8 @@ namespace CtrlForm2.Html.Elements.Containers
             : base(baseId)
         {
             attributes.Add(attrType = new AttrType("submit"));
+
+            attributes.Add(attrDisabled = new AttrDisabled());
         }
 
         #endregion

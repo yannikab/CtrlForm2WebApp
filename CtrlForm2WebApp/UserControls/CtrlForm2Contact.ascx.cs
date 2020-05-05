@@ -41,7 +41,7 @@ namespace CtrlForm2WebApp.UserControls
 
             AddItem(new FormTitle("Title")
             {
-                Label = "Form Title"
+                Label = "Form Title",
             });
 
 
@@ -67,6 +67,26 @@ namespace CtrlForm2WebApp.UserControls
                 IsRequired = true,
 
                 PlaceHolder = "Enter your last name",
+
+                IsDisabled = false,
+            });
+
+            AddItem(new FormDatePicker("DateOfBirth")
+            {
+                Label = "Date of birth",
+
+                IsRequired = true,
+
+                Validator = (f) =>
+                {
+                    if (f.Date > DateTime.Now)
+                        return "Date of birth can not be in the future";
+
+                    if (DateTime.Now - f.Date < TimeSpan.FromDays(18 * 365.25))
+                        return "You must be at least 18 to use this site";
+
+                    return "";
+                },
             });
 
             CloseGroup();
@@ -109,7 +129,51 @@ namespace CtrlForm2WebApp.UserControls
                         return "Invalid Phone";
 
                     return "";
-                }
+                },
+            });
+
+            CloseGroup();
+
+
+            OpenGroup("Password-ConfirmPassword");
+
+            AddItem(new FormPasswordBox("Password")
+            {
+                Label = "Password",
+
+                IsRequired = true,
+
+                PlaceHolder = "Enter your password",
+
+                Icon = FormIcon.Lock,
+
+                Validator = (p) =>
+                {
+                    if (GetItem<FormPasswordBox>("ConfirmPassword").Text != p.Text)
+                        return "Passwords do not match";
+
+                    return "";
+                },
+            });
+
+
+            AddItem(new FormPasswordBox("ConfirmPassword")
+            {
+                Label = "Confirm Password",
+
+                IsRequired = true,
+
+                PlaceHolder = "Confirm your password",
+
+                Icon = FormIcon.Lock,
+
+                Validator = (p) =>
+                {
+                    if (GetItem<FormPasswordBox>("Password").Text != p.Text)
+                        return "Passwords do not match";
+
+                    return "";
+                },
             });
 
             CloseGroup();
@@ -129,7 +193,7 @@ namespace CtrlForm2WebApp.UserControls
                     new FormOption(2, "Blue"),
                     new FormOption(2, "Brown") { IsSelected = true },
                     new FormOption(2, "Grey"),
-                    }
+                    },
             });
 
             CloseGroup();
@@ -161,13 +225,15 @@ namespace CtrlForm2WebApp.UserControls
 
                 IsRequired = true,
 
-                RequiredMessage = "You must agree with the terms of use"
+                RequiredMessage = "You must agree with the terms of use",
             });
 
 
             AddItem(new FormSubmit("Submit")
             {
-                Text = "Submit"
+                Text = "Submit",
+
+                IsDisabled = false,
             });
 
 

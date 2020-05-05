@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CtrlForm2.Html.Elements.Containers.HtmlContainer">
-    <Position X="12.75" Y="6" Width="1.5" />
+    <Position X="17.25" Y="6" Width="1.5" />
     <Members>
       <Method Name="HtmlContainer" Hidden="true" />
       <Field Name="items" Hidden="true" />
@@ -12,7 +12,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Items.HtmlItem">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Position X="12.75" Y="0.5" Width="1.5" />
     <Members>
       <Field Name="attributes" Hidden="true" />
       <Field Name="container" Hidden="true" />
@@ -25,7 +25,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Items.HtmlElement">
-    <Position X="9.5" Y="2.75" Width="1.5" />
+    <Position X="11.75" Y="2.75" Width="1.5" />
     <Members>
       <Field Name="attrClass" Hidden="true" />
       <Field Name="attrHidden" Hidden="true" />
@@ -39,7 +39,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Items.HtmlText">
-    <Position X="20.75" Y="2.75" Width="1.5" />
+    <Position X="25.25" Y="2.75" Width="1.5" />
     <Members>
       <Method Name="HtmlText" Hidden="true" />
       <Field Name="text" Hidden="true" />
@@ -51,8 +51,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Items.HtmlInput">
-    <Position X="2.75" Y="6" Width="1.5" />
+    <Position X="5" Y="6" Width="1.5" />
     <Members>
+      <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrName" Hidden="true" />
       <Field Name="attrReadOnly" Hidden="true" />
       <Field Name="attrType" Hidden="true" />
@@ -66,7 +67,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Items.HtmlTextArea">
-    <Position X="2.75" Y="9.75" Width="1.5" />
+    <Position X="2.75" Y="9.25" Width="1.5" />
     <Members>
       <Field Name="attrCols" Hidden="true" />
       <Field Name="attrPlaceHolder" Hidden="true" />
@@ -79,7 +80,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Items.HtmlCheckBox">
-    <Position X="5" Y="9.75" Width="1.5" />
+    <Position X="9.5" Y="9.25" Width="1.5" />
     <Members>
       <Field Name="attrChecked" Hidden="true" />
       <Method Name="HtmlCheckBox" Hidden="true" />
@@ -90,18 +91,18 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Containers.HtmlSubmit">
-    <Position X="16.25" Y="8.5" Width="1.5" />
+    <Position X="20.75" Y="8.5" Width="1.5" />
     <Members>
       <Field Name="attrType" Hidden="true" />
       <Method Name="HtmlSubmit" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAgAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAkAAAAAACAAAAAAAAIAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Html\Elements\Containers\HtmlSubmit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Containers.HtmlLabel">
-    <Position X="18.5" Y="8.5" Width="1.5" />
+    <Position X="23" Y="8.5" Width="1.5" />
     <Members>
       <Field Name="attrFor" Hidden="true" />
       <Method Name="HtmlLabel" Hidden="true" />
@@ -112,7 +113,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Containers.HtmlItalic">
-    <Position X="14" Y="8.5" Width="1.5" />
+    <Position X="18.5" Y="8.5" Width="1.5" />
     <Members>
       <Method Name="HtmlItalic" Hidden="true" />
     </Members>
@@ -122,7 +123,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Containers.HtmlOption">
-    <Position X="11.75" Y="8.5" Width="1.5" />
+    <Position X="16.25" Y="8.5" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrSelected" Hidden="true" />
@@ -136,7 +137,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Items.HtmlTextBox">
-    <Position X="0.5" Y="9.75" Width="1.5" />
+    <Position X="0.5" Y="9.25" Width="1.5" />
     <Members>
       <Field Name="attrPlaceHolder" Hidden="true" />
       <Method Name="HtmlTextBox" Hidden="true" />
@@ -147,7 +148,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Containers.HtmlSelect">
-    <Position X="7.25" Y="8.5" Width="1.5" />
+    <Position X="11.75" Y="8.5" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrMultiple" Hidden="true" />
@@ -161,13 +162,49 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CtrlForm2.Html.Elements.Containers.HtmlDiv">
-    <Position X="9.5" Y="8.5" Width="1.5" />
+    <Position X="14" Y="8.5" Width="1.5" />
     <Members>
       <Method Name="HtmlDiv" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Html\Elements\Containers\HtmlDiv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CtrlForm2.Html.Elements.Items.HtmlPasswordBox">
+    <Position X="7.25" Y="9.25" Width="1.5" />
+    <Members>
+      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Method Name="HtmlPasswordBox" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAIAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Html\Elements\Items\HtmlPasswordBox.cs</FileName>
+      <NewMemberFileName>Html\Elements\Items\HtmlTextBox.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CtrlForm2.Form.Items.Input.FormDatePicker" Collapsed="true">
+    <Position X="27.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="actionInvalid" Hidden="true" />
+      <Field Name="date" Hidden="true" />
+      <Field Name="isDisabled" Hidden="true" />
+      <Field Name="validator" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAQAAAAgAAAAAAAAAAQEBgCABAYAAAAA=</HashCode>
+      <FileName>Form\Items\Input\FormDatePicker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CtrlForm2.Html.Elements.Items.HtmlDatePicker">
+    <Position X="5" Y="9.25" Width="1.5" />
+    <Members>
+      <Method Name="HtmlDatePicker" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Elements\Items\HtmlDatePicker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

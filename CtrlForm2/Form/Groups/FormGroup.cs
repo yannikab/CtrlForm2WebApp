@@ -169,6 +169,23 @@ namespace CtrlForm2.Form.Groups
             return removed;
         }
 
+        public T Get<T>(string baseId) where T : FormItem
+        {
+            foreach (var item in Items.OfType<T>())
+                if (item.BaseId == baseId)
+                    return item;
+
+            foreach (var group in Items.OfType<FormGroup>())
+            {
+                T formItem = group.Get<T>(baseId);
+
+                if (formItem != default(T))
+                    return formItem;
+            }
+
+            return default(T);
+        }
+
         #endregion
 
 

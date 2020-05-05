@@ -59,6 +59,16 @@ namespace CtrlForm2.Form.Visitors
             formTextArea.Text = form[formTextArea.BaseId];
         }
 
+        public virtual void Visit(FormPasswordBox formPasswordBox)
+        {
+            formPasswordBox.Text = form[formPasswordBox.BaseId];
+        }
+        
+        public virtual void Visit(FormDatePicker formDatePicker)
+        {
+            try { formDatePicker.Date = Convert.ToDateTime(form[formDatePicker.BaseId]); } catch { }
+        }
+
         public virtual void Visit(FormCheckBox formCheckBox)
         {
             formCheckBox.IsChecked = form[formCheckBox.BaseId] == "on";

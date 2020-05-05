@@ -122,7 +122,7 @@ namespace CtrlForm2.Html.Visitors
             foreach (var a in e.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(">");
+            sb.AppendLine(" />");
         }
 
         public void Visit(HtmlTextArea e)
@@ -140,6 +140,28 @@ namespace CtrlForm2.Html.Visitors
             sb.AppendLine(string.Format("</{0}>", e.Tag));
         }
 
+        public void Visit(HtmlPasswordBox e)
+        {
+            sb.Append(Tabs(e.Depth));
+            sb.Append(string.Format("<{0}", e.Tag));
+
+            foreach (var a in e.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.AppendLine(" />");
+        }
+
+        public void Visit(HtmlDatePicker e)
+        {
+            sb.Append(Tabs(e.Depth));
+            sb.Append(string.Format("<{0}", e.Tag));
+
+            foreach (var a in e.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.AppendLine(" />");
+        }
+
         public void Visit(HtmlCheckBox e)
         {
             sb.Append(Tabs(e.Depth));
@@ -148,7 +170,7 @@ namespace CtrlForm2.Html.Visitors
             foreach (var a in e.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(">");
+            sb.AppendLine(" />");
         }
 
         public void Visit(HtmlSelect e)
