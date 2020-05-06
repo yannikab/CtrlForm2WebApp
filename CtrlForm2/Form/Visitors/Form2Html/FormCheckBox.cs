@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CtrlForm2.Form.Content.Items.Input;
 using CtrlForm2.Form.Enums;
-using CtrlForm2.Form.Items.Input;
-using CtrlForm2.Html.Elements.Containers;
-using CtrlForm2.Html.Elements.Items;
+using CtrlForm2.Html.Content;
+using CtrlForm2.Html.Content.Elements;
+using CtrlForm2.Html.Content.Elements.Containers;
+using CtrlForm2.Html.Content.Elements.Input;
 
 namespace CtrlForm2.Form.Visitors
 {
@@ -41,7 +43,7 @@ namespace CtrlForm2.Form.Visitors
             htmlCheckBox.Hidden.Value = formCheckBox.IsHidden;
             htmlCheckBox.ReadOnly.Value = formCheckBox.IsReadOnly;
             htmlCheckBox.Checked.Value = formCheckBox.IsChecked;
-            
+
             HtmlLabel htmlLabel = new HtmlLabel(formCheckBox.BaseId);
             htmlLabel.Hidden.Value = formCheckBox.IsHidden;
             htmlLabel.For.Value = htmlCheckBox.Id.Value;

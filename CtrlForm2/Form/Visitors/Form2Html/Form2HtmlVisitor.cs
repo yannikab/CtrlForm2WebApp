@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using CtrlForm2.Form.Groups;
-using CtrlForm2.Form.Items;
-using CtrlForm2.Html.Elements.Containers;
+using CtrlForm2.Form.Content;
+using CtrlForm2.Html.Content.Elements;
 
 namespace CtrlForm2.Form.Visitors
 {
@@ -40,7 +39,7 @@ namespace CtrlForm2.Form.Visitors
 
         #region Methods
 
-        public void Visit(FormItem formItem, HtmlContainer htmlContainer)
+        public void Visit(FormContent formItem, HtmlContainer htmlContainer)
         {
             var mi = (from m in GetType().GetMethods()
                       where

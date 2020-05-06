@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using CtrlForm2.Form.Groups;
-using CtrlForm2.Html.Elements.Containers;
+using CtrlForm2.Form.Content;
+using CtrlForm2.Html.Content.Elements;
+using CtrlForm2.Html.Content.Elements.Containers;
 
 namespace CtrlForm2.Form.Visitors
 {
@@ -24,7 +25,7 @@ namespace CtrlForm2.Form.Visitors
             else
                 htmlContainer.Add(htmlDiv);
 
-            foreach (var formItem in formGroup.Items)
+            foreach (var formItem in formGroup.Contents)
                 Visit(formItem, htmlDiv);
         }
     }

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using CtrlForm2.Form.Groups;
-using CtrlForm2.Form.Items;
-using CtrlForm2.Form.Items.Input;
-using CtrlForm2.Form.Items.Input.Selectors;
+using CtrlForm2.Form.Content;
+using CtrlForm2.Form.Content.Items;
+using CtrlForm2.Form.Content.Items.Input;
+using CtrlForm2.Form.Content.Items.Input.Selectors;
 using CtrlForm2.Form.Selectables;
 
 namespace CtrlForm2.Form.Visitors
@@ -25,7 +24,7 @@ namespace CtrlForm2.Form.Visitors
 
         #region Methods
 
-        public void Visit(FormItem formItem)
+        public void Visit(FormContent formItem)
         {
             var mi = (from m in GetType().GetMethods()
                       where
@@ -42,9 +41,9 @@ namespace CtrlForm2.Form.Visitors
 
         public virtual void Visit(FormGroup formGroup)
         {
-            foreach (var i in formGroup.Items)
+            foreach (var i in formGroup.Contents)
             {
-                if (i is FormItemInput || i is FormGroup)
+                if (i is FormInput || i is FormGroup)
                     Visit(i);
             }
         }
@@ -63,7 +62,7 @@ namespace CtrlForm2.Form.Visitors
         {
             formPasswordBox.Text = form[formPasswordBox.BaseId];
         }
-        
+
         public virtual void Visit(FormDatePicker formDatePicker)
         {
             try { formDatePicker.Date = Convert.ToDateTime(form[formDatePicker.BaseId]); } catch { }

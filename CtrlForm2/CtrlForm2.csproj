@@ -42,31 +42,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form\Items\Input\FormDatePicker.cs" />
-    <Compile Include="Form\Items\Input\FormPasswordBox.cs" />
+    <Compile Include="Form\Content\FormItem.cs" />
+    <Compile Include="Form\Content\Items\Input\FormDatePicker.cs" />
+    <Compile Include="Form\Content\Items\Input\FormPasswordBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormDatePicker.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormPasswordBox.cs" />
-    <Compile Include="Html\Elements\Items\HtmlDatePicker.cs" />
-    <Compile Include="Html\Elements\Items\HtmlPasswordBox.cs" />
+    <Compile Include="Html\Content\Elements\Input\HtmlDatePicker.cs" />
+    <Compile Include="Html\Content\Elements\Input\HtmlPasswordBox.cs" />
     <Compile Include="UserControls\CtrlForm2Base.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Form\Enums\ElementOrder.cs" />
-    <Compile Include="Form\Groups\FormGroup.cs" />
+    <Compile Include="Form\Content\FormGroup.cs" />
     <Compile Include="Form\Enums\FormIcon.cs" />
-    <Compile Include="Form\Items\FormItem.cs" />
+    <Compile Include="Form\Content\FormContent.cs" />
     <Compile Include="Form\Selectables\FormSelectable.cs" />
     <Compile Include="Form\Selectables\FormOption.cs" />
-    <Compile Include="Form\Items\Input\FormCheckBox.cs" />
-    <Compile Include="Form\Items\Input\FormItemInput.cs" />
-    <Compile Include="Form\Items\Input\Selectors\FormRadioGroup.cs" />
-    <Compile Include="Form\Items\Input\Selectors\FormSelector.cs" />
-    <Compile Include="Form\Items\Input\FormTextArea.cs" />
-    <Compile Include="Form\Items\Input\FormTextBox.cs" />
-    <Compile Include="Form\Items\FormLabel.cs" />
-    <Compile Include="Form\Items\FormSubmit.cs" />
-    <Compile Include="Form\Items\FormTitle.cs" />
-    <Compile Include="Form\Items\Input\Selectors\FormSelect.cs" />
+    <Compile Include="Form\Content\Items\Input\FormCheckBox.cs" />
+    <Compile Include="Form\Content\Items\FormInput.cs" />
+    <Compile Include="Form\Content\Items\Input\Selectors\FormRadioGroup.cs" />
+    <Compile Include="Form\Content\Items\Input\FormSelector.cs" />
+    <Compile Include="Form\Content\Items\Input\FormTextArea.cs" />
+    <Compile Include="Form\Content\Items\Input\FormTextBox.cs" />
+    <Compile Include="Form\Content\Items\FormLabel.cs" />
+    <Compile Include="Form\Content\Items\FormSubmit.cs" />
+    <Compile Include="Form\Content\Items\FormTitle.cs" />
+    <Compile Include="Form\Content\Items\Input\Selectors\FormSelect.cs" />
     <Compile Include="Html\Attributes\Variable\Boolean\AttrSelected.cs" />
     <Compile Include="Html\Attributes\Variable\Boolean\AttrDisabled.cs" />
     <Compile Include="Html\Attributes\Variable\Boolean\AttrChecked.cs" />
@@ -91,26 +92,26 @@
     <Compile Include="Html\Attributes\Variable\HtmlAttribute.cs" />
     <Compile Include="Html\Attributes\MultiValue\HtmlMultiValueAttribute.cs" />
     <Compile Include="Html\Attributes\ReadOnly\HtmlReadOnlyAttribute.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlSelect.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlDiv.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlContainer.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlItalic.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlLabel.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlOption.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlSpan.cs" />
-    <Compile Include="Html\Elements\Containers\HtmlSubmit.cs" />
-    <Compile Include="Html\Elements\Items\HtmlElement.cs" />
-    <Compile Include="Html\Elements\Items\HtmlInput.cs" />
-    <Compile Include="Html\Elements\Items\HtmlItem.cs" />
-    <Compile Include="Html\Elements\Items\HtmlText.cs" />
-    <Compile Include="Html\Elements\Items\HtmlTextArea.cs" />
-    <Compile Include="Html\Elements\Items\HtmlCheckBox.cs" />
-    <Compile Include="Html\Elements\Items\HtmlTextBox.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlSelect.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlDiv.cs" />
+    <Compile Include="Html\Content\Elements\HtmlContainer.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlItalic.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlLabel.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlOption.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlSpan.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlSubmit.cs" />
+    <Compile Include="Html\Content\HtmlElement.cs" />
+    <Compile Include="Html\Content\Elements\HtmlInput.cs" />
+    <Compile Include="Html\Content\HtmlContent.cs" />
+    <Compile Include="Html\Content\HtmlText.cs" />
+    <Compile Include="Html\Content\Elements\Input\HtmlTextArea.cs" />
+    <Compile Include="Html\Content\Elements\Input\HtmlCheckBox.cs" />
+    <Compile Include="Html\Content\Elements\Input\HtmlTextBox.cs" />
     <Compile Include="Html\Interfaces\IHtmlAttribute.cs" />
     <Compile Include="Form\Interfaces\IRequired.cs" />
     <Compile Include="Form\Interfaces\IValidate.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormCheckBox.cs" />
-    <Compile Include="Form\Visitors\Form2Html\FormSelectOption.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormSelect.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormTextBoxTextArea.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormSubmit.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormLabelFormTitle.cs" />
@@ -121,9 +122,9 @@
     <Compile Include="Html\Visitors\Html2TextVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\FormElements.cd" />
+    <None Include="Diagrams\Form.cd" />
     <None Include="Diagrams\HtmlAttributes.cd" />
-    <None Include="Diagrams\HtmlElements.cd" />
+    <None Include="Diagrams\Html.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

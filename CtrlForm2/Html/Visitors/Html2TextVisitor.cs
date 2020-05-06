@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using CtrlForm2.Html.Elements.Containers;
-using CtrlForm2.Html.Elements.Items;
+using CtrlForm2.Html.Content;
+using CtrlForm2.Html.Content.Elements;
+using CtrlForm2.Html.Content.Elements.Containers;
+using CtrlForm2.Html.Content.Elements.Input;
 
 namespace CtrlForm2.Html.Visitors
 {
@@ -26,7 +28,7 @@ namespace CtrlForm2.Html.Visitors
             return new string('\t', depth);
         }
 
-        public void Visit(HtmlItem e)
+        public void Visit(HtmlContent e)
         {
             var mi = (from m in GetType().GetMethods()
                       where
@@ -52,7 +54,7 @@ namespace CtrlForm2.Html.Visitors
 
             sb.AppendLine(">");
 
-            foreach (var c in e.Items)
+            foreach (var c in e.Contents)
                 Visit(c);
 
             sb.Append(Tabs(e.Depth));
@@ -74,7 +76,7 @@ namespace CtrlForm2.Html.Visitors
 
             sb.Append(">");
 
-            foreach (var c in e.Items)
+            foreach (var c in e.Contents)
                 Visit(c);
 
             sb.Append(string.Format("</{0}>", e.Tag));
@@ -92,7 +94,7 @@ namespace CtrlForm2.Html.Visitors
 
             sb.Append(">");
 
-            foreach (var c in e.Items)
+            foreach (var c in e.Contents)
                 Visit(c);
 
             sb.Append(string.Format("</{0}>", e.Tag));
@@ -108,7 +110,7 @@ namespace CtrlForm2.Html.Visitors
 
             sb.Append(">");
 
-            foreach (var c in e.Items)
+            foreach (var c in e.Contents)
                 Visit(c);
 
             sb.AppendLine(string.Format("</{0}>", e.Tag));
@@ -183,7 +185,7 @@ namespace CtrlForm2.Html.Visitors
 
             sb.AppendLine(">");
 
-            foreach (var c in e.Items)
+            foreach (var c in e.Contents)
                 Visit(c);
 
             sb.Append(Tabs(e.Depth));
@@ -200,7 +202,7 @@ namespace CtrlForm2.Html.Visitors
 
             sb.Append(">");
 
-            foreach (var c in e.Items)
+            foreach (var c in e.Contents)
                 Visit(c);
 
             sb.AppendLine(string.Format("</{0}>", e.Tag));
@@ -216,7 +218,7 @@ namespace CtrlForm2.Html.Visitors
 
             sb.Append(">");
 
-            foreach (var c in e.Items)
+            foreach (var c in e.Contents)
                 Visit(c);
 
             sb.AppendLine(string.Format("</{0}>", e.Tag));
@@ -227,7 +229,7 @@ namespace CtrlForm2.Html.Visitors
             sb.Append(t.Text);
         }
 
-        public Html2TextVisitor(HtmlItem e)
+        public Html2TextVisitor(HtmlContainer e)
         {
             Visit(e);
         }

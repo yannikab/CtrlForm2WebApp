@@ -7,11 +7,10 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
+using CtrlForm2.Form.Content;
 using CtrlForm2.Form.Enums;
-using CtrlForm2.Form.Groups;
-using CtrlForm2.Form.Items;
 using CtrlForm2.Form.Visitors;
-using CtrlForm2.Html.Elements.Containers;
+using CtrlForm2.Html.Content.Elements;
 using CtrlForm2.Html.Visitors;
 
 namespace CtrlForm2.UserControls
@@ -24,7 +23,7 @@ namespace CtrlForm2.UserControls
 
         private readonly Stack<FormGroup> groups = new Stack<FormGroup>();
 
-        private FormGroup formContainer;
+        private FormGroup formGroup;
 
         private HtmlContainer htmlContainer;
 
@@ -34,8 +33,8 @@ namespace CtrlForm2.UserControls
 
         private FormGroup FormGroup
         {
-            get { return formContainer; }
-            set { formContainer = value; }
+            get { return formGroup; }
+            set { formGroup = value; }
         }
 
         private HtmlContainer HtmlContainer
@@ -209,7 +208,7 @@ namespace CtrlForm2.UserControls
             }
         }
 
-        protected void AddItem(FormItem formItem)
+        protected void AddItem(FormContent formItem)
         {
             if (formItem is FormGroup)
                 throw new InvalidOperationException("Only form items can be added to a group. Can not add form group.");
