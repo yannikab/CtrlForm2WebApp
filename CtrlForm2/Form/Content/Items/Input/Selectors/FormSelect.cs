@@ -15,6 +15,8 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
 
         private readonly int? size;
 
+        private FormOption header;
+
         #endregion
 
 
@@ -30,6 +32,48 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
             get { return size; }
         }
 
+        public FormOption Header
+        {
+            get { return header; }
+            set
+            {
+                if (value == header)
+                    return;
+
+                if (header != null && !Remove(header))
+                    throw new ApplicationException();
+
+                if (value != null)
+                    Insert(0, value);
+
+                header = value;
+            }
+        }
+
+        public override IEnumerable<FormOption> Options
+        {
+            set
+            {
+                base.Options = value;
+
+                if (header != null)
+                    Insert(0, header);
+            }
+        }
+
+        public override bool IsEntered
+        {
+            get
+            {
+                var options = Options;
+
+                if (header != null)
+                    options = options.Except(new FormOption[] { header });
+
+                return options.Any(o => o.IsSelected);
+            }
+        }
+
         #endregion
 
 
@@ -43,6 +87,7 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
 
             this.isMultiSelect = true;
             this.size = size;
+            this.header = null;
         }
 
         public FormSelect(string baseId, string formId, bool multiSelect)
@@ -50,6 +95,7 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
         {
             this.isMultiSelect = multiSelect;
             this.size = null;
+            this.header = null;
         }
 
         public FormSelect(string baseId, int size)

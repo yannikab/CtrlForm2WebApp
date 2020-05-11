@@ -9,7 +9,6 @@ using CtrlForm2.Form.Content;
 using CtrlForm2.Form.Content.Items;
 using CtrlForm2.Form.Content.Items.Input;
 using CtrlForm2.Form.Content.Items.Input.Selectors;
-using CtrlForm2.Form.Selectables;
 
 namespace CtrlForm2.Form.Visitors
 {
@@ -73,15 +72,31 @@ namespace CtrlForm2.Form.Visitors
             formCheckBox.IsChecked = form[formCheckBox.BaseId] == "on";
         }
 
-        public virtual void Visit(FormSelect formSelector)
+        public virtual void Visit(FormSelect formSelect)
         {
-            foreach (var o in formSelector.Options)
-                Visit(o);
-        }
+            int previousIndex = 0;
 
-        public virtual void Visit(FormOption formOption)
-        {
-            formOption.IsSelected = form[formOption.FormSelect.BaseId].Split(',').Contains(formOption.Value);
+            var options = formSelect.Options.ToList();
+
+            for (int i = 0; i < options.Count; i++)
+                options[i].IsSelected = false;
+
+            if (form[formSelect.BaseId] == null)
+                return;
+
+            foreach (var o in form[formSelect.BaseId].Split(','))
+            {
+                for (int i = previousIndex; i < options.Count; i++)
+                {
+                    if (options[i].Value == o)
+                    {
+                        options[i].IsSelected = true;
+                        previousIndex = i + 1;
+
+                        break;
+                    }
+                }
+            }
         }
 
         #endregion

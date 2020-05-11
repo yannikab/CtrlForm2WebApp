@@ -19,7 +19,7 @@ namespace CtrlForm2.Form.Content.Items.Input
 
         #region Properties
 
-        public IEnumerable<T> Options
+        public virtual IEnumerable<T> Options
         {
             get { return options; }
             set
@@ -27,8 +27,10 @@ namespace CtrlForm2.Form.Content.Items.Input
                 //if (!IsMultiSelect && value.Count(o => o.IsSelected) > 1)
                 //    throw new ArgumentException();
 
-                foreach (var o in options)
-                    Remove(o);
+                int count = options.Count;
+
+                for (int i = 0; i < count; i++)
+                    Remove(options[0]);
 
                 foreach (var o in value)
                     Add(o);
@@ -40,17 +42,17 @@ namespace CtrlForm2.Form.Content.Items.Input
             get;
         }
 
-        public override bool IsEntered
-        {
-            get { return options.Any(o => o.IsSelected); }
-        }
-
         #endregion
 
 
         #region Methods
 
         public void Add(T option)
+        {
+            Insert(options.Count, option);
+        }
+
+        public void Insert(int index, T option)
         {
             if (options.Contains(option))
                 return;
@@ -64,7 +66,7 @@ namespace CtrlForm2.Form.Content.Items.Input
                     o.IsSelected = false;
             }
 
-            options.Add(option);
+            options.Insert(index, option);
 
             option.SetContainer(this);
         }

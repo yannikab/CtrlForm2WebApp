@@ -187,14 +187,18 @@ namespace CtrlForm2WebApp.UserControls
 
                 Label = "Favorite color",
 
-                Options = new FormOption[] {
+                Header = new FormOption("Choose..."),
+
+                Options = new FormOption[]
+                {
                     new FormOption(0, "Red"),
                     new FormOption(1, "Green") { IsSelected = true },
-                    new FormOption(2, "Blue"),
-                    new FormOption(2, "Brown") { IsSelected = true },
+                    new FormOption("", "Blue"),
+                    new FormOption(2, "Green") { IsSelected = true },
                     new FormOption(2, "Grey"),
-                    },
+                },
             });
+
 
             CloseGroup();
 
