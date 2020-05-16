@@ -12,21 +12,23 @@ namespace CtrlForm2.Form.Content.Items
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public abstract class FormInput : FormItem, IRequired
+    public abstract class FormInput<C, V> : FormItem, IDisabled, IRequired
     {
         #region Fields
 
         private string label;
 
-        private bool? isReadOnly;
+        private ElementOrder elementOrder;
+
+        private C content;
+
+        private bool? isDisabled;
 
         private bool? isRequired;
 
         private string requiredMark;
 
         private string requiredMessage;
-
-        private ElementOrder elementOrder;
 
         #endregion
 
@@ -37,27 +39,6 @@ namespace CtrlForm2.Form.Content.Items
         {
             get { return label; }
             set { label = value; }
-        }
-
-        public bool? IsReadOnly
-        {
-            get
-            {
-                if (isReadOnly.HasValue)
-                    return isReadOnly.Value;
-
-                FormGroup container = Container as FormGroup;
-
-                if (container == null)
-                    return null;
-
-                return container.IsReadOnly;
-            }
-
-            set
-            {
-                isReadOnly = value;
-            }
         }
 
         public ElementOrder ElementOrder
@@ -74,10 +55,45 @@ namespace CtrlForm2.Form.Content.Items
 
                 return container.ElementOrder;
             }
-
             set
             {
                 elementOrder = value;
+            }
+        }
+
+        public virtual C Content
+        {
+            get { return content; }
+            set { content = value; }
+        }
+
+        public abstract V Value
+        {
+            get;
+        }
+
+        #endregion
+
+
+        #region IDisabled
+
+        public bool? IsDisabled
+        {
+            get
+            {
+                if (isDisabled.HasValue)
+                    return isDisabled.Value;
+
+                FormGroup container = Container as FormGroup;
+
+                if (container == null)
+                    return null;
+
+                return container.IsDisabled;
+            }
+            set
+            {
+                isDisabled = value;
             }
         }
 
@@ -86,10 +102,18 @@ namespace CtrlForm2.Form.Content.Items
 
         #region IRequired
 
-        public bool? IsRequired
+        public virtual bool? IsRequired
         {
             get
             {
+                // a user can not be expected to fill out an input element that is disabled
+                if (IsDisabled ?? false)
+                    return false;
+
+                // a user can not be expected to fill out an input element that is hidden
+                if (IsHidden ?? false)
+                    return false;
+
                 if (isRequired.HasValue)
                     return isRequired.Value;
 
@@ -100,7 +124,6 @@ namespace CtrlForm2.Form.Content.Items
 
                 return container.IsRequired;
             }
-
             set
             {
                 isRequired = value;
@@ -145,7 +168,7 @@ namespace CtrlForm2.Form.Content.Items
             }
         }
 
-        public abstract bool IsEntered
+        public abstract bool IsRequiredMet
         {
             get;
         }
@@ -158,9 +181,15 @@ namespace CtrlForm2.Form.Content.Items
         public FormInput(string baseId, string formId, string label)
             : base(baseId, formId)
         {
-            this.label = label;
-            requiredMark = null;
-            elementOrder = ElementOrder.NotSet;
+            Label = label;
+
+            IsDisabled = null;
+
+            IsRequired = null;
+            RequiredMark = null;
+            RequiredMessage = null;
+
+            ElementOrder = ElementOrder.NotSet;
         }
 
         public FormInput(string baseId, string formId)

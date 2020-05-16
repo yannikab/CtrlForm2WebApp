@@ -7,12 +7,17 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using CtrlForm2.Form.Content.Items.Input;
+using CtrlForm2.Form.Interfaces;
 
 namespace CtrlForm2.Form.Selectables
 {
-    public abstract class FormSelectable
+    public abstract class FormSelectable : IHidden, IDisabled
     {
         #region Fields
+
+        private bool isHidden;
+
+        private bool isDisabled;
 
         private bool isSelected;
 
@@ -23,8 +28,20 @@ namespace CtrlForm2.Form.Selectables
 
         public bool IsSelected
         {
-            get { return isSelected; }
-            set { isSelected = value; }
+            get
+            {
+                if (isHidden)
+                    return false;
+
+                if (isDisabled)
+                    return false;
+
+                return isSelected;
+            }
+            set
+            {
+                isSelected = value;
+            }
         }
 
         #endregion
@@ -32,7 +49,29 @@ namespace CtrlForm2.Form.Selectables
 
         #region Methods
 
-        public abstract void SetContainer<T>(FormSelector<T> container) where T : FormSelectable;
+        public abstract void SetContainer<S, V>(FormSelector<S, V> container) where S : FormSelectable;
+
+        #endregion
+
+
+        #region IHidden
+
+        public bool? IsHidden
+        {
+            get { return isHidden; }
+            set { isHidden = value ?? false; }
+        }
+
+        #endregion
+
+
+        #region IDisabled
+
+        public bool? IsDisabled
+        {
+            get { return isDisabled; }
+            set { isDisabled = value ?? false; }
+        }
 
         #endregion
     }

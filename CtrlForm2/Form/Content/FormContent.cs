@@ -5,19 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CtrlForm2.Form.Interfaces;
+
 namespace CtrlForm2.Form.Content
 {
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
 
-    public abstract class FormContent
+    public abstract class FormContent : IHidden
     {
         #region Fields
-
-        protected FormGroup container;
 
         private readonly string baseId;
 
         private readonly string formId;
+
+        private FormGroup container;
 
         private bool? isHidden;
 
@@ -25,12 +27,6 @@ namespace CtrlForm2.Form.Content
 
 
         #region Properties
-
-        public virtual FormGroup Container
-        {
-            get { return container; }
-            set { container = value; }
-        }
 
         public string BaseId
         {
@@ -41,6 +37,22 @@ namespace CtrlForm2.Form.Content
         {
             get { return formId; }
         }
+
+        public virtual FormGroup Container
+        {
+            get { return container; }
+            set { container = value; }
+        }
+
+        public int Depth
+        {
+            get { return container == null ? 0 : container.Depth + 1; }
+        }
+
+        #endregion
+
+
+        #region IHidden
 
         public bool? IsHidden
         {
@@ -54,16 +66,10 @@ namespace CtrlForm2.Form.Content
 
                 return container.IsHidden;
             }
-
             set
             {
                 isHidden = value;
             }
-        }
-
-        public int Depth
-        {
-            get { return container == null ? 0 : container.Depth + 1; }
         }
 
         #endregion
@@ -81,6 +87,10 @@ namespace CtrlForm2.Form.Content
 
             this.baseId = baseId;
             this.formId = formId;
+
+            Container = null;
+
+            IsHidden = null;
         }
 
         #endregion

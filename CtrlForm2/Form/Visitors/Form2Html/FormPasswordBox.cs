@@ -30,7 +30,7 @@ namespace CtrlForm2.Form.Visitors
             }
             else
             {
-                if (!string.IsNullOrEmpty(formPasswordBox.Text))
+                if (!string.IsNullOrEmpty(formPasswordBox.Value))
                     htmlDiv.Class.Add(formPasswordBox.IsValid ? "form-valid" : "form-invalid");
                 else
                     htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
@@ -40,14 +40,12 @@ namespace CtrlForm2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlPasswordBox htmlPasswordBox = new HtmlPasswordBox(formPasswordBox.BaseId);
-            htmlPasswordBox.Hidden.Value = formPasswordBox.IsHidden;
-            htmlPasswordBox.ReadOnly.Value = formPasswordBox.IsReadOnly;
-            htmlPasswordBox.Value.Value = formPasswordBox.Text;
-            htmlPasswordBox.PlaceHolder.Value = formPasswordBox.PlaceHolder;
             htmlPasswordBox.Disabled.Value = formPasswordBox.IsDisabled;
+            htmlPasswordBox.ReadOnly.Value = formPasswordBox.IsReadOnly;
+            htmlPasswordBox.Value.Value = formPasswordBox.Value;
+            htmlPasswordBox.PlaceHolder.Value = !string.IsNullOrEmpty(formPasswordBox.PlaceHolder) ? formPasswordBox.PlaceHolder : null;
 
             HtmlLabel htmlLabel = new HtmlLabel(formPasswordBox.BaseId);
-            htmlLabel.Hidden.Value = formPasswordBox.IsHidden;
             htmlLabel.For.Value = htmlPasswordBox.Id.Value;
 
             switch (formPasswordBox.ElementOrder)
@@ -165,16 +163,15 @@ namespace CtrlForm2.Form.Visitors
 
             string message = null;
 
-            if (isRequired && !formPasswordBox.IsEntered)
+            if (!formPasswordBox.IsRequiredMet)
                 message = formPasswordBox.RequiredMessage;
-            else if ((isRequired || formPasswordBox.IsEntered) && !formPasswordBox.IsValid)
+            else if (!formPasswordBox.IsValid)
                 message = formPasswordBox.ValidationMessage;
 
             if (message == null)
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formPasswordBox.BaseId, "Message"));
-            htmlLabelMessage.Hidden.Value = formPasswordBox.IsHidden;
             htmlLabelMessage.For.Value = htmlPasswordBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

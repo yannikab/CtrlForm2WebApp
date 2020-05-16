@@ -30,7 +30,7 @@ namespace CtrlForm2.Form.Visitors
             }
             else
             {
-                if (formCheckBox.IsEntered)
+                if (formCheckBox.IsRequiredMet)
                     htmlDiv.Class.Add("form-valid");
                 else
                     htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
@@ -40,12 +40,10 @@ namespace CtrlForm2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlCheckBox htmlCheckBox = new HtmlCheckBox(formCheckBox.BaseId);
-            htmlCheckBox.Hidden.Value = formCheckBox.IsHidden;
-            htmlCheckBox.ReadOnly.Value = formCheckBox.IsReadOnly;
-            htmlCheckBox.Checked.Value = formCheckBox.IsChecked;
+            htmlCheckBox.Disabled.Value = formCheckBox.IsDisabled;
+            htmlCheckBox.Checked.Value = formCheckBox.Value;
 
             HtmlLabel htmlLabel = new HtmlLabel(formCheckBox.BaseId);
-            htmlLabel.Hidden.Value = formCheckBox.IsHidden;
             htmlLabel.For.Value = htmlCheckBox.Id.Value;
 
             switch (formCheckBox.ElementOrder)
@@ -161,11 +159,10 @@ namespace CtrlForm2.Form.Visitors
             if (!IsPostBack)
                 return;
 
-            if (!isRequired || formCheckBox.IsEntered)
+            if (formCheckBox.IsRequiredMet)
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formCheckBox.BaseId, "Message"));
-            htmlLabelMessage.Hidden.Value = formCheckBox.IsHidden;
             htmlLabelMessage.For.Value = htmlCheckBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(formCheckBox.RequiredMessage));
             htmlDiv.Add(htmlLabelMessage);

@@ -26,7 +26,7 @@ namespace CtrlForm2.Form.Visitors
             htmlSubmit.Disabled.Value = formSubmit.IsDisabled;
             htmlDiv.Add(htmlSubmit);
 
-            htmlSubmit.Add(new HtmlText(formSubmit.Text));
+            htmlSubmit.Add(new HtmlText(formSubmit.Content));
         }
     }
 }

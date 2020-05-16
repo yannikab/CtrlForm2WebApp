@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using CtrlForm2.Form.Interfaces;
 using CtrlForm2.Form.Selectables;
 
 namespace CtrlForm2.Form.Content.Items.Input.Selectors
 {
-    public class FormSelect : FormSelector<FormOption>
+    public class FormSelect : FormSelector<FormOption, IEnumerable<FormOption>>, IValidate<FormSelect>
     {
         #region Fields
 
@@ -16,6 +17,10 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
         private readonly int? size;
 
         private FormOption header;
+
+        private Func<FormSelect, string> validator;
+
+        private Action<FormSelect> actionInvalid;
 
         #endregion
 
@@ -50,27 +55,90 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
             }
         }
 
-        public override IEnumerable<FormOption> Options
+        public override IEnumerable<FormOption> Content
         {
+            get { return base.Content; }
             set
             {
-                base.Options = value;
+                base.Content = value;
 
                 if (header != null)
                     Insert(0, header);
             }
         }
 
-        public override bool IsEntered
+        public override IEnumerable<FormOption> Value
         {
             get
             {
-                var options = Options;
+                foreach (var c in Content)
+                {
+                    if (c == header)
+                        continue;
 
-                if (header != null)
-                    options = options.Except(new FormOption[] { header });
+                    if (c.IsSelected)
+                        yield return c;
+                }
+            }
+        }
 
-                return options.Any(o => o.IsSelected);
+        #endregion
+
+
+        #region IRequired
+
+        public override bool IsRequiredMet
+        {
+            get
+            {
+                if (IsHidden ?? false)
+                    return true;
+
+                if (IsDisabled ?? false)
+                    return true;
+
+                if (!(IsRequired ?? false))
+                    return true;
+
+                return Value.Any();
+            }
+        }
+
+        #endregion
+
+
+        #region IValidate<FormSelect>
+
+        public Func<FormSelect, string> Validator
+        {
+            get { return validator; }
+            set { validator = value; }
+        }
+
+        public Action<FormSelect> ActionInvalid
+        {
+            get { return actionInvalid; }
+            set { actionInvalid = value; }
+        }
+
+        public string ValidationMessage
+        {
+            get { return Validator(this); }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled ?? false)
+                    return true;
+
+                // a user can not edit hidden elements, it is unfair for them to participate in validation
+                if (IsHidden ?? false)
+                    return true;
+
+                return !IsRequiredMet ? (!(IsRequired ?? false)) : string.IsNullOrEmpty(ValidationMessage);
             }
         }
 
@@ -87,7 +155,10 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
 
             this.isMultiSelect = true;
             this.size = size;
-            this.header = null;
+            Header = null;
+
+            Validator = (f) => { return ""; };
+            ActionInvalid = (f) => { return; };
         }
 
         public FormSelect(string baseId, string formId, bool multiSelect)
@@ -95,7 +166,10 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
         {
             this.isMultiSelect = multiSelect;
             this.size = null;
-            this.header = null;
+            Header = null;
+
+            Validator = (f) => { return ""; };
+            ActionInvalid = (f) => { return; };
         }
 
         public FormSelect(string baseId, int size)
@@ -106,6 +180,26 @@ namespace CtrlForm2.Form.Content.Items.Input.Selectors
         public FormSelect(string baseId, bool multiSelect)
             : this(baseId, baseId.ToLower(), multiSelect)
         {
+        }
+
+        #endregion
+
+
+        #region Object
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(string.Format("{0} (BaseId: '{1}', Value: [", GetType().Name, BaseId));
+
+            int i = 0;
+            foreach (var c in Content.Where(c => c.IsSelected))
+                sb.Append(string.Format("{0}'{1}'", i++ == 0 ? "" : ", ", c.Value));
+
+            sb.Append("])");
+
+            return sb.ToString();
         }
 
         #endregion

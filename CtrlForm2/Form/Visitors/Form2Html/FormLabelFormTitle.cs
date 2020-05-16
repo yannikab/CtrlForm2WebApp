@@ -26,7 +26,7 @@ namespace CtrlForm2.Form.Visitors
             HtmlLabel htmlLabel = new HtmlLabel(formLabel.BaseId);
             htmlDiv.Add(htmlLabel);
 
-            htmlLabel.Add(new HtmlText(formLabel.Label));
+            htmlLabel.Add(new HtmlText(formLabel.Content));
         }
 
         public virtual void Visit(FormTitle formTitle, HtmlContainer htmlContainer)
@@ -40,7 +40,7 @@ namespace CtrlForm2.Form.Visitors
             HtmlLabel htmlLabel = new HtmlLabel(formTitle.BaseId);
             htmlDiv.Add(htmlLabel);
 
-            htmlLabel.Add(new HtmlText(formTitle.Label));
+            htmlLabel.Add(new HtmlText(formTitle.Content));
         }
     }
 }

@@ -10,17 +10,22 @@ namespace CtrlForm2.Form.Content.Items
     {
         #region Fields
 
-        private string label;
+        private string content;
 
         #endregion
 
 
         #region Properties
 
-        public string Label
+        public string Content
         {
-            get { return label; }
-            set { label = value; }
+            get { return content; }
+            set { content = value; }
+        }
+
+        public string Value
+        {
+            get { return content ?? ""; }
         }
 
         #endregion
@@ -31,7 +36,7 @@ namespace CtrlForm2.Form.Content.Items
         public FormLabel(string baseId, string formId)
             : base(baseId, formId)
         {
-            label = "";
+            Content = "";
         }
 
         public FormLabel(string baseId)
@@ -46,7 +51,7 @@ namespace CtrlForm2.Form.Content.Items
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}, Label: {2}", GetType().Name, BaseId, Label);
+            return string.Format("{0} (BaseId: '{1}', Value: '{2}')", GetType().Name, BaseId, Value);
         }
 
         #endregion

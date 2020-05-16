@@ -30,7 +30,7 @@ namespace CtrlForm2.Form.Visitors
             }
             else
             {
-                if (formDatePicker.IsEntered)
+                if (formDatePicker.IsRequiredMet)
                     htmlDiv.Class.Add(formDatePicker.IsValid ? "form-valid" : "form-invalid");
                 else
                     htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
@@ -40,13 +40,11 @@ namespace CtrlForm2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlDatePicker htmlDatePicker = new HtmlDatePicker(formDatePicker.BaseId);
-            htmlDatePicker.Hidden.Value = formDatePicker.IsHidden;
-            htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
-            htmlDatePicker.Value.Value = formDatePicker.IsEntered ? ((DateTime)formDatePicker.Date).ToString("yyyy-MM-dd") : "";
             htmlDatePicker.Disabled.Value = formDatePicker.IsDisabled;
-
+            htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
+            htmlDatePicker.Value.Value = formDatePicker.IsRequiredMet ? ((DateTime)formDatePicker.Value).ToString("yyyy-MM-dd") : "";
+            
             HtmlLabel htmlLabel = new HtmlLabel(formDatePicker.BaseId);
-            htmlLabel.Hidden.Value = formDatePicker.IsHidden;
             htmlLabel.For.Value = htmlDatePicker.Id.Value;
 
             switch (formDatePicker.ElementOrder)
@@ -164,16 +162,15 @@ namespace CtrlForm2.Form.Visitors
 
             string message = null;
 
-            if (isRequired && !formDatePicker.IsEntered)
+            if (!formDatePicker.IsRequiredMet)
                 message = formDatePicker.RequiredMessage;
-            else if ((isRequired || formDatePicker.IsEntered) && !formDatePicker.IsValid)
+            else if (!formDatePicker.IsValid)
                 message = formDatePicker.ValidationMessage;
 
             if (message == null)
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formDatePicker.BaseId, "Message"));
-            htmlLabelMessage.Hidden.Value = formDatePicker.IsHidden;
             htmlLabelMessage.For.Value = htmlDatePicker.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

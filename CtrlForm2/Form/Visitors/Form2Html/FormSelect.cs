@@ -30,7 +30,7 @@ namespace CtrlForm2.Form.Visitors
             }
             else
             {
-                if (formSelect.IsEntered)
+                if (formSelect.IsRequiredMet)
                     htmlDiv.Class.Add("form-valid");
                 else
                     htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
@@ -44,10 +44,9 @@ namespace CtrlForm2.Form.Visitors
                 new HtmlSelect(formSelect.BaseId, formSelect.IsMultiSelect);
             htmlSelect.Class.Add("form-select");
             htmlSelect.Class.Add(string.Format("{0}-{1}", "form-id", formSelect.FormId));
-            htmlSelect.Hidden.Value = formSelect.IsHidden;
-
+            htmlSelect.Disabled.Value = formSelect.IsDisabled;
+            
             HtmlLabel htmlLabel = new HtmlLabel(formSelect.BaseId);
-            htmlLabel.Hidden.Value = formSelect.IsHidden;
             htmlLabel.For.Value = htmlSelect.Id.Value;
 
             switch (formSelect.ElementOrder)
@@ -160,19 +159,25 @@ namespace CtrlForm2.Form.Visitors
                     break;
             }
 
-            foreach (var formOption in formSelect.Options)
+            foreach (var formOption in formSelect.Content)
                 Visit(formOption, htmlSelect);
 
             if (!IsPostBack)
                 return;
 
-            if (!isRequired || formSelect.IsEntered)
+            string message = null;
+
+            if (!formSelect.IsRequiredMet)
+                message = formSelect.RequiredMessage;
+            else if (!formSelect.IsValid)
+                message = formSelect.ValidationMessage;
+
+            if (message == null)
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formSelect.BaseId, "Message"));
-            htmlLabelMessage.Hidden.Value = formSelect.IsHidden;
             htmlLabelMessage.For.Value = htmlSelect.Id.Value;
-            htmlLabelMessage.Add(new HtmlText(formSelect.RequiredMessage));
+            htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);
         }
 
@@ -180,7 +185,9 @@ namespace CtrlForm2.Form.Visitors
         {
             HtmlOption htmlOption = new HtmlOption(formOption.Value);
             htmlOption.Add(new HtmlText(formOption.Text));
-            htmlOption.AttrSelected.Value = formOption.IsSelected;
+            htmlOption.Hidden.Value = formOption.IsHidden;
+            htmlOption.Disabled.Value = formOption.IsDisabled;
+            htmlOption.Selected.Value = formOption.IsSelected;
 
             htmlContainer.Add(htmlOption);
         }

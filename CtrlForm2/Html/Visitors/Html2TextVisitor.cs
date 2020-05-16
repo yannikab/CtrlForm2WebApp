@@ -208,6 +208,34 @@ namespace CtrlForm2.Html.Visitors
             sb.AppendLine(string.Format("</{0}>", e.Tag));
         }
 
+        public void Visit(HtmlRadioGroup e)
+        {
+            sb.Append(Tabs(e.Depth));
+            sb.Append(string.Format("<{0}", e.Tag));
+
+            foreach (var a in e.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.AppendLine(">");
+
+            foreach (var c in e.Contents)
+                Visit(c);
+
+            sb.Append(Tabs(e.Depth));
+            sb.AppendLine(string.Format("</{0}>", e.Tag));
+        }
+
+        public void Visit(HtmlRadioButton e)
+        {
+            sb.Append(Tabs(e.Depth));
+            sb.Append(string.Format("<{0}", e.Tag));
+
+            foreach (var a in e.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.AppendLine(" />");
+        }
+
         public void Visit(HtmlSubmit e)
         {
             sb.Append(Tabs(e.Depth));

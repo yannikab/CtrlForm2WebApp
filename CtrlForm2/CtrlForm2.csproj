@@ -45,8 +45,15 @@
     <Compile Include="Form\Content\FormItem.cs" />
     <Compile Include="Form\Content\Items\Input\FormDatePicker.cs" />
     <Compile Include="Form\Content\Items\Input\FormPasswordBox.cs" />
+    <Compile Include="Form\Interfaces\IDisabled.cs" />
+    <Compile Include="Form\Interfaces\IHidden.cs" />
+    <Compile Include="Form\Interfaces\IReadOnly.cs" />
+    <Compile Include="Form\Selectables\FormRadioButton.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormDatePicker.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormPasswordBox.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormRadioGroup.cs" />
+    <Compile Include="Html\Content\Elements\Input\HtmlRadioButton.cs" />
+    <Compile Include="Html\Content\Elements\Containers\HtmlRadioGroup.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlDatePicker.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlPasswordBox.cs" />
     <Compile Include="UserControls\CtrlForm2Base.cs">

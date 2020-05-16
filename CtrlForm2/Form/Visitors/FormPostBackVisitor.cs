@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using CtrlForm2.Form.Content.Items.Input.Selectors;
 
 namespace CtrlForm2.Form.Visitors
 {
+    [SuppressMessage("Style", "IDE0029:Use coalesce expression", Justification = "<Pending>")]
+
     public class FormPostBackVisitor
     {
         #region Fields
@@ -38,64 +41,102 @@ namespace CtrlForm2.Form.Visitors
                 throw new NotImplementedException();
         }
 
+        public virtual void Visit(FormTitle formTitle)
+        {
+        }
+
+        public virtual void Visit(FormLabel formLabel)
+        {
+        }
+
+        public virtual void Visit(FormSubmit formSubmit)
+        {
+        }
+
         public virtual void Visit(FormGroup formGroup)
         {
             foreach (var i in formGroup.Contents)
-            {
-                if (i is FormInput || i is FormGroup)
-                    Visit(i);
-            }
+                Visit(i);
         }
 
         public virtual void Visit(FormTextBox formTextBox)
         {
-            formTextBox.Text = form[formTextBox.BaseId];
+            formTextBox.Content = form[formTextBox.BaseId];
         }
 
         public virtual void Visit(FormTextArea formTextArea)
         {
-            formTextArea.Text = form[formTextArea.BaseId];
+            formTextArea.Content = form[formTextArea.BaseId];
         }
 
         public virtual void Visit(FormPasswordBox formPasswordBox)
         {
-            formPasswordBox.Text = form[formPasswordBox.BaseId];
+            formPasswordBox.Content = form[formPasswordBox.BaseId];
         }
 
         public virtual void Visit(FormDatePicker formDatePicker)
         {
-            try { formDatePicker.Date = Convert.ToDateTime(form[formDatePicker.BaseId]); } catch { }
+            formDatePicker.Content = form[formDatePicker.BaseId];
         }
 
         public virtual void Visit(FormCheckBox formCheckBox)
         {
-            formCheckBox.IsChecked = form[formCheckBox.BaseId] == "on";
+            if (form[formCheckBox.BaseId] == null)
+            {
+                formCheckBox.Content = null;
+                return;
+            }
+
+            formCheckBox.Content = (CheckBoxState?)Enum.Parse(typeof(CheckBoxState), form[formCheckBox.BaseId], true);
         }
 
         public virtual void Visit(FormSelect formSelect)
         {
             int previousIndex = 0;
 
-            var options = formSelect.Options.ToList();
+            var content = formSelect.Content.ToList();
 
-            for (int i = 0; i < options.Count; i++)
-                options[i].IsSelected = false;
+            for (int i = 0; i < content.Count; i++)
+                content[i].IsSelected = false;
 
             if (form[formSelect.BaseId] == null)
                 return;
 
             foreach (var o in form[formSelect.BaseId].Split(','))
             {
-                for (int i = previousIndex; i < options.Count; i++)
+                for (int i = previousIndex; i < content.Count; i++)
                 {
-                    if (options[i].Value == o)
+                    if (formSelect.Header != null && content[i] == formSelect.Header)
+                        continue;
+
+                    if (content[i].IsHidden ?? false)
+                        continue;
+
+                    if (content[i].IsDisabled ?? false)     
+                        continue;
+
+                    if (content[i].Value == o)
                     {
-                        options[i].IsSelected = true;
+                        content[i].IsSelected = true;
                         previousIndex = i + 1;
 
                         break;
                     }
                 }
+            }
+        }
+
+        public virtual void Visit(FormRadioGroup formRadioGroup)
+        {
+            foreach (var c in formRadioGroup.Content)
+            {
+                if (c.IsHidden ?? false)
+                    continue;
+
+                if (c.IsDisabled ?? false)
+                    continue;
+
+                c.IsSelected = c.Value == form[formRadioGroup.BaseId];
             }
         }
 

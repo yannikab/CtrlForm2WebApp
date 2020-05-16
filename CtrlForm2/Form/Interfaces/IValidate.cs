@@ -8,14 +8,17 @@ using CtrlForm2.Form.Content.Items;
 
 namespace CtrlForm2.Form.Interfaces
 {
-    public interface IValidate<T> where T : FormInput
+    public interface IValidate
     {
-        Func<T, string> Validator { get; set; }
-
-        Action<T> ActionInvalid { get; set; }
-
-        bool IsValid { get; }
-
         string ValidationMessage { get; }
+        
+        bool IsValid { get; }
+    }
+
+    public interface IValidate<F> : IValidate
+    {
+        Func<F, string> Validator { get; set; }
+
+        Action<F> ActionInvalid { get; set; }
     }
 }

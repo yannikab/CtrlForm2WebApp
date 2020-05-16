@@ -6,10 +6,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using CtrlForm2.Form.Enums;
 using CtrlForm2.Form.Content.Items;
 using CtrlForm2.Form.Content.Items.Input;
 using CtrlForm2.Form.Content.Items.Input.Selectors;
+using CtrlForm2.Form.Enums;
 using CtrlForm2.Form.Selectables;
 using CtrlForm2.UserControls;
 
@@ -41,7 +41,7 @@ namespace CtrlForm2WebApp.UserControls
 
             AddItem(new FormTitle("Title")
             {
-                Label = "Form Title",
+                Content = "Form Title",
             });
 
 
@@ -51,9 +51,9 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "First Name",
 
-                Text = "John",
+                Content = "John",
 
-                IsRequired = false,
+                IsRequired = true,
 
                 PlaceHolder = "Enter your first name",
             });
@@ -62,27 +62,27 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "Last Name",
 
-                Text = "Doe",
+                Content = "Doe",
 
                 IsRequired = true,
 
                 PlaceHolder = "Enter your last name",
-
-                IsDisabled = false,
             });
 
             AddItem(new FormDatePicker("DateOfBirth")
             {
                 Label = "Date of birth",
 
+                Content = "1999-03-12",
+
                 IsRequired = true,
 
                 Validator = (f) =>
                 {
-                    if (f.Date > DateTime.Now)
+                    if (f.Value > DateTime.Now)
                         return "Date of birth can not be in the future";
 
-                    if (DateTime.Now - f.Date < TimeSpan.FromDays(18 * 365.25))
+                    if (DateTime.Now - f.Value < TimeSpan.FromDays(18 * 365.25))
                         return "You must be at least 18 to use this site";
 
                     return "";
@@ -98,7 +98,9 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "Email",
 
-                IsRequired = false,
+                Content = "yanni.kab@gmail.com",
+
+                IsRequired = true,
 
                 PlaceHolder = "Enter your email",
 
@@ -106,7 +108,7 @@ namespace CtrlForm2WebApp.UserControls
 
                 Validator = (t) =>
                 {
-                    return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(t.Text) ? "Invalid Email" : "";
+                    return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(t.Value) ? "Invalid Email" : "";
                 },
             });
 
@@ -114,18 +116,19 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "Phone",
 
+                Content = "2105149035",
+
                 IsRequired = true,
 
                 PlaceHolder = "Enter your phone number",
-
 
                 Icon = FormIcon.Phone,
 
                 Validator = (t) =>
                 {
-                    int digits = t.Text.Where(c => char.IsDigit(c)).Count();
+                    int digits = t.Value.Where(c => char.IsDigit(c)).Count();
 
-                    if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(t.Text) || digits < 10 || digits > 15)
+                    if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(t.Value) || digits < 10 || digits > 15)
                         return "Invalid Phone";
 
                     return "";
@@ -141,6 +144,8 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "Password",
 
+                Content = "123",
+
                 IsRequired = true,
 
                 PlaceHolder = "Enter your password",
@@ -149,7 +154,7 @@ namespace CtrlForm2WebApp.UserControls
 
                 Validator = (p) =>
                 {
-                    if (GetItem<FormPasswordBox>("ConfirmPassword").Text != p.Text)
+                    if (GetItem<FormPasswordBox>("ConfirmPassword").Value != p.Value)
                         return "Passwords do not match";
 
                     return "";
@@ -161,6 +166,8 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "Confirm Password",
 
+                Content = "123",
+
                 IsRequired = true,
 
                 PlaceHolder = "Confirm your password",
@@ -169,7 +176,7 @@ namespace CtrlForm2WebApp.UserControls
 
                 Validator = (p) =>
                 {
-                    if (GetItem<FormPasswordBox>("Password").Text != p.Text)
+                    if (GetItem<FormPasswordBox>("Password").Value != p.Value)
                         return "Passwords do not match";
 
                     return "";
@@ -179,26 +186,58 @@ namespace CtrlForm2WebApp.UserControls
             CloseGroup();
 
 
-            OpenGroup("Select");
+            OpenGroup("Selectors");
 
-            AddItem(new FormSelect("Colors", false)
+            AddItem(new FormSelect("Colors", true)
             {
                 IsRequired = true,
 
                 Label = "Favorite color",
 
-                Header = new FormOption("Choose..."),
+                //Header = new FormOption("Choose..."),
 
-                Options = new FormOption[]
+                Content = new FormOption[]
                 {
                     new FormOption(0, "Red"),
                     new FormOption(1, "Green") { IsSelected = true },
-                    new FormOption("", "Blue"),
-                    new FormOption(2, "Green") { IsSelected = true },
-                    new FormOption(2, "Grey"),
+                    new FormOption(2, "Blue") { IsDisabled = true },
+                    new FormOption(3, "Brown") { IsHidden = true },
+                    new FormOption(4, "Grey"),
                 },
+
+                Validator = (f) =>
+                {
+                    if (f.Value.Any(o => o.Text == "Red"))
+                        return "Red color is invalid";
+
+                    return "";
+                }
             });
 
+            AddItem(new FormRadioGroup("Contact")
+            {
+                IsRequired = true,
+
+                Label = "Contact method",
+
+                Content = new FormRadioButton[]
+                {
+                    new FormRadioButton(0, "Phone") { IsSelected = true },
+                    new FormRadioButton(1, "Mobile") { IsHidden = true },
+                    new FormRadioButton(2, "Email") { IsDisabled = true },
+                    new FormRadioButton(3, "Post"),
+                },
+
+                Validator = (f) =>
+                {
+                    if (f.Value.Text == "Post")
+                        return "Contact by post can not be used at the moment";
+
+                    return "";
+                },
+
+                ElementOrder = ElementOrder.LabelMarkInput
+            });
 
             CloseGroup();
 
@@ -207,9 +246,9 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "Message",
 
-                Text = "My Message",
+                Content = "My Message",
 
-                IsRequired = false,
+                IsRequired = true,
 
                 PlaceHolder = "Enter your message",
 
@@ -223,9 +262,7 @@ namespace CtrlForm2WebApp.UserControls
             {
                 Label = "Accept Terms",
 
-                TextChecked = "Yes",
-
-                TextNotChecked = "No",
+                Content = CheckBoxState.On,
 
                 IsRequired = true,
 
@@ -235,7 +272,7 @@ namespace CtrlForm2WebApp.UserControls
 
             AddItem(new FormSubmit("Submit")
             {
-                Text = "Submit",
+                Content = "Submit",
 
                 IsDisabled = false,
             });

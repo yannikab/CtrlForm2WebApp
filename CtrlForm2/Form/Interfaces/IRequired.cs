@@ -14,6 +14,6 @@ namespace CtrlForm2.Form.Interfaces
 
         string RequiredMessage { get; set; }
 
-        bool IsEntered { get; }
+        bool IsRequiredMet { get; }
     }
 }

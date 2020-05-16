@@ -29,17 +29,17 @@ namespace CtrlForm2.Html.Content.Elements.Containers
             get { return "option"; }
         }
 
-        public AttrValue AttrValue
+        public AttrValue Value
         {
             get { return attrValue; }
         }
 
-        public AttrDisabled AttrDisabled
+        public AttrDisabled Disabled
         {
             get { return attrDisabled; }
         }
 
-        public AttrSelected AttrSelected
+        public AttrSelected Selected
         {
             get { return attrSelected; }
         }

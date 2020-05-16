@@ -64,7 +64,7 @@ namespace CtrlForm2.Html.Content.Elements
 
         #region Constructors
 
-        public HtmlInput(string baseId, string type)
+        public HtmlInput(string baseId, string name, string type)
             : base(baseId)
         {
             attributes.Add(attrReadOnly = new AttrReadOnly());
@@ -73,9 +73,14 @@ namespace CtrlForm2.Html.Content.Elements
 
             attributes.Add(attrType = new AttrType(type));
 
-            attributes.Add(attrName = new AttrName(baseId));
+            attributes.Add(attrName = new AttrName(name));
 
             attributes.Add(attrValue = new AttrValue());
+        }
+
+        public HtmlInput(string baseId, string type)
+            : this(baseId, baseId, type)
+        {
         }
 
         #endregion

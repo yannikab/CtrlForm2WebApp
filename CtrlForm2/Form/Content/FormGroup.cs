@@ -11,13 +11,17 @@ using CtrlForm2.Form.Interfaces;
 
 namespace CtrlForm2.Form.Content
 {
-    public class FormGroup : FormContent, IRequired
+    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
+
+    public class FormGroup : FormContent, IDisabled, IRequired, IReadOnly
     {
         #region Fields
 
         private readonly List<FormContent> contents;
 
-        private bool? isReadOnly;
+        private ElementOrder elementOrder;
+
+        private bool? isDisabled;
 
         private bool? isRequired;
 
@@ -25,7 +29,7 @@ namespace CtrlForm2.Form.Content
 
         private string requiredMessage;
 
-        private ElementOrder elementOrder;
+        private bool? isReadOnly;
 
         #endregion
 
@@ -35,25 +39,6 @@ namespace CtrlForm2.Form.Content
         public IReadOnlyList<FormContent> Contents
         {
             get { return contents; }
-        }
-
-        public bool? IsReadOnly
-        {
-            get
-            {
-                if (isReadOnly.HasValue)
-                    return isReadOnly.Value;
-
-                if (Container == null)
-                    return null;
-
-                return Container.IsReadOnly;
-            }
-
-            set
-            {
-                isReadOnly = value;
-            }
         }
 
         public ElementOrder ElementOrder
@@ -73,71 +58,6 @@ namespace CtrlForm2.Form.Content
             {
                 elementOrder = value;
             }
-        }
-
-        #endregion
-
-
-        #region IRequired
-
-        public bool? IsRequired
-        {
-            get
-            {
-                if (isRequired.HasValue)
-                    return isRequired.Value;
-
-                if (Container == null)
-                    return null;
-
-                return Container.IsRequired;
-            }
-
-            set
-            {
-                isRequired = value;
-            }
-        }
-
-        public string RequiredMark
-        {
-            get
-            {
-                if (requiredMark != null)
-                    return requiredMark;
-
-                if (Container == null)
-                    return null;
-
-                return Container.RequiredMark;
-            }
-            set
-            {
-                requiredMark = value;
-            }
-        }
-
-        public string RequiredMessage
-        {
-            get
-            {
-                if (requiredMessage != null)
-                    return requiredMessage;
-
-                if (Container == null)
-                    return null;
-
-                return Container.RequiredMessage;
-            }
-            set
-            {
-                requiredMessage = value;
-            }
-        }
-
-        public virtual bool IsEntered
-        {
-            get { return Contents.OfType<FormInput>().Any(i => i.IsEntered); }
         }
 
         #endregion
@@ -188,6 +108,170 @@ namespace CtrlForm2.Form.Content
         #endregion
 
 
+        #region IDisabled
+
+        public bool? IsDisabled
+        {
+            get
+            {
+                if (isDisabled.HasValue)
+                    return isDisabled.Value;
+
+                FormGroup container = Container as FormGroup;
+
+                if (container == null)
+                    return null;
+
+                return container.IsDisabled;
+            }
+            set
+            {
+                isDisabled = value;
+            }
+        }
+
+        #endregion
+
+
+        #region IRequired
+
+        public bool? IsRequired
+        {
+            get
+            {
+                if (IsDisabled ?? false)
+                    return false;
+
+                if (IsHidden ?? false)
+                    return false;
+
+                if (isRequired.HasValue)
+                    return isRequired.Value;
+
+                if (Container == null)
+                    return null;
+
+                return Container.IsRequired;
+            }
+            set
+            {
+                isRequired = value;
+            }
+        }
+
+        public string RequiredMark
+        {
+            get
+            {
+                if (requiredMark != null)
+                    return requiredMark;
+
+                if (Container == null)
+                    return null;
+
+                return Container.RequiredMark;
+            }
+            set
+            {
+                requiredMark = value;
+            }
+        }
+
+        public string RequiredMessage
+        {
+            get
+            {
+                if (requiredMessage != null)
+                    return requiredMessage;
+
+                if (Container == null)
+                    return null;
+
+                return Container.RequiredMessage;
+            }
+            set
+            {
+                requiredMessage = value;
+            }
+        }
+
+        public virtual bool IsRequiredMet
+        {
+            get { return Contents.OfType<IRequired>().All(c => c.IsRequiredMet); }
+        }
+
+        #endregion
+
+
+        #region IReadOnly
+
+        public bool? IsReadOnly
+        {
+            get
+            {
+                if (IsDisabled ?? false)
+                    return false;
+
+                if (IsHidden ?? false)
+                    return false;
+
+                if (isReadOnly.HasValue)
+                    return isReadOnly.Value;
+
+                if (Container == null)
+                    return null;
+
+                return Container.IsReadOnly;
+            }
+            set
+            {
+                isReadOnly = value;
+            }
+        }
+
+        #endregion
+
+
+        #region 
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var c in Contents)
+                {
+                    if (c is FormGroup)
+                        continue;
+
+                    if (c is IHidden && ((c as IHidden).IsHidden ?? false))
+                        continue;
+
+                    if (c is IDisabled && ((c as IDisabled).IsDisabled ?? false))
+                        continue;
+
+                    if (c is IReadOnly && ((c as IReadOnly).IsReadOnly ?? false))
+                        continue;
+
+                    if (c is IValidate == false)
+                        continue;
+
+                    if ((c as IValidate).IsValid == false)
+                        return false;
+                }
+
+                foreach (var c in Contents.OfType<FormGroup>())
+                {
+                    if (!c.IsValid)
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        #endregion
+
+
         #region Constructors
 
         public FormGroup(string baseId, string formId)
@@ -211,7 +295,7 @@ namespace CtrlForm2.Form.Content
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}, FormId: {2}", GetType().Name, BaseId, FormId);
+            return string.Format("{0} (BaseId: '{1}', FormId: '{2}')", GetType().Name, BaseId, FormId);
         }
 
         #endregion

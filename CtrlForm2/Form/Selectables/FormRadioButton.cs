@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 using CtrlForm2.Form.Content.Items.Input;
 using CtrlForm2.Form.Content.Items.Input.Selectors;
+using CtrlForm2.Form.Enums;
 
 namespace CtrlForm2.Form.Selectables
 {
-    public class FormOption : FormSelectable
+    public class FormRadioButton : FormSelectable
     {
         #region Fields
 
-        private FormSelect formSelect;
+        private FormRadioGroup formRadioGroup;
 
         private string value;
 
@@ -26,9 +27,9 @@ namespace CtrlForm2.Form.Selectables
 
         #region Properties
 
-        public FormSelect FormSelect
+        public FormRadioGroup FormRadioGroup
         {
-            get { return formSelect; }
+            get { return formRadioGroup; }
         }
 
         public string Value
@@ -50,10 +51,10 @@ namespace CtrlForm2.Form.Selectables
 
         public override void SetContainer<S, V>(FormSelector<S, V> container)
         {
-            if (container != null && !(container is FormSelect))
+            if (container != null && !(container is FormRadioGroup))
                 throw new ArgumentException();
 
-            this.formSelect = container as FormSelect;
+            this.formRadioGroup = container as FormRadioGroup;
         }
 
         #endregion 
@@ -61,18 +62,18 @@ namespace CtrlForm2.Form.Selectables
 
         #region Constructors
 
-        public FormOption(string value, string text)
+        public FormRadioButton(string value, string text)
         {
             this.value = value;
             this.text = text;
         }
 
-        public FormOption(int value, string text)
+        public FormRadioButton(int value, string text)
             : this(value.ToString(), text)
         {
         }
 
-        public FormOption(string text)
+        public FormRadioButton(string text)
             : this(new Regex(@"(\p{Z}|\p{P}|\p{S})*").Replace(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(text), ""), text)
         {
         }

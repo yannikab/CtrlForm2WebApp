@@ -72,9 +72,9 @@ namespace CtrlForm2.Html.Content
 
         #region Constructors
 
-        public HtmlElement(string identity)
+        public HtmlElement(string baseId)
         {
-            if (identity == null || identity.Trim().Length != identity.Length)
+            if (baseId == null || baseId.Trim().Length != baseId.Length)
                 throw new ArgumentException();
 
             if (Prefix == null || Prefix.Trim().Length != Prefix.Length)
@@ -82,7 +82,7 @@ namespace CtrlForm2.Html.Content
 
             attributes = new List<IHtmlAttribute>();
 
-            attributes.Add(attrId = identity != "" ? new AttrId(string.Format("{0}{1}", Prefix, identity)) : new AttrId());
+            attributes.Add(attrId = baseId != "" ? new AttrId(string.Format("{0}{1}", Prefix, baseId)) : new AttrId());
 
             attributes.Add(attrClass = new AttrClass());
 

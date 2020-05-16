@@ -10,6 +10,10 @@ namespace CtrlForm2.Form.Content.Items.Input
     {
         #region Fields
 
+        private static readonly int defaultRows;
+
+        private static readonly int defaultColumns;
+
         private int rows;
 
         private int columns;
@@ -22,13 +26,25 @@ namespace CtrlForm2.Form.Content.Items.Input
         public int Rows
         {
             get { return rows; }
-            set { rows = value; }
+            set
+            {
+                if (value < 1)
+                    throw new ArgumentException();
+
+                rows = value;
+            }
         }
 
         public int Columns
         {
             get { return columns; }
-            set { columns = value; }
+            set
+            {
+                if (value < 1)
+                    throw new ArgumentException();
+
+                columns = value;
+            }
         }
 
         #endregion
@@ -36,11 +52,17 @@ namespace CtrlForm2.Form.Content.Items.Input
 
         #region Constructors
 
+        static FormTextArea()
+        {
+            defaultRows = 4;
+            defaultColumns = 50;
+        }
+
         public FormTextArea(string baseId, string formId)
             : base(baseId, formId)
         {
-            rows = 4;
-            columns = 50;
+            Rows = defaultRows;
+            Columns = defaultColumns;
         }
 
         public FormTextArea(string baseId)

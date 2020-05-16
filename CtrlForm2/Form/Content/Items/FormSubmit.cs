@@ -1,34 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CtrlForm2.Form.Interfaces;
+
 namespace CtrlForm2.Form.Content.Items
 {
-    public class FormSubmit : FormItem
+    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
+
+    public class FormSubmit : FormItem, IDisabled
     {
         #region Fields
 
-        private string text;
+        private string content;
 
-        private bool isDisabled;
+        private bool? isDisabled;
 
         #endregion
 
 
         #region Properties
 
-        public string Text
+        public string Content
         {
-            get { return text; }
-            set { text = value; }
+            get { return content; }
+            set { content = value; }
         }
 
-        public bool IsDisabled
+        public string Value
         {
-            get { return isDisabled; }
-            set { isDisabled = value; }
+            get { return content ?? ""; }
+        }
+
+        #endregion
+
+
+        #region IDisabled
+
+        public bool? IsDisabled
+        {
+            get
+            {
+                if (isDisabled.HasValue)
+                    return isDisabled.Value;
+
+                FormGroup container = Container as FormGroup;
+
+                if (container == null)
+                    return null;
+
+                return container.IsDisabled;
+            }
+            set
+            {
+                isDisabled = value;
+            }
         }
 
         #endregion
@@ -39,7 +68,9 @@ namespace CtrlForm2.Form.Content.Items
         public FormSubmit(string baseId, string formId)
             : base(baseId, formId)
         {
-            text = "";
+            Content = "";
+
+            IsDisabled = null;
         }
 
         public FormSubmit(string baseId)
@@ -54,7 +85,7 @@ namespace CtrlForm2.Form.Content.Items
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}, Text: {2}", GetType().Name, BaseId, Text);
+            return string.Format("{0} (BaseId: '{1}', Value: '{2}')", GetType().Name, BaseId, Value);
         }
 
         #endregion

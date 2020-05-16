@@ -8,32 +8,32 @@ using CtrlForm2.Form.Selectables;
 
 namespace CtrlForm2.Form.Content.Items.Input
 {
-    public abstract class FormSelector<T> : FormInput where T : FormSelectable
+    public abstract class FormSelector<S, V> : FormInput<IEnumerable<S>, V> where S : FormSelectable
     {
         #region Fields
 
-        private readonly List<T> options;
+        private readonly List<S> selectables;
 
         #endregion
 
 
         #region Properties
 
-        public virtual IEnumerable<T> Options
+        public override IEnumerable<S> Content
         {
-            get { return options; }
+            get { return selectables; }
             set
             {
                 //if (!IsMultiSelect && value.Count(o => o.IsSelected) > 1)
                 //    throw new ArgumentException();
 
-                int count = options.Count;
+                int count = selectables.Count;
 
                 for (int i = 0; i < count; i++)
-                    Remove(options[0]);
+                    Remove(selectables[0]);
 
-                foreach (var o in value)
-                    Add(o);
+                foreach (var selectable in value)
+                    Add(selectable);
             }
         }
 
@@ -47,39 +47,39 @@ namespace CtrlForm2.Form.Content.Items.Input
 
         #region Methods
 
-        public void Add(T option)
+        public void Add(S selectable)
         {
-            Insert(options.Count, option);
+            Insert(selectables.Count, selectable);
         }
 
-        public void Insert(int index, T option)
+        public void Insert(int index, S selectable)
         {
-            if (options.Contains(option))
+            if (selectables.Contains(selectable))
                 return;
 
-            //if (!IsMultiSelect && option.IsSelected && options.Any(o => o.IsSelected))
+            //if (!IsMultiSelect && option.IsSelected && content.Any(o => o.IsSelected))
             //    throw new ArgumentException();
 
-            if (!IsMultiSelect && option.IsSelected && options.Any(o => o.IsSelected))
+            if (!IsMultiSelect && selectable.IsSelected && selectables.Any(s => s.IsSelected))
             {
-                foreach (T o in options)
-                    o.IsSelected = false;
+                foreach (S s in selectables)
+                    s.IsSelected = false;
             }
 
-            options.Insert(index, option);
+            selectables.Insert(index, selectable);
 
-            option.SetContainer(this);
+            selectable.SetContainer<S, V>(this);
         }
 
-        public virtual bool Remove(T option)
+        public virtual bool Remove(S selectable)
         {
-            if (!options.Contains(option))
+            if (!selectables.Contains(selectable))
                 return false;
 
-            bool wasRemoved = options.Remove(option);
+            bool wasRemoved = selectables.Remove(selectable);
 
             if (wasRemoved)
-                option.SetContainer<T>(null);
+                selectable.SetContainer<S, V>(null);
 
             return wasRemoved;
         }
@@ -92,7 +92,7 @@ namespace CtrlForm2.Form.Content.Items.Input
         public FormSelector(string baseId, string formId)
             : base(baseId, formId)
         {
-            options = new List<T>();
+            selectables = new List<S>();
         }
 
         public FormSelector(string baseId)

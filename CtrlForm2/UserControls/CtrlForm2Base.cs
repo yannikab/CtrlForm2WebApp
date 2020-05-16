@@ -72,10 +72,10 @@ namespace CtrlForm2.UserControls
             {
                 FormGroup = formGroup;
                 FormGroup.IsHidden = false;
-                FormGroup.IsReadOnly = false;
                 FormGroup.IsRequired = false;
                 FormGroup.RequiredMark = "*";
                 FormGroup.RequiredMessage = "!";
+                FormGroup.IsReadOnly = false;
                 FormGroup.ElementOrder = ElementOrder.InputLabelMark;
             }
             else

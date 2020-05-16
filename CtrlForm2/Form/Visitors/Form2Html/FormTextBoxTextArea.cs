@@ -30,7 +30,7 @@ namespace CtrlForm2.Form.Visitors
             }
             else
             {
-                if (!string.IsNullOrEmpty(formTextBox.Text))
+                if (!string.IsNullOrEmpty(formTextBox.Value))
                     htmlDiv.Class.Add(formTextBox.IsValid ? "form-valid" : "form-invalid");
                 else
                     htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
@@ -40,14 +40,12 @@ namespace CtrlForm2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlTextBox htmlTextBox = new HtmlTextBox(formTextBox.BaseId);
-            htmlTextBox.Hidden.Value = formTextBox.IsHidden;
-            htmlTextBox.ReadOnly.Value = formTextBox.IsReadOnly;
-            htmlTextBox.Value.Value = formTextBox.Text;
-            htmlTextBox.PlaceHolder.Value = formTextBox.PlaceHolder;
             htmlTextBox.Disabled.Value = formTextBox.IsDisabled;
+            htmlTextBox.ReadOnly.Value = formTextBox.IsReadOnly;
+            htmlTextBox.Value.Value = formTextBox.Value;
+            htmlTextBox.PlaceHolder.Value = !string.IsNullOrEmpty(formTextBox.PlaceHolder) ? formTextBox.PlaceHolder : null;
 
             HtmlLabel htmlLabel = new HtmlLabel(formTextBox.BaseId);
-            htmlLabel.Hidden.Value = formTextBox.IsHidden;
             htmlLabel.For.Value = htmlTextBox.Id.Value;
 
             switch (formTextBox.ElementOrder)
@@ -165,16 +163,15 @@ namespace CtrlForm2.Form.Visitors
 
             string message = null;
 
-            if (isRequired && !formTextBox.IsEntered)
+            if (!formTextBox.IsRequiredMet)
                 message = formTextBox.RequiredMessage;
-            else if ((isRequired || formTextBox.IsEntered) && !formTextBox.IsValid)
+            else if (!formTextBox.IsValid)
                 message = formTextBox.ValidationMessage;
 
             if (message == null)
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formTextBox.BaseId, "Message"));
-            htmlLabelMessage.Hidden.Value = formTextBox.IsHidden;
             htmlLabelMessage.For.Value = htmlTextBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);
@@ -194,7 +191,7 @@ namespace CtrlForm2.Form.Visitors
             }
             else
             {
-                if (!string.IsNullOrEmpty(formTextArea.Text))
+                if (!string.IsNullOrEmpty(formTextArea.Value))
                     htmlDiv.Class.Add(formTextArea.IsValid ? "form-valid" : "form-invalid");
                 else
                     htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
@@ -204,14 +201,12 @@ namespace CtrlForm2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlTextArea htmlTextArea = new HtmlTextArea(formTextArea.BaseId, formTextArea.Rows, formTextArea.Columns);
-            htmlTextArea.Hidden.Value = formTextArea.IsHidden;
-            htmlTextArea.ReadOnly.Value = formTextArea.IsReadOnly;
-            htmlTextArea.Value.Value = formTextArea.Text;
-            htmlTextArea.PlaceHolder.Value = formTextArea.PlaceHolder;
             htmlTextArea.Disabled.Value = formTextArea.IsDisabled;
+            htmlTextArea.ReadOnly.Value = formTextArea.IsReadOnly;
+            htmlTextArea.Value.Value = formTextArea.Value;
+            htmlTextArea.PlaceHolder.Value = !string.IsNullOrEmpty(formTextArea.PlaceHolder) ? formTextArea.PlaceHolder : null;
 
             HtmlLabel htmlLabel = new HtmlLabel(formTextArea.BaseId);
-            htmlLabel.Hidden.Value = formTextArea.IsHidden;
             htmlLabel.For.Value = htmlTextArea.Id.Value;
 
             switch (formTextArea.ElementOrder)
@@ -323,16 +318,15 @@ namespace CtrlForm2.Form.Visitors
 
             string message = null;
 
-            if (isRequired && !formTextArea.IsEntered)
+            if (!formTextArea.IsRequiredMet)
                 message = formTextArea.RequiredMessage;
-            else if ((isRequired || formTextArea.IsEntered) && !formTextArea.IsValid)
+            else if (!formTextArea.IsValid)
                 message = formTextArea.ValidationMessage;
 
             if (message == null)
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formTextArea.BaseId, "Message"));
-            htmlLabelMessage.Hidden.Value = formTextArea.IsHidden;
             htmlLabelMessage.For.Value = htmlTextArea.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

@@ -4,39 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CtrlForm2.Form.Interfaces;
+
 namespace CtrlForm2.Form.Content.Items.Input
 {
-    public class FormCheckBox : FormInput
+    public enum CheckBoxState
+    {
+        Off,
+        On
+    }
+
+    public class FormCheckBox : FormInput<CheckBoxState?, bool>, IValidate<FormCheckBox>
     {
         #region Fields
 
-        private bool isChecked;
+        private Func<FormCheckBox, string> validator;
 
-        private string textChecked;
-
-        private string textNotChecked;
+        private Action<FormCheckBox> actionInvalid;
 
         #endregion
 
 
         #region Properties
 
-        public bool IsChecked
+        public override bool Value
         {
-            get { return isChecked; }
-            set { isChecked = value; }
-        }
-
-        public string TextChecked
-        {
-            get { return textChecked; }
-            set { textChecked = value; }
-        }
-
-        public string TextNotChecked
-        {
-            get { return textNotChecked; }
-            set { textNotChecked = value; }
+            get { return Content == CheckBoxState.On; }
         }
 
         #endregion
@@ -44,9 +37,59 @@ namespace CtrlForm2.Form.Content.Items.Input
 
         #region IRequired
 
-        public override bool IsEntered
+        public override bool IsRequiredMet
         {
-            get { return isChecked; }
+            get
+            {
+                if (IsHidden ?? false)
+                    return true;
+
+                if (IsDisabled ?? false)
+                    return true;
+
+                if (!(IsRequired ?? false))
+                    return true;
+
+                return Value;
+            }
+        }
+
+        #endregion
+
+
+        #region IValidate<FormTextBox>
+
+        public Func<FormCheckBox, string> Validator
+        {
+            get { return validator; }
+            set { validator = value; }
+        }
+
+        public Action<FormCheckBox> ActionInvalid
+        {
+            get { return actionInvalid; }
+            set { actionInvalid = value; }
+        }
+
+        public string ValidationMessage
+        {
+            get { return Validator(this); }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled ?? false)
+                    return true;
+
+                // a user can not edit hidden elements, it is unfair for them to participate in validation
+                if (IsHidden ?? false)
+                    return true;
+
+                return string.IsNullOrEmpty(ValidationMessage);
+            }
         }
 
         #endregion
@@ -57,6 +100,10 @@ namespace CtrlForm2.Form.Content.Items.Input
         public FormCheckBox(string baseId, string formId)
             : base(baseId, formId)
         {
+            Content = CheckBoxState.Off;
+
+            Validator = (f) => { return ""; };
+            ActionInvalid = (f) => { return; };
         }
 
         public FormCheckBox(string baseId)
@@ -71,7 +118,7 @@ namespace CtrlForm2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}, Label: {2}, IsChecked: {3}", GetType().Name, BaseId, Label, IsChecked);
+            return string.Format("{0} (BaseId: '{1}', Label: '{2}', Value: {3})", GetType().Name, BaseId, Label, Value);
         }
 
         #endregion
