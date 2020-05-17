@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Form2.Html.Content.Elements.HtmlContainer">
+    <Position X="24" Y="6.25" Width="1.5" />
+    <Members>
+      <Field Name="contents" Hidden="true" />
+      <Method Name="HtmlContainer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Html\Content\Elements\HtmlContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.HtmlText">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <Members>
+      <Method Name="HtmlText" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAACAAAAAA=</HashCode>
+      <FileName>Html\Content\HtmlText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.HtmlInput">
+    <Position X="8.25" Y="6.25" Width="1.5" />
+    <Members>
+      <Field Name="attrDisabled" Hidden="true" />
+      <Field Name="attrName" Hidden="true" />
+      <Field Name="attrReadOnly" Hidden="true" />
+      <Field Name="attrType" Hidden="true" />
+      <Field Name="attrValue" Hidden="true" />
+      <Method Name="HtmlInput" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAEAAAAAkAAAEAACAAAQAAAAAAAAACQAoAAAQAAA=</HashCode>
+      <FileName>Html\Content\Elements\HtmlInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Input.HtmlTextArea">
+    <Position X="5" Y="9.5" Width="1.5" />
+    <Members>
+      <Field Name="attrCols" Hidden="true" />
+      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Field Name="attrRows" Hidden="true" />
+      <Method Name="HtmlTextArea" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgBEAAAAAAAIICAAAAAAIAAAAAAAgAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Input\HtmlTextArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Input.HtmlCheckBox">
+    <Position X="11.75" Y="9.5" Width="1.5" />
+    <Members>
+      <Field Name="attrChecked" Hidden="true" />
+      <Method Name="HtmlCheckBox" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAACAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Input\HtmlCheckBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlSubmit">
+    <Position X="29.75" Y="8.75" Width="1.5" />
+    <Members>
+      <Field Name="attrDisabled" Hidden="true" />
+      <Field Name="attrType" Hidden="true" />
+      <Field Name="eventClick" Hidden="true" />
+      <Method Name="HtmlSubmit" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAkAAAAAACAAAACAAAAAAAAAQAAAAAAAgA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlSubmit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlLabel">
+    <Position X="32" Y="8.75" Width="1.5" />
+    <Members>
+      <Field Name="attrFor" Hidden="true" />
+      <Method Name="HtmlLabel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAgAAAAAAAAACIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlLabel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlItalic">
+    <Position X="27.5" Y="8.75" Width="1.5" />
+    <Members>
+      <Method Name="HtmlItalic" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlItalic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlOption">
+    <Position X="25.25" Y="8.75" Width="1.5" />
+    <Members>
+      <Field Name="attrDisabled" Hidden="true" />
+      <Field Name="attrSelected" Hidden="true" />
+      <Field Name="attrValue" Hidden="true" />
+      <Method Name="HtmlOption" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAkAAAAAACAAQAAAAAAAAAAAAAgAAAQAAI=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlOption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Input.HtmlTextBox">
+    <Position X="2.75" Y="9.5" Width="1.5" />
+    <Members>
+      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Method Name="HtmlTextBox" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Input\HtmlTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlSelect">
+    <Position X="18.5" Y="8.75" Width="1.5" />
+    <Members>
+      <Field Name="attrDisabled" Hidden="true" />
+      <Field Name="attrMultiple" Hidden="true" />
+      <Field Name="attrName" Hidden="true" />
+      <Field Name="attrSize" Hidden="true" />
+      <Field Name="eventChange" Hidden="true" />
+      <Method Name="HtmlSelect" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABkgAEAEACAAAQCAAAAAAAACIAAQAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlSelect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlDiv">
+    <Position X="23" Y="8.75" Width="1.5" />
+    <Members>
+      <Method Name="HtmlDiv" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlDiv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Input.HtmlPasswordBox">
+    <Position X="9.5" Y="9.5" Width="1.5" />
+    <Members>
+      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Method Name="HtmlPasswordBox" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Input\HtmlPasswordBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Input.HtmlDatePicker">
+    <Position X="7.25" Y="9.5" Width="1.5" />
+    <Members>
+      <Method Name="HtmlDatePicker" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Input\HtmlDatePicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlSpan">
+    <Position X="20.75" Y="8.75" Width="1.5" />
+    <Members>
+      <Method Name="HtmlSpan" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlSpan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.HtmlContent">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="container" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\HtmlContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.HtmlElement">
+    <Position X="17.25" Y="2.25" Width="1.5" />
+    <Members>
+      <Field Name="attrClass" Hidden="true" />
+      <Field Name="attrHidden" Hidden="true" />
+      <Field Name="attributes" Hidden="true" />
+      <Field Name="attrId" Hidden="true" />
+      <Field Name="events" Hidden="true" />
+      <Method Name="HtmlElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAgAAAEAAIAABASAgAAEAogAAAAAAAEAAA=</HashCode>
+      <FileName>Html\Content\HtmlElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Input.HtmlRadioButton">
+    <Position X="14" Y="9.5" Width="1.5" />
+    <Members>
+      <Field Name="attrChecked" Hidden="true" />
+      <Method Name="HtmlRadioButton" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAACAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Input\HtmlRadioButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlRadioGroup">
+    <Position X="16.25" Y="8.75" Width="1.5" />
+    <Members>
+      <Field Name="attrDisabled" Hidden="true" />
+      <Field Name="attrName" Hidden="true" />
+      <Field Name="eventChange" Hidden="true" />
+      <Method Name="HtmlRadioGroup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABkAAEAAACAAAQCAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlRadioGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
