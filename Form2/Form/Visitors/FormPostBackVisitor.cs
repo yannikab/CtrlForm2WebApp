@@ -10,7 +10,6 @@ using Form2.Form.Content;
 using Form2.Form.Content.Items;
 using Form2.Form.Content.Items.Input;
 using Form2.Form.Content.Items.Input.Selectors;
-using Form2.Form.Interfaces;
 
 namespace Form2.Form.Visitors
 {
@@ -51,7 +50,7 @@ namespace Form2.Form.Visitors
         {
         }
 
-        public virtual void Visit(FormSubmit formSubmit)
+        public virtual void Visit(FormButton formButton)
         {
         }
 

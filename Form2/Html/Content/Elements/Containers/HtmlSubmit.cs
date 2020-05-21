@@ -58,7 +58,7 @@ namespace Form2.Html.Content.Elements.Containers
         public HtmlSubmit(string baseId)
             : base(baseId)
         {
-            attributes.Add(attrType = new AttrType("submit"));
+            attributes.Add(attrType = new AttrType("button"));
 
             attributes.Add(attrDisabled = new AttrDisabled());
 

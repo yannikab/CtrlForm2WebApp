@@ -21,7 +21,7 @@ namespace Form2WebApp.UserControls
         {
             base.OnLoad(e);
 
-            ltrContent.Text = new Form().GetText(IsPostBack, Request.Form);
+            ltrContent.Text = new Form().GetText(IsPostBack, Request.Form, Session);
         }
 
         class Form : Form2Base
@@ -38,7 +38,7 @@ namespace Form2WebApp.UserControls
 
                 RequiredMessage = "Field is required";
 
-                //ElementOrder = ElementOrder.LabelMarkInput;
+                ElementOrder = ElementOrder.LabelMarkInput;
 
 
                 AddItem(new FormTitle("Title")
@@ -247,7 +247,7 @@ namespace Form2WebApp.UserControls
 
                     Content = new FormRadioButton[]
                     {
-                        new FormRadioButton(0, "Phone") { IsSelected = true },
+                        new FormRadioButton(0, "Phone") { IsSelected = false },
                         new FormRadioButton(1, "Mobile") { IsHidden = true },
                         new FormRadioButton(2, "Email") { IsDisabled = true },
                         new FormRadioButton(3, "Post"),
@@ -295,13 +295,13 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                AddItem(new FormSubmit("Submit")
+                AddItem(new FormButton("Submit")
                 {
                     Content = "Submit",
 
                     IsDisabled = false,
 
-                    IsPostBack = true,
+                    IsSubmit = true,
                 });
 
 

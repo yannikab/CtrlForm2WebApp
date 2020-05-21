@@ -24,7 +24,7 @@ namespace Form2.Form.Visitors
 
             bool isRequired = formCheckBox.IsRequired ?? false;
 
-            if (!Validate)
+            if (!validate)
             {
                 htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
             }
@@ -156,8 +156,18 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            if (!Validate)
+            if (!validate)
                 return;
+
+            if (sessionState != null)
+            {
+                string viewStateString = (string)sessionState[formCheckBox.SessionKey];
+
+                if (viewStateString == null)
+                    viewStateString = "off";
+
+                formCheckBox.Content = (CheckBoxState?)Enum.Parse(typeof(CheckBoxState), viewStateString, true);
+            }
 
             if (formCheckBox.IsRequiredMet)
                 return;

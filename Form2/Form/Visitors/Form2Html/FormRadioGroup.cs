@@ -25,7 +25,7 @@ namespace Form2.Form.Visitors
 
             bool isRequired = formRadioGroup.IsRequired ?? false;
 
-            if (!Validate)
+            if (!validate)
             {
                 htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
             }
@@ -160,8 +160,22 @@ namespace Form2.Form.Visitors
             foreach (var formOption in formRadioGroup.Content)
                 Visit(formOption, htmlRadioGroup);
 
-            if (!Validate)
+            if (!validate)
                 return;
+
+            if (sessionState != null)
+            {
+                foreach (var c in formRadioGroup.Content)
+                {
+                    if (c.IsHidden ?? false)
+                        continue;
+
+                    if (c.IsDisabled ?? false)
+                        continue;
+
+                    c.IsSelected = c.Value == (string)sessionState[formRadioGroup.SessionKey];
+                }
+            }
 
             string message = null;
 

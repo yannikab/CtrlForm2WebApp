@@ -1,19 +1,25 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.SessionState;
 
 using Form2.Form.Content;
 using Form2.Form.Content.Items;
 using Form2.Form.Enums;
+using Form2.Form.Interfaces;
 using Form2.Form.Visitors;
 using Form2.Html.Content.Elements;
 using Form2.Html.Visitors;
 
 namespace Form2
 {
+    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
+
     public abstract class Form2Base
     {
         #region Fields
@@ -31,7 +37,7 @@ namespace Form2
 
         #region Methods
 
-        public string GetText(bool IsPostBack, NameValueCollection form)
+        public string GetText(bool IsPostBack, NameValueCollection form, HttpSessionState sessionState)
         {
             CreateForm();
 
@@ -39,25 +45,76 @@ namespace Form2
                 return "";
 
             if (IsPostBack)
+            {
                 new FormPostBackVisitor(formGroup, form);
+            }
+            else
+            {
+                foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                    sessionState.Remove(formItem.SessionKey);
+            }
 
             ApplyRules();
 
-            if (IsPostBack && formGroup.Get<FormSubmit>().Single().BaseId == form["__EVENTTARGET"])
+            if (IsPostBack)
             {
-                if (formGroup.IsValid)
+                FormItem eventTarget = formGroup.Get(form["__EVENTTARGET"]);
+
+                ISubmit iSubmit = eventTarget as ISubmit;
+
+                if (iSubmit == null)
                 {
-                    PerformAction();
+                    IPostBack iPostBack = eventTarget as IPostBack;
 
-                    formGroup = null;
-                    CreateForm();
-                    ApplyRules();
+                    if (iPostBack == null)
+                        throw new ApplicationException();
 
-                    htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
+                    if (iPostBack.IsPostBack)
+                    {
+                        htmlContainer = new Form2HtmlVisitor(formGroup, sessionState).Html;
+                    }
+                    else
+                    {
+                        throw new ApplicationException();
+                    }
+                }
+                else if (iSubmit.IsSubmit)
+                {
+                    if (formGroup.IsValid)
+                    {
+                        PerformAction();
+
+                        foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                            sessionState.Remove(formItem.SessionKey);
+                        
+                        formGroup = null;
+                        CreateForm();
+                        ApplyRules();
+
+                        htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
+                    }
+                    else
+                    {
+                        foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                            sessionState.Remove(formItem.SessionKey);
+
+                        foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                        {
+                            if (formItem is IHidden && ((formItem as IHidden).IsHidden ?? false))
+                                continue;
+
+                            if (formItem is IDisabled && ((formItem as IDisabled).IsDisabled ?? false))
+                                continue;
+
+                            sessionState[formItem.SessionKey] = form[formItem.BaseId];
+                        }
+
+                        htmlContainer = new Form2HtmlVisitor(formGroup, true).Html;
+                    }
                 }
                 else
                 {
-                    htmlContainer = new Form2HtmlVisitor(formGroup, true).Html;
+                    throw new ApplicationException();
                 }
             }
             else

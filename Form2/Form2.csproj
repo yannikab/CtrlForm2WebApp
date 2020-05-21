@@ -46,6 +46,7 @@
     <Compile Include="Form\Content\Items\Input\FormDatePicker.cs" />
     <Compile Include="Form\Content\Items\Input\FormPasswordBox.cs" />
     <Compile Include="Form\Interfaces\IDisabled.cs" />
+    <Compile Include="Form\Interfaces\ISubmit.cs" />
     <Compile Include="Form\Interfaces\IPostBack.cs" />
     <Compile Include="Form\Interfaces\IHidden.cs" />
     <Compile Include="Form\Interfaces\IReadOnly.cs" />
@@ -74,7 +75,7 @@
     <Compile Include="Form\Content\Items\Input\FormTextArea.cs" />
     <Compile Include="Form\Content\Items\Input\FormTextBox.cs" />
     <Compile Include="Form\Content\Items\FormLabel.cs" />
-    <Compile Include="Form\Content\Items\FormSubmit.cs" />
+    <Compile Include="Form\Content\Items\FormButton.cs" />
     <Compile Include="Form\Content\Items\FormTitle.cs" />
     <Compile Include="Form\Content\Items\Input\Selectors\FormSelect.cs" />
     <Compile Include="Html\Attributes\Variable\Boolean\AttrSelected.cs" />
@@ -122,7 +123,7 @@
     <Compile Include="Form\Visitors\Form2Html\FormCheckBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormSelect.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormTextBoxTextArea.cs" />
-    <Compile Include="Form\Visitors\Form2Html\FormSubmit.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormButton.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormLabelFormTitle.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormGroup.cs" />
     <Compile Include="Form\Visitors\FormPostBackVisitor.cs" />

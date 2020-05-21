@@ -24,7 +24,7 @@ namespace Form2.Form.Visitors
 
             bool isRequired = formSelect.IsRequired ?? false;
 
-            if (!Validate)
+            if (!validate)
             {
                 htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
             }
@@ -162,8 +162,46 @@ namespace Form2.Form.Visitors
             foreach (var formOption in formSelect.Content)
                 Visit(formOption, htmlSelect);
 
-            if (!Validate)
+            if (!validate)
                 return;
+
+            if (sessionState != null)
+            {
+                string viewStateString = (string)sessionState[formSelect.SessionKey];
+
+                if (viewStateString == null)
+                    return;
+
+                int previousIndex = 0;
+
+                var content = formSelect.Content.ToList();
+
+                for (int i = 0; i < content.Count; i++)
+                    content[i].IsSelected = false;
+
+                foreach (var o in viewStateString.Split(','))
+                {
+                    for (int i = previousIndex; i < content.Count; i++)
+                    {
+                        if (formSelect.Header != null && content[i] == formSelect.Header)
+                            continue;
+
+                        if (content[i].IsHidden ?? false)
+                            continue;
+
+                        if (content[i].IsDisabled ?? false)
+                            continue;
+
+                        if (content[i].Value == o)
+                        {
+                            content[i].IsSelected = true;
+                            previousIndex = i + 1;
+
+                            break;
+                        }
+                    }
+                }
+            }
 
             string message = null;
 

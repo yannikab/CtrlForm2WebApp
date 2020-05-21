@@ -24,7 +24,7 @@ namespace Form2.Form.Visitors
 
             bool isRequired = formPasswordBox.IsRequired ?? false;
 
-            if (!Validate)
+            if (!validate)
             {
                 htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
             }
@@ -158,8 +158,16 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            if (!Validate)
+            if (!validate)
                 return;
+
+            if (sessionState != null)
+            {
+                if (sessionState[formPasswordBox.SessionKey] == null)
+                    return;
+
+                formPasswordBox.Content = (string)sessionState[formPasswordBox.SessionKey];
+            }
 
             string message = null;
 

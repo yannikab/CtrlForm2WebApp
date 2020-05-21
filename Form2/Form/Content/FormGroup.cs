@@ -87,7 +87,7 @@ namespace Form2.Form.Content
             return removed;
         }
 
-        public IEnumerable<T> Get<T>() where T : FormItem
+        public IEnumerable<T> Get<T>()
         {
             foreach (var f in Contents.OfType<T>())
                 if (f is T)
