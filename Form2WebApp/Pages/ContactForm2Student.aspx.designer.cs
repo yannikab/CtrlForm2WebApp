@@ -7,29 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Form2WebApp
+namespace Form2WebApp.Pages
 {
 
 
-    public partial class SiteMaster
+    public partial class ContactForm2Student
     {
 
         /// <summary>
-        /// MainContent control.
+        /// ltrH1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Literal ltrH1;
 
         /// <summary>
-        /// cphScripts control.
+        /// ltrContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cphScripts;
+        protected global::System.Web.UI.WebControls.Literal ltrContent;
+
+        /// <summary>
+        /// CtrlFormStudent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Form2WebApp.UserControls.CtrlFormStudent CtrlFormStudent;
     }
 }

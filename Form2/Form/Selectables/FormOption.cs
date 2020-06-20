@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ using Form2.Form.Content.Items.Input.Selectors;
 
 namespace Form2.Form.Selectables
 {
+    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
+
     public class FormOption : FormSelectable
     {
         #region Fields
@@ -85,6 +88,38 @@ namespace Form2.Form.Selectables
         public override string ToString()
         {
             return string.Format("{0} (Value: '{1}', Text: '{2}', IsSelected: {3})", GetType().Name, Value, Text, IsSelected);
+        }
+
+        public override bool Equals(object obj)
+        {
+            FormOption that = obj as FormOption;
+
+            if (that == null)
+                return false;
+
+            if (this.value != that.value)
+                return false;
+
+            if (this.text != that.text)
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int prime1 = 17;
+                int prime2 = 23;
+
+                int hash = prime1;
+
+                hash = hash * prime2 + (value ?? "").GetHashCode();
+                hash = hash * prime2 + (text ?? "").GetHashCode();
+
+                return hash;
+            }
         }
 
         #endregion

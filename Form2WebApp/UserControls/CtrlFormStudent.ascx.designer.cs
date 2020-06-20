@@ -7,29 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Form2WebApp
+namespace Form2WebApp.UserControls
 {
 
 
-    public partial class SiteMaster
+    public partial class CtrlFormStudent
     {
 
         /// <summary>
-        /// MainContent control.
+        /// upPanelForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.UpdatePanel upPanelForm;
 
         /// <summary>
-        /// cphScripts control.
+        /// ltrForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cphScripts;
+        protected global::System.Web.UI.WebControls.Literal ltrForm;
+
+        /// <summary>
+        /// upProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress upProgress;
     }
 }

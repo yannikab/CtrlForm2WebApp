@@ -26,9 +26,9 @@ namespace Form2
 
         private readonly Stack<FormGroup> groups = new Stack<FormGroup>();
 
-        private FormGroup formGroup;
+        protected FormGroup formGroup;
 
-        private readonly List<Action> rules = new List<Action>();
+        private List<Action> rules = new List<Action>();
 
         private HtmlContainer htmlContainer;
 
@@ -41,8 +41,32 @@ namespace Form2
         {
             CreateForm();
 
-            if (formGroup == null)
+            if (formGroup == null || rules == null)
                 return "";
+
+            if (!IsPostBack)
+            {
+                if (sessionState[formGroup.SessionKey] != null)
+                    sessionState.Remove(formGroup.SessionKey);
+
+                if (sessionState[formGroup.SessionKey + "rules"] != null)
+                    sessionState.Remove(formGroup.SessionKey + "rules");
+
+                sessionState[formGroup.SessionKey] = formGroup;
+                sessionState[formGroup.SessionKey + "rules"] = rules;
+            }
+            else
+            {
+                if (sessionState[formGroup.SessionKey] != null && sessionState[formGroup.SessionKey + "rules"] != null)
+                {
+                    formGroup = (FormGroup)sessionState[formGroup.SessionKey];
+                    rules = (List<Action>)sessionState[formGroup.SessionKey + "rules"];
+                }
+                else
+                {
+                    return "";
+                }
+            }
 
             if (IsPostBack)
             {
@@ -56,73 +80,75 @@ namespace Form2
 
             ApplyRules();
 
-            if (IsPostBack)
+            if (!IsPostBack)
             {
-                FormItem eventTarget = formGroup.Get(form["__EVENTTARGET"]);
+                htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
+                return new Html2TextVisitor(htmlContainer).Text;
+            }
 
-                ISubmit iSubmit = eventTarget as ISubmit;
+            FormItem eventTarget = formGroup.Get(form["__EVENTTARGET"]);
 
-                if (iSubmit == null)
+            ISubmit iSubmit = eventTarget as ISubmit;
+
+            if (iSubmit == null)
+            {
+                IPostBack iPostBack = eventTarget as IPostBack;
+
+                if (iPostBack == null)
+                    throw new ApplicationException();
+
+                if (iPostBack.IsPostBack)
+                    htmlContainer = new Form2HtmlVisitor(formGroup, sessionState).Html;
+                else
+                    throw new ApplicationException();
+            }
+            else if (iSubmit.IsSubmit)
+            {
+                if (formGroup.IsValid)
                 {
-                    IPostBack iPostBack = eventTarget as IPostBack;
+                    PerformAction();
 
-                    if (iPostBack == null)
-                        throw new ApplicationException();
+                    foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                        sessionState.Remove(formItem.SessionKey);
 
-                    if (iPostBack.IsPostBack)
-                    {
-                        htmlContainer = new Form2HtmlVisitor(formGroup, sessionState).Html;
-                    }
-                    else
-                    {
-                        throw new ApplicationException();
-                    }
-                }
-                else if (iSubmit.IsSubmit)
-                {
-                    if (formGroup.IsValid)
-                    {
-                        PerformAction();
+                    formGroup = null;
+                    CreateForm();
 
-                        foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
-                            sessionState.Remove(formItem.SessionKey);
-                        
-                        formGroup = null;
-                        CreateForm();
-                        ApplyRules();
+                    if (formGroup == null)
+                        return "";
 
-                        htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
-                    }
-                    else
-                    {
-                        foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
-                            sessionState.Remove(formItem.SessionKey);
+                    sessionState[formGroup.SessionKey] = formGroup;
+                    sessionState[formGroup.SessionKey + "rules"] = rules;
 
-                        foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
-                        {
-                            if (formItem is IHidden && ((formItem as IHidden).IsHidden ?? false))
-                                continue;
+                    ApplyRules();
 
-                            if (formItem is IDisabled && ((formItem as IDisabled).IsDisabled ?? false))
-                                continue;
-
-                            sessionState[formItem.SessionKey] = form[formItem.BaseId];
-                        }
-
-                        htmlContainer = new Form2HtmlVisitor(formGroup, true).Html;
-                    }
+                    htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
                 }
                 else
                 {
-                    throw new ApplicationException();
+                    foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                        sessionState.Remove(formItem.SessionKey);
+
+                    foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                    {
+                        if (formItem is IHidden && ((formItem as IHidden).IsHidden ?? false))
+                            continue;
+
+                        if (formItem is IDisabled && ((formItem as IDisabled).IsDisabled ?? false))
+                            continue;
+
+                        sessionState[formItem.SessionKey] = form[formItem.BaseId];
+                    }
+
+                    htmlContainer = new Form2HtmlVisitor(formGroup, true).Html;
                 }
             }
             else
             {
-                htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
+                throw new ApplicationException();
             }
 
-            return new Html2TextVisitor(htmlContainer).Text;
+            return htmlContainer != null ? new Html2TextVisitor(htmlContainer).Text : "";
         }
 
         protected abstract void CreateForm();

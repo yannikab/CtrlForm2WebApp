@@ -51,6 +51,7 @@
     <Compile Include="Form\Interfaces\IHidden.cs" />
     <Compile Include="Form\Interfaces\IReadOnly.cs" />
     <Compile Include="Form\Selectables\FormRadioButton.cs" />
+    <Compile Include="Form\Visitors\FormEmailVisitor.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormDatePicker.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormPasswordBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormRadioGroup.cs" />

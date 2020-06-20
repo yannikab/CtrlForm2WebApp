@@ -103,6 +103,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\js\bootbox.min.js" />
     <Content Include="Pages\About.aspx" />
     <Content Include="Pages\Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -112,6 +113,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Pages\ContactForm2Session.aspx" />
     <Content Include="Pages\ContactForm2.aspx" />
+    <Content Include="Pages\ContactForm2Student.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -154,6 +156,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserControls\CtrlFormStudent.ascx" />
     <Content Include="UserControls\Form2SessionContact.ascx" />
     <Content Include="UserControls\Form2Contact.ascx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -192,6 +195,13 @@
     <Compile Include="Pages\ContactForm2.aspx.designer.cs">
       <DependentUpon>ContactForm2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ContactForm2Student.aspx.cs">
+      <DependentUpon>ContactForm2Student.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ContactForm2Student.aspx.designer.cs">
+      <DependentUpon>ContactForm2Student.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +226,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CtrlFormStudent.ascx.cs">
+      <DependentUpon>CtrlFormStudent.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\CtrlFormStudent.ascx.designer.cs">
+      <DependentUpon>CtrlFormStudent.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Form2SessionContact.ascx.cs">
       <DependentUpon>Form2SessionContact.ascx</DependentUpon>
