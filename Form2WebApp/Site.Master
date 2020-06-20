@@ -53,7 +53,8 @@
                         <li><a runat="server" href="~/Pages">Home</a></li>
                         <li><a runat="server" href="~/Pages/About">About</a></li>
                         <%--<li><a runat="server" href="~/Pages/Contact">Contact</a></li>--%>
-                        <li><a runat="server" href="~/Pages/ContactForm2">Contact</a></li>
+                        <%--<li><a runat="server" href="~/Pages/ContactForm2">Contact</a></li>--%>
+                        <li><a runat="server" href="~/Pages/ContactForm2Session">Contact</a></li>
                     </ul>
                 </div>
             </div>

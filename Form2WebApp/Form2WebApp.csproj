@@ -110,6 +110,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Pages\ContactForm2Session.aspx" />
     <Content Include="Pages\ContactForm2.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="favicon.ico" />
@@ -153,6 +154,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserControls\Form2SessionContact.ascx" />
     <Content Include="UserControls\Form2Contact.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -175,6 +177,13 @@
     </Compile>
     <Compile Include="Pages\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ContactForm2Session.aspx.cs">
+      <DependentUpon>ContactForm2Session.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ContactForm2Session.aspx.designer.cs">
+      <DependentUpon>ContactForm2Session.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ContactForm2.aspx.cs">
       <DependentUpon>ContactForm2.aspx</DependentUpon>
@@ -208,6 +217,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Form2SessionContact.ascx.cs">
+      <DependentUpon>Form2SessionContact.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Form2SessionContact.ascx.designer.cs">
+      <DependentUpon>Form2SessionContact.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Form2Contact.ascx.cs">
       <DependentUpon>Form2Contact.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,6 +254,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Form2WebApp.Data\Form2WebApp.Data.csproj">
+      <Project>{8a57f666-e00c-4b07-8e97-6692d6bd165b}</Project>
+      <Name>Form2WebApp.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Form2\Form2.csproj">
       <Project>{85082668-8659-4d9b-80c5-f31153fd566d}</Project>
       <Name>Form2</Name>
