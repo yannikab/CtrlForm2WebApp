@@ -155,14 +155,14 @@
       <FileName>Html\Content\Elements\Input\HtmlPasswordBox.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Form2.Html.Content.Elements.Input.HtmlDatePicker">
+  <Class Name="Form2.Html.Content.Elements.Input.HtmlDateBox">
     <Position X="7.25" Y="9.5" Width="1.5" />
     <Members>
-      <Method Name="HtmlDatePicker" Hidden="true" />
+      <Method Name="HtmlDateBox" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Content\Elements\Input\HtmlDatePicker.cs</FileName>
+      <FileName>Html\Content\Elements\Input\HtmlDateBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSpan">

@@ -33,12 +33,12 @@ namespace Form2WebApp.Pages
         protected global::System.Web.UI.WebControls.Literal ltrContent;
 
         /// <summary>
-        /// CtrlForm2Contact control.
+        /// Form2Contact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Form2WebApp.UserControls.CtrlForm2Contact CtrlForm2Contact;
+        protected global::Form2WebApp.UserControls.CtrlForm2Contact Form2Contact;
     }
 }

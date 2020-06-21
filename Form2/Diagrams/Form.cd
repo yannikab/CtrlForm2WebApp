@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Form2.Form.Content.Items.Input.FormDatePicker">
+  <Class Name="Form2.Form.Content.Items.Input.FormDateBox">
     <Position X="8" Y="8.5" Width="1.5" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
-      <Method Name="FormDatePicker" Hidden="true" />
+      <Method Name="FormDateBox" Hidden="true" />
       <Field Name="isReadOnly" Hidden="true" />
       <Field Name="validator" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAABAAAAAAQAUAAgAAAAgAAAAAQAQgAAgAIAAAAA=</HashCode>
-      <FileName>Form\Content\Items\Input\FormDatePicker.cs</FileName>
+      <FileName>Form\Content\Items\Input\FormDateBox.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>

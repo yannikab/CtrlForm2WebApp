@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items.Input
@@ -14,48 +12,24 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormDatePicker : FormInput<string, DateTime?>, IReadOnly, IValidate<FormDatePicker>
+    public class FormDateBox : FormInput<string, DateTime?>, IReadOnly, IValidate<FormDateBox>
     {
         #region Fields
 
-        private string placeHolder;
-
-        private FormIcon icon;
-
         private bool? isReadOnly;
 
-        private Func<FormDatePicker, string> validator;
+        private Func<FormDateBox, string> validator;
 
-        private Action<FormDatePicker> actionInvalid;
-
-        private string dateFormat;
+        private Action<FormDateBox> actionInvalid;
 
         #endregion
 
 
         #region Properties
 
-        public string PlaceHolder
-        {
-            get { return placeHolder; }
-            set { placeHolder = value; }
-        }
-
-        public FormIcon Icon
-        {
-            get { return icon; }
-            set { icon = value; }
-        }
-
-        public string DateFormat
-        {
-            get { return dateFormat; }
-            set { dateFormat = value; }
-        }
-
         public override DateTime? Value
         {
-            get { try { return DateTime.ParseExact(Content, dateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture); } catch { return null; }; }
+            get { try { return Convert.ToDateTime(Content); } catch { return null; }; }
         }
 
         #endregion
@@ -134,15 +108,15 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<FormDatePicker>
+        #region IValidate<FormDateBox>
 
-        public Func<FormDatePicker, string> Validator
+        public Func<FormDateBox, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<FormDatePicker> ActionInvalid
+        public Action<FormDateBox> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -178,14 +152,10 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormDatePicker(string baseId, string formId, string dateFormat)
+        public FormDateBox(string baseId, string formId)
             : base(baseId, formId)
         {
             Content = "";
-            PlaceHolder = "";
-            Icon = FormIcon.NotSet;
-
-            DateFormat = dateFormat;
 
             IsReadOnly = null;
 
@@ -193,8 +163,8 @@ namespace Form2.Form.Content.Items.Input
             ActionInvalid = (f) => { return; };
         }
 
-        public FormDatePicker(string baseId, string dateFormat)
-            : this(baseId, baseId.ToLower(), dateFormat)
+        public FormDateBox(string baseId)
+            : this(baseId, baseId.ToLower())
         {
         }
 

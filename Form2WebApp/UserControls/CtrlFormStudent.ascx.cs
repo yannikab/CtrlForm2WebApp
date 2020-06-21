@@ -12,6 +12,7 @@ using Form2.Form.Content.Items.Input;
 using Form2.Form.Content.Items.Input.Selectors;
 using Form2.Form.Enums;
 using Form2.Form.Selectables;
+using Form2.Form.Visitors;
 
 //using rdc;
 
@@ -32,7 +33,7 @@ namespace Form2WebApp.UserControls
 
             private readonly Page page;
 
-            private FormTextBox txtDateOfBirth;
+            private FormDatePicker txtDateOfBirth;
             private FormSelect selCity;
             private FormSelect selArea;
 
@@ -69,6 +70,7 @@ namespace Form2WebApp.UserControls
             private readonly string resChoose = "Επιλέξτε...";
             private readonly string resFieldRequired = "Το πεδίο είναι υποχρεωτικό";
             private readonly string resEmailInvalid = "Το email δεν είναι έγκυρο";
+            private readonly string resDateOfBirthInvalid = "Η ημερομηνία γέννησης δεν μπορεί να είναι στο μέλλον"; 
             private readonly string resYes = "Ναι";
             private readonly string resNo = "Όχι";
 
@@ -109,15 +111,36 @@ namespace Form2WebApp.UserControls
                 #endregion
 
 
+                #region Title
+
+                AddItem(new FormTitle("Students")
+                {
+                    Content = "Μαθητές",
+                });
+
+                #endregion
+
+
                 #region DateOfBirth
 
-                AddItem(txtDateOfBirth = new FormTextBox("DateOfBirth")
+                AddItem(txtDateOfBirth = new FormDatePicker("DateOfBirth", "dd/mm/yyyy")
                 {
                     Label = resDateOfBirth,
 
+                    IsRequired = true,
+
                     PlaceHolder = resDateOfBirth,
 
-                    //CssClass = "date-picker",
+                    Validator = (f) =>
+                    {
+                        if (f.Value == null)
+                            return "";
+
+                        if (f.Value > DateTime.Now)
+                            return resDateOfBirthInvalid;
+
+                        return "";
+                    }
                 });
 
                 #endregion
@@ -588,23 +611,30 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                try
-                {
-                    //tblGates tg = new tblGates(Common.GetGate());
+                var emailVisitor = new FormEmailVisitor(formGroup, "Ναι", "Όχι");
 
-                    //string emailBody = "";
+                page.Response.Write(emailVisitor.Subject);
+                page.Response.Write("<br /><br />");
+                page.Response.Write(emailVisitor.Body);
+                page.Response.Write("<br /><br />");
 
-                    //new Common().SendAppEmail("Εκδήλωση ενδιαφέροντος", emailBody, tg.sendermail, "y.kabilafkas@rdc.gr", "d.athanassiadis@rdc.gr", "");
-                    //new Common().SendAppEmail("Εκδήλωση ενδιαφέροντος", emailBody, tg.sendermail, tg.ccmail, ConfigurationManager.AppSettings["CCMailAddress"], "");
+                //try
+                //{
+                //    //tblGates tg = new tblGates(Common.GetGate());
 
-                    string script = "bootbox.alert({message: 'Το email σας απεστάλη με επιτυχία.'});";
-                    ScriptManager.RegisterStartupScript(page, page.GetType(), "MailSentSuccess", script, true);
-                }
-                catch (Exception)
-                {
-                    string script = "bootbox.alert({message: 'Παρουσιάστηκε κάποιο σφάλμα κατά την αποστολή του email σας.'});";
-                    ScriptManager.RegisterStartupScript(page, page.GetType(), "MailSentError", script, true);
-                }
+                //    //string emailBody = "";
+
+                //    //new Common().SendAppEmail("Εκδήλωση ενδιαφέροντος", emailBody, tg.sendermail, "y.kabilafkas@rdc.gr", "d.athanassiadis@rdc.gr", "");
+                //    //new Common().SendAppEmail("Εκδήλωση ενδιαφέροντος", emailBody, tg.sendermail, tg.ccmail, ConfigurationManager.AppSettings["CCMailAddress"], "");
+
+                //    string script = "bootbox.alert({message: 'Το email σας απεστάλη με επιτυχία.'});";
+                //    ScriptManager.RegisterStartupScript(page, page.GetType(), "MailSentSuccess", script, true);
+                //}
+                //catch (Exception)
+                //{
+                //    string script = "bootbox.alert({message: 'Παρουσιάστηκε κάποιο σφάλμα κατά την αποστολή του email σας.'});";
+                //    ScriptManager.RegisterStartupScript(page, page.GetType(), "MailSentError", script, true);
+                //}
             }
 
             #endregion

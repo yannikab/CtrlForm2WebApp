@@ -15,6 +15,9 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <asp:ContentPlaceHolder ID="cphHead" runat="server">
+    </asp:ContentPlaceHolder>
+
 </head>
 <body>
     <form runat="server">
@@ -53,7 +56,7 @@
                         <li><a runat="server" href="~/Pages">Home</a></li>
                         <li><a runat="server" href="~/Pages/About">About</a></li>
                         <%--<li><a runat="server" href="~/Pages/Contact">Contact</a></li>--%>
-                        <%--<li><a runat="server" href="~/Pages/ContactForm2">Contact</a></li>--%>
+                        <li><a runat="server" href="~/Pages/ContactForm2">Contact</a></li>
                         <li><a runat="server" href="~/Pages/ContactForm2Session">Πόλεις/Δήμοι</a></li>
                         <li><a runat="server" href="~/Pages/ContactForm2Student">Μαθητές</a></li>
                     </ul>

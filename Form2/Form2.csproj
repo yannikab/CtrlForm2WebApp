@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form\Content\FormItem.cs" />
+    <Compile Include="Form\Content\Items\Input\FormDateBox.cs" />
     <Compile Include="Form\Content\Items\Input\FormDatePicker.cs" />
     <Compile Include="Form\Content\Items\Input\FormPasswordBox.cs" />
     <Compile Include="Form\Interfaces\IDisabled.cs" />
@@ -52,11 +53,13 @@
     <Compile Include="Form\Interfaces\IReadOnly.cs" />
     <Compile Include="Form\Selectables\FormRadioButton.cs" />
     <Compile Include="Form\Visitors\FormEmailVisitor.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormDateBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormDatePicker.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormPasswordBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormRadioGroup.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlRadioButton.cs" />
     <Compile Include="Html\Content\Elements\Containers\HtmlRadioGroup.cs" />
+    <Compile Include="Html\Content\Elements\Input\HtmlDateBox.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlDatePicker.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlPasswordBox.cs" />
     <Compile Include="Html\Events\EventClick.cs" />
@@ -98,6 +101,8 @@
     <Compile Include="Html\Attributes\Variable\Integer\AttrRows.cs" />
     <Compile Include="Html\Attributes\ReadOnly\String\AttrType.cs" />
     <Compile Include="Html\Attributes\Variable\String\AttrValue.cs" />
+    <Compile Include="Html\Attributes\Variable\String\AttrDataProvide.cs" />
+    <Compile Include="Html\Attributes\Variable\String\AttrDataDateFormat.cs" />
     <Compile Include="Html\Attributes\Variable\Integer\IntegerAttribute.cs" />
     <Compile Include="Html\Attributes\Variable\Boolean\BooleanAttribute.cs" />
     <Compile Include="Html\Attributes\Variable\HtmlAttribute.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,12 +107,20 @@ namespace Form2.Form.Visitors
             sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formPasswordBox.Label, formPasswordBox.Value.Trim()));
         }
 
+        public virtual void Visit(FormDateBox formDateBox)
+        {
+            if (formDateBox.IsHidden ?? false)
+                return;
+
+            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDateBox.Label, formDateBox.Value));
+        }
+
         public virtual void Visit(FormDatePicker formDatePicker)
         {
             if (formDatePicker.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDatePicker.Label, formDatePicker.Value));
+            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDatePicker.Label, formDatePicker.Value.HasValue ? formDatePicker.Value.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : ""));
         }
 
         public virtual void Visit(FormCheckBox formCheckBox)
@@ -142,7 +151,10 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormRadioGroup formRadioGroup)
         {
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formRadioGroup.Label, formRadioGroup.Value.Text));
+            if (formRadioGroup.IsHidden ?? false)
+                return;
+
+            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formRadioGroup.Label, formRadioGroup.Value != null ? formRadioGroup.Value.Text : ""));
         }
 
         #endregion

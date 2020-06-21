@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -12,6 +13,7 @@ using Form2.Form.Content.Items.Input;
 using Form2.Form.Content.Items.Input.Selectors;
 using Form2.Form.Enums;
 using Form2.Form.Selectables;
+using Form2.Form.Visitors;
 
 namespace Form2WebApp.UserControls
 {
@@ -21,11 +23,18 @@ namespace Form2WebApp.UserControls
         {
             base.OnLoad(e);
 
-            ltrContent.Text = new Form().GetText(IsPostBack, Request.Form, Session);
+            ltrContent.Text = new Form(Page).GetText(IsPostBack, Request.Form, Session);
         }
 
         class Form : Form2Base
         {
+            private readonly Page page;
+
+            public Form(Page page)
+            {
+                this.page = page;
+            }
+
             protected override void CreateForm()
             {
                 OpenGroup("Container");
@@ -71,7 +80,11 @@ namespace Form2WebApp.UserControls
                     PlaceHolder = "Enter your last name",
                 });
 
-                AddItem(new FormDatePicker("DateOfBirth")
+                CloseGroup();
+
+                OpenGroup("DateOfBirth-DateOfMembership");
+
+                AddItem(new FormDateBox("DateOfBirth")
                 {
                     Label = "Date of birth",
 
@@ -81,11 +94,39 @@ namespace Form2WebApp.UserControls
 
                     Validator = (f) =>
                     {
+                        if (f.Value == null)
+                            return "";
+
                         if (f.Value > DateTime.Now)
                             return "Date of birth can not be in the future";
 
                         if (DateTime.Now - f.Value < TimeSpan.FromDays(18 * 365.25))
                             return "You must be at least 18 to use this site";
+
+                        return "";
+                    },
+                });
+
+                AddItem(new FormDatePicker("DateOfMembership", "dd/mm/yyyy")
+                {
+                    Label = "Membership renewal",
+
+                    Content = string.Format("{0:00}/{1:00}/{2:0000}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year - 1),
+
+                    PlaceHolder = "dd/mm/yyyy",
+
+                    IsRequired = false,
+
+                    Validator = (f) =>
+                    {
+                        if (f.Value == null)
+                            return "";
+
+                        if (f.Value > DateTime.Now)
+                            return "Membership renewal date can not be in the future";
+
+                        if (DateTime.Now - f.Value > TimeSpan.FromDays(365))
+                            return "Only members that have renewed their memberships in the last year can participate";
 
                         return "";
                     },
@@ -108,9 +149,12 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Envelope,
 
-                    Validator = (t) =>
+                    Validator = (f) =>
                     {
-                        return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(t.Value) ? "Invalid Email" : "";
+                        if (f.Value == "")
+                            return "";
+
+                        return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(f.Value) ? "Invalid Email" : "";
                     },
                 });
 
@@ -126,11 +170,14 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Phone,
 
-                    Validator = (t) =>
+                    Validator = (f) =>
                     {
-                        int digits = t.Value.Where(c => char.IsDigit(c)).Count();
+                        if (f.Value == "")
+                            return "";
 
-                        if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(t.Value) || digits < 10 || digits > 15)
+                        int digits = f.Value.Where(c => char.IsDigit(c)).Count();
+
+                        if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(f.Value) || digits < 10 || digits > 15)
                             return "Invalid Phone";
 
                         return "";
@@ -154,9 +201,12 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Lock,
 
-                    Validator = (p) =>
+                    Validator = (f) =>
                     {
-                        if (GetItem<FormPasswordBox>("ConfirmPassword").Value != p.Value)
+                        if (f.Value == "")
+                            return "";
+
+                        if (GetItem<FormPasswordBox>("ConfirmPassword").Value != f.Value)
                             return "Passwords do not match";
 
                         return "";
@@ -176,9 +226,12 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Lock,
 
-                    Validator = (p) =>
+                    Validator = (f) =>
                     {
-                        if (GetItem<FormPasswordBox>("Password").Value != p.Value)
+                        if (f.Value == "")
+                            return "";
+
+                        if (GetItem<FormPasswordBox>("Password").Value != f.Value)
                             return "Passwords do not match";
 
                         return "";
@@ -207,11 +260,6 @@ namespace Form2WebApp.UserControls
                         new FormOption("Α' Λυκείου"),
                         new FormOption("Β' Λυκείου"),
                         new FormOption("Γ' Λυκείου")
-                    },
-
-                    Validator = (f) =>
-                    {
-                        return "";
                     },
 
                     IsPostBack = true,
@@ -255,6 +303,9 @@ namespace Form2WebApp.UserControls
 
                     Validator = (f) =>
                     {
+                        if (f.Value == null)
+                            return "";
+
                         if (f.Value.Text == "Post")
                             return "Contact by post can not be used at the moment";
 
@@ -317,6 +368,12 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
+                var emailVisitor = new FormEmailVisitor(formGroup, "Ναι", "Όχι");
+
+                page.Response.Write(emailVisitor.Subject);
+                page.Response.Write("<br /><br />");
+                page.Response.Write(emailVisitor.Body);
+                page.Response.Write("<br /><br />");
             }
         }
     }

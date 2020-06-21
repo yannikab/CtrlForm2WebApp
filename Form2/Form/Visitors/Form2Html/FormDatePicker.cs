@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,12 @@ namespace Form2.Form.Visitors
             HtmlDatePicker htmlDatePicker = new HtmlDatePicker(formDatePicker.BaseId);
             htmlDatePicker.Disabled.Value = formDatePicker.IsDisabled;
             htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
-            htmlDatePicker.Value.Value = formDatePicker.IsRequiredMet ? ((DateTime)formDatePicker.Value).ToString("yyyy-MM-dd") : "";
+            htmlDatePicker.DataDateFormat.Value = formDatePicker.DateFormat;
+            if (!formDatePicker.IsRequiredMet || !formDatePicker.Value.HasValue)
+                htmlDatePicker.Value.Value = "";
+            else
+                htmlDatePicker.Value.Value = formDatePicker.Value.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture);
+            htmlDatePicker.PlaceHolder.Value = !string.IsNullOrEmpty(formDatePicker.PlaceHolder) ? formDatePicker.PlaceHolder : null;
 
             HtmlLabel htmlLabel = new HtmlLabel(formDatePicker.BaseId);
             htmlLabel.For.Value = htmlDatePicker.Id.Value;

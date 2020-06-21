@@ -75,6 +75,11 @@ namespace Form2.Form.Visitors
             formPasswordBox.Content = form[formPasswordBox.BaseId];
         }
 
+        public virtual void Visit(FormDateBox formDateBox)
+        {
+            formDateBox.Content = form[formDateBox.BaseId];
+        }
+
         public virtual void Visit(FormDatePicker formDatePicker)
         {
             formDatePicker.Content = form[formDatePicker.BaseId];

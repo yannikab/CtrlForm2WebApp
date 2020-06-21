@@ -153,6 +153,17 @@ namespace Form2.Html.Visitors
             sb.AppendLine(" />");
         }
 
+        public void Visit(HtmlDateBox h)
+        {
+            sb.Append(Tabs(h.Depth));
+            sb.Append(string.Format("<{0}", h.Tag));
+
+            foreach (var a in h.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.AppendLine(" />");
+        }
+
         public void Visit(HtmlDatePicker h)
         {
             sb.Append(Tabs(h.Depth));
