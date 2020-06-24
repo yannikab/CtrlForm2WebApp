@@ -49,6 +49,7 @@ namespace Form2.Form.Visitors
             else
                 htmlDatePicker.Value.Value = formDatePicker.Value.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture);
             htmlDatePicker.PlaceHolder.Value = !string.IsNullOrEmpty(formDatePicker.PlaceHolder) ? formDatePicker.PlaceHolder : null;
+            htmlDatePicker.AutoComplete.Value = "off";
 
             HtmlLabel htmlLabel = new HtmlLabel(formDatePicker.BaseId);
             htmlLabel.For.Value = htmlDatePicker.Id.Value;
@@ -185,6 +186,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formDatePicker.BaseId, "Message"));
+            htmlLabelMessage.Class.Add("form-validation-message"); 
             htmlLabelMessage.For.Value = htmlDatePicker.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

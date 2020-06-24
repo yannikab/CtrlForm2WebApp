@@ -17,26 +17,26 @@ namespace Form2WebApp.Data
 {
     [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-    public partial class tblCity
+    public partial class tblOrientationGroup
     {
-        private static ItblCityPersister _DefaultPersister;
-        private ItblCityPersister _Persister;
+        private static ItblOrientationGroupPersister _DefaultPersister;
+        private ItblOrientationGroupPersister _Persister;
         private long _id;
         private string _name;
 
-        static tblCity()
+        static tblOrientationGroup()
         {
             // Assign default persister
-            _DefaultPersister = new SqlServertblCityPersister();
+            _DefaultPersister = new SqlServertblOrientationGroupPersister();
         }
 
-        public tblCity()
+        public tblOrientationGroup()
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
         }
 
-        public tblCity(long _id)
+        public tblOrientationGroup(long _id)
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
@@ -48,7 +48,7 @@ namespace Form2WebApp.Data
             Retrieve();
         }
 
-        public tblCity(DataRow row)
+        public tblOrientationGroup(DataRow row)
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
@@ -70,13 +70,13 @@ namespace Form2WebApp.Data
             }
         }
 
-        public static ItblCityPersister DefaultPersister
+        public static ItblOrientationGroupPersister DefaultPersister
         {
             get { return _DefaultPersister; }
             set { _DefaultPersister = value; }
         }
 
-        public ItblCityPersister Persister
+        public ItblOrientationGroupPersister Persister
         {
             get { return _Persister; }
             set { _Persister = value; }
@@ -94,7 +94,7 @@ namespace Form2WebApp.Data
             set { _name = value; }
         }
 
-        public virtual void Clone(tblCity sourceObject)
+        public virtual void Clone(tblOrientationGroup sourceObject)
         {
             if (sourceObject == null)
             {
@@ -126,7 +126,7 @@ namespace Form2WebApp.Data
             return _Persister.Insert(this);
         }
 
-        public static IReader<tblCity> ListAll()
+        public static IReader<tblOrientationGroup> ListAll()
         {
             return _DefaultPersister.ListAll();
         }
@@ -135,41 +135,41 @@ namespace Form2WebApp.Data
 
     [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-    public partial interface ItblCityPersister : IPersister
+    public partial interface ItblOrientationGroupPersister : IPersister
     {
-        int Retrieve(tblCity tblCity);
-        int Update(tblCity tblCity);
-        int Delete(tblCity tblCity);
-        int Insert(tblCity tblCity);
-        IReader<tblCity> ListAll();
+        int Retrieve(tblOrientationGroup tblOrientationGroup);
+        int Update(tblOrientationGroup tblOrientationGroup);
+        int Delete(tblOrientationGroup tblOrientationGroup);
+        int Insert(tblOrientationGroup tblOrientationGroup);
+        IReader<tblOrientationGroup> ListAll();
     }
 
     [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
 
-    public partial class SqlServertblCityPersister : SqlPersisterBase, ItblCityPersister
+    public partial class SqlServertblOrientationGroupPersister : SqlPersisterBase, ItblOrientationGroupPersister
     {
-        public SqlServertblCityPersister()
+        public SqlServertblOrientationGroupPersister()
         {
         }
 
-        public SqlServertblCityPersister(string connectionString) : base(connectionString)
+        public SqlServertblOrientationGroupPersister(string connectionString) : base(connectionString)
         {
         }
 
-        public SqlServertblCityPersister(SqlConnection connection) : base(connection)
+        public SqlServertblOrientationGroupPersister(SqlConnection connection) : base(connection)
         {
         }
 
-        public SqlServertblCityPersister(SqlTransaction transaction) : base(transaction)
+        public SqlServertblOrientationGroupPersister(SqlTransaction transaction) : base(transaction)
         {
         }
 
-        public int Retrieve(tblCity tblCity)
+        public int Retrieve(tblOrientationGroup tblOrientationGroup)
         {
             int __rowsAffected = 1;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityGet"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblOrientationGroupGet"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -183,12 +183,12 @@ namespace Form2WebApp.Data
                     SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                     vid.Direction = ParameterDirection.InputOutput;
                     sqlCommand.Parameters.Add(vid);
-                    SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
+                    SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 255);
                     vname.Direction = ParameterDirection.Output;
                     sqlCommand.Parameters.Add(vname);
 
                     // Set input parameter values
-                    SqlServerHelper.SetParameterValue(vid, tblCity.id);
+                    SqlServerHelper.SetParameterValue(vid, tblOrientationGroup.id);
 
                     // Execute command
                     sqlCommand.ExecuteNonQuery();
@@ -196,8 +196,8 @@ namespace Form2WebApp.Data
                     try
                     {
                         // Get output parameter values
-                        tblCity.id = SqlServerHelper.ToInt64(vid);
-                        tblCity.name = SqlServerHelper.ToString(vname);
+                        tblOrientationGroup.id = SqlServerHelper.ToInt64(vid);
+                        tblOrientationGroup.name = SqlServerHelper.ToString(vname);
 
                     }
                     catch (Exception ex)
@@ -223,12 +223,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Update(tblCity tblCity)
+        public int Update(tblOrientationGroup tblOrientationGroup)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityUpdate"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblOrientationGroupUpdate"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -237,13 +237,13 @@ namespace Form2WebApp.Data
                 SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                 vid.Direction = ParameterDirection.Input;
                 sqlCommand.Parameters.Add(vid);
-                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
+                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 255);
                 vname.Direction = ParameterDirection.Input;
                 sqlCommand.Parameters.Add(vname);
 
                 // Set input parameter values
-                SqlServerHelper.SetParameterValue(vid, tblCity.id);
-                SqlServerHelper.SetParameterValue(vname, tblCity.name);
+                SqlServerHelper.SetParameterValue(vid, tblOrientationGroup.id);
+                SqlServerHelper.SetParameterValue(vname, tblOrientationGroup.name);
 
                 try
                 {
@@ -270,12 +270,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Delete(tblCity tblCity)
+        public int Delete(tblOrientationGroup tblOrientationGroup)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityDelete"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblOrientationGroupDelete"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -291,7 +291,7 @@ namespace Form2WebApp.Data
                     sqlCommand.Parameters.Add(vid);
 
                     // Set input parameter values
-                    SqlServerHelper.SetParameterValue(vid, tblCity.id);
+                    SqlServerHelper.SetParameterValue(vid, tblOrientationGroup.id);
 
                     // Execute command
                     __rowsAffected = sqlCommand.ExecuteNonQuery();
@@ -308,12 +308,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Insert(tblCity tblCity)
+        public int Insert(tblOrientationGroup tblOrientationGroup)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityInsert"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblOrientationGroupInsert"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -322,16 +322,16 @@ namespace Form2WebApp.Data
                 SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                 vid.Direction = ParameterDirection.InputOutput;
                 sqlCommand.Parameters.Add(vid);
-                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
+                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 255);
                 vname.Direction = ParameterDirection.Input;
                 sqlCommand.Parameters.Add(vname);
 
                 // Set input parameter values
                 SqlServerHelper.SetParameterValue(
                     vid,
-                    tblCity.id,
+                    tblOrientationGroup.id,
                     0);
-                SqlServerHelper.SetParameterValue(vname, tblCity.name);
+                SqlServerHelper.SetParameterValue(vname, tblOrientationGroup.name);
 
                 try
                 {
@@ -347,7 +347,7 @@ namespace Form2WebApp.Data
 
 
                     // Get output parameter values
-                    tblCity.id = SqlServerHelper.ToInt64(vid);
+                    tblOrientationGroup.id = SqlServerHelper.ToInt64(vid);
 
                 }
                 finally
@@ -361,10 +361,10 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public IReader<tblCity> ListAll()
+        public IReader<tblOrientationGroup> ListAll()
         {
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityListAll"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblOrientationGroupListAll"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -373,7 +373,7 @@ namespace Form2WebApp.Data
                 SqlDataReader reader = sqlCommand.ExecuteReader(AttachReaderCommand(sqlCommand));
 
                 // Return reader
-                return new SqlServertblCityReader(reader);
+                return new SqlServertblOrientationGroupReader(reader);
             }
         }
 
@@ -381,16 +381,16 @@ namespace Form2WebApp.Data
 
     [SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 
-    public partial class SqlServertblCityReader : IReader<tblCity>
+    public partial class SqlServertblOrientationGroupReader : IReader<tblOrientationGroup>
     {
         private SqlDataReader sqlDataReader;
 
-        private tblCity _tblCity;
+        private tblOrientationGroup _tblOrientationGroup;
 
         private int _idOrdinal = -1;
         private int _nameOrdinal = -1;
 
-        public SqlServertblCityReader(SqlDataReader sqlDataReader)
+        public SqlServertblOrientationGroupReader(SqlDataReader sqlDataReader)
         {
             this.sqlDataReader = sqlDataReader;
             for (int i = 0; i < sqlDataReader.FieldCount; i++)
@@ -411,30 +411,30 @@ namespace Form2WebApp.Data
             }
         }
 
-        #region IReader<tblCity> Implementation
+        #region IReader<tblOrientationGroup> Implementation
 
         public bool Read()
         {
-            _tblCity = null;
+            _tblOrientationGroup = null;
             return this.sqlDataReader.Read();
         }
 
-        public tblCity Current
+        public tblOrientationGroup Current
         {
             get
             {
-                if (_tblCity == null)
+                if (_tblOrientationGroup == null)
                 {
-                    _tblCity = new tblCity();
+                    _tblOrientationGroup = new tblOrientationGroup();
                     if (_idOrdinal != -1)
                     {
-                        _tblCity.id = SqlServerHelper.ToInt64(sqlDataReader, _idOrdinal);
+                        _tblOrientationGroup.id = SqlServerHelper.ToInt64(sqlDataReader, _idOrdinal);
                     }
-                    _tblCity.name = SqlServerHelper.ToString(sqlDataReader, _nameOrdinal);
+                    _tblOrientationGroup.name = SqlServerHelper.ToString(sqlDataReader, _nameOrdinal);
                 }
 
 
-                return _tblCity;
+                return _tblOrientationGroup;
             }
         }
 
@@ -443,9 +443,9 @@ namespace Form2WebApp.Data
             sqlDataReader.Close();
         }
 
-        public List<tblCity> ToList()
+        public List<tblOrientationGroup> ToList()
         {
-            List<tblCity> list = new List<tblCity>();
+            List<tblOrientationGroup> list = new List<tblOrientationGroup>();
             while (this.Read())
             {
                 list.Add(this.Current);
@@ -471,11 +471,11 @@ namespace Form2WebApp.Data
         }
         #endregion
 
-        #region IEnumerable<tblCity> Implementation
+        #region IEnumerable<tblOrientationGroup> Implementation
 
-        public IEnumerator<tblCity> GetEnumerator()
+        public IEnumerator<tblOrientationGroup> GetEnumerator()
         {
-            return new tblCityEnumerator(this);
+            return new tblOrientationGroupEnumerator(this);
         }
 
         #endregion
@@ -484,27 +484,27 @@ namespace Form2WebApp.Data
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return new tblCityEnumerator(this);
+            return new tblOrientationGroupEnumerator(this);
         }
 
         #endregion
 
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-        private partial class tblCityEnumerator : IEnumerator<tblCity>
+        private partial class tblOrientationGroupEnumerator : IEnumerator<tblOrientationGroup>
         {
-            private IReader<tblCity> tblCityReader;
+            private IReader<tblOrientationGroup> tblOrientationGroupReader;
 
-            public tblCityEnumerator(IReader<tblCity> tblCityReader)
+            public tblOrientationGroupEnumerator(IReader<tblOrientationGroup> tblOrientationGroupReader)
             {
-                this.tblCityReader = tblCityReader;
+                this.tblOrientationGroupReader = tblOrientationGroupReader;
             }
 
-            #region IEnumerator<tblCity> Members
+            #region IEnumerator<tblOrientationGroup> Members
 
-            public tblCity Current
+            public tblOrientationGroup Current
             {
-                get { return this.tblCityReader.Current; }
+                get { return this.tblOrientationGroupReader.Current; }
             }
 
             #endregion
@@ -513,7 +513,7 @@ namespace Form2WebApp.Data
 
             public void Dispose()
             {
-                this.tblCityReader.Dispose();
+                this.tblOrientationGroupReader.Dispose();
             }
 
             #endregion
@@ -522,17 +522,17 @@ namespace Form2WebApp.Data
 
             object IEnumerator.Current
             {
-                get { return this.tblCityReader.Current; }
+                get { return this.tblOrientationGroupReader.Current; }
             }
 
             public bool MoveNext()
             {
-                return this.tblCityReader.Read();
+                return this.tblOrientationGroupReader.Read();
             }
 
             public void Reset()
             {
-                throw new Exception("Reset of tblcity reader is not supported.");
+                throw new Exception("Reset of tblorientationgroup reader is not supported.");
             }
 
             #endregion

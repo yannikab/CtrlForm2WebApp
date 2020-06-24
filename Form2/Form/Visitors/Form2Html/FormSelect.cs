@@ -214,6 +214,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formSelect.BaseId, "Message"));
+            htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlSelect.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

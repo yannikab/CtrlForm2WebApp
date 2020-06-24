@@ -17,11 +17,9 @@ namespace Form2.Form.Visitors
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0029:Use coalesce expression", Justification = "<Pending>")]
 
-    public class FormEmailVisitor
+    public class FormLogVisitor
     {
         #region Fields
-
-        private string subject;
 
         protected readonly StringBuilder sb = new StringBuilder();
 
@@ -34,12 +32,7 @@ namespace Form2.Form.Visitors
 
         #region Properties
 
-        public string Subject
-        {
-            get { return subject; }
-        }
-
-        public string Body
+        public string Text
         {
             get { return sb.ToString(); }
         }
@@ -66,7 +59,10 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTitle formTitle)
         {
-            subject = formTitle.Value.Trim();
+            if (formTitle.IsHidden ?? false)
+                return;
+
+            sb.AppendLine(formTitle.Value.Trim());
         }
 
         public virtual void Visit(FormLabel formLabel)
@@ -91,7 +87,7 @@ namespace Form2.Form.Visitors
             if (formTextBox.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formTextBox.Label, formTextBox.Value.Trim()));
+            sb.AppendLine(string.Format("{0}: {1}", formTextBox.Label, formTextBox.Value.Trim()));
         }
 
         public virtual void Visit(FormTextArea formTextArea)
@@ -99,7 +95,7 @@ namespace Form2.Form.Visitors
             if (formTextArea.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formTextArea.Label, formTextArea.Value.Trim()));
+            sb.AppendLine(string.Format("{0}: {1}", formTextArea.Label, formTextArea.Value.Trim()));
         }
 
         public virtual void Visit(FormPasswordBox formPasswordBox)
@@ -107,7 +103,7 @@ namespace Form2.Form.Visitors
             if (formPasswordBox.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formPasswordBox.Label, formPasswordBox.Value.Trim()));
+            sb.AppendLine(string.Format("{0}: {1}", formPasswordBox.Label, formPasswordBox.Value.Trim()));
         }
 
         public virtual void Visit(FormDateBox formDateBox)
@@ -115,7 +111,7 @@ namespace Form2.Form.Visitors
             if (formDateBox.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDateBox.Label, formDateBox.Value));
+            sb.AppendLine(string.Format("{0}: {1}", formDateBox.Label, formDateBox.Value));
         }
 
         public virtual void Visit(FormDatePicker formDatePicker)
@@ -123,7 +119,7 @@ namespace Form2.Form.Visitors
             if (formDatePicker.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDatePicker.Label, formDatePicker.Value.HasValue ? formDatePicker.Value.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : ""));
+            sb.AppendLine(string.Format("{0}: {1}", formDatePicker.Label, formDatePicker.Value.HasValue ? formDatePicker.Value.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : ""));
         }
 
         public virtual void Visit(FormCheckBox formCheckBox)
@@ -131,7 +127,7 @@ namespace Form2.Form.Visitors
             if (formCheckBox.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formCheckBox.Label, formCheckBox.Value ? yes : no));
+            sb.AppendLine(string.Format("{0}: {1}", formCheckBox.Label, formCheckBox.Value ? yes : no));
         }
 
         public virtual void Visit(FormSelect formSelect)
@@ -149,7 +145,7 @@ namespace Form2.Form.Visitors
             if (value.EndsWith(", "))
                 value = value.Substring(0, value.Length - 2);
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formSelect.Label, value));
+            sb.AppendLine(string.Format("{0}: {1}", formSelect.Label, value));
         }
 
         public virtual void Visit(FormRadioGroup formRadioGroup)
@@ -157,7 +153,7 @@ namespace Form2.Form.Visitors
             if (formRadioGroup.IsHidden ?? false)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formRadioGroup.Label, formRadioGroup.Value != null ? formRadioGroup.Value.Text : ""));
+            sb.AppendLine(string.Format("{0}: {1}", formRadioGroup.Label, formRadioGroup.Value != null ? formRadioGroup.Value.Text : ""));
         }
 
         #endregion
@@ -165,10 +161,12 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public FormEmailVisitor(FormGroup formGroup, string yes, string no)
+        public FormLogVisitor(FormGroup formGroup, string yes, string no)
         {
             this.yes = yes;
             this.no = no;
+
+            sb.AppendLine();
 
             Visit(formGroup);
         }

@@ -359,7 +359,7 @@ namespace Form2WebApp.UserControls
                 CloseGroup();
 
 
-                AddRule(() =>
+                AddRule((isPostBack, eventTarget, eventArgument) =>
                 {
                     GetItem<FormSelect>("Orientation").IsDisabled =
                     GetItem<FormSelect>("Grade").Value.Any(o => o.Text == "Β' Λυκείου" || o.Text == "Γ' Λυκείου") == false;
@@ -368,7 +368,7 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                var emailVisitor = new FormEmailVisitor(formGroup, "Ναι", "Όχι");
+                var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι");
 
                 page.Response.Write(emailVisitor.Subject);
                 page.Response.Write("<br /><br />");

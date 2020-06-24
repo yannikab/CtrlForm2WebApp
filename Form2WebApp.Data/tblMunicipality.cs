@@ -9,11 +9,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Diagnostics.CodeAnalysis;
 
 using Schematrix.Data;
 
 namespace Form2WebApp.Data
 {
+    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+
     public partial class tblMunicipality
     {
         private static ItblMunicipalityPersister _DefaultPersister;
@@ -120,12 +123,16 @@ namespace Form2WebApp.Data
 
     }
 
-    public partial interface ItblMunicipalityPersister
+    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+
+    public partial interface ItblMunicipalityPersister : IPersister
     {
         int Insert(tblMunicipality tblMunicipality);
         IReader<tblMunicipality> ListAll();
         IReader<tblMunicipality> ListForcityId(long cityId);
     }
+
+    [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
 
     public partial class SqlServertblMunicipalityPersister : SqlPersisterBase, ItblMunicipalityPersister
     {
@@ -244,6 +251,8 @@ namespace Form2WebApp.Data
 
     }
 
+    [SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+
     public partial class SqlServertblMunicipalityReader : IReader<tblMunicipality>
     {
         private SqlDataReader sqlDataReader;
@@ -360,6 +369,8 @@ namespace Form2WebApp.Data
         }
 
         #endregion
+
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
         private partial class tblMunicipalityEnumerator : IEnumerator<tblMunicipality>
         {

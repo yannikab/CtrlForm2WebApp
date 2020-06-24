@@ -41,11 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPersister.cs" />
     <Compile Include="IReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerHelper.cs" />
     <Compile Include="tblCity.cs" />
+    <Compile Include="tblEducationalGrade.cs" />
+    <Compile Include="tblEducationalLevel.cs" />
+    <Compile Include="tblEducationalStage.cs" />
+    <Compile Include="tblEmploymentDuration.cs" />
+    <Compile Include="tblEmploymentStatus.cs" />
     <Compile Include="tblMunicipality.cs" />
+    <Compile Include="tblOrientationGroup.cs" />
+    <Compile Include="tblPopulation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

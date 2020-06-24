@@ -180,6 +180,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formTextBox.BaseId, "Message"));
+            htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlTextBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);
@@ -343,6 +344,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formTextArea.BaseId, "Message"));
+            htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlTextArea.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

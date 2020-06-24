@@ -18,6 +18,8 @@ namespace Form2.Html.Content.Elements.Input
 
         private readonly AttrDataProvide attrDataProvide;
 
+        private readonly AttrAutoComplete attrAutoComplete;
+
         #endregion
 
 
@@ -43,6 +45,11 @@ namespace Form2.Html.Content.Elements.Input
             get { return attrDataProvide; }
         }
 
+        public AttrAutoComplete AutoComplete
+        {
+            get { return attrAutoComplete; }
+        }
+
         #endregion
 
 
@@ -54,6 +61,7 @@ namespace Form2.Html.Content.Elements.Input
             attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
             attributes.Add(attrDataDateFormat = new AttrDataDateFormat());
             attributes.Add(attrDataProvide = new AttrDataProvide("datepicker"));
+            attributes.Add(attrAutoComplete = new AttrAutoComplete());
         }
 
         #endregion

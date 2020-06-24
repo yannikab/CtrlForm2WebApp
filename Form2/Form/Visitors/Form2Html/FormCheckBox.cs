@@ -173,6 +173,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formCheckBox.BaseId, "Message"));
+            htmlLabelMessage.Class.Add("form-validation-message"); 
             htmlLabelMessage.For.Value = htmlCheckBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(formCheckBox.RequiredMessage));
             htmlDiv.Add(htmlLabelMessage);

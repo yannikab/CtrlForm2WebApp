@@ -8,11 +8,6 @@ namespace Form2.Html.Content.Elements.Input
 {
     public class HtmlDateBox : HtmlInput
     {
-        #region Fields
-
-        #endregion
-
-
         #region Properties
 
         protected override string Prefix

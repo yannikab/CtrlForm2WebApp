@@ -183,7 +183,7 @@ namespace Form2.Form.Content.Items.Input
         {
             Content = "";
             PlaceHolder = "";
-            Icon = FormIcon.NotSet;
+            Icon = FormIcon.Calendar;
 
             DateFormat = dateFormat;
 

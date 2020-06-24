@@ -46,6 +46,11 @@ namespace Form2.Form.Selectables
             set { text = value; }
         }
 
+        public long Numeric
+        {
+            get { return long.Parse(Value); }
+        }
+
         #endregion
 
 
@@ -70,7 +75,7 @@ namespace Form2.Form.Selectables
             this.text = text;
         }
 
-        public FormOption(int value, string text)
+        public FormOption(long value, string text)
             : this(value.ToString(), text)
         {
         }
@@ -88,38 +93,6 @@ namespace Form2.Form.Selectables
         public override string ToString()
         {
             return string.Format("{0} (Value: '{1}', Text: '{2}', IsSelected: {3})", GetType().Name, Value, Text, IsSelected);
-        }
-
-        public override bool Equals(object obj)
-        {
-            FormOption that = obj as FormOption;
-
-            if (that == null)
-                return false;
-
-            if (this.value != that.value)
-                return false;
-
-            if (this.text != that.text)
-                return false;
-
-            return true;
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                int prime1 = 17;
-                int prime2 = 23;
-
-                int hash = prime1;
-
-                hash = hash * prime2 + (value ?? "").GetHashCode();
-                hash = hash * prime2 + (text ?? "").GetHashCode();
-
-                return hash;
-            }
         }
 
         #endregion

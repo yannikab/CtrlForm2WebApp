@@ -25,7 +25,7 @@ namespace Form2.Form.Content
 
         #endregion
 
-        
+
         #region Properties
 
         public string BaseId
@@ -56,7 +56,7 @@ namespace Form2.Form.Content
                 return string.Format("{0}_{1}", GetType().Name, BaseId);
             }
         }
-        
+
         #endregion
 
 

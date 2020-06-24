@@ -40,7 +40,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Hidden.Value = formRadioGroup.IsHidden;
             htmlContainer.Add(htmlDiv);
 
-            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.BaseId);
+            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.BaseId, formRadioGroup.IsPostBack);
             htmlRadioGroup.Class.Add("form-radiogroup");
             htmlRadioGroup.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
             htmlRadioGroup.Disabled.Value = formRadioGroup.IsDisabled;
@@ -157,14 +157,19 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            foreach (var formOption in formRadioGroup.Content)
-                Visit(formOption, htmlRadioGroup);
+            foreach (var formRadioButton in formRadioGroup.Content)
+                Visit(formRadioButton, htmlRadioGroup);
 
             if (!validate)
                 return;
 
             if (sessionState != null)
             {
+                string viewStateString = (string)sessionState[formRadioGroup.SessionKey];
+
+                if (viewStateString == null)
+                    return;
+
                 foreach (var c in formRadioGroup.Content)
                 {
                     if (c.IsHidden ?? false)
@@ -173,7 +178,7 @@ namespace Form2.Form.Visitors
                     if (c.IsDisabled ?? false)
                         continue;
 
-                    c.IsSelected = c.Value == (string)sessionState[formRadioGroup.SessionKey];
+                    c.IsSelected = c.Value == viewStateString;
                 }
             }
 
@@ -188,6 +193,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formRadioGroup.BaseId, "Message"));
+            htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlRadioGroup.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

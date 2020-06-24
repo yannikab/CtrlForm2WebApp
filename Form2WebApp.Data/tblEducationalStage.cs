@@ -17,26 +17,26 @@ namespace Form2WebApp.Data
 {
     [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-    public partial class tblCity
+    public partial class tblEducationalStage
     {
-        private static ItblCityPersister _DefaultPersister;
-        private ItblCityPersister _Persister;
+        private static ItblEducationalStagePersister _DefaultPersister;
+        private ItblEducationalStagePersister _Persister;
         private long _id;
         private string _name;
 
-        static tblCity()
+        static tblEducationalStage()
         {
             // Assign default persister
-            _DefaultPersister = new SqlServertblCityPersister();
+            _DefaultPersister = new SqlServertblEducationalStagePersister();
         }
 
-        public tblCity()
+        public tblEducationalStage()
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
         }
 
-        public tblCity(long _id)
+        public tblEducationalStage(long _id)
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
@@ -48,7 +48,7 @@ namespace Form2WebApp.Data
             Retrieve();
         }
 
-        public tblCity(DataRow row)
+        public tblEducationalStage(DataRow row)
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
@@ -70,13 +70,13 @@ namespace Form2WebApp.Data
             }
         }
 
-        public static ItblCityPersister DefaultPersister
+        public static ItblEducationalStagePersister DefaultPersister
         {
             get { return _DefaultPersister; }
             set { _DefaultPersister = value; }
         }
 
-        public ItblCityPersister Persister
+        public ItblEducationalStagePersister Persister
         {
             get { return _Persister; }
             set { _Persister = value; }
@@ -94,7 +94,7 @@ namespace Form2WebApp.Data
             set { _name = value; }
         }
 
-        public virtual void Clone(tblCity sourceObject)
+        public virtual void Clone(tblEducationalStage sourceObject)
         {
             if (sourceObject == null)
             {
@@ -126,7 +126,7 @@ namespace Form2WebApp.Data
             return _Persister.Insert(this);
         }
 
-        public static IReader<tblCity> ListAll()
+        public static IReader<tblEducationalStage> ListAll()
         {
             return _DefaultPersister.ListAll();
         }
@@ -135,41 +135,41 @@ namespace Form2WebApp.Data
 
     [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-    public partial interface ItblCityPersister : IPersister
+    public partial interface ItblEducationalStagePersister : IPersister
     {
-        int Retrieve(tblCity tblCity);
-        int Update(tblCity tblCity);
-        int Delete(tblCity tblCity);
-        int Insert(tblCity tblCity);
-        IReader<tblCity> ListAll();
+        int Retrieve(tblEducationalStage tblEducationalStage);
+        int Update(tblEducationalStage tblEducationalStage);
+        int Delete(tblEducationalStage tblEducationalStage);
+        int Insert(tblEducationalStage tblEducationalStage);
+        IReader<tblEducationalStage> ListAll();
     }
 
     [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
 
-    public partial class SqlServertblCityPersister : SqlPersisterBase, ItblCityPersister
+    public partial class SqlServertblEducationalStagePersister : SqlPersisterBase, ItblEducationalStagePersister
     {
-        public SqlServertblCityPersister()
+        public SqlServertblEducationalStagePersister()
         {
         }
 
-        public SqlServertblCityPersister(string connectionString) : base(connectionString)
+        public SqlServertblEducationalStagePersister(string connectionString) : base(connectionString)
         {
         }
 
-        public SqlServertblCityPersister(SqlConnection connection) : base(connection)
+        public SqlServertblEducationalStagePersister(SqlConnection connection) : base(connection)
         {
         }
 
-        public SqlServertblCityPersister(SqlTransaction transaction) : base(transaction)
+        public SqlServertblEducationalStagePersister(SqlTransaction transaction) : base(transaction)
         {
         }
 
-        public int Retrieve(tblCity tblCity)
+        public int Retrieve(tblEducationalStage tblEducationalStage)
         {
             int __rowsAffected = 1;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityGet"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEducationalStageGet"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -183,12 +183,12 @@ namespace Form2WebApp.Data
                     SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                     vid.Direction = ParameterDirection.InputOutput;
                     sqlCommand.Parameters.Add(vid);
-                    SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
+                    SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 255);
                     vname.Direction = ParameterDirection.Output;
                     sqlCommand.Parameters.Add(vname);
 
                     // Set input parameter values
-                    SqlServerHelper.SetParameterValue(vid, tblCity.id);
+                    SqlServerHelper.SetParameterValue(vid, tblEducationalStage.id);
 
                     // Execute command
                     sqlCommand.ExecuteNonQuery();
@@ -196,8 +196,8 @@ namespace Form2WebApp.Data
                     try
                     {
                         // Get output parameter values
-                        tblCity.id = SqlServerHelper.ToInt64(vid);
-                        tblCity.name = SqlServerHelper.ToString(vname);
+                        tblEducationalStage.id = SqlServerHelper.ToInt64(vid);
+                        tblEducationalStage.name = SqlServerHelper.ToString(vname);
 
                     }
                     catch (Exception ex)
@@ -223,12 +223,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Update(tblCity tblCity)
+        public int Update(tblEducationalStage tblEducationalStage)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityUpdate"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEducationalStageUpdate"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -237,13 +237,13 @@ namespace Form2WebApp.Data
                 SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                 vid.Direction = ParameterDirection.Input;
                 sqlCommand.Parameters.Add(vid);
-                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
+                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 255);
                 vname.Direction = ParameterDirection.Input;
                 sqlCommand.Parameters.Add(vname);
 
                 // Set input parameter values
-                SqlServerHelper.SetParameterValue(vid, tblCity.id);
-                SqlServerHelper.SetParameterValue(vname, tblCity.name);
+                SqlServerHelper.SetParameterValue(vid, tblEducationalStage.id);
+                SqlServerHelper.SetParameterValue(vname, tblEducationalStage.name);
 
                 try
                 {
@@ -270,12 +270,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Delete(tblCity tblCity)
+        public int Delete(tblEducationalStage tblEducationalStage)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityDelete"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEducationalStageDelete"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -291,7 +291,7 @@ namespace Form2WebApp.Data
                     sqlCommand.Parameters.Add(vid);
 
                     // Set input parameter values
-                    SqlServerHelper.SetParameterValue(vid, tblCity.id);
+                    SqlServerHelper.SetParameterValue(vid, tblEducationalStage.id);
 
                     // Execute command
                     __rowsAffected = sqlCommand.ExecuteNonQuery();
@@ -308,12 +308,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Insert(tblCity tblCity)
+        public int Insert(tblEducationalStage tblEducationalStage)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityInsert"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEducationalStageInsert"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -322,16 +322,16 @@ namespace Form2WebApp.Data
                 SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                 vid.Direction = ParameterDirection.InputOutput;
                 sqlCommand.Parameters.Add(vid);
-                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
+                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 255);
                 vname.Direction = ParameterDirection.Input;
                 sqlCommand.Parameters.Add(vname);
 
                 // Set input parameter values
                 SqlServerHelper.SetParameterValue(
                     vid,
-                    tblCity.id,
+                    tblEducationalStage.id,
                     0);
-                SqlServerHelper.SetParameterValue(vname, tblCity.name);
+                SqlServerHelper.SetParameterValue(vname, tblEducationalStage.name);
 
                 try
                 {
@@ -347,7 +347,7 @@ namespace Form2WebApp.Data
 
 
                     // Get output parameter values
-                    tblCity.id = SqlServerHelper.ToInt64(vid);
+                    tblEducationalStage.id = SqlServerHelper.ToInt64(vid);
 
                 }
                 finally
@@ -361,10 +361,10 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public IReader<tblCity> ListAll()
+        public IReader<tblEducationalStage> ListAll()
         {
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityListAll"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEducationalStageListAll"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -373,7 +373,7 @@ namespace Form2WebApp.Data
                 SqlDataReader reader = sqlCommand.ExecuteReader(AttachReaderCommand(sqlCommand));
 
                 // Return reader
-                return new SqlServertblCityReader(reader);
+                return new SqlServertblEducationalStageReader(reader);
             }
         }
 
@@ -381,16 +381,16 @@ namespace Form2WebApp.Data
 
     [SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 
-    public partial class SqlServertblCityReader : IReader<tblCity>
+    public partial class SqlServertblEducationalStageReader : IReader<tblEducationalStage>
     {
         private SqlDataReader sqlDataReader;
 
-        private tblCity _tblCity;
+        private tblEducationalStage _tblEducationalStage;
 
         private int _idOrdinal = -1;
         private int _nameOrdinal = -1;
 
-        public SqlServertblCityReader(SqlDataReader sqlDataReader)
+        public SqlServertblEducationalStageReader(SqlDataReader sqlDataReader)
         {
             this.sqlDataReader = sqlDataReader;
             for (int i = 0; i < sqlDataReader.FieldCount; i++)
@@ -411,30 +411,30 @@ namespace Form2WebApp.Data
             }
         }
 
-        #region IReader<tblCity> Implementation
+        #region IReader<tblEducationalStage> Implementation
 
         public bool Read()
         {
-            _tblCity = null;
+            _tblEducationalStage = null;
             return this.sqlDataReader.Read();
         }
 
-        public tblCity Current
+        public tblEducationalStage Current
         {
             get
             {
-                if (_tblCity == null)
+                if (_tblEducationalStage == null)
                 {
-                    _tblCity = new tblCity();
+                    _tblEducationalStage = new tblEducationalStage();
                     if (_idOrdinal != -1)
                     {
-                        _tblCity.id = SqlServerHelper.ToInt64(sqlDataReader, _idOrdinal);
+                        _tblEducationalStage.id = SqlServerHelper.ToInt64(sqlDataReader, _idOrdinal);
                     }
-                    _tblCity.name = SqlServerHelper.ToString(sqlDataReader, _nameOrdinal);
+                    _tblEducationalStage.name = SqlServerHelper.ToString(sqlDataReader, _nameOrdinal);
                 }
 
 
-                return _tblCity;
+                return _tblEducationalStage;
             }
         }
 
@@ -443,9 +443,9 @@ namespace Form2WebApp.Data
             sqlDataReader.Close();
         }
 
-        public List<tblCity> ToList()
+        public List<tblEducationalStage> ToList()
         {
-            List<tblCity> list = new List<tblCity>();
+            List<tblEducationalStage> list = new List<tblEducationalStage>();
             while (this.Read())
             {
                 list.Add(this.Current);
@@ -471,11 +471,11 @@ namespace Form2WebApp.Data
         }
         #endregion
 
-        #region IEnumerable<tblCity> Implementation
+        #region IEnumerable<tblEducationalStage> Implementation
 
-        public IEnumerator<tblCity> GetEnumerator()
+        public IEnumerator<tblEducationalStage> GetEnumerator()
         {
-            return new tblCityEnumerator(this);
+            return new tblEducationalStageEnumerator(this);
         }
 
         #endregion
@@ -484,27 +484,28 @@ namespace Form2WebApp.Data
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return new tblCityEnumerator(this);
+            return new tblEducationalStageEnumerator(this);
         }
 
         #endregion
 
+        [SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-        private partial class tblCityEnumerator : IEnumerator<tblCity>
+        private partial class tblEducationalStageEnumerator : IEnumerator<tblEducationalStage>
         {
-            private IReader<tblCity> tblCityReader;
+            private IReader<tblEducationalStage> tblEducationalStageReader;
 
-            public tblCityEnumerator(IReader<tblCity> tblCityReader)
+            public tblEducationalStageEnumerator(IReader<tblEducationalStage> tblEducationalStageReader)
             {
-                this.tblCityReader = tblCityReader;
+                this.tblEducationalStageReader = tblEducationalStageReader;
             }
 
-            #region IEnumerator<tblCity> Members
+            #region IEnumerator<tblEducationalStage> Members
 
-            public tblCity Current
+            public tblEducationalStage Current
             {
-                get { return this.tblCityReader.Current; }
+                get { return this.tblEducationalStageReader.Current; }
             }
 
             #endregion
@@ -513,7 +514,7 @@ namespace Form2WebApp.Data
 
             public void Dispose()
             {
-                this.tblCityReader.Dispose();
+                this.tblEducationalStageReader.Dispose();
             }
 
             #endregion
@@ -522,17 +523,17 @@ namespace Form2WebApp.Data
 
             object IEnumerator.Current
             {
-                get { return this.tblCityReader.Current; }
+                get { return this.tblEducationalStageReader.Current; }
             }
 
             public bool MoveNext()
             {
-                return this.tblCityReader.Read();
+                return this.tblEducationalStageReader.Read();
             }
 
             public void Reset()
             {
-                throw new Exception("Reset of tblcity reader is not supported.");
+                throw new Exception("Reset of tbleducationalstage reader is not supported.");
             }
 
             #endregion

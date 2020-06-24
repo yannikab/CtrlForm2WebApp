@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Web.SessionState;
 
 using Form2.Form.Content;
-using Form2.Form.Content.Items;
 using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 using Form2.Form.Visitors;
@@ -26,41 +25,50 @@ namespace Form2
 
         private readonly Stack<FormGroup> groups = new Stack<FormGroup>();
 
-        protected FormGroup formGroup;
+        private FormGroup formGroup;
 
-        private List<Action> rules = new List<Action>();
+        protected delegate void FormRule(bool isPostBack, string eventTarget, string eventArgument);
+
+        private List<FormRule> rules = new List<FormRule>();
 
         private HtmlContainer htmlContainer;
 
         #endregion
 
 
+        #region Properties
+
+        protected FormGroup FormGroup { get { return formGroup; } }
+
+        #endregion
+
+
         #region Methods
 
-        public string GetText(bool IsPostBack, NameValueCollection form, HttpSessionState sessionState)
+        public string GetText(bool isPostBack, NameValueCollection form, HttpSessionState session)
         {
             CreateForm();
 
             if (formGroup == null || rules == null)
                 return "";
 
-            if (!IsPostBack)
+            if (!isPostBack)
             {
-                if (sessionState[formGroup.SessionKey] != null)
-                    sessionState.Remove(formGroup.SessionKey);
+                if (session[formGroup.SessionKey] != null)
+                    session.Remove(formGroup.SessionKey);
 
-                if (sessionState[formGroup.SessionKey + "rules"] != null)
-                    sessionState.Remove(formGroup.SessionKey + "rules");
+                if (session[formGroup.SessionKey + "rules"] != null)
+                    session.Remove(formGroup.SessionKey + "rules");
 
-                sessionState[formGroup.SessionKey] = formGroup;
-                sessionState[formGroup.SessionKey + "rules"] = rules;
+                session[formGroup.SessionKey] = formGroup;
+                session[formGroup.SessionKey + "rules"] = rules;
             }
             else
             {
-                if (sessionState[formGroup.SessionKey] != null && sessionState[formGroup.SessionKey + "rules"] != null)
+                if (session[formGroup.SessionKey] != null && session[formGroup.SessionKey + "rules"] != null)
                 {
-                    formGroup = (FormGroup)sessionState[formGroup.SessionKey];
-                    rules = (List<Action>)sessionState[formGroup.SessionKey + "rules"];
+                    formGroup = (FormGroup)session[formGroup.SessionKey];
+                    rules = (List<FormRule>)session[formGroup.SessionKey + "rules"];
                 }
                 else
                 {
@@ -68,19 +76,19 @@ namespace Form2
                 }
             }
 
-            if (IsPostBack)
+            if (!isPostBack)
             {
-                new FormPostBackVisitor(formGroup, form);
+                foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                    session.Remove(formItem.SessionKey);
             }
             else
             {
-                foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
-                    sessionState.Remove(formItem.SessionKey);
+                new FormPostBackVisitor(formGroup, form);
             }
 
-            ApplyRules();
+            ApplyRules(isPostBack, form);
 
-            if (!IsPostBack)
+            if (!isPostBack)
             {
                 htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
                 return new Html2TextVisitor(htmlContainer).Text;
@@ -98,7 +106,7 @@ namespace Form2
                     throw new ApplicationException();
 
                 if (iPostBack.IsPostBack)
-                    htmlContainer = new Form2HtmlVisitor(formGroup, sessionState).Html;
+                    htmlContainer = new Form2HtmlVisitor(formGroup, session).Html;
                 else
                     throw new ApplicationException();
             }
@@ -108,26 +116,28 @@ namespace Form2
                 {
                     PerformAction();
 
-                    foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
-                        sessionState.Remove(formItem.SessionKey);
-
                     formGroup = null;
+                    rules = new List<FormRule>();
+
                     CreateForm();
 
-                    if (formGroup == null)
+                    if (formGroup == null || rules == null)
                         return "";
 
-                    sessionState[formGroup.SessionKey] = formGroup;
-                    sessionState[formGroup.SessionKey + "rules"] = rules;
+                    session[formGroup.SessionKey] = formGroup;
+                    session[formGroup.SessionKey + "rules"] = rules;
 
-                    ApplyRules();
+                    foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
+                        session.Remove(formItem.SessionKey);
+
+                    ApplyRules(isPostBack, form);
 
                     htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
                 }
                 else
                 {
                     foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
-                        sessionState.Remove(formItem.SessionKey);
+                        session.Remove(formItem.SessionKey);
 
                     foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
                     {
@@ -137,7 +147,7 @@ namespace Form2
                         if (formItem is IDisabled && ((formItem as IDisabled).IsDisabled ?? false))
                             continue;
 
-                        sessionState[formItem.SessionKey] = form[formItem.BaseId];
+                        session[formItem.SessionKey] = form[formItem.BaseId];
                     }
 
                     htmlContainer = new Form2HtmlVisitor(formGroup, true).Html;
@@ -148,7 +158,7 @@ namespace Form2
                 throw new ApplicationException();
             }
 
-            return htmlContainer != null ? new Html2TextVisitor(htmlContainer).Text : "";
+            return new Html2TextVisitor(htmlContainer).Text;
         }
 
         protected abstract void CreateForm();
@@ -322,15 +332,15 @@ namespace Form2
             return formGroup.Get(baseId);
         }
 
-        protected void AddRule(Action rule)
+        protected void AddRule(FormRule rule)
         {
             rules.Add(rule);
         }
 
-        protected virtual void ApplyRules()
+        protected virtual void ApplyRules(bool isPostBack, NameValueCollection form)
         {
             foreach (var r in rules)
-                r();
+                r(isPostBack, form["__EVENTTARGET"], form["__EVENTARGUMENT"]);
         }
 
         protected abstract void PerformAction();

@@ -91,7 +91,7 @@ namespace Form2WebApp.UserControls
                 CloseGroup();
 
 
-                AddRule(() =>
+                AddRule((isPostBack, eventTarget, eventArgument) =>
                 {
                     FormSelect selCity = GetItem<FormSelect>("City");
                     FormSelect selMunicipality = GetItem<FormSelect>("MunicipalitySelect");
@@ -129,7 +129,7 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                var emailVisitor = new FormEmailVisitor(formGroup, "Ναι", "Όχι");
+                var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι");
 
                 page.Response.Write(emailVisitor.Subject);
                 page.Response.Write("<br /><br />");

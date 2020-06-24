@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
 namespace Schematrix.Data
 {
+    [SuppressMessage("Style", "IDE0020:Use pattern matching", Justification = "<Pending>")]
+
     public static class SqlServerHelper
     {
         private const string nullParameterMessage = "Null value cannot be assigned to a non-nullable type.";
@@ -1035,7 +1038,7 @@ namespace Schematrix.Data
             else
                 return sqlDataReader.GetBoolean(ordinal);
         }
-       
+
         public static Boolean? ToNullableBoolean(SqlDataReader sqlDataReader, string columnName)
         {
             return ToNullableBoolean(sqlDataReader, sqlDataReader.GetOrdinal(columnName));
@@ -1047,7 +1050,7 @@ namespace Schematrix.Data
                 return null;
             else
             {
-                return (byte) sqlDataReader.GetByte(ordinal);
+                return (byte)sqlDataReader.GetByte(ordinal);
             }
         }
 
@@ -1544,6 +1547,8 @@ namespace Schematrix.Data
 
         #endregion
     }
+
+    [SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 
     public abstract class SqlPersisterBase
     {

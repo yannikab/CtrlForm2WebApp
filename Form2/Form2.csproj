@@ -57,6 +57,8 @@
     <Compile Include="Form\Visitors\Form2Html\FormDatePicker.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormPasswordBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormRadioGroup.cs" />
+    <Compile Include="Form\Visitors\FormLogVisitor.cs" />
+    <Compile Include="Html\Attributes\Variable\String\AttrAutoComplete.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlRadioButton.cs" />
     <Compile Include="Html\Content\Elements\Containers\HtmlRadioGroup.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlDateBox.cs" />

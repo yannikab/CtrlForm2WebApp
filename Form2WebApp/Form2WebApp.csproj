@@ -113,9 +113,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Pages\ContactAdult.aspx" />
     <Content Include="Pages\ContactForm2Session.aspx" />
     <Content Include="Pages\ContactForm2.aspx" />
     <Content Include="Pages\ContactForm2Student.aspx" />
+    <Content Include="Pages\ContactStudent.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -158,6 +160,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserControls\CtrlFormAdult.ascx" />
     <Content Include="UserControls\CtrlFormStudent.ascx" />
     <Content Include="UserControls\Form2SessionContact.ascx" />
     <Content Include="UserControls\Form2Contact.ascx" />
@@ -183,6 +186,10 @@
     <Compile Include="Pages\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ContactAdult.aspx.cs">
+      <DependentUpon>ContactAdult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Pages\ContactForm2Session.aspx.cs">
       <DependentUpon>ContactForm2Session.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -203,6 +210,10 @@
     </Compile>
     <Compile Include="Pages\ContactForm2Student.aspx.designer.cs">
       <DependentUpon>ContactForm2Student.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ContactStudent.aspx.cs">
+      <DependentUpon>ContactStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -228,6 +239,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CtrlFormAdult.ascx.cs">
+      <DependentUpon>CtrlFormAdult.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\CtrlFormAdult.ascx.designer.cs">
+      <DependentUpon>CtrlFormAdult.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CtrlFormStudent.ascx.cs">
       <DependentUpon>CtrlFormStudent.ascx</DependentUpon>

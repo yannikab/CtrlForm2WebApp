@@ -1,0 +1,7651 @@
+﻿/*Common Classes*/
+.DropItems {
+    max-height: 75vh;
+    overflow: auto;
+}
+
+.PopUpTable {
+    width: 98%
+}
+
+.select2-results__option[aria-disabled=true] {
+    display: none;
+}
+
+.InVisible {
+    display: none !important;
+}
+
+form {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.panel-fullscreen {
+    display: block;
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: none;
+}
+
+    .panel-fullscreen .card-body, .panel-fullscreen #ctl00_cphMain_DivContent, .panel-fullscreen .fluidMedia, .panel-fullscreen #ctl00_cphMain_upPanelAsset > div {
+        height: 100% !important
+    }
+
+    .panel-fullscreen .fluidMedia {
+        position: relative;
+        height: calc(100% - 43px) !important
+    }
+
+@media(max-width:1170px) {
+    .panel-fullscreen .fluidMedia {
+        height: calc(100% - 85px) !important
+    }
+}
+
+.panel-fullscreen .fluidMedia iframe {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.panel-fullscreen #ctl00_cphMain_upPanelAsset {
+    height: 90%
+}
+
+.mce-branding {
+    display: none
+}
+
+.NotVisible {
+    text-decoration: line-through;
+}
+
+.main {
+    margin-top: 20px;
+}
+
+.upProgress2 {
+    position: absolute;
+    top: -25%;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    background-color: #ddd;
+    width: 100%;
+    height: 126%;
+    /* min-height: 70px; */
+    border-radius: 20px;
+    left: -1px;
+    z-index: 10000;
+}
+
+.upProgress {
+    position: absolute;
+    top: 0%; /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    /* IE 5-7 */
+    filter: alpha(opacity=50);
+    /* Netscape */
+    -moz-opacity: 0.5;
+    /* Safari 1.x */
+    -khtml-opacity: 0.5;
+    /* Good browsers */
+    opacity: 0.5;
+    background-color: #ddd;
+    width: 100%;
+    height: 100%;
+    min-height: 70px;
+    border-radius: 20px;
+    left: -1px;
+    z-index: 10000;
+}
+
+.upProgressSquare, .upProgressSquare2 {
+    position: absolute;
+    top: 0%; /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    /* IE 5-7 */
+    filter: alpha(opacity=50);
+    /* Netscape */
+    -moz-opacity: 0.5;
+    /* Safari 1.x */
+    -khtml-opacity: 0.5;
+    /* Good browsers */
+    opacity: 0.5;
+    background-color: #ddd;
+    width: 100%;
+    height: 100%;
+    min-height: 70px;
+    left: -1px;
+    z-index: 10000;
+}
+
+.nav-tabs .nav-link img {
+    margin-right: 10px
+}
+/*User Menu*/
+.app-header.navbar .dropdown-menu {
+    max-height: calc(100vh - 60px);
+    overflow: auto;
+}
+/*End User Menu*/
+/*Temp Properties*/
+ul.nav.navbar-nav.d-md-down-none, ul.nav.navbar-nav .liTopTasks, .STTasks {
+    display: none;
+}
+/*End Temp Properties*/
+.upProgress .sk-cube-grid, .upProgressSquare .sk-cube-grid, .upProgressSquare2.sk-cube-grid {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+}
+
+.selectedNode {
+    font-weight: bold;
+    color: #f00
+}
+
+.DivOverFlowX {
+    overflow-x: auto;
+    margin: 20px 0 35px 0;
+    padding: 5px;
+}
+
+.dataTables_wrapper {
+    padding: 0px !important;
+}
+
+.dt-button {
+    background-color: #fff;
+    border: 1px solid #DCDCDC;
+    padding: 5px 8px;
+}
+
+    .dt-button:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+.groupBox {
+    border: dashed 1px #E1E6EF;
+    margin: 10px;
+    padding: 20px 20px 0px 20px;
+}
+
+.btn {
+    font-size: 16px;
+    min-height: 40px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #177B96;
+    border-color: #177B96;
+    font-size: 16px;
+    min-height: 40px;
+}
+
+.btn-outline-primary {
+    color: #177B96;
+    background-color: #fff;
+    border-color: #177B96;
+    font-size: 16px;
+    min-height: 40px;
+}
+
+.action-buttons .btn-outline-primary {
+    min-height: initial;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    color: #177B96;
+    border-color: #177B96;
+}
+
+.btn-primary > i, .btn-outline-primary > i {
+    padding-right: 8px;
+}
+
+.action-buttons .btn-outline-primary > i {
+    padding-right: 0;
+}
+
+.action-buttons .btn-outline-primary:hover i {
+    color: #fff;
+}
+
+.btn-success.disabled, .btn-success:disabled {
+    color: #fff;
+    background-color: #B7DE9B;
+    border-color: #B7DE9B;
+}
+
+.btn-outline-primary:hover {
+    background-color: #177B96;
+    border-color: #177B96;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+    background-color: #177B96;
+    border-color: #177B96;
+}
+
+.btn-outline-danger {
+    color: #f7514f;
+    border-color: #f7514f;
+}
+
+    .btn-outline-danger:hover {
+        background-color: #f7514f;
+        border-color: #f7514f;
+    }
+
+.FullWidthBox {
+    background-color: #FFFEFD;
+    -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    margin-top: 16px;
+    min-height: 93px;
+}
+
+.Completed {
+    background-color: #7CB742;
+    color: #fff;
+}
+
+.StartsIn {
+    background-color: #3DA8D8;
+    color: #fff;
+}
+
+.InProgress {
+    background-color: #F7514F;
+    color: #fff;
+}
+
+.InProgressCert {
+    background-color: #F7514F;
+    color: #fff;
+}
+
+.StartsInCert {
+    background-color: #3DA8D8;
+    color: #fff;
+}
+
+.mce-branding {
+    display: none;
+}
+
+.SliderClose {
+    position: absolute;
+    top: calc(50% - 5px);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 30px;
+    cursor: pointer;
+    background-color: #9ED3EB;
+}
+
+    .SliderClose > i {
+        font-size: 38px;
+    }
+
+.gaugejs-wrap.sparkline .value {
+    font-size: 12px;
+}
+
+div[role='tabpanel'] {
+    padding: 0.1px;
+}
+
+i.RDCicon-next, i.RDCicon-previus {
+    font-size: 22px;
+}
+
+.action-buttons i {
+    font-size: 20px;
+    color: #177B96;
+}
+
+    .action-buttons i:hover {
+        color: #7db5c4;
+    }
+
+.navbar .sidebar .dropdown-toggle i, .sidebar .nav-link i, .sidebar .navbar .dropdown-toggle i {
+    width: 30px;
+    margin: 0 1.2rem 0 0;
+    font-size: 24px;
+    color: #fff
+}
+
+.navbar .sidebar .dropdown-toggle:hover i, .sidebar .nav-link:hover i, .sidebar .navbar .dropdown-toggle:hover i {
+    color: #177B96
+}
+
+.navbar .sidebar .active.dropdown-toggle i, .sidebar .nav-link.active i, .sidebar .navbar .active.dropdown-toggle i {
+    color: #177B96
+}
+
+.sidebar .nav-link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.sidebar-minimized .sidebar .nav-link {
+    display: block;
+}
+/*Tables*/
+.dataTableFilters {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.table {
+    background-color: #F8F8F8;
+    -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
+    box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
+    width: 99.5%;
+    margin: 0 auto
+}
+
+table.dataTable {
+    margin-top: 20px !important;
+}
+
+.table-bordered {
+    border: unset;
+}
+
+.table thead th {
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 400;
+    color: #5DA3B6;
+    line-height: 20px;
+    border-bottom: 1px solid #E6E5E5;
+    background-color: #fff;
+}
+
+    .table thead th::after, .table thead th::before {
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        bottom: 0 !important;
+        height: 20px;
+        text-align: left;
+    }
+
+.table tr td {
+    font-size: 14px;
+    color: #747373;
+    vertical-align: middle;
+    padding-left: 20px
+}
+
+.table-bordered th, .table-bordered td {
+    border: unset;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #FFFFFF;
+}
+
+.table td label {
+    margin-bottom: 0;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    font-size: 16px;
+    color: #5D5C5C;
+    padding-top: 0 !important
+}
+
+table.dataTable thead > tr > td.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc {
+    padding-right: 12px !important;
+    padding-left: 20px
+}
+
+table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc_disabled:before {
+    right: 0 !important;
+    left: 1px
+}
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc_disabled:after {
+    right: 0 !important;
+    left: 8px
+}
+/*End Tables*/
+.pagination li a {
+    border: 1px solid #AEAEAE;
+    font-size: 16px;
+    min-width: 34px;
+}
+
+.pagination li.active .page-link {
+    color: #177B96;
+    background-color: #fff;
+    border-color: #AEAEAE;
+    font-weight: 600
+}
+
+.dropzone {
+    /*margin-top: 50px;*/
+    margin-top: 0px;
+}
+
+.dropzon-mt0 {
+    margin-top: 0;
+}
+/*Radio Buttons*/
+.PlatformRadioBtns {
+    margin-top: 20px;
+}
+
+    .PlatformRadioBtns label {
+        position: relative;
+        margin-left: 25px;
+        padding-left: 10px
+    }
+
+    .PlatformRadioBtns label {
+        position: relative;
+        margin-left: 30px;
+    }
+
+    .PlatformRadioBtns input[type=radio] {
+        position: absolute;
+        opacity: 0;
+    }
+
+        .PlatformRadioBtns input[type=radio]:checked ~ label::before {
+            background-color: #F39A06
+        }
+
+    .PlatformRadioBtns label::before {
+        position: absolute;
+        content: "";
+        left: -23px;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 50%;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-box-shadow: inset 0 0 0 5px #fff;
+        box-shadow: inset 0 0 0 5px #fff;
+        border: 1px solid #D1D0D0
+    }
+
+    .PlatformRadioBtns td:not(:first-child) {
+        margin-left: 20px;
+        display: block
+    }
+/*End Radio Buttons*/
+.btnFilterSearch {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-width: 160px;
+    margin-top: 32px;
+}
+
+    .btnFilterSearch.ExtraMargin {
+        margin-left: 30px;
+        margin-bottom: 1rem;
+        margin-top: 0;
+    }
+/*Select*/
+.select2-container--bootstrap .select2-selection--single {
+    border: 1px solid #DCDCDC !important;
+    line-height: 1.5 !important;
+    height: 40px !important;
+    font-size: 16px !important;
+    padding: 7px 60px 7px 12px !important;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url(/assetsClever/img/icons/select-arrow.svg) right center no-repeat;
+    min-width: 235px
+}
+
+.select2-container--bootstrap .select2-selection--multiple {
+    border: 1px solid #DCDCDC !important;
+    line-height: 1.5 !important;
+    min-height: 40px !important;
+    font-size: 16px !important;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url(/assetsClever/img/icons/select-arrow.svg) right center no-repeat;
+    min-width: 235px;
+    padding: 4px 60px 7px 0px !important
+}
+
+.overflow-input .select2-container--bootstrap .select2-selection--multiple {
+    padding: 4px 36px 7px 0px !important;
+}
+
+.select2-container--bootstrap .select2-selection--single:focus {
+    outline: unset;
+}
+
+.select2-container--bootstrap .select2-selection--single .select2-selection__placeholder {
+    color: #A2A2A2 !important;
+}
+
+.select2-container--bootstrap .select2-selection--single .select2-selection__arrow {
+    display: none;
+}
+
+.select2-container--bootstrap .select2-selection__clear {
+    color: #DCDCDC !important;
+    position: absolute !important;
+    right: 40px;
+    top: 46%;
+    -webkit-transform: translateY(-50%) !important;
+    transform: translateY(-50%) !important;
+}
+
+.select2-container--bootstrap .select2-dropdown {
+    border-color: #DCDCDC !important;
+}
+
+.select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
+    background-color: #177B96 !important;
+}
+
+.selectpickerdrop .select2-results__option--highlighted[aria-selected] {
+    background-color: #177B96 !important;
+}
+
+.select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+    color: #A2A2A2 !important;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__clear {
+    margin-top: 0 !important
+}
+/*End Select*/
+/*Datepicker*/
+.datepicker table tr td.active.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:active, .datepicker table tr td.active:focus, .datepicker table tr td.active:hover, .datepicker table tr td.active:hover.active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active:hover:focus, .datepicker table tr td.active:hover:hover, .open .dropdown-toggle.datepicker table tr td.active, .open .dropdown-toggle.datepicker table tr td.active.disabled, .open .dropdown-toggle.datepicker table tr td.active.disabled:hover, .open .dropdown-toggle.datepicker table tr td.active:hover, .datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover:hover, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active:focus, .datepicker table tr td span.active:hover:focus, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active, .open .dropdown-toggle.datepicker table tr td span.active, .open .dropdown-toggle.datepicker table tr td span.active:hover, .open .dropdown-toggle.datepicker table tr td span.active.disabled, .open .dropdown-toggle.datepicker table tr td span.active.disabled:hover {
+    background-color: #177B96 !important;
+    border-color: #177B96 !important;
+}
+/*End Datepicker*/
+fieldset label {
+    font-size: 16px;
+    color: #A2A2A2 !important;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #177B96
+}
+
+/*.img-thumbnail {
+    padding: 10px;
+    background-color: #F2F4F8;
+    display: inline-block;
+    border-radius: 50%;
+    max-width: 140px;
+    max-height: 140px;
+    margin-right: 30px;
+    width: 100%;
+    height: 100%
+}*/
+
+.img-thumbnail {
+    padding: 0px;
+    border: 0px;
+}
+
+.nav-tabs {
+    font-size: 16px;
+}
+
+    .nav-tabs .nav-link.active {
+        color: #5d5c5c;
+    }
+
+    .nav-tabs .nav-link {
+        color: #c0cadd;
+    }
+
+        .nav-tabs .nav-link i {
+            font-size: 22px;
+            color: #c0cadd;
+            margin-right: 15px;
+        }
+
+        .nav-tabs .nav-link.active i {
+            color: #636363;
+        }
+
+    .nav-tabs .nav-link {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+.input-group-prepend .input-group-text {
+    font-size: 16px;
+    color: #A2A2A2 !important
+}
+
+.input-group-append {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    min-width: 38px;
+    z-index: 3;
+}
+
+    .input-group-append .input-group-text {
+        border: unset;
+        position: relative;
+        background-color: unset
+    }
+
+        .input-group-append .input-group-text i {
+            font-size: 16px;
+            color: #a2a2a2
+        }
+
+        .input-group-append .input-group-text::before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 84%;
+            background-color: #e1e6ef;
+            left: -3px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%)
+        }
+
+.modal-content .JobsBoxFooter {
+    font-size: 14px;
+}
+
+.modal-content {
+    font-size: 16px;
+    color: #747373
+}
+
+.modal-footer button {
+    min-height: 40px;
+    font-size: 14px;
+}
+
+    .modal-footer button i {
+        margin-right: 5px;
+    }
+
+.modal-body button.close {
+    margin-top: 0 !important;
+    margin-left: 5px;
+}
+
+h3 {
+    color: #515050;
+    font-size: 24px;
+    margin-top: 2px;
+}
+
+h4 {
+    color: #515050;
+}
+
+.form-control {
+    color: #A2A2A2;
+    border: 1px solid #DCDCDC;
+    font-weight: 100;
+    position: relative;
+    font-size: 16px;
+}
+
+    .form-control::-webkit-input-placeholder {
+        color: #A2A2A2;
+    }
+
+    .form-control:-ms-input-placeholder {
+        color: #A2A2A2;
+    }
+
+    .form-control::-ms-input-placeholder {
+        color: #A2A2A2;
+    }
+
+    .form-control::placeholder {
+        color: #A2A2A2;
+    }
+
+    .form-control:focus {
+        color: #A2A2A2;
+        border-color: #DCDCDC !important;
+        outline: 0;
+        -webkit-box-shadow: unset;
+        box-shadow: unset;
+    }
+
+select.form-control {
+    height: 40px !important;
+    font-size: 16px;
+    padding: 4px 50px 7px 12px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url(/assetsClever/img/icons/select-arrow.svg) no-repeat right center;
+    min-width: 194px;
+}
+
+input.form-control {
+    min-height: 40px
+}
+
+.switch.switch-default .switch-label, .switch.switch-default .switch-handle {
+    border: 1px solid #c1c1c1;
+}
+
+.switch-primary > .switch-input:checked ~ .switch-label {
+    background: #177B96 !important;
+    border-color: #177B96;
+}
+
+.switch-primary > .switch-input:checked ~ .switch-handle {
+    border-color: #177B96;
+}
+/*.fc Calendar*/
+body .fc {
+    margin-top: 90px;
+}
+
+.fc-toolbar h2 {
+    color: #515050;
+    font-size: 24px;
+}
+
+.fc-state-default {
+    background-image: unset !important;
+    color: #A2A2A2 !important;
+    -webkit-box-shadow: unset !important;
+    box-shadow: unset !important;
+    border: 1px solid #DCDCDC !important;
+}
+
+    .fc-state-default.fc-corner-right {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .fc-state-default.fc-corner-left {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+.fc-toolbar button {
+    font-size: 16px !important;
+    font-weight: 100 !important;
+}
+
+.fc-head tr th {
+    font-size: 16px !important;
+    color: #A2A2A2 !important;
+    font-weight: 400 !important;
+}
+
+.fc-day-number {
+    font-size: 16px;
+    color: #A2A2A2;
+}
+
+.fc-event {
+    border: 1px solid #177B96 !important;
+    background-color: #177B96 !important;
+    border-radius: 0 !important;
+}
+
+    .fc-event .fc-content {
+        padding: 5px !important;
+        color: #fff !important;
+    }
+/*End .fc Calendar*/
+.SavePage, .ClearPage, .ItemNewUnit, .ItemNewAsset, .ItemDelete, .ItemDown, .ItemUp {
+    min-height: 40px;
+    font-size: 14px;
+    padding-top: 8px;
+}
+
+.SavePage, .ClearPage {
+    padding-top: 4px;
+}
+/*Backend Btn fix*/
+.btnFix {
+    min-height: 40px;
+    font-size: 16px;
+}
+
+    .btnFix.mb {
+        margin-bottom: 8px;
+    }
+/*End Backend Btn fix*/
+.colMd4 {
+    -ms-flex: 0 0 33.33333%;
+    -webkit-box-flex: 0;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+/*End Common Classes*/
+/*ChangePassword*/
+
+.button_strength {
+    display: none;
+}
+
+.strength_meter:before {
+    clear: both
+}
+
+.strength_meter div {
+    width: 0%;
+    height: 43px;
+    text-align: right;
+    color: #000;
+    line-height: 43px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    padding-right: 12px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+    .strength_meter div p {
+        position: absolute;
+        right: 10px;
+        margin: 0px;
+    }
+
+.veryweak {
+    background-color: #FFA0A0;
+    border-color: #F04040 !important;
+    width: 25% !important;
+}
+
+.weak {
+    background-color: #FFB78C;
+    border-color: #FF853C !important;
+    width: 50% !important;
+}
+
+.medium {
+    background-color: #FFEC8B;
+    border-color: #FC0 !important;
+    width: 75% !important;
+}
+
+.strong {
+    background-color: #C3FF88;
+    border-color: #8DFF1C !important;
+    width: 100% !important;
+}
+/*End ChangePassword*/
+
+
+/*FileManager*/
+.FLLayerLvl1.active {
+    background-color: #fff;
+    color: #5D9ACA;
+    border: solid 2px #5D9ACA;
+}
+
+.DivLayersSpecial {
+    border-left: solid 1px #C7C7C8;
+    border-right: solid 1px #C7C7C8;
+}
+
+.FLLayerLvl1 {
+    border-radius: 15px;
+    background-color: #5D9ACA;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #fff;
+    margin: 5px;
+    cursor: pointer;
+    border: solid 2px #5D9ACA;
+}
+
+.MenuFLLayers i {
+    color: #fff;
+}
+
+.MenuFLLayers .active {
+    background-color: transparent !important;
+    border: 1px solid #5D9ACA !important;
+    color: #5D9ACA !important;
+}
+
+    .MenuFLLayers .active i {
+        color: #5D9ACA !important;
+    }
+
+.MenuFLLayers, .MenuFLLayers ul {
+    list-style: none;
+}
+
+    .MenuFLLayers li .FLlayerContainer {
+        background-color: #5D9ACA;
+        margin: 5px;
+        width: 100%;
+        display: block;
+        padding: 10px;
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid transparent;
+    }
+
+.DivViewFilesFilters {
+    background-color: #EFF2F8;
+    padding: 20px;
+}
+
+.hasNotAccess {
+    display: none
+}
+
+
+/*FileManager Updater*/
+.MenuFLLayers .active {
+    background-color: transparent !important;
+    border: 1px solid #66A149 !important;
+    color: #66A149 !important;
+}
+
+.MenuFLLayers i::before {
+    display: none;
+}
+
+.MenuFLLayers i {
+    color: #fff;
+    -webkit-clip-path: polygon(0 50%, 100% 100%, 100% 75%, 40% 50%, 100% 25%, 100% 0);
+    clip-path: polygon(0 50%, 100% 100%, 100% 75%, 40% 50%, 100% 25%, 100% 0);
+    background-color: #fff;
+    width: 8px;
+    height: 10px;
+    -webkit-transition: -webkit-transform 200ms linear;
+    transition: -webkit-transform 200ms linear;
+    transition: transform 200ms linear;
+    transition: transform 200ms linear, -webkit-transform 200ms linear;
+}
+
+.MenuFLLayers .active i {
+    background-color: #66A149;
+}
+
+.MenuFLLayers .nav-link i {
+    -webkit-transform: rotate3d(0, 0, 1, -90deg);
+    transform: rotate3d(0, 0, 1, -90deg);
+}
+
+.MenuFLLayers .nav-link.collapsed i {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+}
+
+.MenuFLLayers, .MenuFLLayers ul {
+    list-style: none;
+}
+
+    .MenuFLLayers li .FLlayerContainer {
+        background-color: #66A149;
+        margin: 5px 0;
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid transparent;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+/*FileManager End Updater*/
+
+/*End FileManager*/
+/*Dashboard*/
+.slide .carousel-indicators {
+    bottom: 3px;
+}
+
+.BoxNotificationTop {
+    background-color: #9ED3EB;
+    min-height: 100px;
+    margin-bottom: 10px;
+}
+
+.BoxNotificationTopText {
+    position: absolute;
+    font-size: 19px;
+    font-weight: 100;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    color: #171616
+}
+/*ViewControls*/
+.LessonView.active {
+    color: #a2a2a2 !important;
+}
+/*End ViewControls*/
+
+/*Card*/
+.card {
+    border: unset;
+    margin-bottom: 0;
+}
+/*End Card*/
+
+/*CardTitle*/
+.card-title {
+    margin-bottom: 3px;
+}
+/*CardTitle*/
+
+.NoData {
+    font-size: 16px;
+    color: #747373;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+    .NoData i {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+/*FullWidthBox*/
+.FullWidthBox > :nth-child(1) {
+    width: 100%;
+}
+
+.BoxStatus {
+    min-width: 150px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+    .BoxStatus i {
+        font-size: 40px;
+        color: #fff;
+    }
+
+    .BoxStatus span {
+        margin-top: 15px;
+        font-size: 13px;
+        color: #fff;
+    }
+
+span.BoxTime {
+    font-weight: bold;
+}
+
+.BoxDates {
+    margin: 10px 0;
+    padding: 5px 25px;
+    color: #524A44;
+    border-right: solid 2px #DCDCDC;
+    min-width: 183px;
+    position: relative;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+    .BoxDates.SameDay {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
+
+        .BoxDates.SameDay span {
+            font-size: 21px;
+            color: #5D5C5C;
+        }
+
+    .BoxDates span {
+        font-weight: 700;
+    }
+
+    .BoxDates.SameDay span {
+        font-weight: 600;
+    }
+
+    .BoxDates.Pad {
+        padding-left: 52px;
+    }
+
+.BoxDatesMore > i {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    display: block;
+    width: 30px;
+    height: calc(100% + 20px);
+    left: 0;
+    top: -10px;
+    background-color: #92CEE9;
+    z-index: 2
+}
+
+    .BoxDatesMore > i::before {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%)
+    }
+
+.BoxDatesMore > div {
+    position: absolute;
+    font-size: 0;
+    font-weight: 100;
+    color: #fff;
+    width: 0;
+    left: 0;
+    background-color: #92CEE9;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+    height: calc(100% + 20px);
+    top: -10px
+}
+
+.BoxDatesMore > i:hover + div {
+    width: 100%;
+    font-size: 14px;
+}
+
+.BoxDates label {
+    color: #8B827B;
+    font-weight: 100;
+    margin: 0px;
+}
+
+.BoxLessonTeacher {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px 25px;
+    color: #8B827B;
+}
+
+    .BoxLessonTeacher label {
+        margin: 0;
+        color: #515050;
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 20px
+    }
+
+label.BoxTeacher {
+    font-size: 14px;
+    font-weight: 100;
+    color: #747373;
+    margin-top: 3px;
+}
+
+.BoxLesson {
+    margin-bottom: 0px;
+    color: #524A44;
+    font-weight: bold;
+}
+
+.BoxRoom {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 40px;
+    border-left: solid 2px #DCDCDC;
+    text-align: center;
+}
+
+.BoxType {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 40px;
+    border-left: solid 2px #DCDCDC;
+    text-align: center;
+}
+
+.BoxDuration {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 40px;
+    border-left: solid 2px #DCDCDC;
+    border-right: solid 2px #DCDCDC;
+    text-align: center;
+}
+
+.BoxRoom, .BoxLessonTeacher {
+    width: 100%
+}
+
+.BoxBtn {
+    border-left: solid 2px #DCDCDC;
+    padding: 20px 30px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+    .BoxBtn > * {
+        margin: 5px
+    }
+
+    .BoxBtn .btn.btn-danger {
+        padding: 6px 26px
+    }
+
+label.BoxTeacher:empty {
+    display: none
+}
+
+.BoxDuration {
+    border-right: none;
+}
+
+    .BoxRoom div, .BoxDuration div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .BoxRoom label, .BoxDuration label {
+        margin: 0px;
+    }
+
+.BoxRoomTitle, .BoxDurationTitle {
+    margin-bottom: 0px;
+    color: #747373;
+}
+
+.BoxRoomCode, .BoxDurationTime {
+    color: #747373;
+    font-weight: bold;
+}
+
+.btn-success {
+    color: #151b1e;
+    background-color: #79c447;
+    border-color: #79c447;
+    padding: 0.375rem 32px;
+}
+/*End FullWidthBox*/
+
+/*LayerBoxConatiner*/
+.LayerBoxContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -.75%;
+    margin-right: -.75%
+}
+
+    .LayerBoxContainer.LBXCRow {
+        display: block;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        margin-left: -.75%;
+        margin-right: -.75%;
+    }
+
+.LayerBox {
+    cursor: pointer;
+    background-color: #FFFEFD;
+    -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    margin: 0.75%;
+    width: 31.82%;
+    position: relative;
+}
+
+.LBXCRow .LayerBox {
+    width: auto;
+}
+
+.LBXCRow .LayerBoxContent {
+    width: 100%;
+    padding: 14px 35px 14px 25px;
+    min-height: auto;
+    margin-bottom: 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.LBXCRow .LayerBoxImage {
+    max-height: 100px;
+    max-width: 242px;
+    width: 100%;
+    padding-top: 106px;
+}
+
+.LayerBox a {
+    text-decoration: none !important;
+}
+
+.LayerBoxImage {
+    max-height: 217px;
+    overflow: hidden;
+}
+
+.LayerBoxContent {
+    padding: 14px 22px 0 22px;
+    margin-bottom: 1px;
+    min-height: 70px;
+}
+
+.LayerBoxTitle {
+    color: #515050;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 20px;
+}
+/*LayerBoxImage Responsive*/
+.LayerBoxImage {
+    position: relative;
+    padding-top: 44%;
+}
+
+    .LayerBoxImage > img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+.LayerBoxCode {
+    z-index: 1;
+}
+/*LayerBoxImage Responsive*/
+/*End LayerBoxContainer*/
+
+/*LessonBoxConatiner*/
+.LessonBoxContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -.75%;
+    margin-right: -.75%
+}
+
+    .LessonBoxContainer.LBXCRow {
+        display: block;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        margin-left: -.75%;
+        margin-right: -.75%;
+    }
+
+.LessonBox {
+    background-color: #FFFEFD;
+    -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    margin: 0.75%;
+    width: 31.82%;
+    position: relative;
+}
+
+.LBXCRow .LessonBox {
+    width: auto;
+}
+
+.LBXCRow .LessonBoxFooter {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    border-top: none;
+    margin-top: 0px;
+}
+
+.LBXCRow .LessonBoxTitleTeachers {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    min-height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.LBXCRow .LessonBoxContent {
+    width: 100%;
+    padding: 14px 35px 14px 25px;
+    min-height: auto;
+    margin-bottom: 0;
+}
+
+.LBXCRow .LessonBoxImage {
+    max-height: 100px;
+    max-width: 242px;
+    width: 100%;
+}
+
+.LessonBox a {
+    text-decoration: none !important;
+}
+
+.LessonBoxCode {
+    position: absolute;
+    top: 23px;
+    background-color: #FFFEFD;
+    padding: 6px 13px 6px 23px;
+    color: #5D5C5C;
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.LessonBoxImage {
+    max-height: 217px;
+    overflow: hidden;
+}
+
+.LessonBoxContent {
+    padding: 14px 22px 0 22px;
+    margin-bottom: 1px;
+    min-height: 222px;
+}
+
+.LessonBoxTitle {
+    color: #515050;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 7px;
+    line-height: 20px;
+}
+
+.LessonBoxTeachers {
+    color: #5D5C5C;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.LessonBoxTime {
+    color: #5D5C5C;
+    font-size: 16px;
+    font-weight: 100;
+    padding-left: 6px;
+    margin-left: 6px;
+    border-left: 1px solid #5D5C5C;
+    padding-bottom: 4px;
+}
+
+.LessonBoxTitleTeachers {
+    min-height: 90px;
+}
+
+.LessonBoxFooter {
+    border-top: solid 2px #DCDCDC;
+    margin-top: 45px;
+}
+
+    .LessonBoxFooter .FooterIconsStart > div {
+        margin: 0 5px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+        .LessonBoxFooter .FooterIconsStart > div:first-child {
+            margin-left: 0px;
+        }
+
+    .LessonBoxFooter .FooterIconsEnd > div {
+        margin: 0 10px;
+    }
+
+        .LessonBoxFooter .FooterIconsEnd > div:last-child {
+            margin-right: 0px;
+        }
+
+.FooterIconsEnd, .FooterIconsStart {
+    min-height: 72px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.LessonBoxFooter label {
+    color: #807F7F;
+    position: relative;
+    top: 0;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 5px;
+    margin-bottom: 0
+}
+
+.LessonBoxFooter i {
+    color: silver;
+    font-size: 20px;
+    position: relative;
+    top: 0
+}
+
+.LessonBoxFooterIconTask > i {
+    font-size: 16px;
+}
+
+.LessonBoxFooter .badge {
+    position: absolute;
+    top: -4px;
+    right: -7px;
+    font-size: 9px
+}
+
+.LessonBoxFooterIconInProgress i {
+    color: #F7514F;
+    font-size: 38px;
+    top: 0px;
+}
+
+.LessonBoxFooterIconInfo i {
+    color: #a2a2a2;
+    font-size: 38px;
+    top: 0
+}
+
+.LessonBoxFooterIconSession i {
+    color: #F7514F;
+    font-size: 50px;
+    top: -7px
+}
+
+.LessonBoxFooterIconSession label {
+    top: 0px;
+}
+
+.FooterIconsStart {
+    -ms-flex-preferred-size: 56%;
+    flex-basis: 56%;
+}
+
+.LessonBoxFooterIconStart i {
+    color: #3DA8D8;
+    font-size: 38px;
+    top: 0px;
+}
+
+.LessonBoxFooterIconChat {
+    position: relative;
+}
+
+.LessonBoxFooterIconProgress {
+    background-image: Url("/assetsClever/img/rating.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 42px;
+    width: 42px;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+    .LessonBoxFooterIconProgress span {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700
+    }
+
+.LessonBoxFooterIconCompleted i {
+    color: #7FC54C;
+    font-size: 38px;
+}
+/*LessonBoxImage Responsive*/
+.LessonBoxImage {
+    position: relative;
+    padding-top: 44%;
+}
+
+    .LessonBoxImage > img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+.LessonBoxCode {
+    z-index: 1;
+}
+/*LessonBoxImage Responsive*/
+/*End LessonBoxContainer*/
+
+/*LessonBoxConatinerListView*/
+.LBXCRow .LessonBoxImage {
+    padding-top: initial;
+}
+
+.LBXCRow .LessonBoxCode {
+    top: 5px;
+    font-size: 12px;
+    padding: 3px 11px 3px 22px;
+}
+
+.LBXCRow .LessonBoxFooter .FooterIconsEnd > div {
+    margin: 10px 10px;
+}
+
+.LessonStructure .LBXCRow .LessonBoxFooter .FooterIconsEnd > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.LBXCRow .LessonBoxFooter .FooterIconsStart > div {
+    margin: 8px 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.LBXCRow .LessonBoxFooter label {
+    top: 0;
+    margin-bottom: 0;
+    margin-left: 8px;
+}
+/*LessonBoxConatinerListView*/
+
+/*End Dashboard*/
+
+/*ViewLessonStructure*/
+.LessonStructure .LessonBoxContainer {
+    margin-left: 0px;
+    margin-right: 0px
+}
+
+.LessonImage {
+    max-height: 276px;
+    min-height: 276px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.LessonStructure .LessonBoxTitle {
+    font-size: 24px;
+    line-height: 30px;
+    margin-top: 5px
+}
+
+.LessonStructure .LessonBoxTotalTime {
+    font-size: 15px;
+    color: #8B8A8A;
+}
+
+    .LessonStructure .LessonBoxTotalTime i {
+        margin-right: 7px;
+    }
+
+.LessonBoxTeachersTime {
+    line-height: 16px;
+    margin-top: 5px;
+}
+
+.LessonStructure .LessonBoxFooterIconInProgress {
+    margin-right: 15px !important;
+}
+
+.card-title.LessonStructure {
+    margin-bottom: 8px;
+}
+/*AccordionCard*/
+.AccordionCard-body {
+    margin-left: 30px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.AccordionCard .collapse.show {
+    padding: 0.1px;
+}
+
+.AccordionCard-body .AccordionCard-body {
+    margin-left: 43px;
+    margin-top: 7px;
+}
+
+.AccordionCard-header {
+    border-left: solid 6px #177B96;
+    background-color: #F9F9F9;
+    margin-bottom: 12px;
+}
+
+    .AccordionCard-header a {
+        color: #747373;
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        padding: 16px 50px 16px 25px;
+        position: relative;
+        font-size: 18px
+    }
+
+        .AccordionCard-header a:after {
+            content: url(/assetsClever/img/icons/minus-icon.svg);
+            position: absolute;
+            width: 20px;
+            height: 9px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            right: 25px
+        }
+
+.AccordionCard-body > .AccordionCard > .AccordionCard-header a::after {
+    content: url(/assetsClever/img/icons/minus-small-icon.svg);
+    height: 46px;
+    width: 16px
+}
+
+.AccordionCard-header a.collapsed:after {
+    content: url(/assetsClever/img/icons/plus-icon.svg);
+    position: absolute;
+    width: 20px;
+    height: 28px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 25px
+}
+
+.AccordionCard-body > .AccordionCard > .AccordionCard-header a.collapsed:after {
+    content: url(/assetsClever/img/icons/plus-small-icon.svg);
+    width: 16px;
+    height: 35px
+}
+
+.AccordionCard-body > .AccordionCard > .AccordionCard-header {
+    border-left: solid 3px #177B96;
+    border-bottom: solid 1px #DCDCDC;
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 0.1px;
+}
+
+    .AccordionCard-body > .AccordionCard > .AccordionCard-header a {
+        color: #747373;
+        font-weight: 400;
+        font-size: 17px;
+        padding: 1px 50px 7px 20px
+    }
+
+.AccordionCard-body .ulAssets {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 43px
+}
+
+    .AccordionCard-body .ulAssets li {
+        background-color: #F9F9F9;
+        margin-bottom: 12px
+    }
+
+        .AccordionCard-body .ulAssets li a {
+            padding: 8px 20px;
+            color: #5D5C5C;
+            text-decoration: none
+        }
+
+    .AccordionCard-body .ulAssets .AssetIcon {
+        border-right: solid 1px #A2A2A2;
+        padding: 5px 15px 5px 0;
+        margin-right: 20px;
+        min-width: 36px;
+        min-height: 30px
+    }
+
+.AccordionCard-body .FooterIconsStart span {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #8B8A8A
+}
+
+.AccordionCard-body .ulAssets .AssetIcon > i {
+    color: #177B96;
+    font-size: 20px;
+}
+
+.AssetIconProgress {
+    background-image: Url("/assetsClever/img/rating.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}
+
+.AssetIconInProgress i, .AssetIconStart i {
+    font-size: 40px;
+}
+
+.AssetIconCompleted label, .AssetIconInProgress label, .AssetIconStart label {
+    margin-left: 8px;
+    color: #807F7F;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.AssetIconProgress span {
+    color: #fff;
+    font-size: 13px;
+    margin-top: 9px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 700
+}
+
+.AccordionCard-body .FooterIconsEnd, .AccordionCard-body .FooterIconsStart {
+    min-height: initial
+}
+
+.AccordionCard-body .FooterIconsStart {
+    -ms-flex-preferred-size: 75%;
+    flex-basis: 75%;
+}
+
+.AccordionCard-body .FooterIconsEnd {
+    -webkit-box-pack: justify !important;
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    min-width: 356px;
+}
+
+.AccordionCard-body .FooterIconsStart {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C
+}
+
+.AccordionCard-body .FooterIconsEnd div {
+    margin-left: 10px
+}
+
+.AssetTimeSpent, .AssetTimeSpent i {
+    color: #B9B9B9
+}
+
+.AssetTimeSpent {
+    min-width: 100px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+    .AssetTimeSpent i {
+        font-size: 20px;
+        margin-right: 5px;
+        margin-top: 0
+    }
+
+.AssetIconCompleted i {
+    font-size: 38px;
+    color: #7FC54C
+}
+/*End AccordionCard*/
+.AssetDescr p {
+    font-size: 16px;
+    color: #515050;
+    font-weight: 100;
+}
+/*End ViewLessonStructure*/
+
+/*ViewAsset2*/
+.fluidMedia iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.viewAssetArrows {
+    margin-top: 5px;
+}
+/*AccordionCard*/
+.AssetAccordionCard-header {
+    margin-bottom: 5px;
+    border-bottom: solid 1px #CDC5C0;
+}
+
+    .AssetAccordionCard-header a {
+        color: #4A433D;
+        font-weight: bold;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        padding-left: 0px
+    }
+
+.LessonMenu h2 a {
+    float: none;
+}
+
+.UnitAssets {
+    list-style: none;
+    padding: 0px;
+}
+
+    .UnitAssets li {
+        margin-bottom: 5px;
+        border-bottom: solid 1px #CDC5C0;
+    }
+
+        .UnitAssets li a {
+            padding: 10px;
+            color: #524A44;
+            text-decoration: none;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+        }
+
+            .UnitAssets li a > :last-child {
+                padding-left: 5px;
+            }
+
+    .UnitAssets .AssetIcon {
+        border-right: solid 1px #8B827B;
+        padding-right: 5px;
+        margin-right: 5px;
+    }
+
+    .UnitAssets a.Selected {
+        background-color: #ddd;
+    }
+
+    .UnitAssets .AssetIconInProgress i, .AssetIconStart i {
+        font-size: 25px;
+    }
+
+    .UnitAssets .AssetIconStart i {
+        color: #3DA8D8;
+        font-size: 25px
+    }
+
+.AssetIconInProgress i {
+    color: #F7514F;
+}
+
+.AssetIconStart i {
+    color: #3DA8D8;
+    font-size: 38px;
+}
+
+.UnitAssets .AssetIconCompleted i {
+    font-size: 25px;
+    color: #7CB742;
+}
+
+/*End AccordionCard*/
+.Flexbasis100 {
+    -ms-flex-preferred-size: 100% !important;
+    flex-basis: 100% !important;
+}
+
+.LessonContents {
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+    transition: margin-left 0.25s, margin-right 0.25s, margin-top 0.25s, width 0.25s, flex 0.25s, -ms-flex 0.25s;
+}
+
+.LessonShowContent {
+    -ms-flex-preferred-size: 80%;
+    flex-basis: 80%;
+    -webkit-box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+    box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+}
+
+    .LessonShowContent a {
+        color: #4A433D;
+        font-size: 25px;
+        text-decoration: none;
+    }
+
+    .LessonShowContent i.RDCicon-menu {
+        font-size: 20px;
+        margin-top: 8px;
+        margin-right: 30px;
+        color: #968D86;
+        cursor: pointer;
+    }
+
+.LessonMenu {
+    width: 100%;
+    background-color: #FFFEFD;
+    padding: 30px;
+}
+
+    .LessonMenu h2 a {
+        color: #B0A7A1;
+        margin: 0px;
+        padding: 0px;
+        font-size: 19px;
+        margin-bottom: 40px;
+        text-decoration: none
+    }
+
+.LessonContents-hidden {
+    margin-left: -375px;
+    visibility: hidden !important
+}
+
+.LessonShowContent i.RDCicon-previus {
+    font-size: 30px;
+    margin-right: 15px;
+    color: #AEAEAE;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.LessonShowContent i.RDCicon-next {
+    font-size: 30px;
+    color: #AEAEAE;
+    cursor: pointer
+}
+
+.ViewAssetContainer {
+    -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .1);
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .1);
+}
+/*End ViewAsset2*/
+/*Surveys*/
+.rblSurveyAnswers, .cblSurveyAnswers {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .rblSurveyAnswers .liSurveyAnswer {
+        border: 1px solid #c4c4c4;
+        margin-top: 10px;
+        padding: 25px 23px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+
+        .rblSurveyAnswers .liSurveyAnswer.studresp {
+            border: solid 1px #177B96;
+        }
+
+.liSurveyAnswer {
+    font-size: 18px;
+}
+
+.cblSurveyAnswers .liSurveyAnswer {
+    border: 1px solid #c4c4c4;
+    margin-top: 10px;
+    padding: 25px 23px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+    .cblSurveyAnswers .liSurveyAnswer.studresp {
+        border: solid 1px #177B96;
+    }
+
+.liSurveyAnswer label, .studresp label {
+    line-height: 25px;
+    cursor: pointer;
+    margin: 0;
+    width: 100%;
+}
+
+.rblSurveyAnswers .liSurveyAnswer, .rblSurveyAnswers .liSurveyAnswer label, .rblSurveyAnswers .liSurveyAnswer span, .rblSurveyAnswers .liSurveyAnswer a {
+    color: #333333;
+    font-weight: 400;
+}
+
+.SurveyNb {
+    display: block;
+    background-color: #F3F3F3;
+    color: #177B96;
+    text-align: center;
+    padding: 10px;
+    font-size: 26px;
+    font-weight: 100
+}
+
+.SurveyEkfwnisiText {
+    margin-top: 25px;
+    margin-bottom: 45px;
+    display: block;
+    font-weight: 100;
+    font-size: 18px;
+    color: #5D5C5C
+}
+
+    .SurveyEkfwnisiText input, .SurveyEkfwnisiText select {
+        border: 2px solid #C5C4C4;
+        margin: 0 5px;
+        font-weight: 600;
+        color: #5D5C5C;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+        .SurveyEkfwnisiText input:focus, .SurveyEkfwnisiText select:focus {
+            outline: unset;
+        }
+
+.SurveyImage {
+    margin-left: 35px;
+    margin-bottom: 45px;
+    float: right;
+    max-width: 430px;
+}
+
+    .SurveyImage > img {
+        width: 100%;
+    }
+
+.SurveyVideo {
+    margin-left: 35px;
+    margin-bottom: 45px;
+    float: right;
+    max-width: 564px;
+    width: 100%;
+    position: relative;
+    padding-top: 320px
+}
+
+    .SurveyVideo > iframe {
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute;
+        top: 0;
+        right: 0
+    }
+
+.rblSurveyAnswers input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    margin-right: 24px;
+    vertical-align: middle;
+    height: 28px;
+    min-width: 28px;
+    max-width: 28px;
+    cursor: pointer;
+    border: 1px solid #D1D0D0;
+    border-radius: 100%
+}
+
+    .rblSurveyAnswers input[type="radio" i]:focus {
+        outline: unset;
+    }
+
+.liSurveyAnswer input:checked, .studresp input:checked {
+    background: #177B96;
+    -webkit-box-shadow: inset 0 0 0 5px #fff;
+    box-shadow: inset 0 0 0 5px #fff
+}
+
+.SurveyHeaderInfo {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    margin-top: -5px;
+}
+
+    .SurveyHeaderInfo > div {
+        min-height: 50px;
+    }
+
+.SurveyClock:not(:empty) {
+    color: #7FC54C;
+    font-size: 35px;
+    font-weight: 100;
+    min-width: 125px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+span.SurveyClockLabel {
+    font-size: 13px;
+    font-weight: 100;
+    color: #5D5C5C;
+    margin-bottom: -7px;
+}
+
+.SurveyCompletionQNB {
+    border: 2px solid #F7514F;
+    border-radius: 20px;
+    padding: 7px 5px;
+    min-width: 72px;
+    text-align: center;
+    color: #5D5C5C;
+    font-size: 14px
+}
+
+.Surveycell-highlght:after {
+    border-color: rgba(255,255,255,0);
+    border-right-color: #faffbd;
+    border-width: 30px;
+    margin-top: -30px
+}
+
+.SurveyContentText {
+    font-size: 18px;
+    font-weight: 600;
+    color: #5D5C5C;
+    padding-right: 35px;
+}
+
+.SurveyNoPaddingLeftItem {
+    padding-left: 0px;
+    position: relative;
+}
+
+.Surveycell-highlght {
+    min-height: 63px;
+    position: relative;
+    margin-top: 5px;
+    background-color: #faffbd;
+    z-index: 2;
+    margin-top: 20px
+}
+
+.SurveyContents {
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+    transition: margin-left 0.25s, margin-right 0.25s, margin-top 0.25s, width 0.25s, flex 0.25s, -ms-flex 0.25s;
+    -webkit-box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+    box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+}
+
+.SurveyContents-hidden {
+    margin-left: -20%;
+    visibility: hidden !important;
+}
+
+.SurveyContents-toggler {
+    color: #aeaeae;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.SurveyHeader > div {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.SurveyHeader {
+    margin-bottom: 7px;
+}
+
+.SurveyTitleLesson {
+    margin-left: 30px;
+    margin-top: -8px;
+}
+
+.SurveyTitleInfo {
+    margin-top: 15px;
+}
+
+.SurveyTitleRight {
+    font-size: 24px;
+    font-weight: 600;
+    color: #515050;
+    line-height: 25px;
+}
+
+    .SurveyTitleRight h3 {
+        margin-top: 0;
+    }
+
+.SurveyTeacher {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C;
+}
+
+.SurveyTime:not(:empty) {
+    color: #5D5C5C;
+    border-left: 1px solid #5D5C5C;
+    padding-left: 7px;
+    margin-left: 7px;
+}
+
+.SurveyTime:only-child {
+    border-left: unset;
+    padding-left: unset;
+    margin-left: unset;
+}
+
+.SurveyTeacher:empty + .QMTime {
+    border-left: unset;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.SurveyTime > i {
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.SurveyQuestionList {
+    width: 100%;
+    background-color: #FAFAFA;
+    padding: 30px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.SurveyShowContent {
+    -webkit-box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+    box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+    -ms-flex-preferred-size: 80%;
+    flex-basis: 80%;
+    z-index: 1;
+}
+
+.SurveyQuestionList ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.SurveyQuestionList li {
+    border-bottom: solid 1px #EDEDED;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #5D5C5C
+}
+
+.SurveyQuestionList input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    margin-right: 12px;
+    vertical-align: middle;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    border: 1px solid #DCDCDC;
+    border-radius: 100%
+}
+
+    .SurveyQuestionList input:checked {
+        background: #2B7B95;
+        -webkit-box-shadow: inset 0px 0px 0px 3px #fff;
+        box-shadow: inset 0px 0px 0px 3px #fff;
+    }
+
+.SurveyFooter a {
+    text-decoration: none;
+}
+
+    .SurveyFooter a span {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        text-decoration: none;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+.SurveybuttonLeft, .SurveybuttonRight {
+    color: #177B96;
+    border-color: #177B96;
+    font-size: 16px;
+    padding: 8px 20px;
+    min-width: 150px
+}
+
+.SurveyButtonComplete {
+    min-height: 42px;
+    padding-top: 8px;
+    color: #000;
+    font-size: 16px
+}
+
+.SurveybuttonRight > i {
+    margin-left: 5px;
+}
+
+.SurveybuttonLeft > i {
+    margin-right: 5px;
+}
+
+.SurveyHeader a {
+    background-color: #177B96;
+    border: 1px solid #177B96;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 8px 45px;
+    display: inline-block
+}
+
+    .SurveyHeader a:hover {
+        background-color: transparent;
+        color: #177B96
+    }
+
+
+.questionItemLikert:nth-child(even) {
+    background-color: #FCFCFC;
+}
+
+.questionItemLikert:nth-child(odd) {
+    background-color: #F3F3F3;
+}
+
+.questionItemLikert {
+    margin-bottom: 5px !important;
+}
+
+.liSurveyAnswerLikert input {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.EkfwnisiLikert {
+    width: 50%;
+}
+
+.AnswersLikert {
+    width: 50%;
+}
+
+.SectorContainer {
+    display: none;
+    background-color: #fff;
+    padding-top: 20px;
+}
+
+.SectorTitle {
+    width: 50%;
+    font-size: 20px;
+}
+
+.SectorLikertAnswers {
+    width: 50%;
+}
+
+.SurveyEkfwnisiTextLikert {
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.SurveyNbLikert {
+    font-size: 12px;
+    background-color: transparent;
+}
+
+.liSurveyAnswerLikert {
+    border: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    text-align: center;
+    margin-top: 5px !important;
+}
+
+.LikertAnswerItem {
+    text-align: center;
+}
+/*End Surveys*/
+/*Surveys History*/
+.DivParams {
+    background-color: #edf1f6;
+    padding: 10px;
+}
+
+.DivParamItem {
+    margin: 10px;
+}
+
+.ddlParam {
+    background-color: #fff !important;
+}
+
+.SurveyInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+}
+
+.SurveyDashboardInfoItem, .SurveyInfoItem {
+    -ms-flex-preferred-size: 24.35%;
+    flex-basis: 24.35%;
+    -webkit-box-shadow: 0px 0px 14px 0 rgba(0,0,0,0.12);
+    box-shadow: 0px 0px 14px 0 rgba(0, 0, 0, 0.12);
+    min-height: 125px;
+    margin: 0 0 1.5em;
+    background-color: #fff;
+    mix-blend-mode: n;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    min-height: 153px;
+}
+
+.SurveyInfoItem, .SurveyDashboardInfoItem, .SurveyDashboardGaugePsychoRisk, .SurveyDashboardEvolutionPsychoRisk, .SurveyDashboardPsychoStatus, .SurveyDashboardEvolutionPsychoStatus, .SurveyDashboardGaugeSatisfaction, .SurveyDashboardEvolutionSatisfaction, .SurveyDashboardEvolutionBurnout, .SurveyDashboardPieBurnOut {
+    -webkit-box-shadow: 0px 0px 14px 0 rgba(0,0,0,0.12);
+    box-shadow: 0px 0px 14px 0 rgba(0, 0, 0, 0.12);
+    min-height: 125px;
+    margin: 1.5em auto;
+    background-color: #fff;
+    mix-blend-mode: normal;
+}
+
+.SurveyDashboardInfoLabel, .SurveyInfoLabel {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    background-color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1em 1.5em;
+}
+
+.SurveyDashboardInfoLabel1, .SurveyDashboardInfoLabel2, .SurveyDashboardInfoLabel3, .SurveyDashboardInfoLabel4, .SurveyInfoLabel1, .SurveyInfoLabel2, .SurveyInfoLabel3 {
+    padding: 10px;
+}
+
+    .SurveyDashboardInfoLabel1 span, .SurveyInfoLabel1 span {
+        color: #F8865F;
+    }
+
+    .SurveyDashboardInfoLabel2 span, .SurveyInfoLabel2 span {
+        color: #64BDDE;
+    }
+
+    .SurveyDashboardInfoLabel3 span, .SurveyInfoLabel3 span {
+        color: #B097DB;
+    }
+
+    .SurveyDashboardInfoLabel4 span {
+        color: #77C7BF;
+    }
+
+    .SurveyInfoLabel1 span {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .SurveyDashboardInfoLabel1 span, .SurveyDashboardInfoLabel2 span, .SurveyDashboardInfoLabel3 span, .SurveyDashboardInfoLabel4 span, .SurveyInfoLabel1 span, .SurveyInfoLabel2 span, .SurveyInfoLabel3 span {
+        font-size: 62px;
+        font-weight: 100;
+        display: block;
+        line-height: 50px;
+        margin-top: 6px;
+    }
+
+.SurveyDashboardInfoItem label, .SurveyInfoItem label {
+    position: static;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.SurveyDashboardInfoLabel1 label, .SurveyInfoLabel1 label {
+    color: #F8865F;
+}
+
+.SurveyDashboardInfoLabel2 label, .SurveyInfoLabel2 label {
+    color: #64BDDE;
+}
+
+.SurveyDashboardInfoLabel3 label, .SurveyInfoLabel3 label {
+    color: #B097DB;
+}
+
+.SurveyDashboardInfoLabel4 label {
+    color: #77C7BF;
+}
+
+.SurveyInfoLabel1 span {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.SurveyDashboardInfoImg1, .SurveyDashboardInfoImg2, .SurveyDashboardInfoImg3, .SurveyDashboardInfoImg4, .SurveyInfoImg1, .SurveyInfoImg2, .SurveyInfoImg3 {
+    padding: 10px;
+    min-height: 125px;
+    min-width: 105px;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.SurveyDashboardInfoImg1, .SurveyInfoImg1 {
+    background-color: #F8865F;
+}
+
+.SurveyDashboardInfoImg2, .SurveyInfoImg2 {
+    background-color: #64BDDE;
+}
+
+.SurveyDashboardInfoImg3, .SurveyInfoImg3 {
+    background-color: #B097DB;
+}
+
+.SurveyDashboardInfoImg4 {
+    background-color: #77C7BF;
+}
+/*End Surveys History*/
+/*Assessment*/
+.IsCorrect {
+    background-color: #7FC54C !important;
+    color: #fff !important
+}
+
+.IsWrong {
+    background-color: #F6514F !important;
+    color: #fff !important
+}
+
+.liCorrect {
+    border: 2px solid #7FC54C !important;
+}
+
+.liWrong.studresp {
+    border: 2px solid #F7514F !important
+}
+
+.MatchingWrong .DivQMPairingAnswerText, .MatchingWrong .DivQMPairingMatchText {
+    border-color: #F6514F !important
+}
+
+    .MatchingWrong .DivQMPairingMatchText:before {
+        border-right-color: #F6514F !important;
+    }
+
+.MatchingCorrect .DivQMPairingAnswerText, .MatchingCorrect .DivQMPairingMatchText {
+    border-color: #7FC54B !important
+}
+
+    .MatchingCorrect .DivQMPairingMatchText:before {
+        border-right-color: #7FC54B !important;
+    }
+
+.rblQMAnswers, .cblQMAnswers {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .rblQMAnswers .liQMAnswer {
+        border: 1px solid #c4c4c4;
+        margin-top: 10px;
+        padding: 25px 23px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+
+        .rblQMAnswers .liQMAnswer.studresp {
+            border: solid 1px #177B96;
+        }
+
+.liQMAnswer {
+    font-size: 18px;
+}
+
+.cblQMAnswers .liQMAnswer {
+    border: 1px solid #c4c4c4;
+    margin-top: 10px;
+    padding: 25px 23px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+    .cblQMAnswers .liQMAnswer.studresp {
+        border: solid 1px #177B96;
+    }
+
+.liQMAnswer label, .studresp label {
+    line-height: 25px;
+    cursor: pointer;
+    margin: 0;
+    width: 100%;
+}
+
+.rblQMAnswers .liQMAnswer, .rblQMAnswers .liQMAnswer label, .rblQMAnswers .liQMAnswer span, .rblQMAnswers .liQMAnswer a {
+    color: #333333;
+    font-weight: 400;
+}
+
+.FlexBasis100 {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+}
+
+.questionItem {
+    margin-bottom: 145px;
+}
+
+.QMNb {
+    display: block;
+    background-color: #F3F3F3;
+    color: #177B96;
+    text-align: center;
+    padding: 10px;
+    font-size: 26px;
+    font-weight: 100
+}
+
+.QMEkfwnisiText {
+    margin-top: 25px;
+    margin-bottom: 45px;
+    display: block;
+    font-weight: 100;
+    font-size: 18px;
+    color: #5D5C5C
+}
+
+.answersContainer {
+    font-weight: 100;
+    font-size: 18px;
+    color: #5D5C5C
+}
+
+.QMEkfwnisiText input, .QMEkfwnisiText select {
+    border: 2px solid #C5C4C4;
+    margin: 0 5px;
+    font-weight: 600;
+    color: #5D5C5C;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.answersContainer input, .answersContainer select {
+    border: 2px solid #C5C4C4 !important;
+    margin: 0 5px;
+    font-weight: 600;
+    color: #5D5C5C;
+    text-align: center;
+    padding: 0 10px
+}
+
+.answersContainer select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none
+}
+
+.QMEkfwnisiText input:focus, .QMEkfwnisiText select:focus {
+    outline: unset;
+}
+
+.QMImage {
+    margin-left: 35px;
+    margin-bottom: 45px;
+    float: right;
+    max-width: 430px;
+}
+
+    .QMImage > img {
+        width: 100%;
+    }
+
+.QMVideo {
+    margin-left: 35px;
+    margin-bottom: 45px;
+    float: right;
+    max-width: 564px;
+    width: 100%;
+    position: relative;
+    padding-top: 320px
+}
+
+    .QMVideo > iframe {
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute;
+        top: 0;
+        right: 0
+    }
+
+.rblQMAnswers input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    margin-right: 24px;
+    vertical-align: middle;
+    height: 28px;
+    min-width: 28px;
+    max-width: 28px;
+    cursor: pointer;
+    border: 1px solid #D1D0D0;
+    border-radius: 100%
+}
+
+    .rblQMAnswers input[type="radio" i]:focus {
+        outline: unset;
+    }
+
+.cblQMAnswers input[type="checkbox" i]:focus {
+    outline: unset;
+}
+
+.cblQMAnswers input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    margin-right: 24px;
+    vertical-align: middle;
+    height: 28px;
+    min-width: 28px;
+    cursor: pointer;
+    border: 1px solid #D0D0D0;
+    background: #fff;
+    -webkit-box-shadow: inset 0 0 0 5px #fff;
+    box-shadow: inset 0 0 0 5px #fff;
+    max-width: 28px
+}
+
+    .cblQMAnswers input:checked {
+        background: #2B7B95;
+    }
+
+.liQMAnswer input:checked, .studresp input:checked {
+    background: #177B96;
+    -webkit-box-shadow: inset 0 0 0 5px #fff;
+    box-shadow: inset 0 0 0 5px #fff
+}
+
+.liWrong.studresp input, .liCorrect.studresp input {
+    background-color: #7DB5C4;
+}
+
+.QMHeaderInfo {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    margin-top: -5px;
+}
+
+    .QMHeaderInfo > div {
+        min-height: 50px;
+    }
+
+.QMClock:not(:empty) {
+    color: #7FC54C;
+    font-size: 35px;
+    font-weight: 100;
+    min-width: 125px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+span.QMClockLabel {
+    font-size: 13px;
+    font-weight: 100;
+    color: #5D5C5C;
+    margin-bottom: -7px;
+}
+
+.QMCompletionQNB {
+    border: 2px solid #F7514F;
+    border-radius: 20px;
+    padding: 7px 5px;
+    min-width: 72px;
+    text-align: center;
+    color: #5D5C5C;
+    font-size: 14px
+}
+
+.DivQMPairingMAText {
+    min-height: 71px;
+}
+
+.liQMPairingMAContainer {
+    min-height: 71px;
+}
+
+.liQMPairingMatchContainer {
+    min-height: 71px;
+    position: relative;
+}
+
+    .liQMPairingMatchContainer:empty {
+        margin-top: 20px
+    }
+
+.DivQMPairingMatchText.ui-draggable-dragging {
+    z-index: 4;
+    width: 100%;
+}
+
+.DivPairingAnswers ul {
+    padding-left: 15px;
+}
+
+.DivQMPairingAnswerText:after, .DivQMPairingAnswerText:before {
+    right: -2px;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none
+}
+
+.DivQMPairingAnswerText:after {
+    border-color: rgba(136,183,213,0);
+    border-right-color: #fff;
+    border-width: 30px;
+    margin-top: -30px
+}
+
+.DivQMPairingAnswerText:before {
+    border-color: rgba(194,225,245,0);
+    border-right-color: #DCDCDC;
+    border-width: 32px;
+    margin-top: -32px
+}
+
+.DivQMPairingMatchText:after, .DivQMPairingMatchText:before, .QMcell-highlght:after, .QMcell-highlght:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none
+}
+
+.DivQMPairingMatchText:after {
+    border-color: rgba(136,183,213,0);
+    border-right-color: #fff;
+    border-width: 34px;
+    margin-top: -35px
+}
+
+.DivQMPairingMatchText:before {
+    border-color: rgba(194,225,245,0);
+    border-right-color: #DCDCDC;
+    border-width: 36px;
+    margin-top: -37px
+}
+
+.QMcell-highlght:after {
+    border-color: rgba(255,255,255,0);
+    border-right-color: #faffbd;
+    border-width: 30px;
+    margin-top: -30px
+}
+
+.DivQMPairingAnswerText {
+    z-index: 1;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5D5C5C;
+    min-height: 59px;
+    padding: 20px 45px 20px 20px;
+    position: relative;
+    margin-top: 20px;
+    background: #fff;
+    border: 2px solid #DCDCDC;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.DivQMPairingMatchText {
+    z-index: 3;
+    cursor: pointer;
+    min-height: 59px;
+    position: relative;
+    margin-top: 20px;
+    border: 2px solid #DCDCDC;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5D5C5C;
+    padding: 20px;
+    background: url(/assetsClever/img/icons/mouse-drag-icon.png) right center no-repeat content-box #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.QMContentText {
+    font-size: 18px;
+    font-weight: 600;
+    color: #5D5C5C;
+    padding-right: 35px;
+}
+
+.QMNoPaddingLeftItem {
+    padding-left: 0px;
+    position: relative;
+}
+
+.QMcell-highlght {
+    min-height: 71px;
+    position: relative;
+    background-color: #faffbd;
+    z-index: 2;
+    margin-top: 20px
+}
+
+.DivPairingMatches ul {
+    list-style: none
+}
+
+.QuizContents {
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+    transition: margin-left 0.25s, margin-right 0.25s, margin-top 0.25s, width 0.25s, flex 0.25s, -ms-flex 0.25s;
+    -webkit-box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+    box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+}
+
+.QuizContents-hidden {
+    margin-left: -20%;
+    visibility: hidden !important;
+}
+
+.QuizContents-toggler {
+    color: #aeaeae;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.QMHeader > div {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.QMHeader {
+    margin-bottom: 7px;
+}
+
+.QMTitleLesson {
+    margin-left: 30px;
+    margin-top: -8px;
+}
+
+.QMTitleInfo {
+    margin-top: 15px;
+}
+
+.QMTitleRight {
+    font-size: 24px;
+    font-weight: 600;
+    color: #515050;
+    line-height: 25px;
+}
+
+    .QMTitleRight h3 {
+        margin-top: 0;
+    }
+
+.QMTeacher {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C;
+}
+
+.QMTime:not(:empty) {
+    color: #5D5C5C;
+    border-left: 1px solid #5D5C5C;
+    padding-left: 7px;
+    margin-left: 7px;
+}
+
+.QMTime:only-child {
+    border-left: unset;
+    padding-left: unset;
+    margin-left: unset;
+}
+
+.QMTeacher:empty + .QMTime {
+    border-left: unset;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.QMTime > i {
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.QMQuestionList {
+    width: 100%;
+    background-color: #FAFAFA;
+    padding: 30px;
+}
+
+.QuizShowContent {
+    -webkit-box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+    box-shadow: -5px 0px 36px 0px rgba(0, 0, 0, .1);
+    -ms-flex-preferred-size: 80%;
+    flex-basis: 80%
+}
+
+.QMQuestionList ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.QMQuestionList li {
+    border-bottom: solid 1px #EDEDED;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #5D5C5C
+}
+
+.QMQuestionList input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    margin-right: 12px;
+    vertical-align: middle;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    border: 1px solid #DCDCDC;
+    border-radius: 100%
+}
+
+    .QMQuestionList input:checked {
+        background: #2B7B95;
+        -webkit-box-shadow: inset 0px 0px 0px 3px #fff;
+        box-shadow: inset 0px 0px 0px 3px #fff;
+    }
+
+.QMFooter a {
+    text-decoration: none;
+}
+
+    .QMFooter a span {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        text-decoration: none;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+.QMbuttonLeft, .QMbuttonRight {
+    color: #177B96;
+    border-color: #177B96;
+    font-size: 16px;
+    padding: 8px 20px;
+    min-width: 150px
+}
+
+.QMButtonComplete {
+    min-height: 42px;
+    padding-top: 8px;
+    color: #000;
+    font-size: 16px
+}
+
+.QMbuttonRight > i {
+    margin-left: 5px;
+}
+
+.QMbuttonLeft > i {
+    margin-right: 5px;
+}
+
+.answersContainer textarea {
+    padding: 20px;
+    color: #5D5C5C;
+}
+
+    .answersContainer textarea:focus {
+        outline: unset;
+    }
+
+    .answersContainer textarea[placeholder]:focus::-webkit-input-placeholder {
+        color: transparent;
+    }
+
+.ResultText {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C;
+    line-height: 23px
+}
+
+    .ResultText h2 {
+        font-size: 28px;
+        font-weight: 100;
+        text-align: center;
+        color: #515050;
+        padding-bottom: 10px;
+        margin-bottom: 45px;
+        border-bottom: 1px solid
+    }
+
+.ResultSuccess h2 {
+    border-color: #7FC54C;
+}
+
+.ResultFail h2 {
+    border-color: #F7514F;
+}
+
+.ResultsHeader h2 {
+    font-size: 37px;
+    font-weight: 100;
+    text-align: center;
+    color: #515050;
+    padding-bottom: 10px;
+    margin-top: 62px
+}
+
+.DivCertPdf {
+    background-color: #F8F8F8;
+    padding: 90px 15px 85px;
+    margin-top: 42px;
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    text-align: center;
+}
+
+    .DivCertPdf h3 {
+        font-size: 28px;
+        font-weight: 100;
+        color: #515050;
+        margin-bottom: 55px;
+        margin-top: 0
+    }
+
+    .DivCertPdf img {
+        max-width: 121px;
+        display: block;
+        margin: 0 auto
+    }
+
+    .DivCertPdf > span {
+        margin-top: 33px;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 100;
+        color: #515050
+    }
+
+        .DivCertPdf > span a {
+            color: #515050;
+            text-decoration: none
+        }
+
+.QMHeader a {
+    background-color: #177B96;
+    border: 1px solid #177B96;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 8px 45px;
+    display: inline-block
+}
+
+    .QMHeader a:hover {
+        background-color: transparent;
+        color: #177B96
+    }
+
+.answersContainer h2 {
+    color: #7FC54C !important;
+    font-size: 26px !important;
+    border-bottom: solid 2px #7FC54B !important;
+    margin-bottom: 15px !important;
+    margin-top: 60px;
+}
+/*EndAssessment*/
+/*Notifications*/
+.NotificationAvatar.avatar {
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.NotificationItem {
+    border-left: solid 3px #177B96;
+    background-color: #F0F3F3;
+    margin-bottom: 10px;
+    padding: 10px 37px 10px 17px;
+    position: relative;
+}
+
+    .NotificationItem:last-child {
+        margin-bottom: 0;
+    }
+
+.NotificationDate {
+    color: #4595AB;
+    border-right: solid 1px #4595AB;
+    padding-right: 5px;
+    font-size: 13px;
+    margin-right: 5px
+}
+
+.NotificationUserName {
+    color: #A2A2A2;
+    font-size: 11px;
+}
+
+.NotificationContent > :nth-child(1) {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    line-height: 13px;
+}
+
+.NotificationTitle {
+    font-weight: 400;
+    color: #515050;
+    font-size: 16px;
+    margin-top: 5px
+}
+
+.NotificationContent {
+    padding-left: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.NotificationItem a {
+    text-decoration: none;
+    color: #000;
+}
+
+.NotificationDelete {
+    display: none;
+    color: #D1D0D0;
+    font-size: 18px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer
+}
+
+.NotificationItem:hover .NotificationDelete {
+    display: block;
+}
+
+    .NotificationItem:hover .NotificationDelete:hover {
+        color: #AEAEAE;
+    }
+
+.NotificationRead {
+    border-left: solid 2px #F7F8F8;
+    background-color: #F7F8F8
+}
+
+.ViewNotificationAvatar {
+    min-width: 50px;
+    max-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #F2F4F8;
+    ;
+    display: -webkit-box;
+    ;
+    display: -ms-flexbox;
+    ;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+    .ViewNotificationAvatar > img {
+        width: 36px;
+        height: 36px;
+    }
+
+.ViewNotificationTitle h3 {
+    font-weight: 400;
+    color: #515050;
+    margin-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.ViewNotificationDate {
+    color: #4595AB;
+    border-right: solid 1px #4595AB;
+    padding-right: 5px;
+    font-size: 13px;
+    margin-right: 5px;
+    min-width: 78px;
+}
+
+.ViewNotificationPublisher {
+    color: #A2A2A2;
+    font-size: 11px;
+    min-width: 87px;
+}
+
+.ViewNotificationDescr {
+    font-size: 16px;
+    color: #515050;
+    font-weight: 100;
+    padding: 0 7px;
+    margin-bottom: 30px
+}
+
+.NotificationContainer .btn {
+    padding: 8px 50px;
+}
+/*End Notifications*/
+/*ViewNotification*/
+/*End ViewNotification*/
+/*News*/
+.NewsBoxContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -.75%;
+    margin-right: -.75%
+}
+
+.NewsBox {
+    background-color: #FFFEFD;
+    -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    margin: 0.75%;
+    width: 31.82%;
+    position: relative;
+}
+
+.NewsBoxImage {
+    overflow: hidden;
+    position: relative;
+    padding-top: 44%
+}
+
+    .NewsBoxImage > img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0
+    }
+
+.NewsBox a {
+    text-decoration: none;
+}
+
+.NewsBoxContent {
+    padding: 18px 20px
+}
+
+.NewsBoxDate {
+    color: #4595AB;
+    border-bottom: solid 2px #DCDCDC;
+    margin-bottom: 15px;
+    font-size: 12px;
+    padding-bottom: 10px
+}
+
+.NewsBoxTitle {
+    color: #515050;
+    font-weight: 600;
+    font-size: 17px
+}
+
+.NewsBoxDescr {
+    color: #515050;
+    margin-top: 20px;
+    font-size: 14px
+}
+
+.ViewNewAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #F2F4F8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+    .ViewNewAvatar > img {
+        width: 36px;
+        height: 36px;
+    }
+
+.ViewNewTitle h3 {
+    font-weight: 400;
+    color: #515050;
+    margin-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.ViewNewDescr {
+    font-size: 16px;
+    font-weight: 100;
+    padding: 0 7px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+    .ViewNewDescr p {
+        color: #515050 !important;
+    }
+
+.ViewNewDate {
+    color: #4595AB;
+    border-right: solid 1px #4595AB;
+    padding-right: 5px;
+    font-size: 13px;
+    margin-right: 5px
+}
+
+.ViewNewPublisher {
+    color: #A2A2A2;
+    font-size: 11px;
+}
+
+.NewsContainer .btn {
+    padding: 8px 50px;
+}
+
+.ViewNewAttach > a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 16px
+}
+
+    .ViewNewAttach > a > i {
+        margin-left: 10px
+    }
+
+.ViewNewPhoto > img {
+    max-width: 500px;
+    width: 100%;
+}
+/*EndNews*/
+/*Jobs*/
+.JobsBoxContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -.75%;
+    margin-right: -.75%
+}
+
+.JobsBox {
+    background-color: #FFFEFD;
+    -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    margin: 0.75%;
+    width: 31.82%;
+    position: relative;
+}
+
+    .JobsBox a {
+        text-decoration: none;
+    }
+
+.JobsBoxContent {
+    padding: 20px 23px 15px 23px;
+}
+
+.JobsBoxDate {
+    font-size: 14px;
+    color: #FFF;
+    font-weight: 400
+}
+
+.JobsBoxCode {
+    color: #86BAC8;
+    font-size: 14px;
+    font-weight: 400
+}
+
+.JobsBoxEmployer {
+    background-color: #EDF5F7;
+    color: #2B7B97;
+    padding: 12px 23px;
+    font-size: 17px;
+    font-weight: 600
+}
+
+.JobsBoxTitle {
+    color: #515050;
+    font-weight: 600;
+    font-size: 17px
+}
+
+.JobsBoxDescr {
+    color: #515050;
+    margin-top: 15px;
+    font-size: 16px
+}
+
+.JobsBoxDescrFull {
+    display: none;
+}
+
+.modal-body .JobsBoxDescr {
+    display: none;
+}
+
+.modal-body .JobsBoxDescrFull {
+    display: block;
+    color: #515050;
+    margin-top: 15px;
+    font-size: 16px
+}
+
+.modal-body .JobsBox {
+    width: 100%;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 0px;
+}
+
+.JobsBoxHeader {
+    background-color: #177B96;
+    color: #fff;
+    padding: 12px 23px
+}
+
+.JobsBoxFooter {
+    border-top: solid 1px #ddd;
+    margin: 0px 20px 20px 20px;
+    padding-top: 10px;
+    color: #5A9CB1;
+}
+
+.JobsBoxMore {
+    color: #5A9CB1;
+    cursor: pointer;
+}
+/*End Jobs*/
+/*Chat*/
+.dataTables_length select {
+    font-size: 16px;
+    padding: 4px 50px 4px 12px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url(/assetsClever/img/icons/select-arrow.svg) right center no-repeat;
+    border: 1px solid #DCDCDC;
+    min-width: 106px;
+    margin-left: 15px;
+    color: #A2A2A2;
+}
+
+    .dataTables_length select:focus {
+        outline: unset;
+    }
+
+.dataTables_length label, .dataTables_filter label {
+    font-size: 16px;
+    color: #5D5C5C;
+}
+
+.dataTables_filter input {
+    height: 34px;
+    min-width: 176px;
+    font-size: 16px
+}
+
+.timeline {
+    position: relative;
+}
+
+.content:last-child .timeLineBody {
+    margin-bottom: 0;
+}
+
+.EduboardMessages {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    max-height: 386px;
+}
+
+.timelineTime {
+    color: #5D5C5C;
+    font-size: 16px;
+    font-weight: 100
+}
+
+.timelineUsername {
+    color: #5D5C5C;
+    font-size: 16px;
+    font-weight: 100
+}
+
+.pagination .btn-outline-primary {
+    border-color: #AEAEAE;
+    color: #177B96;
+}
+
+    .pagination .btn-outline-primary:hover {
+        color: #fff;
+        border-color: #177B96;
+    }
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    background-color: #F0F3F3;
+    top: 0;
+    bottom: 0;
+    margin-left: 21px
+}
+
+.container-right {
+    position: relative;
+}
+
+    .container-right img {
+        position: absolute;
+        width: 35px;
+        border-radius: 50%;
+        left: 6px;
+        z-index: 1;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        display: block;
+        height: 35px;
+        background-color: #F0F3F3
+    }
+
+    .container-right i {
+        position: absolute;
+        width: 20px;
+        border-radius: 15px;
+        left: 15px;
+        z-index: 1;
+        font-size: 20px;
+        color: #177B96;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%)
+    }
+
+.timeLineBody {
+    position: relative;
+    margin-left: 65px;
+    background-color: #F0F3F3;
+    margin-bottom: 10px;
+    padding: 15px;
+    margin-right: 10px;
+}
+
+    .timeLineBody::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        width: 0;
+        z-index: 1;
+        left: -15px;
+        border: solid #F0F3F3;
+        border-width: 15px 15px 15px 0;
+        border-color: transparent #F0F3F3 transparent transparent;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%)
+    }
+
+.timelineTimeAccess {
+    font-size: 16px;
+    font-weight: 600;
+    color: #515050
+}
+/*End Chat*/
+/*Softone Teacher Absences*/
+.BoxAbsences {
+    -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    margin-bottom: 40px;
+}
+
+    .BoxAbsences:last-child {
+        margin-bottom: 0;
+    }
+
+.BoxAbsencesInfo {
+    -ms-flex-preferred-size: 29%;
+    flex-basis: 29%;
+    background-color: #fff;
+    padding: 25px;
+}
+
+.BoxAbsencesTable {
+    -ms-flex-preferred-size: 71%;
+    flex-basis: 71%;
+    background-color: #F8F8F8;
+    padding: 15px 25px 25px
+}
+
+.BoxAbsencesInfoLesson {
+    font-size: 20px;
+    font-weight: 500;
+    color: #515050;
+    line-height: 25px;
+}
+
+.BoxAbsencesInfoTeacher {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C;
+    margin: 10px 0
+}
+
+.BoxAbsencesInfoClass {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C
+}
+
+.BoxAbsencesInfo hr.mb-3 {
+    border-top: 2px solid #E6E5E5;
+    margin-top: 15px !important;
+    display: block
+}
+
+.BoxAbsencesType3 {
+    border: 1px solid #A6D782;
+    border-radius: 50%;
+    min-width: 153px;
+    min-height: 153px;
+    text-align: center;
+    color: #A6D782;
+    margin: 20px;
+    position: relative;
+}
+
+    .BoxAbsencesType3 span {
+        font-size: 65px;
+        font-weight: 100;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%)
+    }
+
+.BoxAbsencesType4 {
+    border: 1px solid #F98684;
+    border-radius: 50%;
+    min-width: 153px;
+    min-height: 153px;
+    text-align: center;
+    color: #F98684;
+    margin: 20px;
+    position: relative
+}
+
+    .BoxAbsencesType4 span {
+        font-size: 65px;
+        font-weight: 100;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%)
+    }
+
+.spanAbsencesType3 {
+    color: #7FC54C;
+}
+
+.spanAbsencesType4 {
+    color: #F7514F;
+}
+
+.BoxAbsencesTotal {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-bottom: 7px;
+}
+
+    .BoxAbsencesTotal span {
+        font-size: 16px;
+        font-weight: 100;
+        color: #177B96
+    }
+
+.BoxAbsencesTotalNB {
+    font-size: 20px;
+    font-weight: 400;
+    color: #177B96;
+    padding: 4px 9px;
+    border: 1px solid #177B96;
+    border-radius: 50%;
+    margin-left: 10px;
+    min-width: 40px;
+    min-height: 38px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+i.AbsenceView {
+    display: block;
+    font-size: 28px;
+    color: #D1D0D0;
+    border-right: 1px solid #DCDCDC;
+    padding-right: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+    i.AbsenceView.active {
+        color: #636363;
+    }
+
+    i.AbsenceView.RDCicon-calendar {
+        font-size: 22px;
+        margin-bottom: 10px;
+        display: block;
+        padding-right: 0;
+        margin-right: 0;
+        border: unset;
+    }
+
+.BoxAbsences .table {
+    width: 100%;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+}
+
+    .BoxAbsences .table td, .BoxAbsences .table th {
+        border-top: unset;
+        padding: 0.75rem 30px;
+        text-align: center;
+    }
+
+    .BoxAbsences .table th {
+        background-color: unset;
+    }
+
+.BoxAbsences.View2 .BoxAbsencesInfo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #515050;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+}
+
+.BoxAbsences.View2 .table th:first-child, .BoxAbsences.View2 .table td:first-child {
+    text-align: left;
+}
+/*End Softone Teacher Absences*/
+/*Softone TeacherDiary*/
+i.DiaryView {
+    display: block;
+    font-size: 28px;
+    color: #D1D0D0;
+    border-right: 1px solid #DCDCDC;
+    padding-right: 10px;
+    margin-right: 10px;
+    cursor: pointer
+}
+
+    i.DiaryView.RDCicon-calendar {
+        font-size: 22px;
+        margin-bottom: 10px;
+        display: block;
+        padding-right: 0;
+        margin-right: 0;
+        border: unset
+    }
+
+    i.DiaryView.active {
+        color: #636363;
+    }
+
+.BoxDiary {
+    -webkit-box-shadow: 0 0 20px 2px rgba(0,0,0,.1);
+    box-shadow: 0 0 20px 2px rgba(0,0,0,.1);
+    margin-bottom: 40px
+}
+
+.BoxDiaryInfo {
+    -ms-flex-preferred-size: 29%;
+    flex-basis: 29%;
+    background-color: #fff;
+    padding: 25px
+}
+
+.BoxDiary.View2 .BoxDiaryInfo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #515050;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    -ms-flex-preferred-size: 16%;
+    flex-basis: 16%;
+}
+
+.BoxDiary.View2 .BoxDiaryTable {
+    -ms-flex-preferred-size: 84%;
+    flex-basis: 84%;
+}
+
+.BoxDiaryTable {
+    -ms-flex-preferred-size: 71%;
+    flex-basis: 71%;
+    background-color: #F8F8F8;
+    padding: 15px 25px 25px
+}
+
+    .BoxDiaryTable .table {
+        width: 100%;
+        -webkit-box-shadow: unset;
+        box-shadow: unset
+    }
+
+.BoxDiary .table td, .BoxDiary .table th {
+    border-top: unset;
+    padding: 0.75rem 30px;
+    text-align: center;
+}
+
+.BoxDiary .table th {
+    background-color: unset;
+}
+
+.BoxDiary.View2 .table th:first-child, .BoxDiary.View2 .table td:first-child {
+    text-align: left;
+}
+/*End Softone TeacherDiary*/
+/*GradeBook*/
+.BoxGrades {
+    -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    margin-bottom: 40px;
+}
+
+    .BoxGrades:last-child {
+        margin-bottom: 0;
+    }
+
+.BoxGradesInfo {
+    -ms-flex-preferred-size: 29%;
+    flex-basis: 29%;
+    background-color: #fff;
+    padding: 25px;
+}
+
+.BoxGradesTable {
+    -ms-flex-preferred-size: 71%;
+    flex-basis: 71%;
+    background-color: #F8F8F8;
+    padding: 15px 25px 25px
+}
+
+.BoxGradesInfoLesson {
+    font-size: 20px;
+    font-weight: 500;
+    color: #515050;
+    line-height: 25px;
+}
+
+.BoxGradesInfoTeacher {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C;
+    margin: 10px 0
+}
+
+.BoxGradesInfoClass {
+    font-size: 16px;
+    font-weight: 100;
+    color: #5D5C5C
+}
+
+.BoxGradesSubjectCover {
+    margin-top: 20px;
+}
+
+.BoxGradesTable .AccordionCard-header {
+    border-left: unset;
+    background-color: #fff;
+}
+
+    .BoxGradesTable .AccordionCard-header a {
+        font-size: 20px;
+        font-weight: 100;
+        color: #177B96;
+        padding: 9px 50px 9px 25px;
+    }
+
+.BoxGrades .AccordionCard-header a:after {
+    content: url(/assetsClever/img/icons/arrow-up-icon.svg);
+    height: 31px;
+}
+
+.BoxGrades .AccordionCard-header a.collapsed:after {
+    content: url(/assetsClever/img/icons/arrow-down-icon.svg);
+}
+
+i.GradeView {
+    display: block;
+    font-size: 28px;
+    color: #D1D0D0;
+    border-right: 1px solid #DCDCDC;
+    padding-right: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-right: unset;
+}
+
+    i.GradeView.active {
+        color: #636363;
+    }
+
+    i.GradeView.RDCicon-calendar {
+        font-size: 22px;
+        margin-bottom: 10px;
+        display: block;
+        padding-right: 0;
+        margin-right: 0;
+        border: unset;
+        display: none;
+    }
+
+.BoxGrades .table {
+    width: 100%;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+}
+
+    .BoxGrades .table td, .BoxGrades .table th {
+        border-top: unset;
+        padding: 0.75rem 30px;
+        text-align: center;
+    }
+
+.BoxGrades.View1 .table th:first-child, .BoxGrades.View1 .table td:first-child, .BoxGrades.View1 .table td:nth-child(2) {
+    text-align: left;
+}
+
+.GradePassed {
+    color: #7FC54C !important;
+}
+
+.GradeFailed {
+    color: #F7514F !important;
+}
+
+.GradeBookDIV .row {
+    width: 100%;
+}
+
+.GradeBookDIV i.GradeView {
+    display: none;
+}
+/*End GradeBook*/
+/*Profile*/
+.Profile .dropzone {
+    margin-top: 0;
+}
+
+.profileDiv {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.profileAvatar {
+    background-color: #F2F4F8;
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    margin-right: 30px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+    .profileAvatar .img-thumbnail {
+        padding: 0;
+        background-color: unset;
+        width: 100%;
+        height: auto;
+        margin: unset;
+        border-radius: unset
+    }
+
+.Profile input[type=radio] {
+    position: absolute;
+    opacity: 0;
+}
+
+.Profile .inline span {
+    position: relative;
+    margin-left: 30px;
+}
+
+    .Profile .inline span::before {
+        position: absolute;
+        content: "";
+        left: -23px;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 50%;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-box-shadow: inset 0 0 0 5px #fff;
+        box-shadow: inset 0 0 0 5px #fff;
+        border: 1px solid #D1D0D0
+    }
+
+.Profile input[type=radio]:checked ~ span.lbl.middle::before {
+    background-color: #177B96;
+}
+
+.photoBlock {
+    margin-top: 20px;
+}
+/*End Profile*/
+/*TeacherClasses*/
+.TeacherClasses .btn-primary {
+    margin-left: 20px;
+    min-width: 193px;
+}
+
+.TeacherClasses .table thead th:nth-child(3) {
+    text-align: center;
+}
+/*End TeacherClasses*/
+/*End TeacherNotificationsAdministration*/
+.btnCustom {
+    min-height: 40px;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+    .btnCustom i {
+        font-size: 20px;
+    }
+
+.TeacherNotificationsAdminDIV .btn-primary {
+    margin-left: 8px;
+    min-width: 190px
+}
+
+.TeacherNotificationsAdminDIV .table tr td, .TeacherNotificationsAdminDIV .table thead th {
+    text-align: center;
+}
+/*TeacherNotificationsAdministration*/
+/*TeacherCertStats*/
+.TeacherCertStats .btnFilterSearch {
+    margin-top: 0;
+    max-width: 193px;
+    margin-left: 20px;
+    min-width: 193px;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+}
+
+.TeacherCertStats .table tbody td:not(:first-child), .TeacherCertStats .table thead th:not(:first-child) {
+    text-align: center
+}
+/*End TeacherCertStats*/
+/*Statistics TeacherCertification*/
+.TeacherCertificationDIV .FlexDiv .col-md-2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 16px;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+/*End Statistics TeacherCertification*/
+/*TeacherEvaluation*/
+.TeacherEvaluationDIV .btnFilterSearch {
+    margin-top: 0;
+}
+/*End TeacherEvaluation*/
+/*TeacherEditAbsences*/
+.filterGroup {
+    -ms-flex-preferred-size: 75%;
+    flex-basis: 75%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.filtersFlex {
+    width: 100%;
+}
+
+    .filtersFlex fieldset {
+        margin-left: 30px;
+    }
+
+        .filtersFlex fieldset:first-child {
+            margin-left: 0;
+        }
+
+    .filterGroup .select2-container--bootstrap .select2-selection--single, .filtersFlex fieldset {
+        min-width: 105px;
+        max-width: 282px;
+        width: 100%;
+    }
+
+.DivOverFlow {
+    overflow-x: auto;
+}
+
+.TeacherEditAbsencesDIV tr th:not(:first-child), .TeacherEditAbsencesDIV tr td:not(:first-child) {
+    text-align: center;
+}
+/*End TeacherEditAbsences*/
+/*Eduboards*/
+.EduboardsDIV .btnFlex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 16px
+}
+/*End Eduboards*/
+/*Softone Teacher Edit Grades*/
+.TeacherEditfilterGroup {
+    width: 100%;
+}
+
+    .TeacherEditfilterGroup fieldset {
+        margin-left: 30px;
+    }
+
+    .TeacherEditfilterGroup .TeacherEditGroup1 fieldset:first-child, .TeacherEditfilterGroup .TeacherEditGroup2 fieldset:first-child {
+        margin-left: 0;
+    }
+
+.TeacherEditGroup1 > *, .TeacherEditGroup2 > * {
+    width: 100%;
+    max-width: 281px
+}
+
+.TeacherEditGradesDIV select.form-control {
+    min-width: initial
+}
+
+.TeacherEditGradesDIV .select2-container--bootstrap .select2-selection--single {
+    min-width: initial
+}
+/*End Softone Teacher Edit Grades*/
+/*Statistics Study*/
+.StudyDIV .table thead th:first-child, .StudyDIV .table thead th:nth-child(2), .StudyDIV .table thead th:nth-child(3) {
+    text-align: left;
+}
+
+.StudyDIV .table thead th {
+    text-align: center;
+}
+
+.StudyDIV .table tr td:first-child, .StudyDIV .table tr td:nth-child(2), .StudyDIV .table tr td:nth-child(3) {
+    text-align: left;
+}
+
+.StudyDIV .table tr td {
+    text-align: center;
+}
+/*End Statistics Study*/
+/*Statistics Evaluation*/
+.EvaluationDIV .table thead th:first-child, .EvaluationDIV .table thead th:nth-child(2), .EvaluationDIV .table thead th:nth-child(3) {
+    text-align: left;
+}
+
+.EvaluationDIV .table thead th {
+    text-align: center;
+}
+
+.EvaluationDIV .table tr td:first-child, .EvaluationDIV .table tr td:nth-child(2), .EvaluationDIV .table tr td:nth-child(3) {
+    text-align: left;
+}
+
+.EvaluationDIV .table tr td {
+    text-align: center;
+}
+/*End Statistics Evaluation*/
+/*Statistics Certification*/
+.CertificationDIV .table tr {
+    text-align: center;
+}
+/*End Statistics Certification*/
+/*Statistics Registrations*/
+.RegistrationsDIV .table tr {
+    text-align: center;
+}
+/*End Statistics Registrations*/
+/*Softone Diary*/
+.DiaryDIV .btnFilterSearch.ExtraMargin {
+    margin-left: 0;
+}
+
+.DiaryDIV .diaryRow {
+    width: 100%;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+    .DiaryDIV .diaryRow > :nth-child(3n) {
+        padding-right: 0;
+    }
+
+    .DiaryDIV .diaryRow > :nth-child(1n) {
+        padding-left: 0;
+    }
+
+.BoxDiary .table td.diaryUploads {
+    padding: .75rem 25px
+}
+
+.btnSyllabusVideo i {
+    cursor: pointer
+}
+
+.btnSyllabusDownload a {
+    text-decoration: none;
+    color: #747373
+}
+
+.btnSyllabusDownload i, .btnSyllabusVideo i {
+    width: 20px
+}
+
+    .btnSyllabusVideo i::before {
+        font-size: 19px
+    }
+
+.diaryUploads > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+/*End Softone Diary*/
+/*Softone ParentDiary*/
+.ParentDiaryDIV .col-md-2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+/*End Softone ParentDiary*/
+/*Help Desk*/
+.pace-done.sidebar-minimized .help_desk_side {
+    margin-left: -250px;
+    -webkit-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+    position: absolute;
+}
+
+.pace-done .help_desk_side {
+    position: relative;
+    z-index: 1020;
+    width: 250px;
+    text-align: center;
+    padding: 30px 10px 40px;
+    color: #fff;
+    background-color: #353B3D;
+    -webkit-transition: all .25s ease-in;
+    transition: all .25s ease-in;
+    margin-left: 0
+}
+
+.hp_heading {
+    font-size: 16px;
+    padding: 10px 0;
+    border-top: 2px solid #5D5C5C;
+    border-bottom: 2px solid #5D5C5C
+}
+
+.hp-icon {
+    margin-top: 35px;
+    margin-bottom: 10px
+}
+
+.hp-info {
+    font-size: 14px
+}
+
+    .hp-info a {
+        font-size: 14px;
+        color: #fff
+    }
+
+.pace-done.sidebar-minimized .help_desk_toggle {
+    margin-left: -250px;
+    margin-top: -65px;
+    -webkit-transition: all .25s ease-out;
+    transition: all .25s ease-out
+}
+
+.pace-done .help_desk_toggle {
+    position: relative;
+    z-index: 1020;
+    width: 250px;
+    margin-top: 0;
+    text-align: center;
+    padding: 30px 10px;
+    color: #fff;
+    background-color: #353B3D;
+    -webkit-transition: all .25s ease-in;
+    transition: all .25s ease-in;
+    margin-left: 0
+}
+
+.hp_body {
+    display: none
+}
+/*End Help Desk*/
+/*educational Planning Access*/
+.EduPlanningAccessDIV .col-md-2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.overflow-input ul.select2-selection__rendered {
+    max-height: 200px;
+    overflow-y: auto !important;
+}
+
+.btnAllUsers {
+    padding: 1px 20px
+}
+/*End educational Planning Access*/
+/*Softone ParentGradeBook*/
+.ParentGradebookDIV .btnFilterSearch.ExtraMargin {
+    margin-left: 0
+}
+/*End Softone ParentGradeBook*/
+/*Softone ParentAbsences*/
+.ParentAbsencesDIV .btnFilterSearch.ExtraMargin {
+    margin-left: 0
+}
+/*End Softone ParentAbsences*/
+/*NewsAdministration*/
+.NewsAdministrationDIV .col2Btn {
+    margin-top: 32px
+}
+
+.NewsAdministrationDIV .col-md-2 {
+    margin-top: 32px;
+}
+
+.FlexDiv {
+    margin-left: -15px;
+    margin-right: -15px
+}
+
+    .FlexDiv > div {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        -ms-flex-item-align: start;
+        align-self: flex-start;
+    }
+
+.d-row {
+    margin-right: -15px;
+    margin-left: -15px
+}
+
+.NewsEdtiClass .dropzone {
+    margin-top: 0;
+    padding: 54px 15px
+}
+
+.d-row > div {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.NewsImgProfile {
+    padding: 10px;
+    background-color: #F2F4F8;
+    margin-right: 15px;
+    border: 1px solid #c0cadd;
+    max-height: 187px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    min-height: 187px;
+}
+
+    .NewsImgProfile .img-thumbnail {
+        padding: unset;
+        background-color: unset;
+        display: inline-block;
+        border-radius: unset;
+        max-width: unset;
+        max-height: unset;
+        margin-right: unset;
+        width: 100%;
+        height: unset;
+        border: unset
+    }
+/*End NewsAdministration*/
+/*NotificationsAdministrationDIV*/
+.NotificationsAdministrationDIV .col2Btn {
+    margin-top: 32px
+}
+/*End NotificationsAdministrationDIV*/
+/*Educational Parameters educational content management*/
+.title-left {
+    max-width: 50%;
+    width: 100%
+}
+
+.title-right {
+    max-width: 50%;
+    width: 100%;
+    margin-bottom: 16px;
+    margin-left: 20px;
+}
+
+.UnitEdit {
+    margin-top: 40px
+}
+
+.inputMega {
+    width: 65%
+}
+/*End Educational Parameters educational content management*/
+/*Pages*/
+.treebtns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+    .treebtns > :not(:first-child) {
+        margin-left: 10px;
+    }
+
+.pages.title-right {
+    margin-bottom: 0;
+    max-width: 75%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
+.pages.title-left {
+    max-width: 25%;
+    margin-right: 20px
+}
+
+.pages.title-right .select2-container--bootstrap, .pages.title-right fieldset {
+    width: 100% !important
+}
+/*End Pages*/
+/*newsadministration on CreateNew*/
+.flexColMd45 {
+    max-width: 45%;
+    width: 100%
+}
+
+.flexColMd6 {
+    max-width: 50%;
+    width: 100%
+}
+
+.flexColMd7 {
+    max-width: 70%;
+    width: 100%;
+}
+
+.flexColMd3 {
+    max-width: 30%;
+    width: 100%;
+}
+
+.flexColMd9 {
+    max-width: 90%;
+    width: 100%;
+}
+
+.flexColMd {
+    max-width: 60px;
+    width: 100%;
+}
+
+.flexRow > :nth-child(1) {
+    padding-right: 15px;
+}
+
+.flexRow > :not(:nth-child(1)) {
+    padding-left: 15px;
+}
+
+.flexRowLg > :nth-child(1) {
+    padding-right: 15px;
+}
+
+.flexRowLg > :not(:nth-child(1)) {
+    padding-left: 15px;
+}
+
+.flexBtnRow > :nth-child(1) {
+    padding-right: 15px;
+}
+
+.flexBtnRow > :not(:nth-child(1)) {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.adminDiv .dropzone {
+    margin-top: 0;
+    padding: 54px 15px;
+    width: 100%;
+}
+
+.adminDiv .img-thumbnail {
+    border-radius: 0;
+    /*max-width: initial;*/
+    /*max-height: initial;*/
+    /*width: initial;*/
+    /*height: initial;*/
+    margin-right: 0;
+    border-color: transparent;
+}
+
+.imgCurrent {
+    width: 100%;
+    border: 1px solid #c0cadd;
+    background-color: #F2F4F8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 208px;
+}
+
+.adminBtnDng {
+    margin-left: 15px;
+}
+
+.currentAttach {
+    margin-left: 15px;
+}
+/*End newsadministration on CreateNew*/
+/*educational Planning UserManagement*/
+.userCode {
+    width: 100%
+}
+
+.userCodeGen {
+    margin-left: 10px
+}
+
+    .userCodeGen .btn-outline-primary > i {
+        padding: 0
+    }
+
+.switchBlock {
+    max-width: 300px;
+    width: 100%;
+}
+
+.imgUserCurrent, .imgAssetType, .imgOrganization, .imgClassType, .imgLesson {
+    height: 187px;
+    /*max-width: 187px;*/
+    /*width: 100%;*/
+    width: 187px;
+    border: 1px solid #c0cadd;
+    /*border-radius: 50%;*/
+    background-color: #f2f4f8;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+    .imgLesson .img-thumbnail {
+        max-height: 187px;
+    }
+
+    .imgOrganization .img-thumbnail {
+        max-height: 187px;
+    }
+
+    .imgAssetType .img-thumbnail {
+        max-height: 187px;
+    }
+
+.UserManagementDIV {
+    padding-top: 1.23rem
+}
+
+.UserInfo {
+    height: 379px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.UserManagementDIV input[type=radio] {
+    position: absolute;
+    opacity: 0;
+}
+
+.UserManagementDIV .inline span {
+    position: relative;
+    margin-left: 30px;
+}
+
+    .UserManagementDIV .inline span::before {
+        position: absolute;
+        content: "";
+        left: -23px;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 50%;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-box-shadow: inset 0 0 0 5px #fff;
+        box-shadow: inset 0 0 0 5px #fff;
+        border: 1px solid #D1D0D0
+    }
+
+.UserManagementDIV input[type=radio]:checked ~ span.lbl.middle::before {
+    background-color: #177B96;
+}
+
+.UserManagementDIV .select2-container--bootstrap .select2-selection--single {
+    min-width: unset
+}
+
+.UserManagementDIV .img-thumbnail {
+    max-width: 187px;
+    max-height: 187px;
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+/*End educational Planning UserManagement*/
+/*educational Planning groups_management*/
+.padReplace {
+    padding-top: 1.25rem
+}
+/*End educational Planning groups_management*/
+/*educational Parameters Lessons*/
+.lessonsDIV .dropzone {
+    margin-top: 0
+}
+
+.ImgCurrentGroup {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.CurrentImg {
+    background-color: #F2F4F8;
+    margin-right: 30px;
+    border: 1px solid #c0cadd;
+    height: 187px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+    .CurrentImg .img-thumbnail {
+        padding: 0;
+        background-color: unset;
+        border-radius: unset;
+        max-width: 100%;
+        max-height: initial;
+        margin-right: 0;
+        width: 100%;
+        height: initial;
+        border: unset
+    }
+
+.ProductCategoryImg {
+    background-color: #F2F4F8;
+    border: 1px solid #c0cadd;
+    align-items: center
+}
+
+    .ProductCategoryImg .img-thumbnail {
+        padding: 0;
+        background-color: unset;
+        border-radius: unset;
+        max-width: 100%;
+        max-height: initial;
+        margin-right: 0;
+        width: 100%;
+        height: initial;
+        border: unset
+    }
+/*End educational Parameters Lessons*/
+/*TeacherEdit Syllabus*/
+.TeachedEditSyllabusDIV th {
+    text-align: center;
+}
+/*End TeacherEdit Syllabus*/
+/*Softone Absences*/
+.absencesMods {
+    -webkit-box-pack: end !important;
+    -ms-flex-pack: end !important;
+    justify-content: flex-end !important;
+}
+/*End Softone Absences*/
+/*Softone TeacherGradebook*/
+.TeacherGradebookDIV .btnFilterSearch.ExtraMargin {
+    margin-left: 0;
+}
+/*End Softone TeacherGradebook*/
+/*Softone TeacherGradebook*/
+.EditGradeStud {
+    background-color: transparent;
+    border: none;
+    pointer-events: none;
+    width: 100%
+}
+/*End Softone TeacherGradebook*/
+
+/*Media Queries*/
+@media (max-width:1830px) {
+    /*Softone Teacher Edit Grades*/
+    .TeacherEditfilters {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+    /*End Softone Teacher Edit Grades*/
+    /*educational Planning Access*/
+    .overflow-input ul.select2-selection__rendered {
+        overflow-x: auto !important;
+    }
+    /*End educational Planning Access*/
+}
+
+@media (max-width:1800px) {
+    /*Pages*/
+    .pages_title-row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .pages.title-left, .pages.title-right {
+        max-width: 100%;
+    }
+
+    .pages.title-right {
+        margin-left: 0;
+    }
+
+    .treebtns {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+        .treebtns > :not(:first-child) {
+            margin-left: 0;
+            margin-top: 10px
+        }
+    /*End Pages*/
+}
+
+@media (max-width:1794px) {
+    /*Surveys History*/
+    .SurveyDashboardInfoLabel1 span, .SurveyDashboardInfoLabel2 span, .SurveyDashboardInfoLabel3 span, .SurveyDashboardInfoLabel4 span, .SurveyInfoLabel1 span, .SurveyInfoLabel2 span, .SurveyInfoLabel3 span {
+        font-size: 40px;
+    }
+
+    .SurveyInfoLabel1 span, .SurveyDashboardInfoItem label, .SurveyInfoItem label {
+        font-size: 16px;
+    }
+    /*End Surveys History*/
+}
+
+@media (max-width:1767px) {
+    /*LessonBoxContainer*/
+    .LessonBox {
+        min-height: 462px;
+    }
+
+    .LessonBoxFooter {
+        position: absolute;
+        bottom: 0;
+        width: 91%;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%)
+    }
+
+        .LessonBoxFooter label {
+            display: none;
+        }
+
+    .FooterIconsStart {
+        -ms-flex-preferred-size: 35%;
+        flex-basis: 35%;
+    }
+
+    .LessonBoxFooterIconSession i {
+        top: -5px;
+    }
+    /*LessonBoxConatinerListView*/
+    .LBXCRow .LessonBox {
+        min-height: auto;
+    }
+
+    .LBXCRow .LessonBoxFooter {
+        position: relative;
+        left: unset;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    .LBXCRow .LessonBoxContent {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+
+    .LBXCRow .LessonBoxFooter label {
+        display: block;
+    }
+
+    .LBXCRow .FooterIconsStart {
+        -ms-flex-preferred-size: 56%;
+        flex-basis: 56%;
+    }
+
+    .LBXCRow .LessonBoxImage > img {
+        position: relative;
+    }
+    /*End LessonBox*/
+}
+
+@media (max-width:1720px) {
+    /*TeacherEditAbsences*/
+    .filterGroup .select2-container--bootstrap .select2-selection--single, .filtersFlex fieldset {
+        min-width: 140px;
+    }
+    /*End TeacherEditAbsences*/
+    /*Softone diary*/
+    .TeacherDiaryDIV .BoxDiary.View2 .BoxDiaryTable {
+        overflow-x: auto;
+    }
+
+        .TeacherDiaryDIV .BoxDiary.View2 .BoxDiaryTable .table {
+            width: 1158px;
+        }
+    /*End Softone diary*/
+}
+
+@media (max-width:1610px) {
+    .DivOverFlowX .table {
+        width: 1245px;
+    }
+    /*TeacherEditAbsences*/
+    .overflowTable {
+        width: 1245px;
+    }
+    /*End TeacherEditAbsences*/
+}
+
+@media (max-width:1590px) {
+    /*TeacherEditAbsences*/
+    .headerFlex {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .filterGroup {
+        margin-top: 30px;
+    }
+    /*End TeacherEditAbsences*/
+    /*FullWidthBox*/
+    .myCertifications .FullWidthBox {
+        overflow-x: auto
+    }
+
+    .FullWidthBox > :nth-child(1) {
+        width: 1240px
+    }
+    /*End FullWidthBox*/
+}
+
+@media (max-width:1518px) {
+    /*LessonBoxConatiner*/
+    .LBXCRow .LessonBoxFooter label {
+        display: none;
+    }
+
+    .LBXCRow .FooterIconsStart {
+        -ms-flex-preferred-size: 35%;
+        flex-basis: 35%;
+    }
+
+    .LBXCRow .LessonBoxTitleTeachers {
+        -ms-flex-preferred-size: 80%;
+        flex-basis: 80%;
+    }
+    /*End LessonBoxConatiner*/
+}
+
+@media (max-width:1500px) {
+    /*Filters*/
+    .DivFilters > .row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-bottom: 10px
+    }
+
+        .DivFilters > .row > .col-md-10 {
+            -webkit-box-flex: 100%;
+            -ms-flex: 100%;
+            flex: 100%;
+            max-width: 100%;
+        }
+
+    .btnFilterSearch {
+        margin-top: 0
+    }
+
+    .colMd4 .btnFilterSearch {
+        margin-top: 32px
+    }
+    /*End Filters*/
+    /*TeacherCertification*/
+    .TeacherCertificationDIV .FlexDiv {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-bottom: 10px
+    }
+
+        .TeacherCertificationDIV .FlexDiv .col-md-10 {
+            -webkit-box-flex: 100%;
+            -ms-flex: 100%;
+            flex: 100%;
+            max-width: 100%;
+        }
+
+        .TeacherCertificationDIV .FlexDiv .col-md-2 {
+            min-width: 196px;
+            margin-left: auto;
+        }
+    /*End TeacherCertification*/
+    /*TeacherEvaluation*/
+    .TeacherEvaluationDIV .DivFilters > .row {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    /*End TeacherEvaluation*/
+    /*AccessStatistics*/
+    .AccessStatisticsDIV .col-md-2 {
+        min-width: 236px;
+        margin-left: auto
+    }
+    /*End AccessStatistics*/
+    /*Statistics Study*/
+    .EduboardsDIV .btnFlex {
+        margin-left: auto;
+        min-width: 236px;
+    }
+    /*End Statistics Study*/
+    /*Statistics Certificaton*/
+    .CertificationDIV .col-md-2 {
+        margin-left: auto;
+        min-width: 236px;
+    }
+    /*End Statistics Certificaton*/
+    /*Statistics Access*/
+    .AcessDIV .col-md-2 {
+        margin-left: auto;
+        min-width: 236px;
+    }
+    /*End Statistics Access*/
+    /*NewsAdministration*/
+    .NewsAdministrationDIV .col2Btn {
+        margin-top: 0
+    }
+
+    .NewsAdministrationDIV .col-md-2 {
+        margin-left: auto;
+        margin-top: 0;
+        min-width: 236px;
+    }
+    /*End NewsAdministration*/
+    /*NotificationsAdministrationDIV*/
+    .NotificationsAdministrationDIV .col2Btn {
+        margin-top: 0
+    }
+
+    .NotificationsAdministrationDIV .col-md-2 {
+        margin-left: auto;
+        min-width: 236px;
+    }
+    /*End NotificationsAdministrationDIV*/
+    /*educational Planning Access*/
+    .EduPlanningAccessDIV .col-md-2 {
+        margin-left: auto;
+        min-width: 236px;
+    }
+
+    .EduPlanningAccessDIV .select2-container--bootstrap .select2-selection--single {
+        min-width: initial;
+    }
+    /*End educational Planning Access*/
+}
+
+@media (max-width:1470px) {
+    /*Absences*/
+    .BoxAbsences.View1 .BoxAbsencesInfo, .BoxAbsences.View1 .BoxAbsencesTable {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    }
+
+    .BoxAbsences.View1 {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+        .BoxAbsences.View1 .BoxAbsencesTable {
+            overflow-x: auto;
+        }
+
+            .BoxAbsences.View1 .BoxAbsencesTable .table {
+                width: 1110px;
+            }
+
+        .BoxAbsences.View2 .BoxAbsencesInfo, .BoxAbsences.View1 .BoxAbsencesTable {
+            -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+        }
+
+    .BoxAbsences.View2 {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+        .BoxAbsences.View2 .BoxAbsencesTable {
+            overflow-x: auto;
+        }
+
+            .BoxAbsences.View2 .BoxAbsencesTable .table {
+                width: 1110px;
+            }
+    /*End Absences*/
+    /*Softone Absences*/
+    .BoxDiary.View2 {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important
+    }
+
+        .BoxDiary.View2 .BoxDiaryTable {
+            overflow-x: auto;
+        }
+
+            .BoxDiary.View2 .BoxDiaryTable .table {
+                width: 1553px;
+            }
+    /*End Softone Absences*/
+    /*GradeBook*/
+    .BoxGrades.View1 .BoxAbsencesInfo, .BoxAbsences.View1 .BoxAbsencesTable {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    }
+
+    .BoxGrades.View1 {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+        .BoxGrades.View1 .BoxAbsencesTable {
+            overflow-x: auto;
+        }
+
+            .BoxGrades.View1 .BoxAbsencesTable .table {
+                width: 1110px;
+            }
+
+        .BoxGrades.View1 .BoxAbsencesInfo, .BoxAbsences.View1 .BoxAbsencesTable {
+            -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+        }
+
+    .BoxGrades.View1 {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+        .BoxGrades.View1 .AccordionCard-body {
+            overflow-x: auto;
+        }
+
+        .BoxGrades.View1 .BoxGradesTable .AccordionCard-body .table {
+            width: 1110px;
+        }
+    /*End GradeBook*/
+}
+
+@media (max-width:1460px) {
+    /*Common Classes*/
+    .FullWidthBox {
+        min-height: 115px;
+    }
+    /*End Common Classes*/
+    /*Surveys History*/
+    .SurveyDashboardInfoImg1, .SurveyDashboardInfoImg2, .SurveyDashboardInfoImg3, .SurveyDashboardInfoImg4, .SurveyInfoImg1, .SurveyInfoImg2, .SurveyInfoImg3 {
+        padding: 20px;
+        min-width: auto;
+    }
+
+        .SurveyInfoImg1 img, .SurveyInfoImg2 img, .SurveyInfoImg3 img, .SurveyDashboardInfoImg4 img {
+            width: 100%;
+        }
+    /*End Surveys History*/
+}
+
+@media (max-width:1435px) {
+    /*newsadministration on CreateNew*/
+    .flexColMd3 {
+        max-width: 50%
+    }
+
+    .flexColMd7 {
+        max-width: 50%
+    }
+    /*End newsadministration on CreateNew*/
+}
+
+@media (max-width:1411px) {
+    /*Common Classes*/
+    .FullWidthBox {
+        min-height: 135px;
+    }
+    /*End Common Classes*/
+}
+
+@media (max-width:1395px) {
+    /*LessonBoxConatiner*/
+    .pace-done:not(.sidebar-hidden) .LBXCRow .LessonBoxContent {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .LBXCRow .LessonBoxFooter {
+        width: 100%;
+    }
+
+    .LBXCRow .LessonBoxContent {
+        padding: 14px 25px 14px 25px;
+    }
+
+    .LBXCRow .LessonBoxTitleTeachers {
+        -ms-flex-preferred-size: 80%;
+        flex-basis: 50%;
+    }
+
+    .LBXCRow .LessonBox {
+        min-height: 191px;
+        margin: 1%;
+    }
+
+    .LBXCRow .LessonBoxImage {
+        max-width: 310px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        max-height: 191px;
+        min-height: 191px;
+    }
+
+        .LBXCRow .LessonBoxImage > img {
+            -webkit-transform: scale(1.5,1.5);
+            transform: scale(1.5,1.5);
+        }
+    /*End LessonBoxConatiner*/
+    /*Softone Teacher Edit Grades*/
+    .TeacherEditfilters .select2-container--bootstrap .select2-selection--single {
+        min-width: initial;
+    }
+
+    .TeacherEditfilters .select2-container--bootstrap .select2-selection--single, .TeacherEditfilters select.form-control, .TeacherEditfilterGroup fieldset {
+        min-width: 0;
+    }
+    /*End Softone Teacher Edit Grades*/
+}
+
+@media (min-width:1351px) {
+    /*FullWidthBox*/
+    .BoxRoom {
+        max-width: 387px
+    }
+    /*End FullWidthBox*/
+}
+
+@media (max-width:1350px) and (min-width: 768px) {
+    /*FullWidthBox*/
+    .pace-done:not(.sidebar-hidden) .FullWidthBox {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        position: relative;
+    }
+
+        .pace-done:not(.sidebar-hidden) .FullWidthBox > div {
+            -webkit-box-orient: vertical !important;
+            -webkit-box-direction: normal !important;
+            -ms-flex-direction: column !important;
+            flex-direction: column !important;
+            margin-left: 150px;
+        }
+
+    .pace-done:not(.sidebar-hidden) .BoxDates {
+        border-right: none;
+        margin: 0 30px 0 30px;
+        border-bottom: solid 1px #DCDCDC;
+        padding: 20px 10px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+
+        .pace-done:not(.sidebar-hidden) .BoxDates.SameDay {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column
+        }
+
+        .pace-done:not(.sidebar-hidden) .BoxDates > :nth-child(2) {
+            margin: 0 5px;
+        }
+
+        .pace-done:not(.sidebar-hidden) .BoxDates label {
+            margin: 0 5px;
+        }
+
+    .pace-done:not(.sidebar-hidden) .BoxDuration {
+        border-right: none;
+        border-left: none;
+        margin: 0 30px;
+        padding: 25px 10px;
+        border-top: solid 1px #DCDCDC;
+    }
+
+        .pace-done:not(.sidebar-hidden) .BoxDuration > div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%
+        }
+
+    .BoxDuration label {
+        margin-right: 5px
+    }
+
+    .pace-done:not(.sidebar-hidden) .BoxLessonTeacher {
+        padding: 25px 10px;
+        color: #8B827B;
+        margin: 0 30px 0 30px
+    }
+
+    .pace-done:not(.sidebar-hidden) .BoxRoom > div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+    }
+
+        .pace-done:not(.sidebar-hidden) .BoxRoom > div > label:first-child {
+            margin-right: 5px;
+        }
+
+    .pace-done:not(.sidebar-hidden) .BoxRoom {
+        border-right: none;
+        border-left: none;
+        margin: 0 30px 0 30px;
+        padding: 25px 10px;
+        border-top: solid 1px #DCDCDC;
+        border-bottom: solid 1px #DCDCDC
+    }
+
+    .pace-done:not(.sidebar-hidden) .BoxBtn > .btn {
+        margin: 10px auto;
+    }
+
+    .pace-done:not(.sidebar-hidden) .BoxStatus {
+        position: absolute;
+        height: 100%;
+        left: 0;
+    }
+
+    .pace-done:not(.sidebar-hidden) .FullWidthBox > :nth-child(1) {
+        width: initial;
+    }
+
+    .pace-done:not(.sidebar-hidden) .myCertifications .FullWidthBox {
+        overflow-x: unset
+    }
+
+    .pace-done:not(.sidebar-hidden) .BoxLessonTeacher, .BoxRoom {
+        width: initial
+    }
+
+    .pace-done:not(.sidebar-hidden) .BoxType {
+        margin: 0 30px;
+        padding: 25px 10px;
+        border-left: unset;
+        border-top: solid 1px #DCDCDC
+    }
+
+    .pace-done:not(.sidebar-hidden) .BoxBtn {
+        margin: 0 30px;
+        padding: 25px 10px;
+        border-left: unset
+    }
+
+    .FullWidthBox > :nth-child(1) {
+        width: 100%;
+    }
+    /*End FullWidthBox*/
+}
+
+@media (max-width:1300px) {
+    /*LessonBoxConatiner*/
+    .pace-done:not(.sidebar-hidden) .LessonBox {
+        width: 48%;
+        margin: 1%
+    }
+
+    .pace-done:not(.sidebar-hidden) .LBXCRow .LessonBox {
+        width: initial
+    }
+    /*End LessonBoxConatiner*/
+    /*News*/
+    .pace-done:not(.sidebar-hidden) .NewsBox {
+        width: 48%;
+        margin: 1%;
+    }
+    /*End News*/
+    /*Jobs*/
+    .pace-done:not(.sidebar-hidden) .JobsBox {
+        width: 48%;
+        margin: 1%;
+    }
+
+    .pace-done:not(.sidebar-hidden) .modal-body .JobsBox {
+        width: 100%;
+        margin: 0;
+    }
+    /*End Jobs*/
+    /*Educational Planning Access*/
+    .overflow-input {
+        max-width: 460px;
+        width: 100%;
+        overflow-x: auto
+    }
+
+        .overflow-input.full {
+            max-width: 100%;
+        }
+    /*End Educational Planning Access*/
+    /*Surveys History*/
+    .pace-done:not(.sidebar-hidden) .SurveyInfo {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .pace-done:not(.sidebar-hidden) .SurveyInfoItem, .pace-done:not(.sidebar-hidden) .SurveyDashboardInfoItem {
+        width: 100%;
+        margin: 10px;
+    }
+
+    .pace-done:not(.sidebar-hidden) .SurveyDashboardInfoImg1, .pace-done:not(.sidebar-hidden) .SurveyDashboardInfoImg2, .pace-done:not(.sidebar-hidden) .SurveyDashboardInfoImg3, .pace-done:not(.sidebar-hidden) .SurveyDashboardInfoImg4, .pace-done:not(.sidebar-hidden) .SurveyInfoImg1, .pace-done:not(.sidebar-hidden) .SurveyInfoImg2, .pace-done:not(.sidebar-hidden) .SurveyInfoImg3 {
+        min-width: 94px
+    }
+    /*End Surveys History*/
+}
+
+@media (max-width:1270px) {
+    /*TeacherEditAbsences*/
+    .filterGroup {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    /*End TeacherEditAbsences*/
+}
+
+@media (max-width:1265px) {
+    /*Common Classes*/
+    .FullWidthBox {
+        min-height: 155px;
+    }
+    /*End Common Classes*/
+}
+
+@media (max-width:1255px) {
+    /*TeacherNotificationsAdministration*/
+    .ResponsiveDiv {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+        .ResponsiveDiv .flexButtons {
+            max-width: 100%
+        }
+
+    .btnCustom {
+        float: left !important
+    }
+
+        .btnCustom.Custom2 {
+            margin-left: 10px
+        }
+
+        .btnCustom.Custom1 {
+            margin-left: 0 !important
+        }
+
+    .TeacherNotificationsAdminDIV .btn-primary {
+        margin-left: 10px
+    }
+    /*End TeacherNotificationsAdministration*/
+    /*TeacherCertStats*/
+    .TeacherCertStats > div {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+    /*End TeacherCertStats*/
+    /*End Softone TeacherGradebook*/
+    .TeacherGradebookDIV .FilterFlex {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .TeacherGradebookDIV select.form-control {
+        min-width: initial;
+    }
+    /*Softone TeacherGradebook*/
+    /*Softone Absences*/
+    .TeacherDiaryDIV .FilterFlex {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .TeacherDiaryDIV .btnFilterSearch.ExtraMargin {
+        margin-left: 0
+    }
+
+    .TeacherDiaryDIV select.form-control {
+        min-width: initial;
+    }
+    /*End Softone Absences*/
+    /*Common Classes*/
+    .pace-done:not(.sidebar-hidden) .flexRowLg {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+        .pace-done:not(.sidebar-hidden) .flexRowLg > :not(:nth-child(1)) {
+            padding-left: 0
+        }
+
+        .pace-done:not(.sidebar-hidden) .flexRowLg h3 {
+            margin-bottom: 22px
+        }
+    /*End Common Classes*/
+}
+
+@media (max-width:1240px) {
+    /*Common Classes*/
+    .FullWidthBox {
+        min-height: 175px;
+    }
+    /*End Common Classes*/
+    /*Assessment Question List*/
+    .QMQuestionList {
+        padding: 30px 15px;
+    }
+
+        .QMQuestionList li {
+            font-size: 13px;
+        }
+    /*End Assessment Question List*/
+}
+
+@media (max-width:1200px) {
+    /*AccordionCard*/
+    .AccordionCard-body .AccordionCard-body {
+        margin-left: 30px;
+    }
+    /*End AccordionCard*/
+    /*newsadministration*/
+    .pace-done:not(.sidebar-hidden) .FlexDiv {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+    /*End newsadministration*/
+    /*newsadministration on CreateNew*/
+    .pace-done:not(.sidebar-hidden) .adminDiv {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .pace-done:not(.sidebar-hidden) .flexColMd6 {
+        max-width: 100%;
+    }
+
+    .pace-done:not(.sidebar-hidden) .flexRow > :not(:nth-child(1)) {
+        padding-left: 0
+    }
+
+    .pace-done:not(.sidebar-hidden) .flexRow > :nth-child(1) {
+        padding-right: 0
+    }
+
+    .pace-done:not(.sidebar-hidden) .imgCurrent {
+        height: 187px;
+    }
+    /*End newsadministration on CreateNew*/
+    /*educational Planning UserManagement*/
+    .UserInfo {
+        height: initial;
+    }
+
+    .pace-done:not(.sidebar-hidden) .UserManagementDIV .flexRow > :not(:nth-child(1)) {
+        padding-left: 15px
+    }
+    /*End educational Planning UserManagement*/
+}
+
+@media (max-width:1170px) {
+    /*card-title*/
+    .card-title > div {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+        .card-title > div > div {
+            width: 100%;
+            max-width: 100%;
+        }
+
+            .card-title > div > div:nth-child(2) {
+                -webkit-box-pack: justify !important;
+                -ms-flex-pack: justify !important;
+                justify-content: space-between !important;
+            }
+
+                .card-title > div > div:nth-child(2) > div:nth-child(3) {
+                    margin-right: auto !important;
+                }
+    /*End card-title*/
+    /*DashboardTeacher*/
+    .DashboardTeacher .card-title > div {
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+    /*End DashboardTeacher*/
+    /*TeacherClasses*/
+    .TeacherClasses .card-title > div {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
+    /*End TeacherClasses*/
+    /*Notification*/
+    .card-title > div > div.ViewNotificationDateRight {
+        -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+        justify-content: flex-start !important;
+        margin-top: 10px;
+    }
+    /*End Notification*/
+    /*News*/
+    .card-title > div > div.ViewNewDateRight {
+        -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+        justify-content: flex-start !important;
+        margin-top: 10px;
+    }
+    /*End News*/
+    /*General Classes*/
+    h3 {
+        margin-bottom: 22px;
+    }
+    /*End General Classes*/
+    /*ViewAsset2*/
+    .viewAssetMainTitle {
+        margin-bottom: 10px;
+    }
+
+    .LessonShowContent i.RDCicon-previus, .LessonShowContent i.RDCicon-next {
+        margin-bottom: 0
+    }
+
+    .card-title .viewAssetMainTitle {
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+        position: relative;
+    }
+
+        .card-title .viewAssetMainTitle > div:nth-child(2) {
+            width: initial;
+        }
+
+    .viewAssetMainTitle h3 {
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    .viewAssetMainMenu {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .viewAssetArrows {
+        position: absolute;
+        right: 0;
+        top: 4px;
+        margin-top: 0;
+    }
+    /*End ViewAsset2*/
+    /*Softone ParentGradeBook*/
+    .ParentGradebookDIV .select2-container--bootstrap .select2-selection--single {
+        min-width: initial;
+    }
+    /*End Softone ParentGradeBook*/
+}
+
+@media (max-width:1135px) {
+    .sidebar-hidden .LBXCRow .LessonBoxContent {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width:1120px) {
+    /*Softone Diary*/
+    .TeacherDiaryDIV .select2-container--bootstrap .select2-selection--single {
+        min-width: initial;
+    }
+    /*End Softone Diary*/
+}
+
+@media (max-width:1115px) {
+    /*TeacherEvaluation*/
+    .TeacherEvaluationDIV .select2-selection.select2-selection--single {
+        min-width: 100%
+    }
+    /*End TeacherEvaluation*/
+}
+
+@media (max-width:1100px) and (min-width: 768px) {
+    /*Full Width*/
+    .FullWidthBox {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        position: relative;
+    }
+
+        .FullWidthBox > div {
+            -webkit-box-orient: vertical !important;
+            -webkit-box-direction: normal !important;
+            -ms-flex-direction: column !important;
+            flex-direction: column !important;
+            margin-left: 150px;
+        }
+
+    .BoxDates {
+        border-right: none;
+        margin: 0 30px 0 30px;
+        border-bottom: solid 1px #DCDCDC;
+        padding: 20px 10px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+
+        .BoxDates.SameDay {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column
+        }
+
+        .BoxDates > :nth-child(2) {
+            margin: 0 5px;
+        }
+
+        .BoxDates label {
+            margin: 0 5px;
+        }
+
+    .BoxDuration {
+        border-right: none;
+        border-left: none;
+        margin: 0 30px;
+        padding: 25px 10px;
+        border-top: solid 1px #DCDCDC;
+    }
+
+        .BoxDuration > div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%
+        }
+
+    .BoxLessonTeacher {
+        padding: 25px 10px;
+        color: #8B827B;
+        margin: 0 30px 0 30px
+    }
+
+    .BoxRoom > div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+    }
+
+        .BoxRoom > div > label:first-child {
+            margin-right: 5px;
+        }
+
+    .BoxRoom {
+        border-right: none;
+        border-left: none;
+        margin: 0 30px 0 30px;
+        padding: 25px 10px;
+        border-top: solid 1px #DCDCDC;
+        border-bottom: solid 1px #DCDCDC
+    }
+
+    .BoxBtn > .btn {
+        margin: 20px auto;
+    }
+
+    .BoxStatus {
+        position: absolute;
+        height: 100%;
+        left: 0;
+    }
+    /*End Full Width*/
+}
+
+@media (max-width:1080px) {
+    .AccordionCard-body .FooterIconsStart > :nth-child(2) {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: start !important;
+        -ms-flex-align: start !important;
+        align-items: flex-start !important;
+    }
+
+    .AccordionCard-body .FooterIconsStart span {
+        margin-left: 0;
+    }
+    /*newsadministration*/
+    .FlexDiv {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+    /*End newsadministration*/
+    /*Common Classes*/
+    .pace-done:not(.sidebar-hidden) .flexRowLg .flexRowLg_child {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column;
+        flex-direction: column !important;
+    }
+
+        .pace-done:not(.sidebar-hidden) .flexRowLg .flexRowLg_child .mr-2 {
+            margin-right: 0 !important
+        }
+
+    .pace-done:not(.sidebar-hidden) .DivFiltersLg .row {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column;
+        flex-direction: column !important;
+    }
+
+    .pace-done:not(.sidebar-hidden) .colMd4 .btnFilterSearch {
+        margin-top: 0
+    }
+
+    .pace-done:not(.sidebar-hidden) .colMd4 {
+        max-width: 100%;
+    }
+    /*End Common Classes*/
+}
+
+@media (min-width:1080px) {
+    .btnFilterSearch {
+        font-size: 15px;
+    }
+}
+
+@media (max-width:1024px) {
+    /*Notifications*/
+    .NotificationDelete {
+        display: block;
+        color: #D1D0D0;
+        font-size: 18px
+    }
+    /*End Notifications*/
+    /*Eduboards*/
+    .EduboardsDIV .btnFlex {
+        -ms-flex-item-align: end;
+        align-self: flex-end;
+        min-width: 191px;
+    }
+    /*End Eduboards*/
+    /*TeacherNotificationsAdministration*/
+    .TeacherNotificationsAdminDIV .flexButtons {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+    .flexButtons .btnSearch {
+        margin-bottom: 8px;
+        -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+        order: 3
+    }
+    /*End TeacherNotificationsAdministration*/
+}
+
+@media (min-width: 992px) {
+    .navbar .sidebar-minimized .sidebar .dropdown-toggle i, .sidebar-minimized .sidebar .nav-link i, .sidebar-minimized .sidebar .navbar .dropdown-toggle i {
+        width: 45px;
+        font-size: 24px
+    }
+
+    .brand-minimized .imgLogoSymbol {
+        margin-top: 11px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    /*Header*/
+    .app-header.navbar {
+        background-color: #fff;
+        border-bottom: 1px solid #fff;
+    }
+    /*End Header*/
+}
+
+@media (max-width:991px) {
+    /*LessonBoxConatiner*/
+    .LBXCRow .LessonBox {
+        min-height: 171px;
+    }
+    /*End LessonBoxConatiner*/
+    /*Surveys History*/
+    .SurveyInfo {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .SurveyInfoItem, .SurveyDashboardInfoItem {
+        width: 100%;
+        margin: 10px;
+    }
+
+    .SurveyDashboardInfoImg1, .SurveyDashboardInfoImg2, .SurveyDashboardInfoImg3, .SurveyDashboardInfoImg4, .SurveyInfoImg1, .SurveyInfoImg2, .SurveyInfoImg3 {
+        min-width: 94px
+    }
+    /*End Surveys History*/
+}
+
+@media (min-width:768px) {
+    /*Softone TeacherAbsences*/
+    .TeacherGradebookDIV.btnPrimary-ml .btnFilterSearch.ExtraMargin {
+        margin-left: 30px;
+    }
+    /*End Softone TeacherAbsences*/
+    /*ViewAsset2*/
+    .LessonMenu h2 a {
+        margin-bottom: 40px;
+        display: block;
+    }
+    /*End ViewAsset2*/
+    /*TeacherEvaluation*/
+    .TeacherEvaluationDIV.withMargin .btnFilterSearch {
+        margin-top: 32px;
+    }
+    /*End TeacherEvaluation*/
+}
+
+@media (max-width:767px) {
+    .flex-sm-column {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+    /*ViewAsset2*/
+    .QMQuestionList {
+        max-height: 350px;
+        min-height: 350px;
+        overflow: auto;
+    }
+
+    .QuizContents-hidden {
+        margin-top: -350px;
+        margin-left: 0;
+    }
+
+    .LessonContents {
+        max-height: 500px;
+        min-height: 500px;
+        overflow: auto;
+        background-color: #fff;
+    }
+
+    .LessonContents-hidden {
+        margin-top: -500px;
+        margin-left: 0;
+    }
+
+    .UnitAssets > li > a {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+    /*End ViewAsset2*/
+    /*DashboardTeacher*/
+    .DashboardTeacher .card-title > div {
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+    /*End DashboardTeacher*/
+    /*ViewCertification*/
+    .QMHeader > div {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+
+    .QMHeaderInfo {
+        margin-top: -15px;
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+    /*End ViewCertification*/
+    /*FullWidthBox*/
+    .BoxDates {
+        border-right: none;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        margin: 0 30px;
+        border-bottom: solid 1px #DCDCDC;
+        padding: 25px 5px
+    }
+
+        .BoxDates label {
+            margin: 0 5px;
+        }
+
+    .BoxDuration {
+        border-right: none;
+        border-left: none;
+        border-top: solid 1px #DCDCDC;
+        padding: 25px 10px;
+        margin: 0 30px
+    }
+
+    .BoxLessonTeacher {
+        padding: 25px 10px;
+        color: #8B827B;
+        margin: 0 30px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .BoxRoom {
+        border-right: none;
+        border-left: none;
+        margin: 0 30px;
+        padding: 25px 5px;
+        border-top: solid 1px #DCDCDC;
+        border-bottom: solid 1px #DCDCDC;
+    }
+
+    .BoxBtn > .btn {
+        margin: 10px auto;
+    }
+
+    .BoxStatus {
+        padding: 9px 10px;
+    }
+
+    .BoxDates > :nth-child(2) {
+        margin: 0 5px;
+    }
+
+    .BoxRoom > div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex
+    }
+
+        .BoxRoom > div > label:first-child {
+            margin-right: 5px;
+        }
+
+    .BoxDates.SameDay {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .FullWidthBox > :nth-child(1), .FullWidthBox > :nth-child(2), .BoxRoom, .BoxLessonTeacher {
+        width: initial;
+    }
+
+    .BoxBtn {
+        padding: 30px 5px;
+        margin: 0 30px 0 30px;
+    }
+
+    .BoxBtn {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        border-left: unset
+    }
+
+    .BoxType {
+        margin: 0 30px;
+        padding: 25px 10px;
+        border-left: unset;
+        border-top: solid 1px #DCDCDC;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    /*End FullWidthBox*/
+    /*ListView Controls*/
+    .LessonView {
+        display: none !important;
+    }
+    /*End ListView Controls*/
+    /*LessonBoxConatiner*/
+    .LessonBoxImage {
+        padding-top: 43%;
+    }
+
+    .LessonBox {
+        width: 100%;
+        min-width: 0px;
+    }
+
+    .LessonBox {
+        width: 100% !important;
+        margin: 1.5% !important;
+    }
+
+    .LessonBoxContainer {
+        margin-left: -1.5%;
+        margin-right: -1.5%
+    }
+
+        .LessonBoxContainer.LBXCRow {
+            margin-left: -1.5%;
+            margin-right: -1.5%;
+        }
+
+        .LessonBoxContainer.LBXCRow {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+    .pace-done:not(.sidebar-hidden) .LBXCRow .LessonBox {
+        width: 100%;
+    }
+
+    .LBXCRow .LessonBoxContent {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .LBXCRow a {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .LBXCRow .LessonBoxImage {
+        padding-top: 43%;
+        position: relative;
+        max-width: 100%;
+    }
+
+        .LBXCRow .LessonBoxImage > img {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            -webkit-transform: scale(1,1);
+            transform: scale(1,1);
+        }
+
+    .LBXCRow .LessonBoxCode {
+        top: 23px;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 6px 13px 6px 23px;
+    }
+
+    .LBXCRow .LessonBoxContent {
+        padding: 14px 22px 0 22px;
+        margin-bottom: 1px;
+        min-height: 222px;
+    }
+
+    .LBXCRow .LessonBoxFooter {
+        border-top: solid 2px #DCDCDC;
+        margin-top: 45px;
+    }
+
+        .LBXCRow .LessonBoxFooter .FooterIconsStart > div:first-child {
+            margin-left: 0px;
+        }
+
+        .LBXCRow .LessonBoxFooter .FooterIconsEnd > div:last-child {
+            margin-right: 0px;
+        }
+
+    .LessonBox:last-child {
+        margin-bottom: 0 !important;
+    }
+    /*End LessonBoxContainer*/
+    /*LayerBoxContainer*/
+    .LayerBox > div {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important
+    }
+
+    .LBXCRow .LayerBoxImage {
+        max-width: 100%;
+        padding-top: 44%
+    }
+
+    .LBXCRow .LayerBoxContent, .LayerBoxContent {
+        padding: 35px 14px
+    }
+
+    .LayerBox {
+        width: 100%
+    }
+
+    .LayerView {
+        display: none !important
+    }
+    /*End LayerBoxContainer*/
+    /*LessonStructure*/
+    .LessonBoxTeachersTime {
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+    /*End LessonStructure*/
+    /*AccordionCard*/
+    .AccordionCard-body .FooterIconsEnd {
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important
+    }
+
+        .AccordionCard-body .FooterIconsEnd .AssetIconCompleted, .AccordionCard-body .FooterIconsEnd .AssetIconStart {
+            margin-left: 0
+        }
+
+        .AccordionCard-body .FooterIconsEnd div {
+            margin-top: 40px;
+        }
+    /*End AccordionCard*/
+    /*ViewAsset2*/
+    .ViewAssetContainer {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+    /*End ViewAsset2*/
+    /*Assessment*/
+    .QMClock, .QMCompletion {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .QMButtonComplete, .QMbuttonLeft, .QMbuttonRight {
+        width: 100%;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    /*End Assessment*/
+    /*Notifications*/
+    .NotificationsDIV .NotificationItem a, .NotificationsDIV .NotificationItem a > :nth-child(1) {
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important
+    }
+
+    .NotificationDate {
+        border-right: none;
+        padding-right: 0px;
+    }
+
+    .NotificationUserName {
+        padding-left: 0px;
+    }
+
+    .NotificationContent {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+
+        .NotificationContent > :nth-child(1) {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start
+        }
+
+    .NotificationDelete {
+        padding-left: 10px;
+    }
+
+    .NotificationContainer .NotificationFlex > :nth-child(1) {
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+
+    .NotificationContainer .NotificationFlex > :nth-child(2) {
+        -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+        justify-content: flex-start !important;
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+    /*End Notifications*/
+    /*Eduboards*/
+    .EduboardsDIV .dataTableFilters {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .EduboardsDIV .dt-buttons {
+        text-align: center;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter label {
+        text-align: center !important;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        margin-left: 0 !important
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+        margin-top: 30px !important;
+    }
+    /*End Eduboards*/
+    /*News*/
+    .NewsBox {
+        width: 100% !important;
+        margin: 1.5% !important;
+    }
+    /*End News*/
+    /*Jobs*/
+    .JobsBox {
+        width: 100% !important;
+        margin: 1.5% !important;
+    }
+    /*End Jobs*/
+    /*Jobs*/
+    .modal-body .JobsBox {
+        margin: 0 !important;
+    }
+    /*End Jobs*/
+    /*App Footer*/
+    .app-footer {
+        text-align: center;
+        font-size: 11px;
+        padding: 1rem;
+        display: block;
+    }
+
+        .app-footer span {
+            display: block;
+        }
+
+        .app-footer .ml-auto {
+            margin-left: 0 !important
+        }
+    /*End App Footer*/
+    /*End Filters*/
+    .btnFilterSearch {
+        -ms-flex-item-align: initial;
+        align-self: initial;
+    }
+    /*Filters*/
+    /*TeacherEditAbsences*/
+    .filterGroup .btnFilterSearch {
+        margin-left: 0;
+    }
+
+    .filtersFlex {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+        .filtersFlex fieldset {
+            margin-left: 0;
+        }
+
+        .filterGroup .select2-container--bootstrap .select2-selection--single, .filtersFlex fieldset {
+            max-width: 100%;
+        }
+
+    .TeacherGradebookDIV .flexDIV {
+        -webkit-box-align: start !important;
+        -ms-flex-align: start !important;
+        align-items: flex-start !important;
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+    /*End TeacherEditAbsences*/
+    /*Softone Teacher Edit Grades*/
+    .TeacherEditGroup1 > *, .TeacherEditGroup2 > * {
+        max-width: 100%
+    }
+
+    .TeacherEditfilterGroup fieldset {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .TeacherEditfilters .btnFilterSearch {
+        margin-left: 0
+    }
+    /*End Softone Teacher Edit Grades*/
+    /*Common Classes*/
+    .QMVideo {
+        margin-left: 0;
+        float: unset;
+        max-width: 100%;
+        display: block;
+        padding-top: 56%;
+    }
+
+    .btnFixGroup {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+    /*End Common Classes*/
+    /*GradeBook*/
+    .GradeBookDIV .row {
+        width: initial;
+    }
+
+    .GradeBookDIV .btnFilterSearch.ExtraMargin {
+        margin-left: 0;
+    }
+    /*End GradeBook*/
+    /*Statistics TeacherCertification*/
+    .TeacherCertificationDIV .FlexDiv .col-md-2 {
+        margin-bottom: 0
+    }
+    /*End Statistics TeacherCertification*/
+    /*.fc Calendar*/
+    .fc-toolbar.fc-header-toolbar {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+        .fc-toolbar.fc-header-toolbar > * {
+            margin: 10px 0;
+        }
+    /*End .fc Calendar*/
+    /*Softone Diary*/
+    .DiaryDIV .diaryRow > :nth-child(1n) {
+        padding-right: 0;
+    }
+    /*End Softone Diary*/
+    /*TeacherNotificationsAdministration*/
+    .TeacherNotificationsAdminDIV .flexButtons {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .btnCustom.Custom2 {
+        margin-left: 0;
+    }
+
+    .TeacherNotificationsAdminDIV .btn-primary {
+        margin-left: 0;
+        max-width: 100%
+    }
+
+    .btnCustom {
+        width: 100%;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    .ResponsiveDiv .col-sm-3 {
+        min-width: 180px;
+    }
+    /*End TeacherNotificationsAdministration*/
+    /*TeacherCertStats*/
+    .TeacherCertStats .btnFilterSearch {
+        max-width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+    /*End TeacherCertStats*/
+    /*Educational Parameters educational content management*/
+    .ed_cont_management_title-row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .title-left {
+        max-width: 100%;
+    }
+
+    .title-right {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .col-sm-6.UnitEdit {
+        max-width: 100%;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%
+    }
+    /*End Educational Parameters educational content management*/
+    /*newsadministration*/
+    .d-row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    /*newsadministration*/
+    /*newsadministration on CreateNew*/
+    .flexRow {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .flexColMd3, .flexColMd7 {
+        max-width: 100%
+    }
+
+    .flexBtnRow {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+        .flexBtnRow > :not(:nth-child(1)) {
+            padding-left: 0;
+        }
+    /*newsadministration on CreateNew*/
+    /*educational Planning UserManagement*/
+    .pace-done:not(.sidebar-hidden) .UserManagementDIV .flexRow > :not(:nth-child(1)) {
+        padding-left: 0
+    }
+
+    .flexColMarg {
+        margin-top: 1.25rem
+    }
+
+    .btnFix {
+        width: 100%;
+        white-space: normal
+    }
+    /*End educational Planning UserManagement*/
+    /*Tabs*/
+    .nav-tabs .nav-link {
+        border: 1px solid #e1e6ef;
+    }
+
+    .nav-tabs .nav-item {
+        width: 100%;
+    }
+
+    .nav.nav-tabs {
+        margin-top: 40px
+    }
+    /*End Tabs*/
+    /*Educational Planning Access*/
+    .btnAllUsers {
+        padding: 10px 20px;
+        width: 100%;
+        margin-bottom: 10px
+    }
+    /*End Educational Planning Access*/
+    /*Pages*/
+    .pages_title-row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .pages.title-left {
+        max-width: 100%;
+        margin-right: 0
+    }
+
+    .pages.title-right {
+        max-width: 100%
+    }
+
+        .pages.title-right .input-group-prepend {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column
+        }
+    /*End Pages*/
+    /*Softone Absences*/
+    .absencesMods {
+        -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+    }
+    /*End Softone Absences*/
+}
+
+@media (max-width:767px) and (min-width: 615px) {
+    /*card-title*/
+    .card-title > div > div:nth-child(2) {
+        -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+        -webkit-box-orient: horizontal !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+    }
+    /*End card-title*/
+}
+
+@media (max-width:732px) {
+    /*Common Classes*/
+    label.force-height {
+        min-height: 48px;
+    }
+    /*End Common Classes*/
+}
+
+@media(max-height:756px) {
+    /*Help Desk*/
+    .pace-done .help_desk_side {
+        display: none
+    }
+    /*End Help Desk*/
+}
+
+@media(min-height:757px) {
+    /*Help Desk*/
+    .help_desk_toggle {
+        display: none
+    }
+    /*End Help Desk*/
+}
+
+@media (max-width:675px) {
+    /*Common Classes*/
+    .QMImage {
+        margin-left: 0;
+        float: unset;
+        max-width: 100%;
+        display: block
+    }
+    /*End Common Classes*/
+}
+
+@media (max-width:614px) {
+    /*card-title*/
+    .card-title > div > div:nth-child(2) > div:nth-child(3) {
+        margin-right: initial !important;
+    }
+
+    .btnFix2 {
+        margin-left: 0 !important;
+        margin-top: .5rem
+    }
+    /*End card-title*/
+    /*TeacherClasses*/
+    .TeacherClasses .btn-primary {
+        margin-left: 0;
+        margin-top: 20px;
+        min-width: 100%;
+    }
+    /*End TeacherClasses*/
+}
+
+@media (max-width:576px) {
+    /*LessonStructure*/
+    .LessonBoxTeachersTime {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    /*End LessonStructure*/
+    /*End Education ViewAsset2*/
+    .QMClock:not(:empty) {
+        margin-left: 0 !important;
+    }
+    /*Education ViewAsset2*/
+}
+
+@media (max-width:575px) {
+    /*BoxStatus*/
+    .BoxStatus {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    /*End BoxStatus*/
+    /*AccordionCard*/
+    .AccordionCard-body .FooterIconsEnd {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
+
+        .AccordionCard-body .FooterIconsEnd div {
+            margin-left: 0;
+        }
+
+        .AccordionCard-body .FooterIconsEnd .AssetTimeSpent {
+            margin-left: 10px;
+        }
+
+    .AccordionCard-body {
+        margin-left: 15px;
+    }
+
+        .AccordionCard-body .AccordionCard-body {
+            margin-left: 0px;
+        }
+
+        .AccordionCard-body .ulAssets li a {
+            padding: 20px 20px;
+        }
+    /*End AccordionCard*/
+    /*Notifications*/
+    .NotificationsDIV .NotificationItem a, .NotificationsDIV .NotificationItem a > :nth-child(1) {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .NotificationItem {
+        padding: 20px 20px 60px 20px;
+    }
+
+    .NotificationDate {
+        border-right: none;
+        padding-right: 0px;
+    }
+
+    .NotificationContent {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-left: 0;
+        text-align: center;
+        padding-top: 25px;
+    }
+
+        .NotificationContent > :nth-child(1) {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start
+        }
+
+    .NotificationDelete {
+        padding-left: 0;
+        padding-top: 15px;
+        top: initial;
+        bottom: 8px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        right: initial;
+        color: #AEAEAE;
+    }
+
+    .NotificationContainer .NotificationFlex > :nth-child(1) {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        text-align: center;
+    }
+
+    .NotificationContainer .NotificationFlex > :nth-child(2) {
+        -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .ViewNotificationTitle h3 {
+        margin-left: 0;
+    }
+
+    .ViewNotificationTitle {
+        padding-top: 25px;
+    }
+
+    .NotificationBtn {
+        text-align: center;
+    }
+    /*End Notifications*/
+    /*ViewNew*/
+    .ViewNewAttach {
+        margin-top: 20px
+    }
+
+    .ViewNewPhoto > img {
+        display: block;
+        margin: 0 auto
+    }
+    /*End ViewNew*/
+    /*End Jobs*/
+    .modal-dialog {
+        max-width: 90%;
+        margin: 1.75rem auto
+    }
+    /*Jobs*/
+    /*DashboardTeacher*/
+    .DashboardTeacherBtn {
+        width: 100%;
+    }
+    /*End DashboardTeacher*/
+    /*Educational Planning Access*/
+    .overflow-input {
+        max-width: 475px;
+        width: 100%;
+        overflow-x: auto
+    }
+    /*End Educational Planning Access*/
+    /*Tabs*/
+    .nav-tabs .nav-link {
+        border: 1px solid #e1e6ef;
+    }
+
+    .nav-tabs .nav-item {
+        width: 100%;
+    }
+    /*End Tabs*/
+    /*Common Classes*/
+    label.force-height {
+        min-height: 0;
+    }
+    /*End Common Classes*/
+}
+
+@media (max-width:515px) {
+    /*ViewCertification*/
+    .QMHeader > div {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+    }
+
+    .QMHeaderInfo {
+        margin-top: 15px;
+        -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+        width: 100%;
+    }
+
+    .QMTitleRight h3 {
+        margin-bottom: 0;
+    }
+
+    .QMTitleInfo {
+        margin-top: 5px;
+    }
+    /*End ViewCertification*/
+    /*LessonStructure*/
+    .LessonStructure .LBXCRow .LessonBoxFooter {
+        -webkit-box-orient: vertical !important;
+        -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+
+    .LBXCRow .LessonBoxFooter .FooterIconsEnd > .LessonBoxFooterIconProgress {
+        margin-left: 0
+    }
+    /*End LessonStructure*/
+    /*Review*/
+    .QMHeader a {
+        margin-top: 20px;
+        margin-left: 30px;
+    }
+    /*End Review*/
+    /*Softone TeacherAbsences*/
+    .BoxAbsencesType3, .BoxAbsencesType4 {
+        min-width: 110px;
+        min-height: 110px;
+        margin: 10px;
+    }
+
+        .BoxAbsencesType3 span, .BoxAbsencesType4 span {
+            font-size: 50px;
+        }
+    /*End Softone TeacherAbsences*/
+}
+
+@media (max-width:450px) {
+    /*LessonBoxConatiner*/
+    .LessonBoxFooterIconSession i {
+        display: none;
+    }
+    /*End LessonBoxContainer*/
+    /*Main Style*/
+    .main .container-fluid {
+        padding: 0 15px;
+    }
+    /*End Main Style*/
+}
+
+@media (max-width:390px) {
+    /*End Warning Box*/
+    .modal-footer .btn-success {
+        padding: 8px 10px;
+        margin-right: auto
+    }
+
+    .modal-body button.close {
+        margin-top: 1px !important;
+    }
+    /*End Warning Box*/
+    /*Common Classes*/
+    .QMEkfwnisiText input, .QMEkfwnisiText select {
+        max-width: 100%
+    }
+    /*End Common Classes*/
+}
+
+@media (max-width:380px) {
+    .BoxDates {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+}

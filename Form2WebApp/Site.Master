@@ -58,7 +58,9 @@
                         <%--<li><a runat="server" href="~/Pages/Contact">Contact</a></li>--%>
                         <li><a runat="server" href="~/Pages/ContactForm2">Contact</a></li>
                         <li><a runat="server" href="~/Pages/ContactForm2Session">Πόλεις/Δήμοι</a></li>
-                        <li><a runat="server" href="~/Pages/ContactForm2Student">Μαθητές</a></li>
+                        <%--<li><a runat="server" href="~/Pages/ContactForm2Student">Μαθητές</a></li>--%>
+                        <li><a runat="server" href="~/Pages/ContactStudent">Μαθητές</a></li>
+                        <li><a runat="server" href="~/Pages/ContactAdult">Ενήλικοι</a></li>
                     </ul>
                 </div>
             </div>

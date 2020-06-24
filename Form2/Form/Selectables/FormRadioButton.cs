@@ -44,6 +44,11 @@ namespace Form2.Form.Selectables
             set { text = value; }
         }
 
+        public long Numeric
+        {
+            get { return long.Parse(Value); }
+        }
+
         #endregion
 
 
@@ -68,7 +73,7 @@ namespace Form2.Form.Selectables
             this.text = text;
         }
 
-        public FormRadioButton(int value, string text)
+        public FormRadioButton(long value, string text)
             : this(value.ToString(), text)
         {
         }

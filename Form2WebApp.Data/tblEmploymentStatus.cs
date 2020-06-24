@@ -17,26 +17,26 @@ namespace Form2WebApp.Data
 {
     [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-    public partial class tblCity
+    public partial class tblEmploymentStatus
     {
-        private static ItblCityPersister _DefaultPersister;
-        private ItblCityPersister _Persister;
+        private static ItblEmploymentStatusPersister _DefaultPersister;
+        private ItblEmploymentStatusPersister _Persister;
         private long _id;
-        private string _name;
+        private string _descr;
 
-        static tblCity()
+        static tblEmploymentStatus()
         {
             // Assign default persister
-            _DefaultPersister = new SqlServertblCityPersister();
+            _DefaultPersister = new SqlServertblEmploymentStatusPersister();
         }
 
-        public tblCity()
+        public tblEmploymentStatus()
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
         }
 
-        public tblCity(long _id)
+        public tblEmploymentStatus(long _id)
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
@@ -48,7 +48,7 @@ namespace Form2WebApp.Data
             Retrieve();
         }
 
-        public tblCity(DataRow row)
+        public tblEmploymentStatus(DataRow row)
         {
             // Assign default persister to instance persister
             _Persister = _DefaultPersister;
@@ -62,21 +62,21 @@ namespace Form2WebApp.Data
                         this.id = Convert.ToInt64(row[i, DataRowVersion.Current]);
                         break;
 
-                    case "NAME":
-                        this.name = (string)row[i, DataRowVersion.Current];
+                    case "DESCR":
+                        this.descr = (string)row[i, DataRowVersion.Current];
                         break;
 
                 }
             }
         }
 
-        public static ItblCityPersister DefaultPersister
+        public static ItblEmploymentStatusPersister DefaultPersister
         {
             get { return _DefaultPersister; }
             set { _DefaultPersister = value; }
         }
 
-        public ItblCityPersister Persister
+        public ItblEmploymentStatusPersister Persister
         {
             get { return _Persister; }
             set { _Persister = value; }
@@ -88,13 +88,13 @@ namespace Form2WebApp.Data
             set { _id = value; }
         }
 
-        public string name
+        public string descr
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _descr; }
+            set { _descr = value; }
         }
 
-        public virtual void Clone(tblCity sourceObject)
+        public virtual void Clone(tblEmploymentStatus sourceObject)
         {
             if (sourceObject == null)
             {
@@ -103,7 +103,7 @@ namespace Form2WebApp.Data
 
             // Clone attributes from source object
             this._id = sourceObject.id;
-            this._name = sourceObject.name;
+            this._descr = sourceObject.descr;
         }
 
         public virtual int Retrieve()
@@ -126,7 +126,7 @@ namespace Form2WebApp.Data
             return _Persister.Insert(this);
         }
 
-        public static IReader<tblCity> ListAll()
+        public static IReader<tblEmploymentStatus> ListAll()
         {
             return _DefaultPersister.ListAll();
         }
@@ -135,41 +135,41 @@ namespace Form2WebApp.Data
 
     [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-    public partial interface ItblCityPersister : IPersister
+    public partial interface ItblEmploymentStatusPersister : IPersister
     {
-        int Retrieve(tblCity tblCity);
-        int Update(tblCity tblCity);
-        int Delete(tblCity tblCity);
-        int Insert(tblCity tblCity);
-        IReader<tblCity> ListAll();
+        int Retrieve(tblEmploymentStatus tblEmploymentStatus);
+        int Update(tblEmploymentStatus tblEmploymentStatus);
+        int Delete(tblEmploymentStatus tblEmploymentStatus);
+        int Insert(tblEmploymentStatus tblEmploymentStatus);
+        IReader<tblEmploymentStatus> ListAll();
     }
 
     [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
 
-    public partial class SqlServertblCityPersister : SqlPersisterBase, ItblCityPersister
+    public partial class SqlServertblEmploymentStatusPersister : SqlPersisterBase, ItblEmploymentStatusPersister
     {
-        public SqlServertblCityPersister()
+        public SqlServertblEmploymentStatusPersister()
         {
         }
 
-        public SqlServertblCityPersister(string connectionString) : base(connectionString)
+        public SqlServertblEmploymentStatusPersister(string connectionString) : base(connectionString)
         {
         }
 
-        public SqlServertblCityPersister(SqlConnection connection) : base(connection)
+        public SqlServertblEmploymentStatusPersister(SqlConnection connection) : base(connection)
         {
         }
 
-        public SqlServertblCityPersister(SqlTransaction transaction) : base(transaction)
+        public SqlServertblEmploymentStatusPersister(SqlTransaction transaction) : base(transaction)
         {
         }
 
-        public int Retrieve(tblCity tblCity)
+        public int Retrieve(tblEmploymentStatus tblEmploymentStatus)
         {
             int __rowsAffected = 1;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityGet"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEmploymentStatusGet"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -183,12 +183,12 @@ namespace Form2WebApp.Data
                     SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                     vid.Direction = ParameterDirection.InputOutput;
                     sqlCommand.Parameters.Add(vid);
-                    SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
-                    vname.Direction = ParameterDirection.Output;
-                    sqlCommand.Parameters.Add(vname);
+                    SqlParameter vdescr = new SqlParameter("@descr", SqlDbType.NVarChar, 255);
+                    vdescr.Direction = ParameterDirection.Output;
+                    sqlCommand.Parameters.Add(vdescr);
 
                     // Set input parameter values
-                    SqlServerHelper.SetParameterValue(vid, tblCity.id);
+                    SqlServerHelper.SetParameterValue(vid, tblEmploymentStatus.id);
 
                     // Execute command
                     sqlCommand.ExecuteNonQuery();
@@ -196,8 +196,8 @@ namespace Form2WebApp.Data
                     try
                     {
                         // Get output parameter values
-                        tblCity.id = SqlServerHelper.ToInt64(vid);
-                        tblCity.name = SqlServerHelper.ToString(vname);
+                        tblEmploymentStatus.id = SqlServerHelper.ToInt64(vid);
+                        tblEmploymentStatus.descr = SqlServerHelper.ToString(vdescr);
 
                     }
                     catch (Exception ex)
@@ -223,12 +223,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Update(tblCity tblCity)
+        public int Update(tblEmploymentStatus tblEmploymentStatus)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityUpdate"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEmploymentStatusUpdate"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -237,13 +237,13 @@ namespace Form2WebApp.Data
                 SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                 vid.Direction = ParameterDirection.Input;
                 sqlCommand.Parameters.Add(vid);
-                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
-                vname.Direction = ParameterDirection.Input;
-                sqlCommand.Parameters.Add(vname);
+                SqlParameter vdescr = new SqlParameter("@descr", SqlDbType.NVarChar, 255);
+                vdescr.Direction = ParameterDirection.Input;
+                sqlCommand.Parameters.Add(vdescr);
 
                 // Set input parameter values
-                SqlServerHelper.SetParameterValue(vid, tblCity.id);
-                SqlServerHelper.SetParameterValue(vname, tblCity.name);
+                SqlServerHelper.SetParameterValue(vid, tblEmploymentStatus.id);
+                SqlServerHelper.SetParameterValue(vdescr, tblEmploymentStatus.descr);
 
                 try
                 {
@@ -270,12 +270,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Delete(tblCity tblCity)
+        public int Delete(tblEmploymentStatus tblEmploymentStatus)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityDelete"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEmploymentStatusDelete"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -291,7 +291,7 @@ namespace Form2WebApp.Data
                     sqlCommand.Parameters.Add(vid);
 
                     // Set input parameter values
-                    SqlServerHelper.SetParameterValue(vid, tblCity.id);
+                    SqlServerHelper.SetParameterValue(vid, tblEmploymentStatus.id);
 
                     // Execute command
                     __rowsAffected = sqlCommand.ExecuteNonQuery();
@@ -308,12 +308,12 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public int Insert(tblCity tblCity)
+        public int Insert(tblEmploymentStatus tblEmploymentStatus)
         {
             int __rowsAffected = 0;
 
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityInsert"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEmploymentStatusInsert"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -322,16 +322,16 @@ namespace Form2WebApp.Data
                 SqlParameter vid = new SqlParameter("@id", SqlDbType.BigInt);
                 vid.Direction = ParameterDirection.InputOutput;
                 sqlCommand.Parameters.Add(vid);
-                SqlParameter vname = new SqlParameter("@name", SqlDbType.NVarChar, 100);
-                vname.Direction = ParameterDirection.Input;
-                sqlCommand.Parameters.Add(vname);
+                SqlParameter vdescr = new SqlParameter("@descr", SqlDbType.NVarChar, 255);
+                vdescr.Direction = ParameterDirection.Input;
+                sqlCommand.Parameters.Add(vdescr);
 
                 // Set input parameter values
                 SqlServerHelper.SetParameterValue(
                     vid,
-                    tblCity.id,
+                    tblEmploymentStatus.id,
                     0);
-                SqlServerHelper.SetParameterValue(vname, tblCity.name);
+                SqlServerHelper.SetParameterValue(vdescr, tblEmploymentStatus.descr);
 
                 try
                 {
@@ -347,7 +347,7 @@ namespace Form2WebApp.Data
 
 
                     // Get output parameter values
-                    tblCity.id = SqlServerHelper.ToInt64(vid);
+                    tblEmploymentStatus.id = SqlServerHelper.ToInt64(vid);
 
                 }
                 finally
@@ -361,10 +361,10 @@ namespace Form2WebApp.Data
             return __rowsAffected;
         }
 
-        public IReader<tblCity> ListAll()
+        public IReader<tblEmploymentStatus> ListAll()
         {
             // Create command
-            using (SqlCommand sqlCommand = new SqlCommand("tblCityListAll"))
+            using (SqlCommand sqlCommand = new SqlCommand("tblEmploymentStatusListAll"))
             {
                 // Set command type
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -373,7 +373,7 @@ namespace Form2WebApp.Data
                 SqlDataReader reader = sqlCommand.ExecuteReader(AttachReaderCommand(sqlCommand));
 
                 // Return reader
-                return new SqlServertblCityReader(reader);
+                return new SqlServertblEmploymentStatusReader(reader);
             }
         }
 
@@ -381,16 +381,16 @@ namespace Form2WebApp.Data
 
     [SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 
-    public partial class SqlServertblCityReader : IReader<tblCity>
+    public partial class SqlServertblEmploymentStatusReader : IReader<tblEmploymentStatus>
     {
         private SqlDataReader sqlDataReader;
 
-        private tblCity _tblCity;
+        private tblEmploymentStatus _tblEmploymentStatus;
 
         private int _idOrdinal = -1;
-        private int _nameOrdinal = -1;
+        private int _descrOrdinal = -1;
 
-        public SqlServertblCityReader(SqlDataReader sqlDataReader)
+        public SqlServertblEmploymentStatusReader(SqlDataReader sqlDataReader)
         {
             this.sqlDataReader = sqlDataReader;
             for (int i = 0; i < sqlDataReader.FieldCount; i++)
@@ -403,38 +403,38 @@ namespace Form2WebApp.Data
                         _idOrdinal = i;
                         break;
 
-                    case "NAME":
-                        _nameOrdinal = i;
+                    case "DESCR":
+                        _descrOrdinal = i;
                         break;
 
                 }
             }
         }
 
-        #region IReader<tblCity> Implementation
+        #region IReader<tblEmploymentStatus> Implementation
 
         public bool Read()
         {
-            _tblCity = null;
+            _tblEmploymentStatus = null;
             return this.sqlDataReader.Read();
         }
 
-        public tblCity Current
+        public tblEmploymentStatus Current
         {
             get
             {
-                if (_tblCity == null)
+                if (_tblEmploymentStatus == null)
                 {
-                    _tblCity = new tblCity();
+                    _tblEmploymentStatus = new tblEmploymentStatus();
                     if (_idOrdinal != -1)
                     {
-                        _tblCity.id = SqlServerHelper.ToInt64(sqlDataReader, _idOrdinal);
+                        _tblEmploymentStatus.id = SqlServerHelper.ToInt64(sqlDataReader, _idOrdinal);
                     }
-                    _tblCity.name = SqlServerHelper.ToString(sqlDataReader, _nameOrdinal);
+                    _tblEmploymentStatus.descr = SqlServerHelper.ToString(sqlDataReader, _descrOrdinal);
                 }
 
 
-                return _tblCity;
+                return _tblEmploymentStatus;
             }
         }
 
@@ -443,9 +443,9 @@ namespace Form2WebApp.Data
             sqlDataReader.Close();
         }
 
-        public List<tblCity> ToList()
+        public List<tblEmploymentStatus> ToList()
         {
-            List<tblCity> list = new List<tblCity>();
+            List<tblEmploymentStatus> list = new List<tblEmploymentStatus>();
             while (this.Read())
             {
                 list.Add(this.Current);
@@ -471,11 +471,11 @@ namespace Form2WebApp.Data
         }
         #endregion
 
-        #region IEnumerable<tblCity> Implementation
+        #region IEnumerable<tblEmploymentStatus> Implementation
 
-        public IEnumerator<tblCity> GetEnumerator()
+        public IEnumerator<tblEmploymentStatus> GetEnumerator()
         {
-            return new tblCityEnumerator(this);
+            return new tblEmploymentStatusEnumerator(this);
         }
 
         #endregion
@@ -484,27 +484,28 @@ namespace Form2WebApp.Data
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return new tblCityEnumerator(this);
+            return new tblEmploymentStatusEnumerator(this);
         }
 
         #endregion
 
+        [SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 
-        private partial class tblCityEnumerator : IEnumerator<tblCity>
+        private partial class tblEmploymentStatusEnumerator : IEnumerator<tblEmploymentStatus>
         {
-            private IReader<tblCity> tblCityReader;
+            private IReader<tblEmploymentStatus> tblEmploymentStatusReader;
 
-            public tblCityEnumerator(IReader<tblCity> tblCityReader)
+            public tblEmploymentStatusEnumerator(IReader<tblEmploymentStatus> tblEmploymentStatusReader)
             {
-                this.tblCityReader = tblCityReader;
+                this.tblEmploymentStatusReader = tblEmploymentStatusReader;
             }
 
-            #region IEnumerator<tblCity> Members
+            #region IEnumerator<tblEmploymentStatus> Members
 
-            public tblCity Current
+            public tblEmploymentStatus Current
             {
-                get { return this.tblCityReader.Current; }
+                get { return this.tblEmploymentStatusReader.Current; }
             }
 
             #endregion
@@ -513,7 +514,7 @@ namespace Form2WebApp.Data
 
             public void Dispose()
             {
-                this.tblCityReader.Dispose();
+                this.tblEmploymentStatusReader.Dispose();
             }
 
             #endregion
@@ -522,17 +523,17 @@ namespace Form2WebApp.Data
 
             object IEnumerator.Current
             {
-                get { return this.tblCityReader.Current; }
+                get { return this.tblEmploymentStatusReader.Current; }
             }
 
             public bool MoveNext()
             {
-                return this.tblCityReader.Read();
+                return this.tblEmploymentStatusReader.Read();
             }
 
             public void Reset()
             {
-                throw new Exception("Reset of tblcity reader is not supported.");
+                throw new Exception("Reset of tblemploymentstatus reader is not supported.");
             }
 
             #endregion
