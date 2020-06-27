@@ -41,8 +41,6 @@ namespace Form2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.BaseId, formRadioGroup.IsPostBack);
-            htmlRadioGroup.Class.Add("form-radiogroup");
-            htmlRadioGroup.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
             htmlRadioGroup.Disabled.Value = formRadioGroup.IsDisabled;
 
             HtmlLabel htmlLabel = new HtmlLabel(formRadioGroup.BaseId);

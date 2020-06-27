@@ -42,8 +42,6 @@ namespace Form2.Form.Visitors
             HtmlSelect htmlSelect = formSelect.Size.HasValue ?
                 new HtmlSelect(formSelect.BaseId, formSelect.Size.Value, formSelect.IsPostBack) :
                 new HtmlSelect(formSelect.BaseId, formSelect.IsMultiSelect, formSelect.IsPostBack);
-            htmlSelect.Class.Add("form-select");
-            htmlSelect.Class.Add(string.Format("{0}-{1}", "form-id", formSelect.FormId));
             htmlSelect.Disabled.Value = formSelect.IsDisabled;
 
             HtmlLabel htmlLabel = new HtmlLabel(formSelect.BaseId);
