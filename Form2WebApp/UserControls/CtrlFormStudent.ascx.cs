@@ -21,28 +21,37 @@ using Form2.Form.Visitors;
 
 using Form2WebApp.Data;
 
-//using NLog;
+using NLog;
 
 namespace Form2WebApp.UserControls
 {
+    [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
+
     public partial class CtrlFormStudent : UserControl
     {
-        //private static readonly Logger log = LogManager.GetCurrentClassLogger();
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            ltrForm.Text = new Form(Page).GetText(IsPostBack, Request.Form, Session);
+            Form form = this.SessionGet(GetType().Name, () => new Form());
+
+            if (form == null)
+                return;
+
+            form.SetPage(Page);
+
+            ltrForm.Text = form.GetText(IsPostBack, Request.Form, Session);
         }
 
         private class Form : Form2Base
         {
+            private static readonly Logger log = LogManager.GetCurrentClassLogger();
+
             #region Fields
 
-            private readonly Page page;
+            private Page page;
 
             private FormDatePicker dtpDateOfBirth;
+            private FormSelect selPopulation;
             private FormSelect selCity;
-            private FormSelect selArea;
 
             private FormSelect selMunicipality;
             private FormTextBox txtMunicipality;
@@ -60,14 +69,10 @@ namespace Form2WebApp.UserControls
             #endregion
 
 
-            #region Constructors
-
-            public Form(Page page)
+            public void SetPage(Page page)
             {
                 this.page = page;
             }
-
-            #endregion
 
 
             #region Resources
@@ -101,6 +106,8 @@ namespace Form2WebApp.UserControls
 
             #endregion
 
+
+            #region CreateForm()
 
             protected override void CreateForm()
             {
@@ -149,7 +156,7 @@ namespace Form2WebApp.UserControls
 
                 #region Population
 
-                AddItem(selCity = new FormSelect("Population", false)
+                AddItem(selPopulation = new FormSelect("Population", false)
                 {
                     Label = resCity,
 
@@ -163,7 +170,7 @@ namespace Form2WebApp.UserControls
 
                 #region City
 
-                AddItem(selArea = new FormSelect("City", false)
+                AddItem(selCity = new FormSelect("City", false)
                 {
                     Label = resAreaOfResidence,
 
@@ -307,24 +314,30 @@ namespace Form2WebApp.UserControls
                 #endregion
 
                 CloseGroup();
+            }
 
-                #region Rules
+            #endregion
 
-                AddRule((isPostBack, eventTarget, eventArgument) =>
+
+            #region AddRules()
+
+            protected override void AddRules(List<FormRule> rules)
+            {
+                rules.Add((isPostBack, eventTarget, eventArgument) =>
                 {
                     if (!isPostBack)
                         return;
 
-                    if (eventTarget != selArea.BaseId)
+                    if (eventTarget != selCity.BaseId)
                         return;
 
                     selMunicipality.IsHidden = true;
                     txtMunicipality.IsHidden = true;
 
-                    if (!selArea.Value.Any())
+                    if (!selCity.Value.Any())
                         return;
 
-                    long cityId = Convert.ToInt64(selArea.Value.Single().Value);
+                    long cityId = Convert.ToInt64(selCity.Value.Single().Value);
 
                     var municipalities = tblMunicipality.ListForcityId(cityId).OrderBy(m => m.name).ToList();
 
@@ -340,7 +353,7 @@ namespace Form2WebApp.UserControls
                     }
                 });
 
-                AddRule((isPostBack, eventTarget, eventArgument) =>
+                rules.Add((isPostBack, eventTarget, eventArgument) =>
                 {
                     if (!isPostBack)
                         return;
@@ -365,7 +378,7 @@ namespace Form2WebApp.UserControls
                     selEducationalGrade.IsHidden = false;
                 });
 
-                AddRule((isPostBack, eventTarget, eventArgument) =>
+                rules.Add((isPostBack, eventTarget, eventArgument) =>
                 {
                     if (!isPostBack)
                         return;
@@ -398,43 +411,39 @@ namespace Form2WebApp.UserControls
 
                     selOrientationGroup.IsHidden = false;
                 });
-
-                #endregion
             }
+
+            #endregion
+
 
             #region PerformAction()
 
             protected override void PerformAction()
             {
-                //log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
+                log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
 
-                //tblRegisterStudent trs = new tblRegisterStudent();
-                //trs.dateOfBirth = GetItem<FormDatePicker>("DateOfBirth").Value.Value;
-                //trs.populationId = GetItem<FormSelect>("Population").Value.Single().Numeric;
-                //trs.cityId = GetItem<FormSelect>("City").Value.Single().Numeric;
-                //if (!(GetItem<FormSelect>("MunicipalitySelect").IsHidden ?? false))
-                //    trs.municipality = GetItem<FormSelect>("MunicipalitySelect").Value.Single().Text;
-                //else if (!(GetItem<FormTextBox>("MunicipalityTextBox").IsHidden ?? false))
-                //    trs.municipality = GetItem<FormTextBox>("MunicipalityTextBox").Value;
-                //trs.email = GetItem<FormTextBox>("Email").Value;
-                //trs.educationalGradeId = GetItem<FormSelect>("EducationalStage").Value.Single().Numeric;
-                //if (!(GetItem<FormSelect>("OrientationGroup").IsHidden ?? false))
-                //    trs.orientationGroupId = GetItem<FormSelect>("OrientationGroup").Value.Single().Numeric;
-                //trs.coachingSchool = GetItem<FormTextBox>("CoachingSchool").Value;
-                //if (GetItem<FormRadioGroup>("PrivateLessons").Value != null)
-                //    trs.privateLessons = GetItem<FormRadioGroup>("PrivateLessons").Value.Value == "0";
-                //trs.userId = 0;
+                tblRegisterStudent trs = new tblRegisterStudent();
+                trs.dateOfBirth = dtpDateOfBirth.Value.Value;
+                trs.populationId = selPopulation.Value.Single().Numeric;
+                trs.cityId = selCity.Value.Single().Numeric;
+                trs.municipality = !(selMunicipality.IsHidden ?? false) ? selMunicipality.Value.Single().Text : !(txtMunicipality.IsHidden ?? false) ? txtMunicipality.Value : null;
+                trs.email = txtEmail.Value;
+                trs.educationalGradeId = selEducationalGrade.Value.Single().Numeric;
+                trs.orientationGroupId = !(selOrientationGroup.IsHidden ?? false) ? (long?)selOrientationGroup.Value.Single().Numeric : null;
+                trs.coachingSchool = txtCoachingSchool.Value;
+                trs.privateLessons = rdgPrivateLessons.Value != null ? (bool?)(rdgPrivateLessons.Value.Value == "0") : null;
+                trs.userId = 1;
 
-                //if (trs.Insert() == 1)
-                //{
-                //    string script = "bootbox.alert({message: 'Registration Success'});";
-                //    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationSuccess", script, true);
-                //}
-                //else
-                //{
-                //    string script = "bootbox.alert({message: 'Registration Failure'});";
-                //    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationFailure", script, true);
-                //}
+                if (trs.Insert() == 1)
+                {
+                    string script = "bootbox.alert({message: 'Registration Success'});";
+                    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationSuccess", script, true);
+                }
+                else
+                {
+                    string script = "bootbox.alert({message: 'Registration Failure'});";
+                    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationFailure", script, true);
+                }
             }
 
             #endregion

@@ -11,6 +11,7 @@ using Form2.Form.Interfaces;
 namespace Form2.Form.Content
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
+    [SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
 
     public class FormGroup : FormContent, IDisabled, IRequired, IReadOnly
     {

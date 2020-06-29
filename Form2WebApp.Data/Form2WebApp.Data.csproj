@@ -54,6 +54,8 @@
     <Compile Include="tblMunicipality.cs" />
     <Compile Include="tblOrientationGroup.cs" />
     <Compile Include="tblPopulation.cs" />
+    <Compile Include="tblRegisterAdult.cs" />
+    <Compile Include="tblRegisterStudent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

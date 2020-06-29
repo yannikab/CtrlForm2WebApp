@@ -16,6 +16,8 @@ using Form2.Form.Visitors;
 
 using Form2WebApp.Data;
 
+using NLog;
+
 namespace Form2WebApp.UserControls
 {
     public partial class Form2SessionContact : UserControl
@@ -24,14 +26,23 @@ namespace Form2WebApp.UserControls
         {
             base.OnLoad(e);
 
-            ltrContent.Text = new Form(Page).GetText(IsPostBack, Request.Form, Session);
+            Form form = this.SessionGet(GetType().Name, () => new Form());
+
+            if (form == null)
+                return;
+
+            form.SetPage(Page);
+
+            ltrContent.Text = form.GetText(IsPostBack, Request.Form, Session);
         }
 
         class Form : Form2Base
         {
-            private readonly Page page;
+            private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
-            public Form(Page page)
+            private Page page;
+
+            public void SetPage(Page page)
             {
                 this.page = page;
             }
@@ -89,9 +100,11 @@ namespace Form2WebApp.UserControls
 
 
                 CloseGroup();
+            }
 
-
-                AddRule((isPostBack, eventTarget, eventArgument) =>
+            protected override void AddRules(List<FormRule> rules)
+            {
+                rules.Add((isPostBack, eventTarget, eventArgument) =>
                 {
                     FormSelect selCity = GetItem<FormSelect>("City");
                     FormSelect selMunicipality = GetItem<FormSelect>("MunicipalitySelect");
@@ -129,6 +142,8 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
+                log.Info(new FormLogVisitor(FormGroup, "Ναι", "Όχι").Text);
+
                 var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι");
 
                 page.Response.Write(emailVisitor.Subject);

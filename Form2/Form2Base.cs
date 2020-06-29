@@ -29,7 +29,7 @@ namespace Form2
 
         protected delegate void FormRule(bool isPostBack, string eventTarget, string eventArgument);
 
-        private List<FormRule> rules = new List<FormRule>();
+        private readonly List<FormRule> rules;
 
         private HtmlContainer htmlContainer;
 
@@ -43,38 +43,26 @@ namespace Form2
         #endregion
 
 
+        #region Constructors
+
+        public Form2Base()
+        {
+            formGroup = null;
+            rules = new List<FormRule>();
+
+            CreateForm();
+            AddRules(rules);
+        }
+
+        #endregion
+
+
         #region Methods
 
         public string GetText(bool isPostBack, NameValueCollection form, HttpSessionState session)
         {
-            CreateForm();
-
-            if (formGroup == null || rules == null)
+            if (formGroup == null)
                 return "";
-
-            if (!isPostBack)
-            {
-                if (session[formGroup.SessionKey] != null)
-                    session.Remove(formGroup.SessionKey);
-
-                if (session[formGroup.SessionKey + "rules"] != null)
-                    session.Remove(formGroup.SessionKey + "rules");
-
-                session[formGroup.SessionKey] = formGroup;
-                session[formGroup.SessionKey + "rules"] = rules;
-            }
-            else
-            {
-                if (session[formGroup.SessionKey] != null && session[formGroup.SessionKey + "rules"] != null)
-                {
-                    formGroup = (FormGroup)session[formGroup.SessionKey];
-                    rules = (List<FormRule>)session[formGroup.SessionKey + "rules"];
-                }
-                else
-                {
-                    return "";
-                }
-            }
 
             if (!isPostBack)
             {
@@ -102,35 +90,33 @@ namespace Form2
             {
                 IPostBack iPostBack = eventTarget as IPostBack;
 
-                if (iPostBack == null)
+                if (iPostBack == null || !iPostBack.IsPostBack)
                     throw new ApplicationException();
 
-                if (iPostBack.IsPostBack)
-                    htmlContainer = new Form2HtmlVisitor(formGroup, session).Html;
-                else
-                    throw new ApplicationException();
+                htmlContainer = new Form2HtmlVisitor(formGroup, session).Html;
             }
-            else if (iSubmit.IsSubmit)
+            else
             {
+                if (!iSubmit.IsSubmit)
+                    throw new ApplicationException();
+
                 if (formGroup.IsValid)
                 {
                     PerformAction();
 
                     formGroup = null;
-                    rules = new List<FormRule>();
+                    rules.Clear();
 
                     CreateForm();
+                    AddRules(rules);
 
-                    if (formGroup == null || rules == null)
+                    if (formGroup == null)
                         return "";
-
-                    session[formGroup.SessionKey] = formGroup;
-                    session[formGroup.SessionKey + "rules"] = rules;
 
                     foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
                         session.Remove(formItem.SessionKey);
 
-                    ApplyRules(isPostBack, form);
+                    ApplyRules(false, null);
 
                     htmlContainer = new Form2HtmlVisitor(formGroup, false).Html;
                 }
@@ -152,10 +138,6 @@ namespace Form2
 
                     htmlContainer = new Form2HtmlVisitor(formGroup, true).Html;
                 }
-            }
-            else
-            {
-                throw new ApplicationException();
             }
 
             return new Html2TextVisitor(htmlContainer).Text;
@@ -332,15 +314,12 @@ namespace Form2
             return formGroup.Get(baseId);
         }
 
-        protected void AddRule(FormRule rule)
-        {
-            rules.Add(rule);
-        }
+        protected abstract void AddRules(List<FormRule> rules);
 
         protected virtual void ApplyRules(bool isPostBack, NameValueCollection form)
         {
             foreach (var r in rules)
-                r(isPostBack, form["__EVENTTARGET"], form["__EVENTARGUMENT"]);
+                r(isPostBack, form?["__EVENTTARGET"], form?["__EVENTARGUMENT"]);
         }
 
         protected abstract void PerformAction();

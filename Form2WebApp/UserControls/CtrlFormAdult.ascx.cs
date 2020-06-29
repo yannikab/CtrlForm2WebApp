@@ -21,24 +21,33 @@ using Form2.Form.Visitors;
 
 using Form2WebApp.Data;
 
-//using NLog;
+using NLog;
 
 namespace Form2WebApp.UserControls
 {
+    [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
+
     public partial class CtrlFormAdult : UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ltrForm.Text = new Form(Page).GetText(IsPostBack, Request.Form, Session);
+            Form form = this.SessionGet(GetType().Name, () => new Form());
+
+            if (form == null)
+                return;
+
+            form.SetPage(Page);
+
+            ltrForm.Text = form.GetText(IsPostBack, Request.Form, Session);
         }
 
         private class Form : Form2Base
         {
-            //private static readonly Logger log = LogManager.GetCurrentClassLogger();
+            private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
             #region Fields
 
-            private readonly Page page;
+            private Page page;
 
             private FormDatePicker dtpDateOfBirth;
             private FormRadioGroup rdgEmploymentStatus;
@@ -54,14 +63,10 @@ namespace Form2WebApp.UserControls
             #endregion
 
 
-            #region Constructors
-
-            public Form(Page page)
+            public void SetPage(Page page)
             {
                 this.page = page;
             }
-
-            #endregion
 
 
             #region Resources
@@ -90,6 +95,8 @@ namespace Form2WebApp.UserControls
 
             #endregion
 
+
+            #region CreateForm()
 
             protected override void CreateForm()
             {
@@ -246,10 +253,16 @@ namespace Form2WebApp.UserControls
                 #endregion
 
                 CloseGroup();
+            }
 
-                #region Rules
+            #endregion
 
-                AddRule((isPostBack, eventTarget, eventArgument) =>
+
+            #region AddRules()
+
+            protected override void AddRules(List<FormRule> rules)
+            {
+                rules.Add((isPostBack, eventTarget, eventArgument) =>
                 {
                     if (!isPostBack)
                         return;
@@ -279,7 +292,7 @@ namespace Form2WebApp.UserControls
                     }
                 });
 
-                AddRule((isPostBack, eventTarget, eventArgument) =>
+                rules.Add((isPostBack, eventTarget, eventArgument) =>
                 {
                     if (!isPostBack)
                         return;
@@ -301,40 +314,41 @@ namespace Form2WebApp.UserControls
                     selEmploymentDuration.IsHidden = false;
 
                 });
-
-                #endregion
             }
+
+            #endregion
+
 
             #region PerformAction()
 
             protected override void PerformAction()
             {
-                //log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
+                log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
 
-                //tblRegisterAdult tra = new tblRegisterAdult();
-                //tra.dateOfBirth = GetItem<FormDatePicker>("DateOfBirth").Value.Value;
-                //tra.employmentStatusId = GetItem<FormRadioGroup>("EmploymentStatus").Value.Numeric;
-                //if (tra.employmentStatusId == 1)
-                //    tra.employmentDurationId = GetItem<FormSelect>("EmploymentDuration").Value.Single().Numeric;
-                //tra.educationalLevelId = GetItem<FormSelect>("EducationalLevel").Value.Single().Numeric;
-                //tra.populationId = GetItem<FormSelect>("Population").Value.Single().Numeric;
-                //tra.cityId = GetItem<FormSelect>("City").Value.Single().Numeric;
-                //if (!(GetItem<FormSelect>("MunicipalitySelect").IsHidden ?? false))
-                //    tra.municipality = GetItem<FormSelect>("MunicipalitySelect").Value.Single().Text;
-                //else if (!(GetItem<FormTextBox>("MunicipalityTextBox").IsHidden ?? false))
-                //    tra.municipality = GetItem<FormTextBox>("MunicipalityTextBox").Value;
-                //tra.userId = Common.GetUserWithoutRedirection().id;
+                tblRegisterAdult tra = new tblRegisterAdult();
+                tra.dateOfBirth = dtpDateOfBirth.Value.Value;
+                tra.employmentStatusId = rdgEmploymentStatus.Value.Numeric;
+                if (tra.employmentStatusId == 1)
+                    tra.employmentDurationId = selEmploymentDuration.Value.Single().Numeric;
+                tra.educationalLevelId = selEducationalLevel.Value.Single().Numeric;
+                tra.populationId = selPopulation.Value.Single().Numeric;
+                tra.cityId = selCity.Value.Single().Numeric;
+                if (!(selMunicipality.IsHidden ?? false))
+                    tra.municipality = selMunicipality.Value.Single().Text;
+                else if (!(txtMunicipality.IsHidden ?? false))
+                    tra.municipality = txtMunicipality.Value;
+                tra.userId = 1;
 
-                //if (tra.Insert() == 1)
-                //{
-                //    string script = "bootbox.alert({message: 'Registration Success'});";
-                //    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationSuccess", script, true);
-                //}
-                //else
-                //{
-                //    string script = "bootbox.alert({message: 'Registration Failure'});";
-                //    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationFailure", script, true);
-                //}
+                if (tra.Insert() == 1)
+                {
+                    string script = "bootbox.alert({message: 'Registration Success'});";
+                    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationSuccess", script, true);
+                }
+                else
+                {
+                    string script = "bootbox.alert({message: 'Registration Failure'});";
+                    ScriptManager.RegisterStartupScript(page, page.GetType(), "RegistrationFailure", script, true);
+                }
             }
 
             #endregion
