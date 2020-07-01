@@ -23,7 +23,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-datepicker");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDatePicker.FormId));
 
-            bool isRequired = formDatePicker.IsRequired ?? false;
+            bool isRequired = formDatePicker.IsRequired;
 
             if (!validate)
             {
@@ -44,10 +44,10 @@ namespace Form2.Form.Visitors
             htmlDatePicker.Disabled.Value = formDatePicker.IsDisabled;
             htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
             htmlDatePicker.DataDateFormat.Value = formDatePicker.DateFormat;
-            if (!formDatePicker.IsRequiredMet || !formDatePicker.Value.HasValue)
+            if (!formDatePicker.IsRequiredMet || !formDatePicker.HasValue)
                 htmlDatePicker.Value.Value = "";
             else
-                htmlDatePicker.Value.Value = formDatePicker.Value.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture);
+                htmlDatePicker.Value.Value = formDatePicker.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture);
             htmlDatePicker.PlaceHolder.Value = !string.IsNullOrEmpty(formDatePicker.PlaceHolder) ? formDatePicker.PlaceHolder : null;
             htmlDatePicker.AutoComplete.Value = "off";
 

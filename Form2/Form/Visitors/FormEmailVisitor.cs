@@ -79,7 +79,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormGroup formGroup)
         {
-            if (formGroup.IsHidden ?? false)
+            if (formGroup.IsHidden)
                 return;
 
             foreach (var i in formGroup.Contents)
@@ -88,7 +88,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTextBox formTextBox)
         {
-            if (formTextBox.IsHidden ?? false)
+            if (formTextBox.IsHidden)
                 return;
 
             sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formTextBox.Label, formTextBox.Value.Trim()));
@@ -96,7 +96,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTextArea formTextArea)
         {
-            if (formTextArea.IsHidden ?? false)
+            if (formTextArea.IsHidden)
                 return;
 
             sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formTextArea.Label, formTextArea.Value.Trim()));
@@ -104,7 +104,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormPasswordBox formPasswordBox)
         {
-            if (formPasswordBox.IsHidden ?? false)
+            if (formPasswordBox.IsHidden)
                 return;
 
             sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formPasswordBox.Label, formPasswordBox.Value.Trim()));
@@ -112,7 +112,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormDateBox formDateBox)
         {
-            if (formDateBox.IsHidden ?? false)
+            if (formDateBox.IsHidden)
                 return;
 
             sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDateBox.Label, formDateBox.Value));
@@ -120,15 +120,15 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormDatePicker formDatePicker)
         {
-            if (formDatePicker.IsHidden ?? false)
+            if (formDatePicker.IsHidden)
                 return;
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDatePicker.Label, formDatePicker.Value.HasValue ? formDatePicker.Value.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : ""));
+            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDatePicker.Label, formDatePicker.HasValue ? formDatePicker.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : ""));
         }
 
         public virtual void Visit(FormCheckBox formCheckBox)
         {
-            if (formCheckBox.IsHidden ?? false)
+            if (formCheckBox.IsHidden)
                 return;
 
             sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formCheckBox.Label, formCheckBox.Value ? yes : no));
@@ -136,7 +136,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormSelect formSelect)
         {
-            if (formSelect.IsHidden ?? false)
+            if (formSelect.IsHidden)
                 return;
 
             StringBuilder sbValues = new StringBuilder();
@@ -154,7 +154,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormRadioGroup formRadioGroup)
         {
-            if (formRadioGroup.IsHidden ?? false)
+            if (formRadioGroup.IsHidden)
                 return;
 
             sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formRadioGroup.Label, formRadioGroup.Value != null ? formRadioGroup.Value.Text : ""));

@@ -15,11 +15,11 @@ namespace Form2.Form.Selectables
     {
         #region Fields
 
-        private bool isHidden;
+        private bool hidden;
 
-        private bool isDisabled;
+        private bool disabled;
 
-        private bool isSelected;
+        private bool selected;
 
         #endregion
 
@@ -30,17 +30,17 @@ namespace Form2.Form.Selectables
         {
             get
             {
-                if (isHidden)
+                if (hidden)
                     return false;
 
-                if (isDisabled)
+                if (disabled)
                     return false;
 
-                return isSelected;
+                return selected;
             }
             set
             {
-                isSelected = value;
+                selected = value;
             }
         }
 
@@ -56,10 +56,14 @@ namespace Form2.Form.Selectables
 
         #region IHidden
 
-        public bool? IsHidden
+        public bool? Hidden
         {
-            get { return isHidden; }
-            set { isHidden = value ?? false; }
+            set { hidden = value ?? false; }
+        }
+
+        public bool IsHidden
+        {
+            get { return hidden; }
         }
 
         #endregion
@@ -67,10 +71,14 @@ namespace Form2.Form.Selectables
 
         #region IDisabled
 
-        public bool? IsDisabled
+        public bool? Disabled
         {
-            get { return isDisabled; }
-            set { isDisabled = value ?? false; }
+            set { disabled = value ?? false; }
+        }
+
+        public bool IsDisabled
+        {
+            get { return disabled; }
         }
 
         #endregion

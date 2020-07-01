@@ -106,7 +106,7 @@ namespace Form2WebApp.UserControls
 
                 ElementOrder = ElementOrder.LabelMarkInput;
 
-                IsRequired = true;
+                Required = true;
 
                 RequiredMessage = resFieldRequired;
 
@@ -149,7 +149,7 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resEmploymentStatus,
 
-                    IsRequired = true,
+                    Required = true,
 
                     IsPostBack = true,
 
@@ -167,7 +167,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsHidden = true,
+                    Hidden = true,
 
                     Content = tblEmploymentDuration.ListAll().Select(d => new FormOption(d.id, d.descr))
                 });
@@ -227,7 +227,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsHidden = true,
+                    Hidden = true,
                 });
 
 
@@ -235,7 +235,7 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resMunicipality,
 
-                    IsHidden = true
+                    Hidden = true,
                 });
 
                 #endregion
@@ -270,8 +270,8 @@ namespace Form2WebApp.UserControls
                     if (eventTarget != selCity.BaseId)
                         return;
 
-                    selMunicipality.IsHidden = true;
-                    txtMunicipality.IsHidden = true;
+                    selMunicipality.Hidden = true;
+                    txtMunicipality.Hidden = true;
 
                     if (!selCity.Value.Any())
                         return;
@@ -283,12 +283,12 @@ namespace Form2WebApp.UserControls
                     if (municipalities.Any())
                     {
                         selMunicipality.Content = municipalities.Select(m => new FormOption(m.id, m.name));
-                        selMunicipality.IsHidden = false;
+                        selMunicipality.Hidden = false;
                     }
                     else
                     {
                         txtMunicipality.Content = "";
-                        txtMunicipality.IsHidden = false;
+                        txtMunicipality.Hidden = false;
                     }
                 });
 
@@ -300,7 +300,7 @@ namespace Form2WebApp.UserControls
                     if (eventTarget != rdgEmploymentStatus.BaseId)
                         return;
 
-                    selEmploymentDuration.IsHidden = true;
+                    selEmploymentDuration.Hidden = true;
 
                     if (rdgEmploymentStatus.Value == null)
                         return;
@@ -311,7 +311,7 @@ namespace Form2WebApp.UserControls
                     foreach (var c in selEmploymentDuration.Content)
                         c.IsSelected = false;
 
-                    selEmploymentDuration.IsHidden = false;
+                    selEmploymentDuration.Hidden = false;
 
                 });
             }
@@ -326,16 +326,16 @@ namespace Form2WebApp.UserControls
                 log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
 
                 tblRegisterAdult tra = new tblRegisterAdult();
-                tra.dateOfBirth = dtpDateOfBirth.Value.Value;
+                tra.dateOfBirth = dtpDateOfBirth.Value;
                 tra.employmentStatusId = rdgEmploymentStatus.Value.Numeric;
                 if (tra.employmentStatusId == 1)
                     tra.employmentDurationId = selEmploymentDuration.Value.Single().Numeric;
                 tra.educationalLevelId = selEducationalLevel.Value.Single().Numeric;
                 tra.populationId = selPopulation.Value.Single().Numeric;
                 tra.cityId = selCity.Value.Single().Numeric;
-                if (!(selMunicipality.IsHidden ?? false))
+                if (!selMunicipality.IsHidden)
                     tra.municipality = selMunicipality.Value.Single().Text;
-                else if (!(txtMunicipality.IsHidden ?? false))
+                else if (!txtMunicipality.IsHidden)
                     tra.municipality = txtMunicipality.Value;
                 tra.userId = 1;
 

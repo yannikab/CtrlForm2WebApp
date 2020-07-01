@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items.Input
 {
-    public enum CheckBoxState
-    {
-        Off,
-        On
-    }
-
-    public class FormCheckBox : FormInput<CheckBoxState?, bool>, IValidate<FormCheckBox>
+    public class FormCheckBox : FormInput<bool, bool>, IValidate<FormCheckBox>
     {
         #region Fields
 
@@ -29,7 +24,12 @@ namespace Form2.Form.Content.Items.Input
 
         public override bool Value
         {
-            get { return Content == CheckBoxState.On; }
+            get { return Content; }
+        }
+
+        public override bool HasValue
+        {
+            get { return true; }
         }
 
         #endregion
@@ -41,13 +41,13 @@ namespace Form2.Form.Content.Items.Input
         {
             get
             {
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return true;
 
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return true;
 
-                if (!(IsRequired ?? false))
+                if (!IsRequired)
                     return true;
 
                 return Value;
@@ -81,11 +81,11 @@ namespace Form2.Form.Content.Items.Input
             get
             {
                 // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return true;
 
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return true;
 
                 return string.IsNullOrEmpty(ValidationMessage);
@@ -100,7 +100,7 @@ namespace Form2.Form.Content.Items.Input
         public FormCheckBox(string baseId, string formId)
             : base(baseId, formId)
         {
-            Content = CheckBoxState.Off;
+            Content = false;
 
             Validator = (f) => { return ""; };
             ActionInvalid = (f) => { return; };

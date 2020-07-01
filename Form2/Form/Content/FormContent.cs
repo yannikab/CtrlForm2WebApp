@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content
@@ -21,7 +21,7 @@ namespace Form2.Form.Content
 
         private FormGroup container;
 
-        private bool? isHidden;
+        private bool? hidden;
 
         #endregion
 
@@ -62,21 +62,22 @@ namespace Form2.Form.Content
 
         #region IHidden
 
-        public bool? IsHidden
+        public bool? Hidden
+        {
+            set { hidden = value; }
+        }
+
+        public bool IsHidden
         {
             get
             {
-                if (isHidden.HasValue)
-                    return isHidden.Value;
+                if (hidden.HasValue)
+                    return hidden.Value;
 
                 if (container == null)
-                    return null;
+                    return false;
 
                 return container.IsHidden;
-            }
-            set
-            {
-                isHidden = value;
             }
         }
 
@@ -88,17 +89,17 @@ namespace Form2.Form.Content
         public FormContent(string baseId, string formId)
         {
             if (baseId == null)
-                throw new ArgumentException();
+                throw new ArgumentNullException();
 
             if (formId == null)
-                throw new ArgumentException();
+                throw new ArgumentNullException();
 
             this.baseId = baseId;
             this.formId = formId;
 
-            Container = null;
+            container = null;
 
-            IsHidden = null;
+            hidden = null;
         }
 
         #endregion

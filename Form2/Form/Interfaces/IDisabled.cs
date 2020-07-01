@@ -8,6 +8,8 @@ namespace Form2.Form.Interfaces
 {
     interface IDisabled
     {
-        bool? IsDisabled { get; set; }
+        bool? Disabled { set; }
+
+        bool IsDisabled { get; }
     }
 }

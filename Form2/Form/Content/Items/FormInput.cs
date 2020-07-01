@@ -22,9 +22,9 @@ namespace Form2.Form.Content.Items
 
         private C content;
 
-        private bool? isDisabled;
+        private bool? disabled;
 
-        private bool? isRequired;
+        private bool? required;
 
         private string requiredMark;
 
@@ -64,10 +64,21 @@ namespace Form2.Form.Content.Items
         public virtual C Content
         {
             get { return content; }
-            set { content = value; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException();
+
+                content = value;
+            }
         }
 
         public abstract V Value
+        {
+            get;
+        }
+
+        public abstract bool HasValue
         {
             get;
         }
@@ -77,23 +88,24 @@ namespace Form2.Form.Content.Items
 
         #region IDisabled
 
-        public bool? IsDisabled
+        public bool? Disabled
+        {
+            set { disabled = value; }
+        }
+
+        public bool IsDisabled
         {
             get
             {
-                if (isDisabled.HasValue)
-                    return isDisabled.Value;
+                if (disabled.HasValue)
+                    return disabled.Value;
 
                 FormGroup container = Container as FormGroup;
 
                 if (container == null)
-                    return null;
+                    return false;
 
                 return container.IsDisabled;
-            }
-            set
-            {
-                isDisabled = value;
             }
         }
 
@@ -102,31 +114,32 @@ namespace Form2.Form.Content.Items
 
         #region IRequired
 
-        public virtual bool? IsRequired
+        public virtual bool? Required
+        {
+            set { required = value; }
+        }
+
+        public virtual bool IsRequired
         {
             get
             {
                 // a user can not be expected to fill out an input element that is disabled
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return false;
 
                 // a user can not be expected to fill out an input element that is hidden
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return false;
 
-                if (isRequired.HasValue)
-                    return isRequired.Value;
+                if (required.HasValue)
+                    return required.Value;
 
                 FormGroup container = Container as FormGroup;
 
                 if (container == null)
-                    return null;
+                    return false;
 
                 return container.IsRequired;
-            }
-            set
-            {
-                isRequired = value;
             }
         }
 
@@ -181,13 +194,13 @@ namespace Form2.Form.Content.Items
         public FormInput(string baseId, string formId, string label)
             : base(baseId, formId)
         {
-            Label = label;
+            this.label = label;
 
-            IsDisabled = null;
+            disabled = null;
 
-            IsRequired = null;
-            RequiredMark = null;
-            RequiredMessage = null;
+            required = null;
+            requiredMark = null;
+            requiredMessage = null;
 
             ElementOrder = ElementOrder.NotSet;
         }

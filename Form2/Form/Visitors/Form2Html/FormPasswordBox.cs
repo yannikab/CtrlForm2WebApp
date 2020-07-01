@@ -22,7 +22,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-textbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
 
-            bool isRequired = formPasswordBox.IsRequired ?? false;
+            bool isRequired = formPasswordBox.IsRequired;
 
             if (!validate)
             {

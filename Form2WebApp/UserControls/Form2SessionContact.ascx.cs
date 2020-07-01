@@ -52,7 +52,7 @@ namespace Form2WebApp.UserControls
                 OpenGroup("Container");
 
 
-                IsRequired = true;
+                Required = true;
 
                 RequiredMessage = "Το πεδίο είναι υποχρεωτικό.";
 
@@ -110,8 +110,8 @@ namespace Form2WebApp.UserControls
                     FormSelect selMunicipality = GetItem<FormSelect>("MunicipalitySelect");
                     FormTextBox txtMunicipality = GetItem<FormTextBox>("MunicipalityTextBox");
 
-                    selMunicipality.IsHidden = true;
-                    txtMunicipality.IsHidden = true;
+                    selMunicipality.Hidden = true;
+                    txtMunicipality.Hidden = true;
 
                     if (!selCity.Value.Any())
                         return;
@@ -122,11 +122,11 @@ namespace Form2WebApp.UserControls
 
                     if (municipalities.Length == 0)
                     {
-                        txtMunicipality.IsHidden = false;
+                        txtMunicipality.Hidden = false;
                         return;
                     }
 
-                    selMunicipality.IsHidden = false;
+                    selMunicipality.Hidden = false;
 
                     FormOption prevMunicipality = selMunicipality.Value.SingleOrDefault();
 

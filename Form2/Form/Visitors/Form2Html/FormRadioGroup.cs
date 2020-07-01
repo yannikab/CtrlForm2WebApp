@@ -23,7 +23,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-radiogroup");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
 
-            bool isRequired = formRadioGroup.IsRequired ?? false;
+            bool isRequired = formRadioGroup.IsRequired;
 
             if (!validate)
             {
@@ -170,10 +170,10 @@ namespace Form2.Form.Visitors
 
                 foreach (var c in formRadioGroup.Content)
                 {
-                    if (c.IsHidden ?? false)
+                    if (c.IsHidden)
                         continue;
 
-                    if (c.IsDisabled ?? false)
+                    if (c.IsDisabled)
                         continue;
 
                     c.IsSelected = c.Value == viewStateString;

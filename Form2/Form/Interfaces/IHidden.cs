@@ -8,6 +8,8 @@ namespace Form2.Form.Interfaces
 {
     interface IHidden
     {
-        bool? IsHidden { get; set; }
+        bool? Hidden { set; }
+
+        bool IsHidden { get; }
     }
 }

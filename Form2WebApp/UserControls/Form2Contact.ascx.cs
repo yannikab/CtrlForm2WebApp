@@ -50,9 +50,9 @@ namespace Form2WebApp.UserControls
             {
                 OpenGroup("Container");
 
-                IsReadOnly = false;
+                ReadOnly = false;
 
-                IsRequired = false;
+                Required = false;
 
                 //RequiredMark = "(required)";
 
@@ -75,7 +75,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "John",
 
-                    IsRequired = true,
+                    Required = true,
 
                     PlaceHolder = "Enter your first name",
                 });
@@ -86,7 +86,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "Doe",
 
-                    IsRequired = true,
+                    Required = true,
 
                     PlaceHolder = "Enter your last name",
                 });
@@ -101,7 +101,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "1999-03-12",
 
-                    IsRequired = true,
+                    Required = true,
 
                     Validator = (f) =>
                     {
@@ -126,7 +126,7 @@ namespace Form2WebApp.UserControls
 
                     PlaceHolder = "dd/mm/yyyy",
 
-                    IsRequired = false,
+                    Required = false,
 
                     Validator = (f) =>
                     {
@@ -154,7 +154,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "yanni.kab@gmail.com",
 
-                    IsRequired = true,
+                    Required = true,
 
                     PlaceHolder = "Enter your email",
 
@@ -175,7 +175,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "2105149035",
 
-                    IsRequired = true,
+                    Required = true,
 
                     PlaceHolder = "Enter your phone number",
 
@@ -206,7 +206,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "123",
 
-                    IsRequired = true,
+                    Required = true,
 
                     PlaceHolder = "Enter your password",
 
@@ -231,7 +231,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "123",
 
-                    IsRequired = true,
+                    Required = true,
 
                     PlaceHolder = "Confirm your password",
 
@@ -256,7 +256,7 @@ namespace Form2WebApp.UserControls
 
                 AddItem(new FormSelect("Grade", false)
                 {
-                    IsRequired = true,
+                    Required = true,
 
                     Label = "Τάξη",
 
@@ -278,7 +278,7 @@ namespace Form2WebApp.UserControls
 
                 AddItem(new FormSelect("Orientation", false)
                 {
-                    IsRequired = true,
+                    Required = true,
 
                     Label = "Κατεύθυνση",
 
@@ -300,15 +300,15 @@ namespace Form2WebApp.UserControls
 
                 AddItem(new FormRadioGroup("Contact")
                 {
-                    IsRequired = true,
+                    Required = true,
 
                     Label = "Contact method",
 
                     Content = new FormRadioButton[]
                     {
                         new FormRadioButton(0, "Phone") { IsSelected = false },
-                        new FormRadioButton(1, "Mobile") { IsHidden = true },
-                        new FormRadioButton(2, "Email") { IsDisabled = true },
+                        new FormRadioButton(1, "Mobile") { Hidden = false },
+                        new FormRadioButton(2, "Email") { Disabled = true },
                         new FormRadioButton(3, "Post"),
                     },
 
@@ -335,7 +335,7 @@ namespace Form2WebApp.UserControls
 
                     Content = "My Message",
 
-                    IsRequired = true,
+                    Required = true,
 
                     PlaceHolder = "Enter your message",
 
@@ -349,9 +349,9 @@ namespace Form2WebApp.UserControls
                 {
                     Label = "Accept Terms",
 
-                    Content = CheckBoxState.On,
+                    Content = true,
 
-                    IsRequired = true,
+                    Required = true,
 
                     RequiredMessage = "You must agree with the terms of use",
                 });
@@ -361,7 +361,7 @@ namespace Form2WebApp.UserControls
                 {
                     Content = "Submit",
 
-                    IsDisabled = false,
+                    Disabled = false,
 
                     IsSubmit = true,
                 });
@@ -374,7 +374,7 @@ namespace Form2WebApp.UserControls
             {
                 rules.Add((isPostBack, eventTarget, eventArgument) =>
                 {
-                    GetItem<FormSelect>("Orientation").IsDisabled =
+                    GetItem<FormSelect>("Orientation").Disabled =
                     GetItem<FormSelect>("Grade").Value.Any(o => o.Text == "Β' Λυκείου" || o.Text == "Γ' Λυκείου") == false;
                 });
             }

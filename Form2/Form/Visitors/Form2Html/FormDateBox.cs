@@ -22,7 +22,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-datebox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDateBox.FormId));
 
-            bool isRequired = formDateBox.IsRequired ?? false;
+            bool isRequired = formDateBox.IsRequired;
 
             if (!validate)
             {

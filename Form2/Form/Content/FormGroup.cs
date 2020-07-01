@@ -21,15 +21,15 @@ namespace Form2.Form.Content
 
         private ElementOrder elementOrder;
 
-        private bool? isDisabled;
+        private bool? disabled;
 
-        private bool? isRequired;
+        private bool? required;
 
         private string requiredMark;
 
         private string requiredMessage;
 
-        private bool? isReadOnly;
+        private bool? readOnly;
 
         #endregion
 
@@ -140,23 +140,24 @@ namespace Form2.Form.Content
 
         #region IDisabled
 
-        public bool? IsDisabled
+        public bool? Disabled
+        {
+            set { disabled = value; }
+        }
+
+        public bool IsDisabled
         {
             get
             {
-                if (isDisabled.HasValue)
-                    return isDisabled.Value;
+                if (disabled.HasValue)
+                    return disabled.Value;
 
                 FormGroup container = Container as FormGroup;
 
                 if (container == null)
-                    return null;
+                    return false;
 
                 return container.IsDisabled;
-            }
-            set
-            {
-                isDisabled = value;
             }
         }
 
@@ -165,27 +166,28 @@ namespace Form2.Form.Content
 
         #region IRequired
 
-        public bool? IsRequired
+        public bool? Required
+        {
+            set { required = value; }
+        }
+
+        public bool IsRequired
         {
             get
             {
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return false;
 
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return false;
 
-                if (isRequired.HasValue)
-                    return isRequired.Value;
+                if (required.HasValue)
+                    return required.Value;
 
                 if (Container == null)
-                    return null;
+                    return false;
 
                 return Container.IsRequired;
-            }
-            set
-            {
-                isRequired = value;
             }
         }
 
@@ -235,27 +237,28 @@ namespace Form2.Form.Content
 
         #region IReadOnly
 
-        public bool? IsReadOnly
+        public bool? ReadOnly
+        {
+            set { readOnly = value; }
+        }
+
+        public bool IsReadOnly
         {
             get
             {
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return false;
 
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return false;
 
-                if (isReadOnly.HasValue)
-                    return isReadOnly.Value;
+                if (readOnly.HasValue)
+                    return readOnly.Value;
 
                 if (Container == null)
-                    return null;
+                    return false;
 
                 return Container.IsReadOnly;
-            }
-            set
-            {
-                isReadOnly = value;
             }
         }
 
@@ -273,13 +276,13 @@ namespace Form2.Form.Content
                     if (c is FormGroup)
                         continue;
 
-                    if (c is IHidden && ((c as IHidden).IsHidden ?? false))
+                    if (c is IHidden && (c as IHidden).IsHidden)
                         continue;
 
-                    if (c is IDisabled && ((c as IDisabled).IsDisabled ?? false))
+                    if (c is IDisabled && (c as IDisabled).IsDisabled)
                         continue;
 
-                    if (c is IReadOnly && ((c as IReadOnly).IsReadOnly ?? false))
+                    if (c is IReadOnly && (c as IReadOnly).IsReadOnly)
                         continue;
 
                     if (c is IValidate == false)

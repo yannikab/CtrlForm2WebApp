@@ -117,7 +117,7 @@ namespace Form2WebApp.UserControls
 
                 ElementOrder = ElementOrder.LabelMarkInput;
 
-                IsRequired = true;
+                Required = true;
 
                 RequiredMessage = resFieldRequired;
 
@@ -192,7 +192,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsHidden = true,
+                    Hidden = true,
                 });
 
 
@@ -200,7 +200,7 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resMunicipality,
 
-                    IsHidden = true,
+                    Hidden = true,
                 });
 
                 #endregion
@@ -248,7 +248,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsHidden = true,
+                    Hidden = true,
 
                     IsPostBack = true,
                 });
@@ -264,7 +264,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsHidden = true,
+                    Hidden = true,
 
                     Content = tblOrientationGroup.ListAll().Select(o => new FormOption(o.id, o.name))
                 });
@@ -278,7 +278,7 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resCoachingSchool,
 
-                    IsRequired = false,
+                    Required = false,
                 });
 
                 #endregion
@@ -290,12 +290,12 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resPrivateLessons,
 
-                    IsRequired = false,
+                    Required = false,
 
                     Content = new FormRadioButton[]
                     {
-                    new FormRadioButton(0, resYes) { IsSelected = false },
-                    new FormRadioButton(1, resNo) { IsSelected = false },
+                        new FormRadioButton(0, resYes) { IsSelected = false },
+                        new FormRadioButton(1, resNo) { IsSelected = false },
                     }
                 });
 
@@ -331,8 +331,8 @@ namespace Form2WebApp.UserControls
                     if (eventTarget != selCity.BaseId)
                         return;
 
-                    selMunicipality.IsHidden = true;
-                    txtMunicipality.IsHidden = true;
+                    selMunicipality.Hidden = true;
+                    txtMunicipality.Hidden = true;
 
                     if (!selCity.Value.Any())
                         return;
@@ -344,12 +344,12 @@ namespace Form2WebApp.UserControls
                     if (municipalities.Any())
                     {
                         selMunicipality.Content = municipalities.Select(m => new FormOption(m.id, m.name));
-                        selMunicipality.IsHidden = false;
+                        selMunicipality.Hidden = false;
                     }
                     else
                     {
                         txtMunicipality.Content = "";
-                        txtMunicipality.IsHidden = false;
+                        txtMunicipality.Hidden = false;
                     }
                 });
 
@@ -361,8 +361,8 @@ namespace Form2WebApp.UserControls
                     if (eventTarget != selEducationalStage.BaseId)
                         return;
 
-                    selEducationalGrade.IsHidden = true;
-                    selOrientationGroup.IsHidden = true;
+                    selEducationalGrade.Hidden = true;
+                    selOrientationGroup.Hidden = true;
 
                     if (!selEducationalStage.Value.Any())
                         return;
@@ -375,7 +375,7 @@ namespace Form2WebApp.UserControls
                         return;
 
                     selEducationalGrade.Content = grades.Select(g => new FormOption(g.id, g.name));
-                    selEducationalGrade.IsHidden = false;
+                    selEducationalGrade.Hidden = false;
                 });
 
                 rules.Add((isPostBack, eventTarget, eventArgument) =>
@@ -386,9 +386,9 @@ namespace Form2WebApp.UserControls
                     if (eventTarget != selEducationalGrade.BaseId)
                         return;
 
-                    selOrientationGroup.IsHidden = true;
+                    selOrientationGroup.Hidden = true;
 
-                    if (selEducationalStage.IsHidden ?? false)
+                    if (selEducationalStage.IsHidden)
                         return;
 
                     if (!selEducationalStage.Value.Any())
@@ -397,7 +397,7 @@ namespace Form2WebApp.UserControls
                     if (selEducationalStage.Value.Single().Value != "3")
                         return;
 
-                    if (selEducationalGrade.IsHidden ?? false)
+                    if (selEducationalGrade.IsHidden)
                         return;
 
                     if (!selEducationalGrade.Value.Any())
@@ -409,7 +409,7 @@ namespace Form2WebApp.UserControls
                     foreach (var o in selOrientationGroup.Content)
                         o.IsSelected = false;
 
-                    selOrientationGroup.IsHidden = false;
+                    selOrientationGroup.Hidden = false;
                 });
             }
 
@@ -423,13 +423,13 @@ namespace Form2WebApp.UserControls
                 log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
 
                 tblRegisterStudent trs = new tblRegisterStudent();
-                trs.dateOfBirth = dtpDateOfBirth.Value.Value;
+                trs.dateOfBirth = dtpDateOfBirth.Value;
                 trs.populationId = selPopulation.Value.Single().Numeric;
                 trs.cityId = selCity.Value.Single().Numeric;
-                trs.municipality = !(selMunicipality.IsHidden ?? false) ? selMunicipality.Value.Single().Text : !(txtMunicipality.IsHidden ?? false) ? txtMunicipality.Value : null;
+                trs.municipality = !selMunicipality.IsHidden ? selMunicipality.Value.Single().Text : !txtMunicipality.IsHidden ? txtMunicipality.Value : null;
                 trs.email = txtEmail.Value;
                 trs.educationalGradeId = selEducationalGrade.Value.Single().Numeric;
-                trs.orientationGroupId = !(selOrientationGroup.IsHidden ?? false) ? (long?)selOrientationGroup.Value.Single().Numeric : null;
+                trs.orientationGroupId = !selOrientationGroup.IsHidden ? (long?)selOrientationGroup.Value.Single().Numeric : null;
                 trs.coachingSchool = txtCoachingSchool.Value;
                 trs.privateLessons = rdgPrivateLessons.Value != null ? (bool?)(rdgPrivateLessons.Value.Value == "0") : null;
                 trs.userId = 1;

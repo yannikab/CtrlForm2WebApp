@@ -22,7 +22,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-select");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formSelect.FormId));
 
-            bool isRequired = formSelect.IsRequired ?? false;
+            bool isRequired = formSelect.IsRequired;
 
             if (!validate)
             {
@@ -184,10 +184,10 @@ namespace Form2.Form.Visitors
                         if (formSelect.Header != null && content[i] == formSelect.Header)
                             continue;
 
-                        if (content[i].IsHidden ?? false)
+                        if (content[i].IsHidden)
                             continue;
 
-                        if (content[i].IsDisabled ?? false)
+                        if (content[i].IsDisabled)
                             continue;
 
                         if (content[i].Value == o)

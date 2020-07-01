@@ -21,7 +21,7 @@ namespace Form2.Form.Content.Items.Input
 
         private FormIcon icon;
 
-        private bool? isReadOnly;
+        private bool? readOnly;
 
         private Func<FormTextBox, string> validator;
 
@@ -46,7 +46,12 @@ namespace Form2.Form.Content.Items.Input
 
         public override string Value
         {
-            get { return Content ?? ""; }
+            get { return Content.Trim(); }
+        }
+
+        public override bool HasValue
+        {
+            get { return !string.IsNullOrWhiteSpace(Value); }
         }
 
         #endregion
@@ -54,18 +59,19 @@ namespace Form2.Form.Content.Items.Input
 
         #region IRequired
 
-        public override bool? IsRequired
+        public override bool? Required
+        {
+            set { base.Required = value; }
+        }
+
+        public override bool IsRequired
         {
             get
             {
-                if (IsReadOnly ?? false)
+                if (IsReadOnly)
                     return false;
 
                 return base.IsRequired;
-            }
-            set
-            {
-                base.IsRequired = value;
             }
         }
 
@@ -73,19 +79,19 @@ namespace Form2.Form.Content.Items.Input
         {
             get
             {
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return true;
 
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return true;
 
-                if (IsReadOnly ?? false)
+                if (IsReadOnly)
                     return true;
 
-                if (!(IsRequired ?? false))
+                if (!IsRequired)
                     return true;
 
-                return Value != "";
+                return HasValue;
             }
         }
 
@@ -94,31 +100,32 @@ namespace Form2.Form.Content.Items.Input
 
         #region IReadOnly
 
-        public bool? IsReadOnly
+        public bool? ReadOnly
+        {
+            set { readOnly = value; }
+        }
+
+        public bool IsReadOnly
         {
             get
             {
                 // a user can not be expected to fill out an input element that is disabled
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return false;
 
                 // a user can not be expected to fill out an input element that is hidden
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return false;
 
-                if (isReadOnly.HasValue)
-                    return isReadOnly.Value;
+                if (readOnly.HasValue)
+                    return readOnly.Value;
 
                 FormGroup container = Container as FormGroup;
 
                 if (container == null)
-                    return null;
+                    return false;
 
                 return container.IsReadOnly;
-            }
-            set
-            {
-                isReadOnly = value;
             }
         }
 
@@ -149,18 +156,18 @@ namespace Form2.Form.Content.Items.Input
             get
             {
                 // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return true;
 
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return true;
 
                 // a user can not edit readonly elements, it is unfair for them to participate in validation
-                if (IsReadOnly ?? false)
+                if (IsReadOnly)
                     return true;
 
-                return !IsRequiredMet ? (!(IsRequired ?? false)) : string.IsNullOrEmpty(ValidationMessage);
+                return !IsRequiredMet ? !IsRequired : string.IsNullOrEmpty(ValidationMessage);
             }
         }
 
@@ -176,7 +183,7 @@ namespace Form2.Form.Content.Items.Input
             PlaceHolder = "";
             Icon = FormIcon.NotSet;
 
-            IsReadOnly = null;
+            readOnly = null;
 
             Validator = (f) => { return ""; };
             ActionInvalid = (f) => { return; };

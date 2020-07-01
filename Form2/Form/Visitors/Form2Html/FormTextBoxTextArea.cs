@@ -22,7 +22,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-textbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextBox.FormId));
 
-            bool isRequired = formTextBox.IsRequired ?? false;
+            bool isRequired = formTextBox.IsRequired;
 
             if (!validate)
             {
@@ -192,7 +192,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-textarea");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextArea.FormId));
 
-            bool isRequired = formTextArea.IsRequired ?? false;
+            bool isRequired = formTextArea.IsRequired;
 
             if (!validate)
             {

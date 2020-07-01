@@ -22,7 +22,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-checkbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formCheckBox.FormId));
 
-            bool isRequired = formCheckBox.IsRequired ?? false;
+            bool isRequired = formCheckBox.IsRequired;
 
             if (!validate)
             {
@@ -164,9 +164,9 @@ namespace Form2.Form.Visitors
                 string viewStateString = (string)sessionState[formCheckBox.SessionKey];
 
                 if (viewStateString == null)
-                    viewStateString = "off";
+                    formCheckBox.Content = false;
 
-                formCheckBox.Content = (CheckBoxState?)Enum.Parse(typeof(CheckBoxState), viewStateString, true);
+                formCheckBox.Content = viewStateString.ToLower() == "on";
             }
 
             if (formCheckBox.IsRequiredMet)

@@ -14,7 +14,7 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormDatePicker : FormInput<string, DateTime?>, IReadOnly, IValidate<FormDatePicker>
+    public class FormDatePicker : FormInput<string, DateTime>, IReadOnly, IValidate<FormDatePicker>
     {
         #region Fields
 
@@ -22,7 +22,7 @@ namespace Form2.Form.Content.Items.Input
 
         private FormIcon icon;
 
-        private bool? isReadOnly;
+        private bool? readOnly;
 
         private Func<FormDatePicker, string> validator;
 
@@ -53,9 +53,14 @@ namespace Form2.Form.Content.Items.Input
             set { dateFormat = value; }
         }
 
-        public override DateTime? Value
+        public override DateTime Value
         {
-            get { try { return DateTime.ParseExact(Content, dateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture); } catch { return null; }; }
+            get { try { return DateTime.ParseExact(Content, dateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture); } catch { return DateTime.MinValue; }; }
+        }
+
+        public override bool HasValue
+        {
+            get { try { DateTime.ParseExact(Content, dateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture); return true; } catch { return false; }; }
         }
 
         #endregion
@@ -63,18 +68,19 @@ namespace Form2.Form.Content.Items.Input
 
         #region IRequired
 
-        public override bool? IsRequired
+        public override bool? Required
+        {
+            set { base.Required = value; }
+        }
+
+        public override bool IsRequired
         {
             get
             {
-                if (IsReadOnly ?? false)
+                if (IsReadOnly)
                     return false;
 
                 return base.IsRequired;
-            }
-            set
-            {
-                base.IsRequired = value;
             }
         }
 
@@ -82,19 +88,19 @@ namespace Form2.Form.Content.Items.Input
         {
             get
             {
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return true;
 
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return true;
 
-                if (IsReadOnly ?? false)
+                if (IsReadOnly)
                     return true;
 
-                if (!(IsRequired ?? false))
+                if (!IsRequired)
                     return true;
 
-                return Value.HasValue;
+                return HasValue;
             }
         }
 
@@ -103,31 +109,32 @@ namespace Form2.Form.Content.Items.Input
 
         #region IReadOnly
 
-        public bool? IsReadOnly
+        public bool? ReadOnly
+        {
+            set { readOnly = value; }
+        }
+
+        public bool IsReadOnly
         {
             get
             {
                 // a user can not be expected to fill out an input element that is disabled
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return false;
 
                 // a user can not be expected to fill out an input element that is hidden
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return false;
 
-                if (isReadOnly.HasValue)
-                    return isReadOnly.Value;
+                if (readOnly.HasValue)
+                    return readOnly.Value;
 
                 FormGroup container = Container as FormGroup;
 
                 if (container == null)
-                    return null;
+                    return false;
 
                 return container.IsReadOnly;
-            }
-            set
-            {
-                isReadOnly = value;
             }
         }
 
@@ -158,18 +165,18 @@ namespace Form2.Form.Content.Items.Input
             get
             {
                 // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled ?? false)
+                if (IsDisabled)
                     return true;
 
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
-                if (IsHidden ?? false)
+                if (IsHidden)
                     return true;
 
                 // a user can not edit readonly elements, it is unfair for them to participate in validation
-                if (IsReadOnly ?? false)
+                if (IsReadOnly)
                     return true;
 
-                return !IsRequiredMet ? (!(IsRequired ?? false)) : string.IsNullOrEmpty(ValidationMessage);
+                return !IsRequiredMet ? !IsRequired : string.IsNullOrEmpty(ValidationMessage);
             }
         }
 
@@ -187,7 +194,7 @@ namespace Form2.Form.Content.Items.Input
 
             DateFormat = dateFormat;
 
-            IsReadOnly = null;
+            readOnly = null;
 
             Validator = (f) => { return ""; };
             ActionInvalid = (f) => { return; };

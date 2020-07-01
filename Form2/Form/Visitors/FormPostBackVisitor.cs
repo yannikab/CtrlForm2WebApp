@@ -15,7 +15,7 @@ namespace Form2.Form.Visitors
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0029:Use coalesce expression", Justification = "<Pending>")]
-    
+
     public class FormPostBackVisitor
     {
         #region Fields
@@ -89,11 +89,11 @@ namespace Form2.Form.Visitors
         {
             if (form[formCheckBox.BaseId] == null)
             {
-                formCheckBox.Content = null;
+                formCheckBox.Content = false;
                 return;
             }
 
-            formCheckBox.Content = (CheckBoxState?)Enum.Parse(typeof(CheckBoxState), form[formCheckBox.BaseId], true);
+            formCheckBox.Content = form[formCheckBox.BaseId].ToLower() == "on";
         }
 
         public virtual void Visit(FormSelect formSelect)
@@ -115,10 +115,10 @@ namespace Form2.Form.Visitors
                     if (formSelect.Header != null && content[i] == formSelect.Header)
                         continue;
 
-                    if (content[i].IsHidden ?? false)
+                    if (content[i].IsHidden)
                         continue;
 
-                    if (content[i].IsDisabled ?? false)
+                    if (content[i].IsDisabled)
                         continue;
 
                     if (content[i].Value == o)
@@ -136,10 +136,10 @@ namespace Form2.Form.Visitors
         {
             foreach (var c in formRadioGroup.Content)
             {
-                if (c.IsHidden ?? false)
+                if (c.IsHidden)
                     continue;
 
-                if (c.IsDisabled ?? false)
+                if (c.IsDisabled)
                     continue;
 
                 c.IsSelected = c.Value == form[formRadioGroup.BaseId];

@@ -8,6 +8,8 @@ namespace Form2.Form.Interfaces
 {
     interface IReadOnly
     {
-        bool? IsReadOnly { get; set; }
+        bool? ReadOnly { set; }
+
+        bool IsReadOnly { get; }
     }
 }

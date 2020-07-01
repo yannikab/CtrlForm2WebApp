@@ -8,7 +8,9 @@ namespace Form2.Form.Interfaces
 {
     interface IRequired
     {
-        bool? IsRequired { get; set; }
+        bool? Required { set; }
+
+        bool IsRequired { get; }
 
         string RequiredMark { get; set; }
 

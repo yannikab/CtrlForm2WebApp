@@ -127,10 +127,10 @@ namespace Form2
 
                     foreach (var formItem in formGroup.Get<FormItem>().Where(f => f is IRequired))
                     {
-                        if (formItem is IHidden && ((formItem as IHidden).IsHidden ?? false))
+                        if (formItem is IHidden && (formItem as IHidden).IsHidden)
                             continue;
 
-                        if (formItem is IDisabled && ((formItem as IDisabled).IsDisabled ?? false))
+                        if (formItem is IDisabled && (formItem as IDisabled).IsDisabled)
                             continue;
 
                         session[formItem.SessionKey] = form[formItem.BaseId];
@@ -152,12 +152,9 @@ namespace Form2
             if (groups.Count == 0)
             {
                 this.formGroup = formGroup;
-                this.formGroup.IsHidden = false;
-                this.formGroup.IsDisabled = false;
-                this.formGroup.IsRequired = false;
+
                 this.formGroup.RequiredMark = "*";
                 this.formGroup.RequiredMessage = "!";
-                this.formGroup.IsReadOnly = false;
                 this.formGroup.ElementOrder = ElementOrder.InputLabelMark;
             }
             else
@@ -176,60 +173,69 @@ namespace Form2
             groups.Pop();
         }
 
-        protected bool? IsHidden
+        protected bool? Hidden
+        {
+            set
+            {
+                if (groups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set Hidden property.");
+
+                groups.Peek().Hidden = value;
+            }
+        }
+
+        protected bool IsHidden
         {
             get
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not get IsHidden default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not get Hidden property.");
 
                 return groups.Peek().IsHidden;
             }
+        }
 
+        protected bool? ReadOnly
+        {
             set
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not set IsHidden default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not set ReadOnly property.");
 
-                groups.Peek().IsHidden = value;
+                groups.Peek().ReadOnly = value;
             }
         }
 
-        protected bool? IsReadOnly
+        protected bool IsReadOnly
         {
             get
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not get IsReadOnly default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not get ReadOnly property.");
 
                 return groups.Peek().IsReadOnly;
             }
+        }
 
+        protected bool? Required
+        {
             set
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not set IsReadOnly default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not set Required property.");
 
-                groups.Peek().IsReadOnly = value;
+                groups.Peek().Required = value;
             }
         }
 
-        protected bool? IsRequired
+        protected bool IsRequired
         {
             get
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not get IsRequired default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not get Required property.");
 
                 return groups.Peek().IsRequired;
-            }
-
-            set
-            {
-                if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not set IsRequired default property.");
-
-                groups.Peek().IsRequired = value;
             }
         }
 
@@ -238,15 +244,14 @@ namespace Form2
             get
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMark default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMark property.");
 
                 return groups.Peek().RequiredMark;
             }
-
             set
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMark default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMark property.");
 
                 groups.Peek().RequiredMark = value;
             }
@@ -257,15 +262,14 @@ namespace Form2
             get
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMessage default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMessage property.");
 
                 return groups.Peek().RequiredMessage;
             }
-
             set
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMessage default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMessage property.");
 
                 groups.Peek().RequiredMessage = value;
             }
@@ -276,15 +280,14 @@ namespace Form2
             get
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not get ElementOrder default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not get ElementOrder property.");
 
                 return groups.Peek().ElementOrder;
             }
-
             set
             {
                 if (groups.Count == 0)
-                    throw new InvalidOperationException("No form group is currently open. Can not set ElementOrder default property.");
+                    throw new InvalidOperationException("No form group is currently open. Can not set ElementOrder property.");
 
                 groups.Peek().ElementOrder = value;
             }

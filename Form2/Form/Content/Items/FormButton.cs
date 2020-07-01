@@ -17,7 +17,7 @@ namespace Form2.Form.Content.Items
 
         private string content;
 
-        private bool? isDisabled;
+        private bool? disabled;
 
         private bool isSubmit;
 
@@ -42,23 +42,24 @@ namespace Form2.Form.Content.Items
 
         #region IDisabled
 
-        public bool? IsDisabled
+        public bool? Disabled
+        {
+            set { disabled = value; }
+        }
+
+        public bool IsDisabled
         {
             get
             {
-                if (isDisabled.HasValue)
-                    return isDisabled.Value;
+                if (disabled.HasValue)
+                    return disabled.Value;
 
                 FormGroup container = Container as FormGroup;
 
                 if (container == null)
-                    return null;
+                    return false;
 
                 return container.IsDisabled;
-            }
-            set
-            {
-                isDisabled = value;
             }
         }
 
@@ -81,9 +82,9 @@ namespace Form2.Form.Content.Items
         public FormButton(string baseId, string formId)
             : base(baseId, formId)
         {
-            Content = "";
+            content = "";
 
-            IsDisabled = null;
+            disabled = null;
 
             IsSubmit = false;
         }
