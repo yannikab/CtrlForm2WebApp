@@ -19,6 +19,7 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormPasswordBox formPasswordBox, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formPasswordBox.BaseId);
+            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-textbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
 

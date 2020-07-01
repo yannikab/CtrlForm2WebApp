@@ -17,6 +17,7 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormButton formButton, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formButton.BaseId);
+            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-button");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formButton.FormId));
             htmlDiv.Hidden.Value = formButton.IsHidden;

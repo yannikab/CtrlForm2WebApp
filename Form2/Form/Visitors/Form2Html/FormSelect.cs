@@ -19,6 +19,7 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormSelect formSelect, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formSelect.BaseId);
+            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-select");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formSelect.FormId));
 

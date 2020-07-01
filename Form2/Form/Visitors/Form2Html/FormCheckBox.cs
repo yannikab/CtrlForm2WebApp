@@ -19,6 +19,7 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formCheckBox.BaseId);
+            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-checkbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formCheckBox.FormId));
 

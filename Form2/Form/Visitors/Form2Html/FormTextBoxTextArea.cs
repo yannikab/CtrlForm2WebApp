@@ -19,6 +19,7 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormTextBox formTextBox, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formTextBox.BaseId);
+            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-textbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextBox.FormId));
 
@@ -189,6 +190,7 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormTextArea formTextArea, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formTextArea.BaseId);
+            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-textarea");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextArea.FormId));
 

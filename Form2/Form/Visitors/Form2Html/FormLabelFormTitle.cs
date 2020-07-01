@@ -18,6 +18,7 @@ namespace Form2.Form.Visitors
         {
             HtmlDiv htmlDiv = new HtmlDiv(formLabel.BaseId);
             htmlDiv.Hidden.Value = formLabel.IsHidden;
+            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-label");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formLabel.FormId));
 
