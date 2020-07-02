@@ -19,10 +19,10 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormTextBox formTextBox, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formTextBox.BaseId);
-            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-textbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextBox.FormId));
-
+            htmlDiv.Class.Add("form-field");
+            
             bool isRequired = formTextBox.IsRequired;
 
             if (!validate)
@@ -38,6 +38,7 @@ namespace Form2.Form.Visitors
             }
 
             htmlDiv.Hidden.Value = formTextBox.IsHidden;
+
             htmlContainer.Add(htmlDiv);
 
             HtmlTextBox htmlTextBox = new HtmlTextBox(formTextBox.BaseId);
@@ -190,10 +191,10 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormTextArea formTextArea, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formTextArea.BaseId);
-            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-textarea");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextArea.FormId));
-
+            htmlDiv.Class.Add("form-field");
+            
             bool isRequired = formTextArea.IsRequired;
 
             if (!validate)
@@ -209,6 +210,7 @@ namespace Form2.Form.Visitors
             }
 
             htmlDiv.Hidden.Value = formTextArea.IsHidden;
+
             htmlContainer.Add(htmlDiv);
 
             HtmlTextArea htmlTextArea = new HtmlTextArea(formTextArea.BaseId, formTextArea.Rows, formTextArea.Columns);

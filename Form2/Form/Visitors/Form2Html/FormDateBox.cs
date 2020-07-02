@@ -19,9 +19,9 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormDateBox formDateBox, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formDateBox.BaseId);
-            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-datebox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDateBox.FormId));
+            htmlDiv.Class.Add("form-field");
 
             bool isRequired = formDateBox.IsRequired;
 
@@ -38,6 +38,7 @@ namespace Form2.Form.Visitors
             }
 
             htmlDiv.Hidden.Value = formDateBox.IsHidden;
+
             htmlContainer.Add(htmlDiv);
 
             HtmlDateBox htmlDateBox = new HtmlDateBox(formDateBox.BaseId);

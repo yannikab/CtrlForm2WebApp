@@ -20,9 +20,9 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormDatePicker formDatePicker, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formDatePicker.BaseId);
-            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-datepicker");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDatePicker.FormId));
+            htmlDiv.Class.Add("form-field");
 
             bool isRequired = formDatePicker.IsRequired;
 
@@ -39,6 +39,7 @@ namespace Form2.Form.Visitors
             }
 
             htmlDiv.Hidden.Value = formDatePicker.IsHidden;
+
             htmlContainer.Add(htmlDiv);
 
             HtmlDatePicker htmlDatePicker = new HtmlDatePicker(formDatePicker.BaseId);

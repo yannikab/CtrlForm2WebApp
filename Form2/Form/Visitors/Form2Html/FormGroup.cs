@@ -16,8 +16,9 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormGroup formGroup, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formGroup.BaseId);
-            htmlDiv.Class.Add("form-grouping");
+            htmlDiv.Class.Add("form-section");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formGroup.FormId));
+
             htmlDiv.Hidden.Value = formGroup.IsHidden;
 
             if (htmlContainer == null)

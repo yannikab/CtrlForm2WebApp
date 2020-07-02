@@ -20,10 +20,10 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormRadioGroup formRadioGroup, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formRadioGroup.BaseId);
-            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-radiogroup");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
-
+            htmlDiv.Class.Add("form-field");
+            
             bool isRequired = formRadioGroup.IsRequired;
 
             if (!validate)
@@ -39,6 +39,7 @@ namespace Form2.Form.Visitors
             }
 
             htmlDiv.Hidden.Value = formRadioGroup.IsHidden;
+
             htmlContainer.Add(htmlDiv);
 
             HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.BaseId, formRadioGroup.IsPostBack);

@@ -19,10 +19,10 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormPasswordBox formPasswordBox, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formPasswordBox.BaseId);
-            htmlDiv.Class.Add("form-item");
-            htmlDiv.Class.Add("form-textbox");
+            htmlDiv.Class.Add("form-password");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
-
+            htmlDiv.Class.Add("form-field");
+            
             bool isRequired = formPasswordBox.IsRequired;
 
             if (!validate)
@@ -38,6 +38,7 @@ namespace Form2.Form.Visitors
             }
 
             htmlDiv.Hidden.Value = formPasswordBox.IsHidden;
+
             htmlContainer.Add(htmlDiv);
 
             HtmlPasswordBox htmlPasswordBox = new HtmlPasswordBox(formPasswordBox.BaseId);

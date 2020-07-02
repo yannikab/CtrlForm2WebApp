@@ -17,10 +17,10 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormLabel formLabel, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = new HtmlDiv(formLabel.BaseId);
-            htmlDiv.Hidden.Value = formLabel.IsHidden;
-            htmlDiv.Class.Add("form-item");
             htmlDiv.Class.Add("form-label");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formLabel.FormId));
+
+            htmlDiv.Hidden.Value = formLabel.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
@@ -35,7 +35,9 @@ namespace Form2.Form.Visitors
             HtmlDiv htmlDiv = new HtmlDiv(formTitle.BaseId);
             htmlDiv.Class.Add("form-title");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTitle.FormId));
+
             htmlDiv.Hidden.Value = formTitle.IsHidden;
+
             htmlContainer.Add(htmlDiv);
 
             HtmlLabel htmlLabel = new HtmlLabel(formTitle.BaseId);
