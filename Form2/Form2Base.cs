@@ -18,6 +18,7 @@ using Form2.Html.Visitors;
 namespace Form2
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
+    [SuppressMessage("Style", "IDE0031:Use null propagation", Justification = "<Pending>")]
 
     public abstract class Form2Base
     {
@@ -322,7 +323,7 @@ namespace Form2
         protected virtual void ApplyRules(bool isPostBack, NameValueCollection form)
         {
             foreach (var r in rules)
-                r(isPostBack, form?["__EVENTTARGET"], form?["__EVENTARGUMENT"]);
+                r(isPostBack, form != null ? form["__EVENTTARGET"] : null, form != null ? form["__EVENTARGUMENT"] : null);
         }
 
         protected abstract void PerformAction();

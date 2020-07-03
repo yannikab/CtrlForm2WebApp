@@ -86,7 +86,7 @@ namespace Form2.Form.Content.Items
 
             disabled = null;
 
-            IsSubmit = false;
+            isSubmit = false;
         }
 
         public FormButton(string baseId)
