@@ -21,15 +21,15 @@
 
 <body>
     <style>
-        #divContainer {
+        .form-id-container {
             padding: 20px;
         }
 
-        #divContainer label {
+        .form-field label {
             font-size: 13px;
         }
 
-        #divTitle label {
+        .form-title label {
             font-size: 25px;
             color: #363b4c;
             text-align: center;
@@ -38,67 +38,43 @@
             display: block;
         }
 
-        #divDateOfBirth,
-        #divPopulation,
-        #divCity,
-        #divMunicipalitySelect,
-        #divMunicipalityTextBox,
-        #divEmail,
-        #divEducationalStage,
-        #divEducationalGrade,
-        #divOrientationGroup,
-        #divCoachingSchool,
-        #divPrivateLessons {
+        .form-field {
             display: flex;
             flex-direction: column;
             margin: 0 0 20px 0;
         }
 
-        #divDateOfBirth input,
-        #divPopulation select,
-        #divCity select,
-        #divMunicipalitySelect select,
-        #divMunicipalityTextBox input,
-        #divEmail input,
-        #divEducationalStage select,
-        #divOrientationGroup select,
-        #divCoachingSchool input,
-        #divEducationalGrade select {
+        .form-textbox input,
+        .form-datepicker input,
+        .form-select select {
             border: 1px solid rgba(54, 59, 76, 0.3);
             border-radius: 4px;
             padding: 9px;
             color: #757575;
         }
 
-        #divDateOfBirth input:focus,
-        #divPopulation select:focus,
-        #divCity select:focus,
-        #divMunicipalitySelect select:focus,
-        #divMunicipalityTextBox input:focus,
-        #divEmail input:focus,
-        #divEducationalStage select:focus,
-        #divOrientationGroup select:focus,
-        #divCoachingSchool input:focus,
-        #divEducationalGrade select:focus {
+        .form-textbox input:focus,
+        .form-datepicker input:focus,
+        .form-select select:focus {
             border: 1px solid var(--color-main) !important;
             outline: none;
         }
 
-        #rbgPrivateLessons {
+        .form-id-privatelessons div {
             display: grid;
             grid-template-columns: 18px 55px 18px 55px;
             align-items: center;
         }
 
-        #rbgPrivateLessons label {
+        .form-id-privatelessons div label {
             margin: 0;
         }
 
-        #divSubmit {
+        .form-id-submit {
             text-align: right;
         }
 
-        #divSubmit button {
+        .form-id-submit button {
             border: unset;
             background-color: #0064c1;
             color: #fff;
@@ -107,7 +83,7 @@
             box-shadow: 0 0 8px 1px rgba(169, 169, 169, 0.7);
         }
 
-        #divSubmit button:hover {
+        .form-id-submit button:hover {
             opacity: .7;
         }
 
