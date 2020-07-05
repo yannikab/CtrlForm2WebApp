@@ -54,9 +54,9 @@ namespace Form2.Form.Visitors
         {
         }
 
-        public virtual void Visit(FormGroup formGroup)
+        public virtual void Visit(FormSection formSection)
         {
-            foreach (var i in formGroup.Contents)
+            foreach (var i in formSection.Contents)
                 Visit(i);
         }
 
@@ -151,11 +151,11 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public FormPostBackVisitor(FormGroup formGroup, NameValueCollection form)
+        public FormPostBackVisitor(FormSection formSection, NameValueCollection form)
         {
             this.form = form;
 
-            Visit(formGroup);
+            Visit(formSection);
         }
 
         #endregion

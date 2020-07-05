@@ -23,18 +23,16 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
             htmlDiv.Class.Add("form-field");
             
-            bool isRequired = formPasswordBox.IsRequired;
-
             if (!validate)
             {
-                htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formPasswordBox.IsRequired ? "form-required" : "form-optional");
             }
             else
             {
                 if (!string.IsNullOrEmpty(formPasswordBox.Value))
                     htmlDiv.Class.Add(formPasswordBox.IsValid ? "form-valid" : "form-invalid");
                 else
-                    htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formPasswordBox.IsRequired ? "form-not-entered" : "form-optional");
             }
 
             htmlDiv.Hidden.Value = formPasswordBox.IsHidden;
@@ -56,7 +54,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formPasswordBox.Label));
 
-                    if (isRequired && formPasswordBox.RequiredMark != null)
+                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -71,7 +69,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkLabelInput:
 
-                    if (isRequired && formPasswordBox.RequiredMark != null)
+                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -90,7 +88,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formPasswordBox.Label));
 
-                    if (isRequired && formPasswordBox.RequiredMark != null)
+                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -105,7 +103,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.InputMarkLabel:
 
-                    if (isRequired && formPasswordBox.RequiredMark != null)
+                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -127,7 +125,7 @@ namespace Form2.Form.Visitors
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlPasswordBox);
 
-                    if (isRequired && formPasswordBox.RequiredMark != null)
+                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -139,7 +137,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkInputLabel:
 
-                    if (isRequired && formPasswordBox.RequiredMark != null)
+                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -173,7 +171,7 @@ namespace Form2.Form.Visitors
 
             string message = null;
 
-            if (!formPasswordBox.IsRequiredMet)
+            if (formPasswordBox.IsRequired && !formPasswordBox.HasValue)
                 message = formPasswordBox.RequiredMessage;
             else if (!formPasswordBox.IsValid)
                 message = formPasswordBox.ValidationMessage;

@@ -13,15 +13,15 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormDateBox : FormInput<string, DateTime>, IReadOnly, IValidate<FormDateBox>
+    public class FormDateBox : FormInput<string, DateTime>, IReadOnly, IValidate<DateTime>
     {
         #region Fields
 
         private bool? readOnly;
 
-        private Func<FormDateBox, string> validator;
+        private Func<DateTime, string> validator;
 
-        private Action<FormDateBox> actionInvalid;
+        private Action<DateTime> actionInvalid;
 
         #endregion
 
@@ -59,26 +59,6 @@ namespace Form2.Form.Content.Items.Input
             }
         }
 
-        public override bool IsRequiredMet
-        {
-            get
-            {
-                if (IsHidden)
-                    return true;
-
-                if (IsDisabled)
-                    return true;
-
-                if (IsReadOnly)
-                    return true;
-
-                if (!IsRequired)
-                    return true;
-
-                return HasValue;
-            }
-        }
-
         #endregion
 
 
@@ -93,18 +73,18 @@ namespace Form2.Form.Content.Items.Input
         {
             get
             {
-                // a user can not be expected to fill out an input element that is disabled
-                if (IsDisabled)
-                    return false;
-
                 // a user can not be expected to fill out an input element that is hidden
                 if (IsHidden)
+                    return false;
+
+                // a user can not be expected to fill out an input element that is disabled
+                if (IsDisabled)
                     return false;
 
                 if (readOnly.HasValue)
                     return readOnly.Value;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return false;
@@ -116,15 +96,15 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<FormDateBox>
+        #region IValidate<DateTime>
 
-        public Func<FormDateBox, string> Validator
+        public Func<DateTime, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<FormDateBox> ActionInvalid
+        public Action<DateTime> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -132,26 +112,26 @@ namespace Form2.Form.Content.Items.Input
 
         public string ValidationMessage
         {
-            get { return Validator(this); }
+            get { return Validator(Value); }
         }
 
         public bool IsValid
         {
             get
             {
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
                 if (IsHidden)
+                    return true;
+
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
                     return true;
 
                 // a user can not edit readonly elements, it is unfair for them to participate in validation
                 if (IsReadOnly)
                     return true;
 
-                return !IsRequiredMet ? !IsRequired : string.IsNullOrEmpty(ValidationMessage);
+                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
             }
         }
 
@@ -167,8 +147,8 @@ namespace Form2.Form.Content.Items.Input
 
             readOnly = null;
 
-            Validator = (f) => { return ""; };
-            ActionInvalid = (f) => { return; };
+            validator = (v) => { return ""; };
+            actionInvalid = (v) => { return; };
         }
 
         public FormDateBox(string baseId)

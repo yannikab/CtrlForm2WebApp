@@ -86,7 +86,7 @@ namespace Form2.Html.Content.Elements.Containers
                 attributes.Add(attrSize = new AttrSize(size));
 
             if (isPostBack)
-                events.Add(eventChange = new EventChange(string.Format("javascript:__doPostBack('{0}','');", baseId)));
+                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", baseId)));
         }
 
         public HtmlSelect(string baseId, bool multiple, bool isPostBack)
@@ -101,7 +101,7 @@ namespace Form2.Html.Content.Elements.Containers
             attributes.Add(attrSize = new AttrSize());
 
             if (isPostBack)
-                events.Add(eventChange = new EventChange(string.Format("javascript:__doPostBack('{0}','');", baseId)));
+                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", baseId)));
         }
 
         public HtmlSelect(string baseId, bool isPostBack)

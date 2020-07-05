@@ -24,18 +24,16 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDatePicker.FormId));
             htmlDiv.Class.Add("form-field");
 
-            bool isRequired = formDatePicker.IsRequired;
-
             if (!validate)
             {
-                htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formDatePicker.IsRequired ? "form-required" : "form-optional");
             }
             else
             {
-                if (formDatePicker.IsRequiredMet)
+                if (!formDatePicker.IsRequired || formDatePicker.HasValue)
                     htmlDiv.Class.Add(formDatePicker.IsValid ? "form-valid" : "form-invalid");
                 else
-                    htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formDatePicker.IsRequired ? "form-not-entered" : "form-optional");
             }
 
             htmlDiv.Hidden.Value = formDatePicker.IsHidden;
@@ -46,12 +44,11 @@ namespace Form2.Form.Visitors
             htmlDatePicker.Disabled.Value = formDatePicker.IsDisabled;
             htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
             htmlDatePicker.DataDateFormat.Value = formDatePicker.DateFormat;
-            if (!formDatePicker.IsRequiredMet || !formDatePicker.HasValue)
-                htmlDatePicker.Value.Value = "";
-            else
-                htmlDatePicker.Value.Value = formDatePicker.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture);
+            htmlDatePicker.Value.Value = formDatePicker.HasValue ? formDatePicker.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : "";
             htmlDatePicker.PlaceHolder.Value = !string.IsNullOrEmpty(formDatePicker.PlaceHolder) ? formDatePicker.PlaceHolder : null;
             htmlDatePicker.AutoComplete.Value = "off";
+            if (formDatePicker.IsReadOnly)
+                htmlDatePicker.DataProvide.Value = null;
 
             HtmlLabel htmlLabel = new HtmlLabel(formDatePicker.BaseId);
             htmlLabel.For.Value = htmlDatePicker.Id.Value;
@@ -62,7 +59,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formDatePicker.Label));
 
-                    if (isRequired && formDatePicker.RequiredMark != null)
+                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -77,7 +74,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkLabelInput:
 
-                    if (isRequired && formDatePicker.RequiredMark != null)
+                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -96,7 +93,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formDatePicker.Label));
 
-                    if (isRequired && formDatePicker.RequiredMark != null)
+                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -111,7 +108,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.InputMarkLabel:
 
-                    if (isRequired && formDatePicker.RequiredMark != null)
+                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -133,7 +130,7 @@ namespace Form2.Form.Visitors
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDatePicker);
 
-                    if (isRequired && formDatePicker.RequiredMark != null)
+                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -145,7 +142,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkInputLabel:
 
-                    if (isRequired && formDatePicker.RequiredMark != null)
+                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -179,7 +176,7 @@ namespace Form2.Form.Visitors
 
             string message = null;
 
-            if (!formDatePicker.IsRequiredMet)
+            if (formDatePicker.IsRequired && !formDatePicker.HasValue)
                 message = formDatePicker.RequiredMessage;
             else if (!formDatePicker.IsValid)
                 message = formDatePicker.ValidationMessage;
@@ -188,7 +185,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formDatePicker.BaseId, "Message"));
-            htmlLabelMessage.Class.Add("form-validation-message"); 
+            htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlDatePicker.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

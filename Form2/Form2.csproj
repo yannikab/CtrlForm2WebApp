@@ -69,7 +69,7 @@
     <Compile Include="Html\Interfaces\IHtmlEvent.cs" />
     <Compile Include="Form2Base.cs" />
     <Compile Include="Form\Enums\ElementOrder.cs" />
-    <Compile Include="Form\Content\FormGroup.cs" />
+    <Compile Include="Form\Content\FormSection.cs" />
     <Compile Include="Form\Enums\FormIcon.cs" />
     <Compile Include="Form\Content\FormContent.cs" />
     <Compile Include="Form\Selectables\FormSelectable.cs" />
@@ -133,7 +133,7 @@
     <Compile Include="Form\Visitors\Form2Html\FormTextBoxTextArea.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormButton.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormLabelFormTitle.cs" />
-    <Compile Include="Form\Visitors\Form2Html\FormGroup.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormSection.cs" />
     <Compile Include="Form\Visitors\FormPostBackVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form\Visitors\Form2Html\Form2HtmlVisitor.cs" />

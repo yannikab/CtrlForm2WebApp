@@ -73,12 +73,12 @@ namespace Form2.Form.Visitors
         {
         }
 
-        public virtual void Visit(FormGroup formGroup)
+        public virtual void Visit(FormSection formSection)
         {
-            if (formGroup.IsHidden)
+            if (formSection.IsHidden)
                 return;
 
-            foreach (var i in formGroup.Contents)
+            foreach (var i in formSection.Contents)
                 Visit(i);
         }
 
@@ -161,14 +161,14 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public FormLogVisitor(FormGroup formGroup, string yes, string no)
+        public FormLogVisitor(FormSection formSection, string yes, string no)
         {
             this.yes = yes;
             this.no = no;
 
             sb.AppendLine();
 
-            Visit(formGroup);
+            Visit(formSection);
         }
 
         #endregion

@@ -63,7 +63,7 @@ namespace Form2.Html.Content.Elements.Containers
             attributes.Add(attrDisabled = new AttrDisabled());
 
             if (isPostBack)
-                events.Add(eventChange = new EventChange(string.Format("javascript:__doPostBack('{0}','');", baseId)));
+                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", baseId)));
         }
 
         public HtmlRadioGroup(string baseId)

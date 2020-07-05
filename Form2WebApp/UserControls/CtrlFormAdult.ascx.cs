@@ -100,7 +100,7 @@ namespace Form2WebApp.UserControls
 
             protected override void CreateForm()
             {
-                OpenGroup("Container");
+                OpenSection("Container");
 
                 #region Defaults
 
@@ -131,9 +131,9 @@ namespace Form2WebApp.UserControls
 
                     PlaceHolder = resDateOfBirth,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value > DateTime.Now)
+                        if (v > DateTime.Now)
                             return resDateInvalid;
 
                         return "";
@@ -252,7 +252,7 @@ namespace Form2WebApp.UserControls
 
                 #endregion
 
-                CloseGroup();
+                CloseSection();
             }
 
             #endregion
@@ -323,21 +323,19 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
+                log.Info(new FormLogVisitor(FormSection, resYes, resNo).Text);
 
-                tblRegisterAdult tra = new tblRegisterAdult();
-                tra.dateOfBirth = dtpDateOfBirth.Value;
-                tra.employmentStatusId = rdgEmploymentStatus.Value.Numeric;
-                if (tra.employmentStatusId == 1)
-                    tra.employmentDurationId = selEmploymentDuration.Value.Single().Numeric;
-                tra.educationalLevelId = selEducationalLevel.Value.Single().Numeric;
-                tra.populationId = selPopulation.Value.Single().Numeric;
-                tra.cityId = selCity.Value.Single().Numeric;
-                if (!selMunicipality.IsHidden)
-                    tra.municipality = selMunicipality.Value.Single().Text;
-                else if (!txtMunicipality.IsHidden)
-                    tra.municipality = txtMunicipality.Value;
-                tra.userId = 1;
+                tblRegisterAdult tra = new tblRegisterAdult()
+                {
+                    dateOfBirth = dtpDateOfBirth.Value,
+                    employmentStatusId = rdgEmploymentStatus.Value.Numeric,
+                    employmentDurationId = rdgEmploymentStatus.Value.Numeric == 1 ? (long?)selEmploymentDuration.Value.Single().Numeric : null,
+                    educationalLevelId = selEducationalLevel.Value.Single().Numeric,
+                    populationId = selPopulation.Value.Single().Numeric,
+                    cityId = selCity.Value.Single().Numeric,
+                    municipality = selMunicipality.IsRequired ? selMunicipality.Value.Single().Text : txtMunicipality.IsRequired ? txtMunicipality.Value : null,
+                    userId = 1,
+                };
 
                 if (tra.Insert() == 1)
                 {

@@ -10,13 +10,13 @@ using Form2.Form.Selectables;
 
 namespace Form2.Form.Content.Items.Input.Selectors
 {
-    public class FormRadioGroup : FormSelector<FormRadioButton, FormRadioButton>, IValidate<FormRadioGroup>
+    public class FormRadioGroup : FormSelector<FormRadioButton, FormRadioButton>, IValidate<FormRadioButton>
     {
         #region Fields
 
-        private Func<FormRadioGroup, string> validator;
+        private Func<FormRadioButton, string> validator;
 
-        private Action<FormRadioGroup> actionInvalid;
+        private Action<FormRadioButton> actionInvalid;
 
         #endregion
 
@@ -41,37 +41,15 @@ namespace Form2.Form.Content.Items.Input.Selectors
         #endregion
 
 
-        #region IRequired
-
-        public override bool IsRequiredMet
-        {
-            get
-            {
-                if (IsHidden)
-                    return true;
-
-                if (IsDisabled)
-                    return true;
-
-                if (!IsRequired)
-                    return true;
-
-                return HasValue;
-            }
-        }
-
-        #endregion
-
-
         #region IValidate<FormRadioGroup>
 
-        public Func<FormRadioGroup, string> Validator
+        public Func<FormRadioButton, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<FormRadioGroup> ActionInvalid
+        public Action<FormRadioButton> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -79,22 +57,22 @@ namespace Form2.Form.Content.Items.Input.Selectors
 
         public string ValidationMessage
         {
-            get { return Validator(this); }
+            get { return Validator(Value); }
         }
 
         public bool IsValid
         {
             get
             {
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
                 if (IsHidden)
                     return true;
 
-                return !IsRequiredMet ? !IsRequired : string.IsNullOrEmpty(ValidationMessage);
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
+                    return true;
+
+                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
             }
         }
 
@@ -106,8 +84,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
         public FormRadioGroup(string baseId, string formId)
             : base(baseId, formId)
         {
-            Validator = (f) => { return ""; };
-            ActionInvalid = (f) => { return; };
+            Validator = (v) => { return ""; };
+            ActionInvalid = (v) => { return; };
         }
 
         public FormRadioGroup(string baseId)

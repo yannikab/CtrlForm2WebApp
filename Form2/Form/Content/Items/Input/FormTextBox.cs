@@ -13,7 +13,7 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormTextBox : FormInput<string, string>, IReadOnly, IValidate<FormTextBox>
+    public class FormTextBox : FormInput<string, string>, IReadOnly, IValidate<string>
     {
         #region Fields
 
@@ -23,9 +23,9 @@ namespace Form2.Form.Content.Items.Input
 
         private bool? readOnly;
 
-        private Func<FormTextBox, string> validator;
+        private Func<string, string> validator;
 
-        private Action<FormTextBox> actionInvalid;
+        private Action<string> actionInvalid;
 
         #endregion
 
@@ -75,26 +75,6 @@ namespace Form2.Form.Content.Items.Input
             }
         }
 
-        public override bool IsRequiredMet
-        {
-            get
-            {
-                if (IsHidden)
-                    return true;
-
-                if (IsDisabled)
-                    return true;
-
-                if (IsReadOnly)
-                    return true;
-
-                if (!IsRequired)
-                    return true;
-
-                return HasValue;
-            }
-        }
-
         #endregion
 
 
@@ -109,18 +89,18 @@ namespace Form2.Form.Content.Items.Input
         {
             get
             {
-                // a user can not be expected to fill out an input element that is disabled
-                if (IsDisabled)
-                    return false;
-
                 // a user can not be expected to fill out an input element that is hidden
                 if (IsHidden)
+                    return false;
+
+                // a user can not be expected to fill out an input element that is disabled
+                if (IsDisabled)
                     return false;
 
                 if (readOnly.HasValue)
                     return readOnly.Value;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return false;
@@ -134,13 +114,13 @@ namespace Form2.Form.Content.Items.Input
 
         #region IValidate<FormTextBox>
 
-        public Func<FormTextBox, string> Validator
+        public Func<string, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<FormTextBox> ActionInvalid
+        public Action<string> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -148,26 +128,26 @@ namespace Form2.Form.Content.Items.Input
 
         public string ValidationMessage
         {
-            get { return Validator(this); }
+            get { return Validator(Value); }
         }
 
         public bool IsValid
         {
             get
             {
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
                 if (IsHidden)
+                    return true;
+
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
                     return true;
 
                 // a user can not edit readonly elements, it is unfair for them to participate in validation
                 if (IsReadOnly)
                     return true;
 
-                return !IsRequiredMet ? !IsRequired : string.IsNullOrEmpty(ValidationMessage);
+                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
             }
         }
 
@@ -185,8 +165,8 @@ namespace Form2.Form.Content.Items.Input
 
             readOnly = null;
 
-            Validator = (f) => { return ""; };
-            ActionInvalid = (f) => { return; };
+            Validator = (v) => { return ""; };
+            ActionInvalid = (v) => { return; };
         }
 
         public FormTextBox(string baseId)

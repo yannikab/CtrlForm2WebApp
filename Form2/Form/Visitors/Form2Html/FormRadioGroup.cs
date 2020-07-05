@@ -23,19 +23,17 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-radiogroup");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
             htmlDiv.Class.Add("form-field");
-            
-            bool isRequired = formRadioGroup.IsRequired;
 
             if (!validate)
             {
-                htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formRadioGroup.IsRequired ? "form-required" : "form-optional");
             }
             else
             {
-                if (formRadioGroup.IsRequiredMet)
+                if (!formRadioGroup.IsRequired || formRadioGroup.HasValue)
                     htmlDiv.Class.Add("form-valid");
                 else
-                    htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formRadioGroup.IsRequired ? "form-not-entered" : "form-optional");
             }
 
             htmlDiv.Hidden.Value = formRadioGroup.IsHidden;
@@ -53,7 +51,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formRadioGroup.Label));
 
-                    if (isRequired && formRadioGroup.RequiredMark != null)
+                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -68,7 +66,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkLabelInput:
 
-                    if (isRequired && formRadioGroup.RequiredMark != null)
+                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -87,7 +85,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formRadioGroup.Label));
 
-                    if (isRequired && formRadioGroup.RequiredMark != null)
+                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -102,7 +100,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.InputMarkLabel:
 
-                    if (isRequired && formRadioGroup.RequiredMark != null)
+                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -124,7 +122,7 @@ namespace Form2.Form.Visitors
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlRadioGroup);
 
-                    if (isRequired && formRadioGroup.RequiredMark != null)
+                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -136,7 +134,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkInputLabel:
 
-                    if (isRequired && formRadioGroup.RequiredMark != null)
+                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -184,7 +182,7 @@ namespace Form2.Form.Visitors
 
             string message = null;
 
-            if (!formRadioGroup.IsRequiredMet)
+            if (formRadioGroup.IsRequired && !formRadioGroup.HasValue)
                 message = formRadioGroup.RequiredMessage;
             else if (!formRadioGroup.IsValid)
                 message = formRadioGroup.ValidationMessage;

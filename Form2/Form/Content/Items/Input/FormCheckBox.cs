@@ -9,13 +9,13 @@ using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items.Input
 {
-    public class FormCheckBox : FormInput<bool, bool>, IValidate<FormCheckBox>
+    public class FormCheckBox : FormInput<bool, bool>, IValidate<bool>
     {
         #region Fields
 
-        private Func<FormCheckBox, string> validator;
+        private Func<bool, string> validator;
 
-        private Action<FormCheckBox> actionInvalid;
+        private Action<bool> actionInvalid;
 
         #endregion
 
@@ -35,37 +35,15 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IRequired
+        #region IValidate<bool>
 
-        public override bool IsRequiredMet
-        {
-            get
-            {
-                if (IsHidden)
-                    return true;
-
-                if (IsDisabled)
-                    return true;
-
-                if (!IsRequired)
-                    return true;
-
-                return Value;
-            }
-        }
-
-        #endregion
-
-
-        #region IValidate<FormTextBox>
-
-        public Func<FormCheckBox, string> Validator
+        public Func<bool, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<FormCheckBox> ActionInvalid
+        public Action<bool> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -73,19 +51,19 @@ namespace Form2.Form.Content.Items.Input
 
         public string ValidationMessage
         {
-            get { return Validator(this); }
+            get { return Validator(Value); }
         }
 
         public bool IsValid
         {
             get
             {
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
                 if (IsHidden)
+                    return true;
+
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
                     return true;
 
                 return string.IsNullOrEmpty(ValidationMessage);
@@ -102,8 +80,8 @@ namespace Form2.Form.Content.Items.Input
         {
             Content = false;
 
-            Validator = (f) => { return ""; };
-            ActionInvalid = (f) => { return; };
+            Validator = (v) => { return ""; };
+            ActionInvalid = (v) => { return; };
         }
 
         public FormCheckBox(string baseId)

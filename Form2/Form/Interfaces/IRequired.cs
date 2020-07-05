@@ -15,7 +15,5 @@ namespace Form2.Form.Interfaces
         string RequiredMark { get; set; }
 
         string RequiredMessage { get; set; }
-
-        bool IsRequiredMet { get; }
     }
 }

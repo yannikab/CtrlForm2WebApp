@@ -42,7 +42,7 @@ namespace Form2.Html.Attributes.Variable.Boolean
 
         public override string ToString()
         {
-            return IsTrue ? string.Format(@" {0}=""""", Name) : "";
+            return IsTrue ? string.Format(@" {0}", Name) : "";
         }
 
         #endregion

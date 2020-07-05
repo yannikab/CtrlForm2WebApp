@@ -48,7 +48,7 @@ namespace Form2.Form.Content.Items
                 if (elementOrder != ElementOrder.NotSet)
                     return elementOrder;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return ElementOrder.NotSet;
@@ -100,7 +100,7 @@ namespace Form2.Form.Content.Items
                 if (disabled.HasValue)
                     return disabled.Value;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return false;
@@ -123,18 +123,18 @@ namespace Form2.Form.Content.Items
         {
             get
             {
-                // a user can not be expected to fill out an input element that is disabled
-                if (IsDisabled)
-                    return false;
-
                 // a user can not be expected to fill out an input element that is hidden
                 if (IsHidden)
+                    return false;
+                
+                // a user can not be expected to fill out an input element that is disabled
+                if (IsDisabled)
                     return false;
 
                 if (required.HasValue)
                     return required.Value;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return false;
@@ -150,7 +150,7 @@ namespace Form2.Form.Content.Items
                 if (requiredMark != null)
                     return requiredMark;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return null;
@@ -181,11 +181,6 @@ namespace Form2.Form.Content.Items
             }
         }
 
-        public abstract bool IsRequiredMet
-        {
-            get;
-        }
-
         #endregion
 
 
@@ -202,7 +197,7 @@ namespace Form2.Form.Content.Items
             requiredMark = null;
             requiredMessage = null;
 
-            ElementOrder = ElementOrder.NotSet;
+            elementOrder = ElementOrder.NotSet;
         }
 
         public FormInput(string baseId, string formId)

@@ -13,7 +13,7 @@ namespace Form2.Form.Content
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
 
-    public class FormGroup : FormContent, IDisabled, IRequired, IReadOnly
+    public class FormSection : FormContent, IDisabled, IRequired, IReadOnly
     {
         #region Fields
 
@@ -94,9 +94,9 @@ namespace Form2.Form.Content
                 if (f is T)
                     yield return f;
 
-            foreach (var g in Contents.OfType<FormGroup>())
+            foreach (var s in Contents.OfType<FormSection>())
             {
-                foreach (var f in g.Get<T>())
+                foreach (var f in s.Get<T>())
                     yield return f;
             }
         }
@@ -107,9 +107,9 @@ namespace Form2.Form.Content
                 if (f.BaseId == baseId)
                     return f;
 
-            foreach (var g in Contents.OfType<FormGroup>())
+            foreach (var s in Contents.OfType<FormSection>())
             {
-                T formItem = g.Get<T>(baseId);
+                T formItem = s.Get<T>(baseId);
 
                 if (formItem != default(T))
                     return formItem;
@@ -124,9 +124,9 @@ namespace Form2.Form.Content
                 if (f.BaseId == baseId)
                     return f;
 
-            foreach (var g in Contents.OfType<FormGroup>())
+            foreach (var s in Contents.OfType<FormSection>())
             {
-                FormItem formItem = g.Get(baseId);
+                FormItem formItem = s.Get(baseId);
 
                 if (formItem != null)
                     return formItem;
@@ -152,7 +152,7 @@ namespace Form2.Form.Content
                 if (disabled.HasValue)
                     return disabled.Value;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return false;
@@ -175,10 +175,10 @@ namespace Form2.Form.Content
         {
             get
             {
-                if (IsDisabled)
-                    return false;
-
                 if (IsHidden)
+                    return false; 
+                
+                if (IsDisabled)
                     return false;
 
                 if (required.HasValue)
@@ -227,11 +227,6 @@ namespace Form2.Form.Content
             }
         }
 
-        public virtual bool IsRequiredMet
-        {
-            get { return Contents.OfType<IRequired>().All(c => c.IsRequiredMet); }
-        }
-
         #endregion
 
 
@@ -246,10 +241,10 @@ namespace Form2.Form.Content
         {
             get
             {
-                if (IsDisabled)
-                    return false;
-
                 if (IsHidden)
+                    return false; 
+                
+                if (IsDisabled)
                     return false;
 
                 if (readOnly.HasValue)
@@ -265,7 +260,7 @@ namespace Form2.Form.Content
         #endregion
 
 
-        #region 
+        #region IsValid
 
         public bool IsValid
         {
@@ -273,7 +268,7 @@ namespace Form2.Form.Content
             {
                 foreach (var c in Contents)
                 {
-                    if (c is FormGroup)
+                    if (c is FormSection)
                         continue;
 
                     if (c is IHidden && (c as IHidden).IsHidden)
@@ -292,9 +287,9 @@ namespace Form2.Form.Content
                         return false;
                 }
 
-                foreach (var c in Contents.OfType<FormGroup>())
+                foreach (var s in Contents.OfType<FormSection>())
                 {
-                    if (!c.IsValid)
+                    if (!s.IsValid)
                         return false;
                 }
 
@@ -307,7 +302,7 @@ namespace Form2.Form.Content
 
         #region Constructors
 
-        public FormGroup(string baseId, string formId)
+        public FormSection(string baseId, string formId)
             : base(baseId.Replace("-", ""), formId)
         {
             contents = new List<FormContent>();
@@ -316,7 +311,7 @@ namespace Form2.Form.Content
             elementOrder = ElementOrder.NotSet;
         }
 
-        public FormGroup(string baseId)
+        public FormSection(string baseId)
             : this(baseId.Replace("-", ""), baseId.ToLower())
         {
         }

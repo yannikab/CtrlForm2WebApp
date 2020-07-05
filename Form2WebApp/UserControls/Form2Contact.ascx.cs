@@ -48,7 +48,7 @@ namespace Form2WebApp.UserControls
 
             protected override void CreateForm()
             {
-                OpenGroup("Container");
+                OpenSection("Container");
 
                 ReadOnly = false;
 
@@ -67,7 +67,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                OpenGroup("FirstName-LastName");
+                OpenSection("FirstName-LastName");
 
                 AddItem(new FormTextBox("FirstName")
                 {
@@ -91,9 +91,10 @@ namespace Form2WebApp.UserControls
                     PlaceHolder = "Enter your last name",
                 });
 
-                CloseGroup();
+                CloseSection();
 
-                OpenGroup("DateOfBirth-DateOfMembership");
+
+                OpenSection("DateOfBirth-DateOfMembership");
 
                 AddItem(new FormDateBox("DateOfBirth")
                 {
@@ -103,15 +104,12 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value == null)
-                            return "";
-
-                        if (f.Value > DateTime.Now)
+                        if (v > DateTime.Now)
                             return "Date of birth can not be in the future";
 
-                        if (DateTime.Now - f.Value < TimeSpan.FromDays(18 * 365.25))
+                        if (DateTime.Now - v < TimeSpan.FromDays(18 * 365.25))
                             return "You must be at least 18 to use this site";
 
                         return "";
@@ -128,25 +126,22 @@ namespace Form2WebApp.UserControls
 
                     Required = false,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value == null)
-                            return "";
-
-                        if (f.Value > DateTime.Now)
+                        if (v > DateTime.Now)
                             return "Membership renewal date can not be in the future";
 
-                        if (DateTime.Now - f.Value > TimeSpan.FromDays(365))
+                        if (DateTime.Now - v > TimeSpan.FromDays(365))
                             return "Only members that have renewed their memberships in the last year can participate";
 
                         return "";
                     },
                 });
 
-                CloseGroup();
+                CloseSection();
 
 
-                OpenGroup("Email-Phone");
+                OpenSection("Email-Phone");
 
                 AddItem(new FormTextBox("Email")
                 {
@@ -160,12 +155,9 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Envelope,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value == "")
-                            return "";
-
-                        return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(f.Value) ? "Invalid Email" : "";
+                        return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(v) ? "Invalid Email" : "";
                     },
                 });
 
@@ -181,24 +173,21 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Phone,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value == "")
-                            return "";
+                        int digits = v.Where(c => char.IsDigit(c)).Count();
 
-                        int digits = f.Value.Where(c => char.IsDigit(c)).Count();
-
-                        if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(f.Value) || digits < 10 || digits > 15)
+                        if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(v) || digits < 10 || digits > 15)
                             return "Invalid Phone";
 
                         return "";
                     },
                 });
 
-                CloseGroup();
+                CloseSection();
 
 
-                OpenGroup("Password-ConfirmPassword");
+                OpenSection("Password-ConfirmPassword");
 
                 AddItem(new FormPasswordBox("Password")
                 {
@@ -212,12 +201,9 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Lock,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value == "")
-                            return "";
-
-                        if (GetItem<FormPasswordBox>("ConfirmPassword").Value != f.Value)
+                        if (GetItem<FormPasswordBox>("ConfirmPassword").Value != v)
                             return "Passwords do not match";
 
                         return "";
@@ -237,22 +223,19 @@ namespace Form2WebApp.UserControls
 
                     Icon = FormIcon.Lock,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value == "")
-                            return "";
-
-                        if (GetItem<FormPasswordBox>("Password").Value != f.Value)
+                        if (GetItem<FormPasswordBox>("Password").Value != v)
                             return "Passwords do not match";
 
                         return "";
                     },
                 });
 
-                CloseGroup();
+                CloseSection();
 
 
-                OpenGroup("Selects");
+                OpenSection("Selects");
 
                 AddItem(new FormSelect("Grade", false)
                 {
@@ -293,10 +276,10 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseGroup();
+                CloseSection();
 
 
-                OpenGroup("RadioGroups");
+                OpenSection("RadioGroups");
 
                 AddItem(new FormRadioGroup("Contact")
                 {
@@ -312,12 +295,9 @@ namespace Form2WebApp.UserControls
                         new FormRadioButton(3, "Post"),
                     },
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value == null)
-                            return "";
-
-                        if (f.Value.Text == "Post")
+                        if (v.Text == "Post")
                             return "Contact by post can not be used at the moment";
 
                         return "";
@@ -326,7 +306,7 @@ namespace Form2WebApp.UserControls
                     ElementOrder = ElementOrder.LabelMarkInput
                 });
 
-                CloseGroup();
+                CloseSection();
 
 
                 AddItem(new FormTextArea("Message")
@@ -367,7 +347,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                CloseGroup();
+                CloseSection();
             }
 
             protected override void AddRules(List<FormRule> rules)
@@ -381,9 +361,9 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                log.Info(new FormLogVisitor(FormGroup, "Ναι", "Όχι").Text);
+                log.Info(new FormLogVisitor(FormSection, "Ναι", "Όχι").Text);
 
-                var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι");
+                var emailVisitor = new FormEmailVisitor(FormSection, "Ναι", "Όχι");
 
                 page.Response.Write(emailVisitor.Subject);
                 page.Response.Write("<br /><br />");

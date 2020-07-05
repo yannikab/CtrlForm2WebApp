@@ -9,6 +9,8 @@ using Form2.Html.Interfaces;
 
 namespace Form2.Html.Attributes.ReadOnly
 {
+    [SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
+
     public abstract class HtmlReadOnlyAttribute<T> : IHtmlAttribute
     {
         #region Fields

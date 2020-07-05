@@ -19,7 +19,7 @@ namespace Form2.Form.Content
 
         private readonly string formId;
 
-        private FormGroup container;
+        private FormSection container;
 
         private bool? hidden;
 
@@ -38,7 +38,7 @@ namespace Form2.Form.Content
             get { return formId; }
         }
 
-        public virtual FormGroup Container
+        public virtual FormSection Container
         {
             get { return container; }
             set { container = value; }

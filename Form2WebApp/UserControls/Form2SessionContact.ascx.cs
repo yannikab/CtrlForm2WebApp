@@ -49,7 +49,7 @@ namespace Form2WebApp.UserControls
 
             protected override void CreateForm()
             {
-                OpenGroup("Container");
+                OpenSection("Container");
 
 
                 Required = true;
@@ -99,7 +99,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                CloseGroup();
+                CloseSection();
             }
 
             protected override void AddRules(List<FormRule> rules)
@@ -142,9 +142,9 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                log.Info(new FormLogVisitor(FormGroup, "Ναι", "Όχι").Text);
+                log.Info(new FormLogVisitor(FormSection, "Ναι", "Όχι").Text);
 
-                var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι");
+                var emailVisitor = new FormEmailVisitor(FormSection, "Ναι", "Όχι");
 
                 page.Response.Write(emailVisitor.Subject);
                 page.Response.Write("<br /><br />");

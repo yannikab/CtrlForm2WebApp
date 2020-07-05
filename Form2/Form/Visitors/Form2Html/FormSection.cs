@@ -13,20 +13,20 @@ namespace Form2.Form.Visitors
 {
     public partial class Form2HtmlVisitor
     {
-        public virtual void Visit(FormGroup formGroup, HtmlContainer htmlContainer)
+        public virtual void Visit(FormSection formSection, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formGroup.BaseId);
+            HtmlDiv htmlDiv = new HtmlDiv(formSection.BaseId);
             htmlDiv.Class.Add("form-section");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formGroup.FormId));
+            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formSection.FormId));
 
-            htmlDiv.Hidden.Value = formGroup.IsHidden;
+            htmlDiv.Hidden.Value = formSection.IsHidden;
 
             if (htmlContainer == null)
                 Html = htmlDiv;
             else
                 htmlContainer.Add(htmlDiv);
 
-            foreach (var formItem in formGroup.Contents)
+            foreach (var formItem in formSection.Contents)
                 Visit(formItem, htmlDiv);
         }
     }

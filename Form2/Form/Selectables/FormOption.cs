@@ -48,7 +48,7 @@ namespace Form2.Form.Selectables
 
         public long Numeric
         {
-            get { return long.Parse(Value); }
+            get { try { return long.Parse(Value); } catch { return long.MinValue; } }
         }
 
         #endregion

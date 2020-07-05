@@ -111,12 +111,12 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Form2.Form.Content.FormGroup">
+  <Class Name="Form2.Form.Content.FormSection">
     <Position X="21.75" Y="3.25" Width="1.5" />
     <Members>
       <Field Name="contents" Hidden="true" />
       <Field Name="elementOrder" Hidden="true" />
-      <Method Name="FormGroup" Hidden="true" />
+      <Method Name="FormSection" Hidden="true" />
       <Field Name="isDisabled" Hidden="true" />
       <Field Name="isReadOnly" Hidden="true" />
       <Field Name="isRequired" Hidden="true" />
@@ -125,7 +125,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AkIAAAAAAAAAAQBUAQgABAEgAAAgIAEQIAABAAJAAAA=</HashCode>
-      <FileName>App_Code\Form2\Form\Content\FormGroup.cs</FileName>
+      <FileName>App_Code\Form2\Form\Content\FormSection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>

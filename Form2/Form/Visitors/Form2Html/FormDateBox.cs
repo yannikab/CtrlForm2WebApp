@@ -23,18 +23,16 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDateBox.FormId));
             htmlDiv.Class.Add("form-field");
 
-            bool isRequired = formDateBox.IsRequired;
-
             if (!validate)
             {
-                htmlDiv.Class.Add(isRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formDateBox.IsRequired ? "form-required" : "form-optional");
             }
             else
             {
-                if (formDateBox.IsRequiredMet)
+                if (!formDateBox.IsRequired || formDateBox.HasValue)
                     htmlDiv.Class.Add(formDateBox.IsValid ? "form-valid" : "form-invalid");
                 else
-                    htmlDiv.Class.Add(isRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formDateBox.IsRequired ? "form-not-entered" : "form-optional");
             }
 
             htmlDiv.Hidden.Value = formDateBox.IsHidden;
@@ -44,7 +42,7 @@ namespace Form2.Form.Visitors
             HtmlDateBox htmlDateBox = new HtmlDateBox(formDateBox.BaseId);
             htmlDateBox.Disabled.Value = formDateBox.IsDisabled;
             htmlDateBox.ReadOnly.Value = formDateBox.IsReadOnly;
-            htmlDateBox.Value.Value = formDateBox.IsRequiredMet ? ((DateTime)formDateBox.Value).ToString("yyyy-MM-dd") : "";
+            htmlDateBox.Value.Value = formDateBox.HasValue ? formDateBox.Value.ToString("yyyy-MM-dd") : "";
 
             HtmlLabel htmlLabel = new HtmlLabel(formDateBox.BaseId);
             htmlLabel.For.Value = htmlDateBox.Id.Value;
@@ -55,7 +53,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formDateBox.Label));
 
-                    if (isRequired && formDateBox.RequiredMark != null)
+                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -70,7 +68,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkLabelInput:
 
-                    if (isRequired && formDateBox.RequiredMark != null)
+                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -89,7 +87,7 @@ namespace Form2.Form.Visitors
 
                     htmlLabel.Add(new HtmlText(formDateBox.Label));
 
-                    if (isRequired && formDateBox.RequiredMark != null)
+                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -104,7 +102,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.InputMarkLabel:
 
-                    if (isRequired && formDateBox.RequiredMark != null)
+                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -126,7 +124,7 @@ namespace Form2.Form.Visitors
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDateBox);
 
-                    if (isRequired && formDateBox.RequiredMark != null)
+                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -138,7 +136,7 @@ namespace Form2.Form.Visitors
 
                 case ElementOrder.MarkInputLabel:
 
-                    if (isRequired && formDateBox.RequiredMark != null)
+                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
                         HtmlSpan htmlSpan = new HtmlSpan();
                         htmlSpan.Class.Add("form-mark-required");
@@ -172,7 +170,7 @@ namespace Form2.Form.Visitors
 
             string message = null;
 
-            if (!formDateBox.IsRequiredMet)
+            if (formDateBox.IsRequired && !formDateBox.HasValue)
                 message = formDateBox.RequiredMessage;
             else if (!formDateBox.IsValid)
                 message = formDateBox.ValidationMessage;

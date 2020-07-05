@@ -54,7 +54,7 @@ namespace Form2.Form.Content.Items
                 if (disabled.HasValue)
                     return disabled.Value;
 
-                FormGroup container = Container as FormGroup;
+                FormSection container = Container as FormSection;
 
                 if (container == null)
                     return false;

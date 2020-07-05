@@ -60,23 +60,23 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        private Form2HtmlVisitor(FormGroup formGroup, bool validate, HttpSessionState sessionState)
+        private Form2HtmlVisitor(FormSection formSection, bool validate, HttpSessionState sessionState)
         {
             this.validate = validate;
 
             this.sessionState = sessionState;
 
-            Visit(formGroup, null);
+            Visit(formSection, null);
         }
 
-        public Form2HtmlVisitor(FormGroup formGroup, HttpSessionState sessionState)
-            : this(formGroup, sessionState.Count > 0, sessionState)
+        public Form2HtmlVisitor(FormSection formSection, HttpSessionState sessionState)
+            : this(formSection, sessionState.Count > 0, sessionState)
         {
 
         }
 
-        public Form2HtmlVisitor(FormGroup formGroup, bool validate)
-            : this(formGroup, validate, null)
+        public Form2HtmlVisitor(FormSection formSection, bool validate)
+            : this(formSection, validate, null)
         {
 
         }

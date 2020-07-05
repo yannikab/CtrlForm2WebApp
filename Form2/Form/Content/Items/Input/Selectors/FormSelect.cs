@@ -9,7 +9,7 @@ using Form2.Form.Selectables;
 
 namespace Form2.Form.Content.Items.Input.Selectors
 {
-    public class FormSelect : FormSelector<FormOption, IEnumerable<FormOption>>, IValidate<FormSelect>
+    public class FormSelect : FormSelector<FormOption, IEnumerable<FormOption>>, IValidate<IEnumerable<FormOption>>
     {
         #region Fields
 
@@ -19,9 +19,9 @@ namespace Form2.Form.Content.Items.Input.Selectors
 
         private FormOption header;
 
-        private Func<FormSelect, string> validator;
+        private Func<IEnumerable<FormOption>, string> validator;
 
-        private Action<FormSelect> actionInvalid;
+        private Action<IEnumerable<FormOption>> actionInvalid;
 
         #endregion
 
@@ -91,37 +91,15 @@ namespace Form2.Form.Content.Items.Input.Selectors
         #endregion
 
 
-        #region IRequired
-
-        public override bool IsRequiredMet
-        {
-            get
-            {
-                if (IsHidden)
-                    return true;
-
-                if (IsDisabled)
-                    return true;
-
-                if (!IsRequired)
-                    return true;
-
-                return HasValue;
-            }
-        }
-
-        #endregion
-
-
         #region IValidate<FormSelect>
 
-        public Func<FormSelect, string> Validator
+        public Func<IEnumerable<FormOption>, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<FormSelect> ActionInvalid
+        public Action<IEnumerable<FormOption>> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -129,22 +107,22 @@ namespace Form2.Form.Content.Items.Input.Selectors
 
         public string ValidationMessage
         {
-            get { return Validator(this); }
+            get { return Validator(Value); }
         }
 
         public bool IsValid
         {
             get
             {
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
                 // a user can not edit hidden elements, it is unfair for them to participate in validation
                 if (IsHidden)
                     return true;
 
-                return !IsRequiredMet ? !IsRequired : string.IsNullOrEmpty(ValidationMessage);
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
+                    return true;
+
+                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
             }
         }
 
@@ -163,8 +141,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
             this.size = size;
             Header = null;
 
-            Validator = (f) => { return ""; };
-            ActionInvalid = (f) => { return; };
+            Validator = (v) => { return ""; };
+            ActionInvalid = (v) => { return; };
         }
 
         public FormSelect(string baseId, string formId, bool multiSelect)
@@ -174,8 +152,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
             this.size = null;
             Header = null;
 
-            Validator = (f) => { return ""; };
-            ActionInvalid = (f) => { return; };
+            Validator = (v) => { return ""; };
+            ActionInvalid = (v) => { return; };
         }
 
         public FormSelect(string baseId, int size)

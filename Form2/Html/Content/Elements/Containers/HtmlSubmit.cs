@@ -62,7 +62,7 @@ namespace Form2.Html.Content.Elements.Containers
 
             attributes.Add(attrDisabled = new AttrDisabled());
 
-            events.Add(eventClick = new EventClick(string.Format("javascript:__doPostBack('{0}','');", baseId)));
+            events.Add(eventClick = new EventClick(string.Format("__doPostBack('{0}', '');", baseId)));
         }
 
         #endregion

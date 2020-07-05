@@ -111,7 +111,7 @@ namespace Form2WebApp.UserControls
 
             protected override void CreateForm()
             {
-                OpenGroup("Container");
+                OpenSection("Container");
 
                 #region Defaults
 
@@ -142,9 +142,9 @@ namespace Form2WebApp.UserControls
 
                     PlaceHolder = resDateOfBirth,
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (f.Value > DateTime.Now)
+                        if (v > DateTime.Now)
                             return resDateInvalid;
 
                         return "";
@@ -212,9 +212,9 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resEmail.ToLower(),
 
-                    Validator = (f) =>
+                    Validator = (v) =>
                     {
-                        if (!new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]*$").IsMatch(f.Value.Trim()))
+                        if (!new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]*$").IsMatch(v.Trim()))
                             return resEmailInvalid;
 
                         return "";
@@ -313,7 +313,7 @@ namespace Form2WebApp.UserControls
 
                 #endregion
 
-                CloseGroup();
+                CloseSection();
             }
 
             #endregion
@@ -334,7 +334,7 @@ namespace Form2WebApp.UserControls
                     selMunicipality.Hidden = true;
                     txtMunicipality.Hidden = true;
 
-                    if (!selCity.Value.Any())
+                    if (!selCity.HasValue)
                         return;
 
                     long cityId = Convert.ToInt64(selCity.Value.Single().Value);
@@ -364,7 +364,7 @@ namespace Form2WebApp.UserControls
                     selEducationalGrade.Hidden = true;
                     selOrientationGroup.Hidden = true;
 
-                    if (!selEducationalStage.Value.Any())
+                    if (!selEducationalStage.HasValue)
                         return;
 
                     long stageId = Convert.ToInt64(selEducationalStage.Value.Single().Value);
@@ -391,7 +391,7 @@ namespace Form2WebApp.UserControls
                     if (selEducationalStage.IsHidden)
                         return;
 
-                    if (!selEducationalStage.Value.Any())
+                    if (!selEducationalStage.HasValue)
                         return;
 
                     if (selEducationalStage.Value.Single().Value != "3")
@@ -400,7 +400,7 @@ namespace Form2WebApp.UserControls
                     if (selEducationalGrade.IsHidden)
                         return;
 
-                    if (!selEducationalGrade.Value.Any())
+                    if (!selEducationalGrade.HasValue)
                         return;
 
                     if (selEducationalGrade.Value.Single().Value != "12")
@@ -420,19 +420,21 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                log.Info(new FormLogVisitor(FormGroup, resYes, resNo).Text);
+                log.Info(new FormLogVisitor(FormSection, resYes, resNo).Text);
 
-                tblRegisterStudent trs = new tblRegisterStudent();
-                trs.dateOfBirth = dtpDateOfBirth.Value;
-                trs.populationId = selPopulation.Value.Single().Numeric;
-                trs.cityId = selCity.Value.Single().Numeric;
-                trs.municipality = !selMunicipality.IsHidden ? selMunicipality.Value.Single().Text : !txtMunicipality.IsHidden ? txtMunicipality.Value : null;
-                trs.email = txtEmail.Value;
-                trs.educationalGradeId = selEducationalGrade.Value.Single().Numeric;
-                trs.orientationGroupId = !selOrientationGroup.IsHidden ? (long?)selOrientationGroup.Value.Single().Numeric : null;
-                trs.coachingSchool = txtCoachingSchool.Value;
-                trs.privateLessons = rdgPrivateLessons.Value != null ? (bool?)(rdgPrivateLessons.Value.Value == "0") : null;
-                trs.userId = 1;
+                tblRegisterStudent trs = new tblRegisterStudent()
+                {
+                    dateOfBirth = dtpDateOfBirth.Value,
+                    populationId = selPopulation.Value.Single().Numeric,
+                    cityId = selCity.Value.Single().Numeric,
+                    municipality = selMunicipality.IsRequired ? selMunicipality.Value.Single().Text : txtMunicipality.IsRequired ? txtMunicipality.Value : null,
+                    email = txtEmail.Value,
+                    educationalGradeId = selEducationalGrade.Value.Single().Numeric,
+                    orientationGroupId = selOrientationGroup.IsRequired ? (long?)selOrientationGroup.Value.Single().Numeric : null,
+                    coachingSchool = txtCoachingSchool.Value,
+                    privateLessons = rdgPrivateLessons.HasValue ? (bool?)(rdgPrivateLessons.Value.Numeric == 0) : null,
+                    userId = 1,
+                };
 
                 if (trs.Insert() == 1)
                 {

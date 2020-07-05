@@ -124,7 +124,7 @@ namespace Form2.Html.Visitors
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(" />");
+            sb.AppendLine(">");
         }
 
         public void Visit(HtmlTextArea h)
@@ -150,7 +150,7 @@ namespace Form2.Html.Visitors
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(" />");
+            sb.AppendLine(">");
         }
 
         public void Visit(HtmlDateBox h)
@@ -161,7 +161,7 @@ namespace Form2.Html.Visitors
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(" />");
+            sb.AppendLine(">");
         }
 
         public void Visit(HtmlDatePicker h)
@@ -172,7 +172,7 @@ namespace Form2.Html.Visitors
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(" />");
+            sb.AppendLine(">");
         }
 
         public void Visit(HtmlCheckBox h)
@@ -183,7 +183,7 @@ namespace Form2.Html.Visitors
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(" />");
+            sb.AppendLine(">");
         }
 
         public void Visit(HtmlSelect h)
@@ -250,7 +250,7 @@ namespace Form2.Html.Visitors
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
-            sb.AppendLine(" />");
+            sb.AppendLine(">");
         }
 
         public void Visit(HtmlSubmit h)
