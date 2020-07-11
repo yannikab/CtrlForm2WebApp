@@ -26,17 +26,25 @@ namespace Form2WebApp.UserControls
         {
             base.OnLoad(e);
 
-            Form form = this.SessionGet(GetType().Name, () => new Form());
+            string formSessionKey = string.Format("{0}_{1}_{2}", Page.GetType().Name, GetType().Name, typeof(Form).Name);
+
+            Form form = this.SessionGet(formSessionKey, () => new Form());
 
             if (form == null)
                 return;
 
             form.SetPage(Page);
 
-            ltrContent.Text = form.GetText(IsPostBack, Request.Form, Session);
+            Form2Commander form2Commander = new Form2Commander(form);
+
+            form2Commander.HandleRequest(IsPostBack, Request, Session);
+
+            Form2Renderer form2Renderer = new Form2Renderer(form);
+
+            ltrContent.Text = form2Renderer.Render();
         }
 
-        class Form : Form2Base
+        class Form : Form2Model
         {
             private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
@@ -104,7 +112,7 @@ namespace Form2WebApp.UserControls
 
             protected override void AddRules(List<FormRule> rules)
             {
-                rules.Add((isPostBack, eventTarget, eventArgument) =>
+                rules.Add((isPostBack, formItem, argument) =>
                 {
                     FormSelect selCity = GetItem<FormSelect>("City");
                     FormSelect selMunicipality = GetItem<FormSelect>("MunicipalitySelect");

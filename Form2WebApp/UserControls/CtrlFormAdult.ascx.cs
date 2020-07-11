@@ -31,17 +31,25 @@ namespace Form2WebApp.UserControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Form form = this.SessionGet(GetType().Name, () => new Form());
+            string formSessionKey = string.Format("{0}_{1}_{2}", Page.GetType().Name, GetType().Name, typeof(Form).Name);
+
+            Form form = this.SessionGet(formSessionKey, () => new Form());
 
             if (form == null)
                 return;
 
             form.SetPage(Page);
 
-            ltrForm.Text = form.GetText(IsPostBack, Request.Form, Session);
+            Form2Commander form2Commander = new Form2Commander(form);
+
+            form2Commander.HandleRequest(IsPostBack, Request, Session);
+
+            Form2Renderer form2Renderer = new Form2Renderer(form);
+
+            ltrForm.Text = form2Renderer.Render();
         }
 
-        private class Form : Form2Base
+        private class Form : Form2Model
         {
             private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
@@ -262,12 +270,12 @@ namespace Form2WebApp.UserControls
 
             protected override void AddRules(List<FormRule> rules)
             {
-                rules.Add((isPostBack, eventTarget, eventArgument) =>
+                rules.Add((isPostBack, formItem, argument) =>
                 {
                     if (!isPostBack)
                         return;
 
-                    if (eventTarget != selCity.BaseId)
+                    if (formItem != selCity)
                         return;
 
                     selMunicipality.Hidden = true;
@@ -292,12 +300,12 @@ namespace Form2WebApp.UserControls
                     }
                 });
 
-                rules.Add((isPostBack, eventTarget, eventArgument) =>
+                rules.Add((isPostBack, formItem, argument) =>
                 {
                     if (!isPostBack)
                         return;
 
-                    if (eventTarget != rdgEmploymentStatus.BaseId)
+                    if (formItem != rdgEmploymentStatus)
                         return;
 
                     selEmploymentDuration.Hidden = true;

@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form2Commander.cs" />
+    <Compile Include="Form2Renderer.cs" />
     <Compile Include="Form\Content\FormItem.cs" />
     <Compile Include="Form\Content\Items\Input\FormDateBox.cs" />
     <Compile Include="Form\Content\Items\Input\FormDatePicker.cs" />
@@ -67,7 +69,7 @@
     <Compile Include="Html\Events\EventClick.cs" />
     <Compile Include="Html\Events\EventChange.cs" />
     <Compile Include="Html\Interfaces\IHtmlEvent.cs" />
-    <Compile Include="Form2Base.cs" />
+    <Compile Include="Form2Model.cs" />
     <Compile Include="Form\Enums\ElementOrder.cs" />
     <Compile Include="Form\Content\FormSection.cs" />
     <Compile Include="Form\Enums\FormIcon.cs" />

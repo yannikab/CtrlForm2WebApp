@@ -13,22 +13,21 @@ using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 using Form2.Form.Visitors;
 using Form2.Html.Content.Elements;
-using Form2.Html.Visitors;
 
 namespace Form2
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0031:Use null propagation", Justification = "<Pending>")]
 
-    public abstract class Form2Base
+    public abstract class Form2Model
     {
         #region Fields
 
-        private readonly Stack<FormSection> formSections;
-
         private FormSection formSection;
 
-        protected delegate void FormRule(bool isPostBack, string eventTarget, string eventArgument);
+        private readonly Stack<FormSection> formSections;
+
+        protected delegate void FormRule(bool isPostBack, FormItem formItem, string argument);
 
         private readonly List<FormRule> rules;
 
@@ -41,20 +40,18 @@ namespace Form2
 
         protected FormSection FormSection { get { return formSection; } }
 
+        public HtmlContainer Html { get { return htmlContainer; } }
+
         #endregion
 
 
         #region Constructors
 
-        public Form2Base()
+        public Form2Model()
         {
-            formSections = new Stack<FormSection>();
-
             formSection = null;
+            formSections = new Stack<FormSection>();
             rules = new List<FormRule>();
-
-            CreateForm();
-            AddRules(rules);
         }
 
         #endregion
@@ -62,88 +59,86 @@ namespace Form2
 
         #region Methods
 
-        public string GetText(bool isPostBack, NameValueCollection form, HttpSessionState session)
+        public void Initialize(HttpSessionState session)
+        {
+            formSection = null;
+            formSections.Clear();
+            rules.Clear();
+
+            CreateForm();
+            AddRules(rules);
+
+            if (formSection == null)
+                return;
+
+            foreach (var formItem in formSection.Get<FormItem>().Where(f => f is IRequired))
+                session.Remove(formItem.SessionKey);
+
+            ApplyRules(false, null, null);
+
+            htmlContainer = new Form2HtmlVisitor(formSection, false).Html;
+        }
+
+        public void Update(FormItem formItem, string argument, NameValueCollection form, HttpSessionState session)
         {
             if (formSection == null)
-                return "";
+                return;
 
-            if (!isPostBack)
+            ISubmit iSubmit = formItem as ISubmit;
+
+            if (iSubmit != null)
+                throw new ApplicationException();
+
+            IPostBack iPostBack = formItem as IPostBack;
+
+            if (iPostBack == null || !iPostBack.IsPostBack)
+                throw new ApplicationException();
+
+            new FormPostBackVisitor(formSection, form);
+
+            ApplyRules(true, formItem, argument);
+
+            htmlContainer = new Form2HtmlVisitor(formSection, session).Html;
+        }
+
+        public void Submit(FormItem formItem, string argument, NameValueCollection form, HttpSessionState session)
+        {
+            if (formSection == null)
+                return;
+
+            new FormPostBackVisitor(formSection, form);
+
+            ApplyRules(true, formItem, argument);
+
+            ISubmit iSubmit = formItem as ISubmit;
+
+            if (!iSubmit.IsSubmit)
+                throw new ApplicationException();
+
+            if (formSection.IsValid)
             {
-                foreach (var formItem in formSection.Get<FormItem>().Where(f => f is IRequired))
-                    session.Remove(formItem.SessionKey);
+                PerformAction();
+
+                Initialize(session);
             }
             else
             {
-                new FormPostBackVisitor(formSection, form);
-            }
+                foreach (var fi in formSection.Get<FormItem>().Where(f => f is IRequired))
+                    session.Remove(fi.SessionKey);
 
-            ApplyRules(isPostBack, form);
-
-            if (!isPostBack)
-            {
-                htmlContainer = new Form2HtmlVisitor(formSection, false).Html;
-                return new Html2TextVisitor(htmlContainer).Text;
-            }
-
-            FormItem eventTarget = formSection.Get(form["__EVENTTARGET"]);
-
-            ISubmit iSubmit = eventTarget as ISubmit;
-
-            if (iSubmit == null)
-            {
-                IPostBack iPostBack = eventTarget as IPostBack;
-
-                if (iPostBack == null || !iPostBack.IsPostBack)
-                    throw new ApplicationException();
-
-                htmlContainer = new Form2HtmlVisitor(formSection, session).Html;
-            }
-            else
-            {
-                if (!iSubmit.IsSubmit)
-                    throw new ApplicationException();
-
-                if (formSection.IsValid)
+                foreach (var fi in formSection.Get<FormItem>().Where(f => f is IRequired))
                 {
-                    PerformAction();
+                    if (fi is IHidden && (fi as IHidden).IsHidden)
+                        continue;
 
-                    formSection = null;
-                    rules.Clear();
+                    if (fi is IDisabled && (fi as IDisabled).IsDisabled)
+                        continue;
 
-                    CreateForm();
-                    AddRules(rules);
-
-                    if (formSection == null)
-                        return "";
-
-                    foreach (var formItem in formSection.Get<FormItem>().Where(f => f is IRequired))
-                        session.Remove(formItem.SessionKey);
-
-                    ApplyRules(false, null);
-
-                    htmlContainer = new Form2HtmlVisitor(formSection, false).Html;
+                    session[fi.SessionKey] = form[fi.BaseId];
                 }
-                else
-                {
-                    foreach (var formItem in formSection.Get<FormItem>().Where(f => f is IRequired))
-                        session.Remove(formItem.SessionKey);
 
-                    foreach (var formItem in formSection.Get<FormItem>().Where(f => f is IRequired))
-                    {
-                        if (formItem is IHidden && (formItem as IHidden).IsHidden)
-                            continue;
-
-                        if (formItem is IDisabled && (formItem as IDisabled).IsDisabled)
-                            continue;
-
-                        session[formItem.SessionKey] = form[formItem.BaseId];
-                    }
-
-                    htmlContainer = new Form2HtmlVisitor(formSection, true).Html;
-                }
+                htmlContainer = new Form2HtmlVisitor(formSection, true).Html;
             }
-
-            return new Html2TextVisitor(htmlContainer).Text;
         }
 
         protected abstract void CreateForm();
@@ -304,16 +299,22 @@ namespace Form2
             formSections.Peek().Add(formItem);
         }
 
-        protected T GetItem<T>(string baseId) where T : FormItem
+        public T GetItem<T>(string baseId) where T : FormItem
         {
+            if (baseId == null)
+                throw new ArgumentNullException();
+
             if (formSection == null)
                 throw new InvalidOperationException("No form container exists. Can not get any form item.");
 
             return formSection.Get<T>(baseId);
         }
 
-        protected FormItem GetItem(string baseId)
+        public FormItem GetItem(string baseId)
         {
+            if (baseId == null)
+                throw new ArgumentNullException();
+
             if (formSection == null)
                 throw new InvalidOperationException("No form container exists. Can not get any form item.");
 
@@ -322,10 +323,10 @@ namespace Form2
 
         protected abstract void AddRules(List<FormRule> rules);
 
-        protected virtual void ApplyRules(bool isPostBack, NameValueCollection form)
+        protected virtual void ApplyRules(bool isPostBack, FormItem formItem, string argument)
         {
             foreach (var r in rules)
-                r(isPostBack, form != null ? form["__EVENTTARGET"] : null, form != null ? form["__EVENTARGUMENT"] : null);
+                r(isPostBack, formItem, argument);
         }
 
         protected abstract void PerformAction();
