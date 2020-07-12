@@ -30,6 +30,10 @@ namespace Form2.Form.Content.Items
 
         private string requiredMessage;
 
+        private string lastValidationMessage;
+
+        private bool useLastValidationMessage;
+
         #endregion
 
 
@@ -81,6 +85,18 @@ namespace Form2.Form.Content.Items
         public abstract bool HasValue
         {
             get;
+        }
+
+        public string LastMessage
+        {
+            get { return lastValidationMessage; }
+            set { lastValidationMessage = value; }
+        }
+
+        public bool UseLastMessage
+        {
+            get { return useLastValidationMessage; }
+            set { useLastValidationMessage = value; }
         }
 
         #endregion
@@ -196,6 +212,9 @@ namespace Form2.Form.Content.Items
             required = null;
             requiredMark = null;
             requiredMessage = null;
+
+            lastValidationMessage = null;
+            useLastValidationMessage = false;
 
             elementOrder = ElementOrder.NotSet;
         }

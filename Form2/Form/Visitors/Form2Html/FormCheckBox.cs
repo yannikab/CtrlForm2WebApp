@@ -23,7 +23,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formCheckBox.FormId));
             htmlDiv.Class.Add("form-field");
 
-            if (!validate)
+            if (initialize)
             {
                 htmlDiv.Class.Add(formCheckBox.IsRequired ? "form-required" : "form-optional");
             }
@@ -156,20 +156,26 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            if (!validate)
+            if (initialize)
                 return;
 
-            if (sessionState != null)
+            string message = null;
+            
+            if (formCheckBox.UseLastMessage)
             {
-                string viewStateString = (string)sessionState[formCheckBox.SessionKey];
-
-                if (viewStateString == null)
-                    formCheckBox.Content = false;
-
-                formCheckBox.Content = viewStateString.ToLower() == "on";
+                if (!string.IsNullOrEmpty(formCheckBox.LastMessage))
+                    message = formCheckBox.LastMessage;
+            }
+            else if (formCheckBox.IsRequired && !formCheckBox.Value)
+            {
+                message = formCheckBox.RequiredMessage;
+            }
+            else if (!formCheckBox.IsValid)
+            {
+                message = formCheckBox.ValidationMessage;
             }
 
-            if (!formCheckBox.IsRequired || formCheckBox.Value)
+            if (message == null)
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formCheckBox.BaseId, "Message"));

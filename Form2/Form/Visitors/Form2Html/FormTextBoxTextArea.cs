@@ -22,8 +22,8 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-textbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextBox.FormId));
             htmlDiv.Class.Add("form-field");
-            
-            if (!validate)
+
+            if (initialize)
             {
                 htmlDiv.Class.Add(formTextBox.IsRequired ? "form-required" : "form-optional");
             }
@@ -158,23 +158,24 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            if (!validate)
+            if (initialize)
                 return;
-
-            if (sessionState != null)
-            {
-                if (sessionState[formTextBox.SessionKey] == null)
-                    return;
-
-                formTextBox.Content = (string)sessionState[formTextBox.SessionKey];
-            }
 
             string message = null;
 
-            if (formTextBox.IsRequired && !formTextBox.HasValue)
+            if (formTextBox.UseLastMessage)
+            {
+                if (!string.IsNullOrEmpty(formTextBox.LastMessage))
+                    message = formTextBox.LastMessage;
+            }
+            else if (formTextBox.IsRequired && !formTextBox.HasValue)
+            {
                 message = formTextBox.RequiredMessage;
+            }
             else if (!formTextBox.IsValid)
+            {
                 message = formTextBox.ValidationMessage;
+            }
 
             if (message == null)
                 return;
@@ -192,8 +193,8 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-textarea");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextArea.FormId));
             htmlDiv.Class.Add("form-field");
-            
-            if (!validate)
+
+            if (initialize)
             {
                 htmlDiv.Class.Add(formTextArea.IsRequired ? "form-required" : "form-optional");
             }
@@ -322,23 +323,24 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            if (!validate)
+            if (initialize)
                 return;
-
-            if (sessionState != null)
-            {
-                if (sessionState[formTextArea.SessionKey] == null)
-                    return;
-
-                formTextArea.Content = (string)sessionState[formTextArea.SessionKey];
-            }
 
             string message = null;
 
-            if (formTextArea.IsRequired && !formTextArea.HasValue)
+            if (formTextArea.UseLastMessage)
+            {
+                if (!string.IsNullOrEmpty(formTextArea.LastMessage))
+                    message = formTextArea.LastMessage;
+            }
+            else if (formTextArea.IsRequired && !formTextArea.HasValue)
+            {
                 message = formTextArea.RequiredMessage;
+            }
             else if (!formTextArea.IsValid)
+            {
                 message = formTextArea.ValidationMessage;
+            }
 
             if (message == null)
                 return;

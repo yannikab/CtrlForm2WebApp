@@ -24,7 +24,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
             htmlDiv.Class.Add("form-field");
 
-            if (!validate)
+            if (initialize)
             {
                 htmlDiv.Class.Add(formRadioGroup.IsRequired ? "form-required" : "form-optional");
             }
@@ -158,34 +158,24 @@ namespace Form2.Form.Visitors
             foreach (var formRadioButton in formRadioGroup.Content)
                 Visit(formRadioButton, htmlRadioGroup);
 
-            if (!validate)
+            if (initialize)
                 return;
-
-            if (sessionState != null)
-            {
-                string viewStateString = (string)sessionState[formRadioGroup.SessionKey];
-
-                if (viewStateString == null)
-                    return;
-
-                foreach (var c in formRadioGroup.Content)
-                {
-                    if (c.IsHidden)
-                        continue;
-
-                    if (c.IsDisabled)
-                        continue;
-
-                    c.IsSelected = c.Value == viewStateString;
-                }
-            }
 
             string message = null;
 
-            if (formRadioGroup.IsRequired && !formRadioGroup.HasValue)
+            if (formRadioGroup.UseLastMessage)
+            {
+                if (!string.IsNullOrEmpty(formRadioGroup.LastMessage))
+                    message = formRadioGroup.LastMessage;
+            }
+            else if (formRadioGroup.IsRequired && !formRadioGroup.HasValue)
+            {
                 message = formRadioGroup.RequiredMessage;
+            }
             else if (!formRadioGroup.IsValid)
+            {
                 message = formRadioGroup.ValidationMessage;
+            }
 
             if (message == null)
                 return;

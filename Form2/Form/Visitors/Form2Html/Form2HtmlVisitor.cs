@@ -17,9 +17,7 @@ namespace Form2.Form.Visitors
     {
         #region Fields
 
-        private readonly bool validate;
-
-        private readonly HttpSessionState sessionState;
+        private readonly bool initialize;
 
         private HtmlContainer html;
 
@@ -60,25 +58,11 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        private Form2HtmlVisitor(FormSection formSection, bool validate, HttpSessionState sessionState)
+        public Form2HtmlVisitor(FormSection formSection, bool initialize)
         {
-            this.validate = validate;
-
-            this.sessionState = sessionState;
+            this.initialize = initialize;
 
             Visit(formSection, null);
-        }
-
-        public Form2HtmlVisitor(FormSection formSection, HttpSessionState sessionState)
-            : this(formSection, sessionState.Count > 0, sessionState)
-        {
-
-        }
-
-        public Form2HtmlVisitor(FormSection formSection, bool validate)
-            : this(formSection, validate, null)
-        {
-
         }
 
         #endregion

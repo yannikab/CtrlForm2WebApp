@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form2Commander.cs" />
-    <Compile Include="Form2Renderer.cs" />
+    <Compile Include="FormCommander.cs" />
+    <Compile Include="FormRenderer.cs" />
     <Compile Include="Form\Content\FormItem.cs" />
     <Compile Include="Form\Content\Items\Input\FormDateBox.cs" />
     <Compile Include="Form\Content\Items\Input\FormDatePicker.cs" />
@@ -60,6 +60,7 @@
     <Compile Include="Form\Visitors\Form2Html\FormPasswordBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormRadioGroup.cs" />
     <Compile Include="Form\Visitors\FormLogVisitor.cs" />
+    <Compile Include="Form\Visitors\FormMessageVisitor.cs" />
     <Compile Include="Html\Attributes\Variable\String\AttrAutoComplete.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlRadioButton.cs" />
     <Compile Include="Html\Content\Elements\Containers\HtmlRadioGroup.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="Html\Events\EventClick.cs" />
     <Compile Include="Html\Events\EventChange.cs" />
     <Compile Include="Html\Interfaces\IHtmlEvent.cs" />
-    <Compile Include="Form2Model.cs" />
+    <Compile Include="FormModel.cs" />
     <Compile Include="Form\Enums\ElementOrder.cs" />
     <Compile Include="Form\Content\FormSection.cs" />
     <Compile Include="Form\Enums\FormIcon.cs" />

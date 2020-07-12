@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.SessionState;
 
 using Form2.Form.Content;
 using Form2.Form.Interfaces;
@@ -14,20 +13,20 @@ using Form2.Form.Interfaces;
 namespace Form2
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-
-    public class Form2Commander
+    
+    public class FormCommander
     {
-        private readonly Form2Model form;
+        private readonly FormModel formModel;
 
-        public Form2Commander(Form2Model form)
+        public FormCommander(FormModel formModel)
         {
-            this.form = form;
+            this.formModel = formModel;
         }
 
-        public void HandleRequest(bool isPostBack, HttpRequest request, HttpSessionState session)
+        public void HandleRequest(bool isPostBack, HttpRequest request)
         {
             if (!isPostBack)
-                this.form.Initialize(session);
+                formModel.Initialize();
 
             string eventTarget = request["__EVENTTARGET"];
             string eventArgument = request["__EVENTARGUMENT"];
@@ -35,13 +34,16 @@ namespace Form2
             if (eventTarget == null || eventArgument == null)
                 return;
 
-            FormItem formItem = this.form.GetItem(eventTarget);
+            FormItem formItem = formModel.GetItem(eventTarget);
             string argument = eventArgument;
 
             NameValueCollection form = new NameValueCollection();
 
             foreach (var key in request.Form.Keys)
             {
+                if (key == null)
+                    continue;
+
                 if (key.ToString().StartsWith("__"))
                     continue;
 
@@ -57,14 +59,14 @@ namespace Form2
                 if (iPostBack == null || !iPostBack.IsPostBack)
                     throw new ApplicationException();
 
-                this.form.Update(formItem, argument, form, session);
+                formModel.Update(formItem, argument, form);
             }
             else
             {
                 if (!iSubmit.IsSubmit)
                     throw new ApplicationException();
 
-                this.form.Submit(formItem, argument, form, session);
+                formModel.Submit(formItem, argument, form);
             }
         }
     }

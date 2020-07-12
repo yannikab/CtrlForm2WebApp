@@ -23,7 +23,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
             htmlDiv.Class.Add("form-field");
             
-            if (!validate)
+            if (initialize)
             {
                 htmlDiv.Class.Add(formPasswordBox.IsRequired ? "form-required" : "form-optional");
             }
@@ -158,23 +158,24 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            if (!validate)
+            if (initialize)
                 return;
-
-            if (sessionState != null)
-            {
-                if (sessionState[formPasswordBox.SessionKey] == null)
-                    return;
-
-                formPasswordBox.Content = (string)sessionState[formPasswordBox.SessionKey];
-            }
 
             string message = null;
 
-            if (formPasswordBox.IsRequired && !formPasswordBox.HasValue)
+            if (formPasswordBox.UseLastMessage)
+            {
+                if (!string.IsNullOrEmpty(formPasswordBox.LastMessage))
+                    message = formPasswordBox.LastMessage;
+            }
+            else if (formPasswordBox.IsRequired && !formPasswordBox.HasValue)
+            {
                 message = formPasswordBox.RequiredMessage;
+            }
             else if (!formPasswordBox.IsValid)
+            {
                 message = formPasswordBox.ValidationMessage;
+            }
 
             if (message == null)
                 return;

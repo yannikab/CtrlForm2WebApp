@@ -23,7 +23,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formSelect.FormId));
             htmlDiv.Class.Add("form-field");
 
-            if (!validate)
+            if (initialize)
             {
                 htmlDiv.Class.Add(formSelect.IsRequired ? "form-required" : "form-optional");
             }
@@ -160,53 +160,24 @@ namespace Form2.Form.Visitors
             foreach (var formOption in formSelect.Content)
                 Visit(formOption, htmlSelect);
 
-            if (!validate)
+            if (initialize)
                 return;
-
-            if (sessionState != null)
-            {
-                string viewStateString = (string)sessionState[formSelect.SessionKey];
-
-                if (viewStateString == null)
-                    return;
-
-                int previousIndex = 0;
-
-                var content = formSelect.Content.ToList();
-
-                for (int i = 0; i < content.Count; i++)
-                    content[i].IsSelected = false;
-
-                foreach (var o in viewStateString.Split(','))
-                {
-                    for (int i = previousIndex; i < content.Count; i++)
-                    {
-                        if (formSelect.Header != null && content[i] == formSelect.Header)
-                            continue;
-
-                        if (content[i].IsHidden)
-                            continue;
-
-                        if (content[i].IsDisabled)
-                            continue;
-
-                        if (content[i].Value == o)
-                        {
-                            content[i].IsSelected = true;
-                            previousIndex = i + 1;
-
-                            break;
-                        }
-                    }
-                }
-            }
 
             string message = null;
 
-            if (formSelect.IsRequired && !formSelect.HasValue)
+            if (formSelect.UseLastMessage)
+            {
+                if (!string.IsNullOrEmpty(formSelect.LastMessage))
+                    message = formSelect.LastMessage;
+            }
+            else if (formSelect.IsRequired && !formSelect.HasValue)
+            {
                 message = formSelect.RequiredMessage;
+            }
             else if (!formSelect.IsValid)
+            {
                 message = formSelect.ValidationMessage;
+            }
 
             if (message == null)
                 return;

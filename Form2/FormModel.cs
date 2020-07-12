@@ -6,20 +6,18 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.SessionState;
 
 using Form2.Form.Content;
 using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 using Form2.Form.Visitors;
-using Form2.Html.Content.Elements;
 
 namespace Form2
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0031:Use null propagation", Justification = "<Pending>")]
 
-    public abstract class Form2Model
+    public abstract class FormModel
     {
         #region Fields
 
@@ -31,27 +29,28 @@ namespace Form2
 
         private readonly List<FormRule> rules;
 
-        private HtmlContainer htmlContainer;
+        private bool submitted;
 
         #endregion
 
 
         #region Properties
 
-        protected FormSection FormSection { get { return formSection; } }
+        public FormSection FormSection { get { return formSection; } }
 
-        public HtmlContainer Html { get { return htmlContainer; } }
+        public bool Submitted { get { return submitted; } }
 
         #endregion
 
 
         #region Constructors
 
-        public Form2Model()
+        public FormModel()
         {
             formSection = null;
             formSections = new Stack<FormSection>();
             rules = new List<FormRule>();
+            submitted = true;
         }
 
         #endregion
@@ -59,30 +58,29 @@ namespace Form2
 
         #region Methods
 
-        public void Initialize(HttpSessionState session)
+        public void Initialize()
         {
             formSection = null;
             formSections.Clear();
             rules.Clear();
+            submitted = true;
 
             CreateForm();
-            AddRules(rules);
 
             if (formSection == null)
                 return;
 
-            foreach (var formItem in formSection.Get<FormItem>().Where(f => f is IRequired))
-                session.Remove(formItem.SessionKey);
+            AddRules(rules);
 
             ApplyRules(false, null, null);
-
-            htmlContainer = new Form2HtmlVisitor(formSection, false).Html;
         }
 
-        public void Update(FormItem formItem, string argument, NameValueCollection form, HttpSessionState session)
+        public void Update(FormItem formItem, string argument, NameValueCollection form)
         {
             if (formSection == null)
                 return;
+
+            submitted = false;
 
             ISubmit iSubmit = formItem as ISubmit;
 
@@ -98,13 +96,15 @@ namespace Form2
 
             ApplyRules(true, formItem, argument);
 
-            htmlContainer = new Form2HtmlVisitor(formSection, session).Html;
+            new FormMessageVisitor(formSection, false);
         }
 
-        public void Submit(FormItem formItem, string argument, NameValueCollection form, HttpSessionState session)
+        public void Submit(FormItem formItem, string argument, NameValueCollection form)
         {
             if (formSection == null)
                 return;
+
+            submitted = false;
 
             new FormPostBackVisitor(formSection, form);
 
@@ -115,30 +115,15 @@ namespace Form2
             if (!iSubmit.IsSubmit)
                 throw new ApplicationException();
 
-            if (formSection.IsValid)
+            if (!formSection.IsValid)
             {
-                PerformAction();
-
-                Initialize(session);
+                new FormMessageVisitor(formSection, true);
+                return;
             }
-            else
-            {
-                foreach (var fi in formSection.Get<FormItem>().Where(f => f is IRequired))
-                    session.Remove(fi.SessionKey);
 
-                foreach (var fi in formSection.Get<FormItem>().Where(f => f is IRequired))
-                {
-                    if (fi is IHidden && (fi as IHidden).IsHidden)
-                        continue;
+            PerformAction();
 
-                    if (fi is IDisabled && (fi as IDisabled).IsDisabled)
-                        continue;
-
-                    session[fi.SessionKey] = form[fi.BaseId];
-                }
-
-                htmlContainer = new Form2HtmlVisitor(formSection, true).Html;
-            }
+            Initialize();
         }
 
         protected abstract void CreateForm();

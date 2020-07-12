@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -35,16 +34,16 @@ namespace Form2WebApp.UserControls
 
             form.SetPage(Page);
 
-            Form2Commander form2Commander = new Form2Commander(form);
+            FormCommander formCommander = new FormCommander(form);
 
-            form2Commander.HandleRequest(IsPostBack, Request, Session);
+            FormRenderer formRenderer = new FormRenderer(form);
 
-            Form2Renderer form2Renderer = new Form2Renderer(form);
+            formCommander.HandleRequest(IsPostBack, Request);
 
-            ltrContent.Text = form2Renderer.Render();
+            ltrContent.Text = formRenderer.Render();
         }
 
-        class Form : Form2Model
+        class Form : FormModel
         {
             private static readonly Logger log = LogManager.GetCurrentClassLogger();
 

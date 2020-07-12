@@ -24,7 +24,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDatePicker.FormId));
             htmlDiv.Class.Add("form-field");
 
-            if (!validate)
+            if (initialize)
             {
                 htmlDiv.Class.Add(formDatePicker.IsRequired ? "form-required" : "form-optional");
             }
@@ -163,23 +163,24 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            if (!validate)
+            if (initialize)
                 return;
-
-            if (sessionState != null)
-            {
-                if (sessionState[formDatePicker.SessionKey] == null)
-                    return;
-
-                formDatePicker.Content = (string)sessionState[formDatePicker.SessionKey];
-            }
 
             string message = null;
 
-            if (formDatePicker.IsRequired && !formDatePicker.HasValue)
+            if (formDatePicker.UseLastMessage)
+            {
+                if (!string.IsNullOrEmpty(formDatePicker.LastMessage))
+                    message = formDatePicker.LastMessage;
+            }
+            else if (formDatePicker.IsRequired && !formDatePicker.HasValue)
+            {
                 message = formDatePicker.RequiredMessage;
+            }
             else if (!formDatePicker.IsValid)
+            {
                 message = formDatePicker.ValidationMessage;
+            }
 
             if (message == null)
                 return;
