@@ -8,7 +8,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AEIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\HtmlContainer.cs</FileName>
+      <FileName>Html\Content\Elements\HtmlContainer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlText">
@@ -19,7 +19,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAACAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\HtmlText.cs</FileName>
+      <FileName>Html\Content\HtmlText.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.HtmlInput">
@@ -34,7 +34,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAABAEAAAAAkAAAEAACAAAQAAAAAAAAACQAoAAAQAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\HtmlInput.cs</FileName>
+      <FileName>Html\Content\Elements\HtmlInput.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlTextArea">
@@ -47,7 +47,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgBEAAAAAAAIICAAAAAAIAAAAAAAgAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Input\HtmlTextArea.cs</FileName>
+      <FileName>Html\Content\Elements\Input\HtmlTextArea.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlCheckBox">
@@ -58,7 +58,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAAAAAAAACAIAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Input\HtmlCheckBox.cs</FileName>
+      <FileName>Html\Content\Elements\Input\HtmlCheckBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSubmit">
@@ -71,7 +71,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAACAEAAAAAkAAAAAACAAAACAAAAAAAAAQAAAAAAAgA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlSubmit.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlSubmit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlLabel">
@@ -82,7 +82,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAgAAAAAAAAACIAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlLabel.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlLabel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlItalic">
@@ -92,7 +92,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlItalic.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlItalic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlOption">
@@ -105,7 +105,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAkAAAAAACAAQAAAAAAAAAAAAAgAAAQAAI=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlOption.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlOption.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlTextBox">
@@ -116,7 +116,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Input\HtmlTextBox.cs</FileName>
+      <FileName>Html\Content\Elements\Input\HtmlTextBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSelect">
@@ -131,7 +131,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABkgAEAEACAAAQCAAAAAAAACIAAQAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlSelect.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlSelect.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlDiv">
@@ -141,7 +141,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlDiv.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlDiv.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlPasswordBox">
@@ -152,7 +152,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Input\HtmlPasswordBox.cs</FileName>
+      <FileName>Html\Content\Elements\Input\HtmlPasswordBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlDateBox">
@@ -162,7 +162,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Input\HtmlDateBox.cs</FileName>
+      <FileName>Html\Content\Elements\Input\HtmlDateBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSpan">
@@ -172,7 +172,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlSpan.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlSpan.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlContent">
@@ -182,7 +182,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>BAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\HtmlContent.cs</FileName>
+      <FileName>Html\Content\HtmlContent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlElement">
@@ -197,7 +197,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAACAAAABAAgAAAEAAIAABASAgAAEAogAAAAAAAEAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\HtmlElement.cs</FileName>
+      <FileName>Html\Content\HtmlElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlRadioButton">
@@ -208,7 +208,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAAAAAAAACAIAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Input\HtmlRadioButton.cs</FileName>
+      <FileName>Html\Content\Elements\Input\HtmlRadioButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlRadioGroup">
@@ -221,7 +221,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABkAAEAAACAAAQCAAAAAAAACAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Containers\HtmlRadioGroup.cs</FileName>
+      <FileName>Html\Content\Elements\Containers\HtmlRadioGroup.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlDatePicker">
@@ -233,8 +233,8 @@
       <Method Name="HtmlDatePicker" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABBAAAEAAAABCAAAAAAAAAAAAAAgAgAA=</HashCode>
-      <FileName>App_Code\Form2\Html\Content\Elements\Input\HtmlDatePicker.cs</FileName>
+      <HashCode>AAAAAAAAQAAABBAAAEAAAABCAAAAAAAAAAAAAAgCgAA=</HashCode>
+      <FileName>Html\Content\Elements\Input\HtmlDatePicker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
