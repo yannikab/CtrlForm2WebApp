@@ -63,7 +63,7 @@ namespace Form2WebApp.UserControls
 
                 RequiredMessage = "Το πεδίο είναι υποχρεωτικό.";
 
-                ElementOrder = ElementOrder.LabelMarkInput;
+                OrderElements = OrderElements.LabelMarkInput;
 
 
                 AddItem(new FormTitle("")

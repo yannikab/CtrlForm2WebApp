@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Form2.Html.Attributes.Variable.Integer
 {
-    public abstract class IntegerAttribute : HtmlAttribute<long?>
+    public abstract class DoubleAttribute : HtmlAttribute<double?>
     {
         #region Properties
 
@@ -20,12 +20,12 @@ namespace Form2.Html.Attributes.Variable.Integer
 
         #region Constructors
 
-        public IntegerAttribute(long value)
+        public DoubleAttribute(double value)
             : base(value)
         {
         }
 
-        public IntegerAttribute()
+        public DoubleAttribute()
             : base(null)
         {
         }

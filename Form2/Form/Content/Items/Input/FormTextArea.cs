@@ -10,37 +10,33 @@ namespace Form2.Form.Content.Items.Input
     {
         #region Fields
 
-        private static readonly int defaultRows;
+        private int? rows;
 
-        private static readonly int defaultColumns;
-
-        private int rows;
-
-        private int columns;
+        private int? columns;
 
         #endregion
 
 
         #region Properties
 
-        public int Rows
+        public int? Rows
         {
             get { return rows; }
             set
             {
-                if (value < 1)
+                if (value != null && value < 1)
                     throw new ArgumentException();
 
                 rows = value;
             }
         }
 
-        public int Columns
+        public int? Columns
         {
             get { return columns; }
             set
             {
-                if (value < 1)
+                if (value != null && value < 1)
                     throw new ArgumentException();
 
                 columns = value;
@@ -52,17 +48,11 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        static FormTextArea()
-        {
-            defaultRows = 4;
-            defaultColumns = 50;
-        }
-
         public FormTextArea(string baseId, string formId)
             : base(baseId, formId)
         {
-            Rows = defaultRows;
-            Columns = defaultColumns;
+            rows = null;
+            columns = null;
         }
 
         public FormTextArea(string baseId)

@@ -18,7 +18,7 @@ namespace Form2.Form.Content.Items
 
         private string label;
 
-        private ElementOrder elementOrder;
+        private OrderElements orderElements;
 
         private C content;
 
@@ -45,23 +45,23 @@ namespace Form2.Form.Content.Items
             set { label = value; }
         }
 
-        public ElementOrder ElementOrder
+        public OrderElements OrderElements
         {
             get
             {
-                if (elementOrder != ElementOrder.NotSet)
-                    return elementOrder;
+                if (orderElements != OrderElements.NotSet)
+                    return orderElements;
 
                 FormSection container = Container as FormSection;
 
                 if (container == null)
-                    return ElementOrder.NotSet;
+                    return OrderElements.NotSet;
 
-                return container.ElementOrder;
+                return container.OrderElements;
             }
             set
             {
-                elementOrder = value;
+                orderElements = value;
             }
         }
 
@@ -216,7 +216,7 @@ namespace Form2.Form.Content.Items
             lastValidationMessage = null;
             useLastValidationMessage = false;
 
-            elementOrder = ElementOrder.NotSet;
+            orderElements = OrderElements.NotSet;
         }
 
         public FormInput(string baseId, string formId)

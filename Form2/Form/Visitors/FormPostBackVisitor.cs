@@ -19,8 +19,12 @@ namespace Form2.Form.Visitors
     public class FormPostBackVisitor
     {
         #region Fields
+        
+        private readonly NameValueCollection values;
+        
+        private readonly FormItem source;
 
-        private readonly NameValueCollection form;
+        private readonly string argument;
 
         #endregion
 
@@ -62,38 +66,60 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTextBox formTextBox)
         {
-            formTextBox.Content = form[formTextBox.BaseId];
+            formTextBox.Content = values[formTextBox.BaseId];
         }
 
         public virtual void Visit(FormTextArea formTextArea)
         {
-            formTextArea.Content = form[formTextArea.BaseId];
+            formTextArea.Content = values[formTextArea.BaseId];
         }
 
         public virtual void Visit(FormPasswordBox formPasswordBox)
         {
-            formPasswordBox.Content = form[formPasswordBox.BaseId];
+            formPasswordBox.Content = values[formPasswordBox.BaseId];
         }
 
         public virtual void Visit(FormDateBox formDateBox)
         {
-            formDateBox.Content = form[formDateBox.BaseId];
+            formDateBox.Content = values[formDateBox.BaseId];
         }
 
         public virtual void Visit(FormDatePicker formDatePicker)
         {
-            formDatePicker.Content = form[formDatePicker.BaseId];
+            formDatePicker.Content = values[formDatePicker.BaseId];
         }
 
         public virtual void Visit(FormCheckBox formCheckBox)
         {
-            if (form[formCheckBox.BaseId] == null)
+            if (values[formCheckBox.BaseId] == null)
             {
                 formCheckBox.Content = false;
                 return;
             }
 
-            formCheckBox.Content = form[formCheckBox.BaseId].ToLower() == "on";
+            formCheckBox.Content = values[formCheckBox.BaseId].ToLower() == "on";
+        }
+
+        public virtual void Visit(FormNumberBox formNumberBox)
+        {
+            formNumberBox.Content = values[formNumberBox.BaseId];
+
+            if (source != formNumberBox)
+                return;
+
+            switch (argument)
+            {
+                case "Incr":
+                    formNumberBox.Content = (formNumberBox.Value + formNumberBox.Step).ToString();
+                    break;
+
+                case "Decr":
+                    formNumberBox.Content = (formNumberBox.Value - formNumberBox.Step).ToString();
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         public virtual void Visit(FormSelect formSelect)
@@ -105,10 +131,10 @@ namespace Form2.Form.Visitors
             for (int i = 0; i < content.Count; i++)
                 content[i].IsSelected = false;
 
-            if (form[formSelect.BaseId] == null)
+            if (values[formSelect.BaseId] == null)
                 return;
 
-            foreach (var o in form[formSelect.BaseId].Split(','))
+            foreach (var o in values[formSelect.BaseId].Split(','))
             {
                 for (int i = previousIndex; i < content.Count; i++)
                 {
@@ -142,7 +168,7 @@ namespace Form2.Form.Visitors
                 if (c.IsDisabled)
                     continue;
 
-                c.IsSelected = c.Value == form[formRadioGroup.BaseId];
+                c.IsSelected = c.Value == values[formRadioGroup.BaseId];
             }
         }
 
@@ -151,9 +177,11 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public FormPostBackVisitor(FormSection formSection, NameValueCollection form)
+        public FormPostBackVisitor(FormSection formSection, NameValueCollection values, FormItem source, string argument)
         {
-            this.form = form;
+            this.values = values;
+            this.source = source;
+            this.argument = argument;
 
             Visit(formSection);
         }

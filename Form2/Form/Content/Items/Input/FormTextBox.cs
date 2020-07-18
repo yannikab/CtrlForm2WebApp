@@ -112,7 +112,7 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<FormTextBox>
+        #region IValidate<string>
 
         public Func<string, string> Validator
         {
@@ -160,13 +160,13 @@ namespace Form2.Form.Content.Items.Input
             : base(baseId, formId)
         {
             Content = "";
-            PlaceHolder = "";
+            placeHolder = "";
             Icon = FormIcon.NotSet;
 
             readOnly = null;
 
-            Validator = (v) => { return ""; };
-            ActionInvalid = (v) => { return; };
+            validator = (v) => { return ""; };
+            actionInvalid = (v) => { return; };
         }
 
         public FormTextBox(string baseId)

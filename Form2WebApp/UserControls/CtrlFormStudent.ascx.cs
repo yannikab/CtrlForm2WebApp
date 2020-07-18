@@ -122,7 +122,7 @@ namespace Form2WebApp.UserControls
 
                 #region Defaults
 
-                ElementOrder = ElementOrder.LabelMarkInput;
+                OrderElements = OrderElements.LabelMarkInput;
 
                 Required = true;
 

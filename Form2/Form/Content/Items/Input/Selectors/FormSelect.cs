@@ -91,7 +91,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
         #endregion
 
 
-        #region IValidate<FormSelect>
+        #region IValidate<IEnumerable<FormOption>>
 
         public Func<IEnumerable<FormOption>, string> Validator
         {

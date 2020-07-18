@@ -19,7 +19,7 @@ namespace Form2.Form.Content
 
         private readonly List<FormContent> contents;
 
-        private ElementOrder elementOrder;
+        private OrderElements orderElements;
 
         private bool? disabled;
 
@@ -41,22 +41,22 @@ namespace Form2.Form.Content
             get { return contents; }
         }
 
-        public ElementOrder ElementOrder
+        public OrderElements OrderElements
         {
             get
             {
-                if (elementOrder != ElementOrder.NotSet)
-                    return elementOrder;
+                if (orderElements != OrderElements.NotSet)
+                    return orderElements;
 
                 if (Container == null)
-                    return ElementOrder.NotSet;
+                    return OrderElements.NotSet;
 
-                return Container.ElementOrder;
+                return Container.OrderElements;
             }
 
             set
             {
-                elementOrder = value;
+                orderElements = value;
             }
         }
 
@@ -308,7 +308,7 @@ namespace Form2.Form.Content
             contents = new List<FormContent>();
 
             requiredMark = null;
-            elementOrder = ElementOrder.NotSet;
+            orderElements = OrderElements.NotSet;
         }
 
         public FormSection(string baseId)

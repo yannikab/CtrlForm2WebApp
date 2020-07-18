@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Form2.Html.Attributes.Variable.Integer
 {
-    public class AttrCols : IntegerAttribute
+    public class AttrMax : DoubleAttribute
     {
         #region Properties
 
         public override string Name
         {
-            get { return "cols"; }
+            get { return "max"; }
         }
 
         #endregion
@@ -20,12 +20,12 @@ namespace Form2.Html.Attributes.Variable.Integer
 
         #region Constructors 
 
-        public AttrCols(long cols)
-            : base(cols)
+        public AttrMax(double max)
+            : base(max)
         {
         }
 
-        public AttrCols()
+        public AttrMax()
             : base()
         {
         }

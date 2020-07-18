@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Form2.Html.Attributes.Variable.Integer
 {
-    public class AttrCols : IntegerAttribute
+    public class AttrMin : DoubleAttribute
     {
         #region Properties
 
         public override string Name
         {
-            get { return "cols"; }
+            get { return "min"; }
         }
 
         #endregion
@@ -20,12 +20,12 @@ namespace Form2.Html.Attributes.Variable.Integer
 
         #region Constructors 
 
-        public AttrCols(long cols)
-            : base(cols)
+        public AttrMin(double min)
+            : base(min)
         {
         }
 
-        public AttrCols()
+        public AttrMin()
             : base()
         {
         }

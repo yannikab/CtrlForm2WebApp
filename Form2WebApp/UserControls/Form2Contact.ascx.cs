@@ -66,7 +66,7 @@ namespace Form2WebApp.UserControls
 
                 RequiredMessage = "Field is required";
 
-                ElementOrder = ElementOrder.LabelMarkInput;
+                OrderElements = OrderElements.LabelMarkInput;
 
 
                 AddItem(new FormTitle("Title")
@@ -311,11 +311,31 @@ namespace Form2WebApp.UserControls
                         return "";
                     },
 
-                    ElementOrder = ElementOrder.LabelMarkInput
+                    OrderElements = OrderElements.LabelMarkInput
                 });
 
                 CloseSection();
 
+                AddItem(new FormNumberBox("YearsInService")
+                {
+                    Label = "Years in service",
+
+                    Content = "1.2",
+
+                    Min = 0,
+
+                    Max = 10,
+
+                    OrderNumberBox = OrderNumberBox.NumberDecrIncr,
+
+                    Validator = (v) =>
+                    {
+                        if (Math.Truncate(v) != v)
+                            return "Please enter an integer number";
+
+                        return "";
+                    }
+                }) ;
 
                 AddItem(new FormTextArea("Message")
                 {
@@ -374,9 +394,9 @@ namespace Form2WebApp.UserControls
                 var emailVisitor = new FormEmailVisitor(FormSection, "Ναι", "Όχι");
 
                 page.Response.Write(emailVisitor.Subject);
-                page.Response.Write("<br /><br />");
+                page.Response.Write("<br><br>");
                 page.Response.Write(emailVisitor.Body);
-                page.Response.Write("<br /><br />");
+                page.Response.Write("<br><br>");
             }
         }
     }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Form2.Html.Attributes.MultiValue;
 using Form2.Html.Attributes.ReadOnly.String;
 using Form2.Html.Attributes.Variable.Boolean;
+using Form2.Html.Events;
 using Form2.Html.Interfaces;
 
 namespace Form2.Html.Content
@@ -21,7 +22,7 @@ namespace Form2.Html.Content
 
         protected readonly List<IHtmlAttribute> attributes;
 
-        protected readonly List<IHtmlEvent> events;
+        protected readonly List<HtmlEvent> events;
 
         private readonly AttrId attrId;
 
@@ -49,7 +50,7 @@ namespace Form2.Html.Content
             get { return attributes; }
         }
 
-        public IReadOnlyList<IHtmlEvent> Events
+        public IReadOnlyList<HtmlEvent> Events
         {
             get { return events; }
         }
@@ -95,7 +96,7 @@ namespace Form2.Html.Content
 
             attributes.Add(attrHidden = new AttrHidden());
 
-            events = new List<IHtmlEvent>();
+            events = new List<HtmlEvent>();
         }
 
         #endregion

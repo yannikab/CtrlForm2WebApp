@@ -20,8 +20,13 @@ namespace Form2.Html.Attributes.Variable.Integer
 
         #region Constructors 
 
-        public AttrRows(int rows)
+        public AttrRows(long rows)
             : base(rows)
+        {
+        }
+
+        public AttrRows()
+            : base()
         {
         }
 

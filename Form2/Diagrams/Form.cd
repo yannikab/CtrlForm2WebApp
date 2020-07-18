@@ -115,7 +115,7 @@
     <Position X="21.75" Y="3.25" Width="1.5" />
     <Members>
       <Field Name="contents" Hidden="true" />
-      <Field Name="elementOrder" Hidden="true" />
+      <Field Name="orderElements" Hidden="true" />
       <Method Name="FormSection" Hidden="true" />
       <Field Name="isDisabled" Hidden="true" />
       <Field Name="isReadOnly" Hidden="true" />
@@ -133,7 +133,7 @@
     <Position X="8.25" Y="5" Width="1.5" />
     <Members>
       <Field Name="content" Hidden="true" />
-      <Field Name="elementOrder" Hidden="true" />
+      <Field Name="orderElements" Hidden="true" />
       <Method Name="FormInput" Hidden="true" />
       <Field Name="isDisabled" Hidden="true" />
       <Field Name="isRequired" Hidden="true" />

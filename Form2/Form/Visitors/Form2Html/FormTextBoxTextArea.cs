@@ -29,7 +29,7 @@ namespace Form2.Form.Visitors
             }
             else
             {
-                if (!string.IsNullOrEmpty(formTextBox.Value))
+                if (formTextBox.HasValue)
                     htmlDiv.Class.Add(formTextBox.IsValid ? "form-valid" : "form-invalid");
                 else
                     htmlDiv.Class.Add(formTextBox.IsRequired ? "form-not-entered" : "form-optional");
@@ -48,9 +48,9 @@ namespace Form2.Form.Visitors
             HtmlLabel htmlLabel = new HtmlLabel(formTextBox.BaseId);
             htmlLabel.For.Value = htmlTextBox.Id.Value;
 
-            switch (formTextBox.ElementOrder)
+            switch (formTextBox.OrderElements)
             {
-                case ElementOrder.LabelMarkInput:
+                case OrderElements.LabelMarkInput:
 
                     htmlLabel.Add(new HtmlText(formTextBox.Label));
 
@@ -67,7 +67,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.MarkLabelInput:
+                case OrderElements.MarkLabelInput:
 
                     if (formTextBox.IsRequired && !string.IsNullOrWhiteSpace(formTextBox.RequiredMark))
                     {
@@ -84,7 +84,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.InputLabelMark:
+                case OrderElements.InputLabelMark:
 
                     htmlLabel.Add(new HtmlText(formTextBox.Label));
 
@@ -101,7 +101,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.InputMarkLabel:
+                case OrderElements.InputMarkLabel:
 
                     if (formTextBox.IsRequired && !string.IsNullOrWhiteSpace(formTextBox.RequiredMark))
                     {
@@ -118,7 +118,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.LabelInputMark:
+                case OrderElements.LabelInputMark:
 
                     htmlLabel.Add(new HtmlText(formTextBox.Label));
 
@@ -135,7 +135,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.MarkInputLabel:
+                case OrderElements.MarkInputLabel:
 
                     if (formTextBox.IsRequired && !string.IsNullOrWhiteSpace(formTextBox.RequiredMark))
                     {
@@ -153,7 +153,7 @@ namespace Form2.Form.Visitors
                     break;
 
                 default:
-                case ElementOrder.NotSet:
+                case OrderElements.NotSet:
 
                     break;
             }
@@ -200,7 +200,7 @@ namespace Form2.Form.Visitors
             }
             else
             {
-                if (!string.IsNullOrEmpty(formTextArea.Value))
+                if (formTextArea.HasValue)
                     htmlDiv.Class.Add(formTextArea.IsValid ? "form-valid" : "form-invalid");
                 else
                     htmlDiv.Class.Add(formTextArea.IsRequired ? "form-not-entered" : "form-optional");
@@ -210,18 +210,20 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlTextArea htmlTextArea = new HtmlTextArea(formTextArea.BaseId, formTextArea.Rows, formTextArea.Columns);
+            HtmlTextArea htmlTextArea = new HtmlTextArea(formTextArea.BaseId);
             htmlTextArea.Disabled.Value = formTextArea.IsDisabled;
             htmlTextArea.ReadOnly.Value = formTextArea.IsReadOnly;
             htmlTextArea.Value.Value = formTextArea.Value;
             htmlTextArea.PlaceHolder.Value = !string.IsNullOrEmpty(formTextArea.PlaceHolder) ? formTextArea.PlaceHolder : null;
+            htmlTextArea.Rows.Value = formTextArea.Rows;
+            htmlTextArea.Cols.Value = formTextArea.Columns;
 
             HtmlLabel htmlLabel = new HtmlLabel(formTextArea.BaseId);
             htmlLabel.For.Value = htmlTextArea.Id.Value;
 
-            switch (formTextArea.ElementOrder)
+            switch (formTextArea.OrderElements)
             {
-                case ElementOrder.LabelMarkInput:
+                case OrderElements.LabelMarkInput:
 
                     htmlLabel.Add(new HtmlText(formTextArea.Label));
 
@@ -237,7 +239,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.MarkLabelInput:
+                case OrderElements.MarkLabelInput:
 
                     if (formTextArea.IsRequired && !string.IsNullOrWhiteSpace(formTextArea.RequiredMark))
                     {
@@ -253,7 +255,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.InputLabelMark:
+                case OrderElements.InputLabelMark:
 
                     htmlLabel.Add(new HtmlText(formTextArea.Label));
 
@@ -269,7 +271,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.InputMarkLabel:
+                case OrderElements.InputMarkLabel:
 
                     if (formTextArea.IsRequired && !string.IsNullOrWhiteSpace(formTextArea.RequiredMark))
                     {
@@ -285,7 +287,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.LabelInputMark:
+                case OrderElements.LabelInputMark:
 
                     htmlLabel.Add(new HtmlText(formTextArea.Label));
 
@@ -301,7 +303,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.MarkInputLabel:
+                case OrderElements.MarkInputLabel:
 
                     if (formTextArea.IsRequired && !string.IsNullOrWhiteSpace(formTextArea.RequiredMark))
                     {
@@ -318,7 +320,7 @@ namespace Form2.Form.Visitors
                     break;
 
                 default:
-                case ElementOrder.NotSet:
+                case OrderElements.NotSet:
 
                     break;
             }

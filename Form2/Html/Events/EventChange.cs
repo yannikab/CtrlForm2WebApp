@@ -5,36 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Form2.Html.Interfaces;
-
 namespace Form2.Html.Events
 {
-    [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
-
-    public class EventChange : IHtmlEvent
+    public class EventChange : HtmlEvent
     {
-        #region Fields
+        #region Properties
 
-        private readonly string value;
-
-        #endregion
-
-
-        #region IHtmlEvent
-
-        public string Name
+        public override string Name
         {
             get { return "onchange"; }
-        }
-
-        public string Value
-        {
-            get { return value; }
-        }
-
-        public bool IsSet
-        {
-            get { return value != ""; }
         }
 
         #endregion
@@ -43,21 +22,13 @@ namespace Form2.Html.Events
         #region Constructors
 
         public EventChange(string value)
+            : base(value)
         {
-            if (value == null)
-                throw new ArgumentNullException();
-
-            this.value = value;
         }
 
-        #endregion
-
-
-        #region Object
-
-        public override string ToString()
+        public EventChange()
+            : base(null)
         {
-            return IsSet ? string.Format(@" {0}=""{1}""", Name, Value) : "";
         }
 
         #endregion

@@ -124,6 +124,9 @@ namespace Form2.Html.Visitors
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
 
+            foreach (var e in h.Events.Where(e => e.IsSet))
+                sb.Append(e);
+
             sb.AppendLine(">");
         }
 
@@ -249,6 +252,20 @@ namespace Form2.Html.Visitors
 
             foreach (var a in h.Attributes.Where(a => a.IsSet))
                 sb.Append(a);
+
+            sb.AppendLine(">");
+        }
+
+        public void Visit(HtmlButton h)
+        {
+            sb.Append(Tabs(h.Depth));
+            sb.Append(string.Format("<{0}", h.Tag));
+
+            foreach (var a in h.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            foreach (var e in h.Events.Where(e => e.IsSet))
+                sb.Append(e);
 
             sb.AppendLine(">");
         }

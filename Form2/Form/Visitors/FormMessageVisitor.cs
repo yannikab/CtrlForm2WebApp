@@ -107,6 +107,14 @@ namespace Form2.Form.Visitors
             formCheckBox.UseLastMessage = !submit;
         }
 
+        public virtual void Visit(FormNumberBox formNumberBox)
+        {
+            if (submit)
+                formNumberBox.LastMessage = formNumberBox.IsRequired && !formNumberBox.HasValue ? formNumberBox.RequiredMessage : formNumberBox.ValidationMessage;
+
+            formNumberBox.UseLastMessage = !submit;
+        }
+
         public virtual void Visit(FormSelect formSelect)
         {
             if (submit)

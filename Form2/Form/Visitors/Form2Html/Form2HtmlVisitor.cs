@@ -58,11 +58,11 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public Form2HtmlVisitor(FormSection formSection, bool initialize)
+        public Form2HtmlVisitor(FormModel formModel)
         {
-            this.initialize = initialize;
+            initialize = formModel.Submitted;
 
-            Visit(formSection, null);
+            Visit(formModel.FormSection, null);
         }
 
         #endregion

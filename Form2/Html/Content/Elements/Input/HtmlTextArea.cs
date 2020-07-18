@@ -54,14 +54,14 @@ namespace Form2.Html.Content.Elements.Input
 
         #region Constructors
 
-        public HtmlTextArea(string baseId, int rows, int cols)
+        public HtmlTextArea(string baseId)
             : base(baseId, null)
         {
             attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
 
-            attributes.Add(attrRows = new AttrRows(rows));
+            attributes.Add(attrRows = new AttrRows());
 
-            attributes.Add(attrCols = new AttrCols(cols));
+            attributes.Add(attrCols = new AttrCols());
         }
 
         #endregion

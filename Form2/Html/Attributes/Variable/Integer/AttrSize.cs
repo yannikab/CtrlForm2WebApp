@@ -20,7 +20,7 @@ namespace Form2.Html.Attributes.Variable.Integer
 
         #region Constructors 
 
-        public AttrSize(int size)
+        public AttrSize(long size)
             : base(size)
         {
         }

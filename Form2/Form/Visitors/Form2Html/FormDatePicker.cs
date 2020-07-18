@@ -53,9 +53,9 @@ namespace Form2.Form.Visitors
             HtmlLabel htmlLabel = new HtmlLabel(formDatePicker.BaseId);
             htmlLabel.For.Value = htmlDatePicker.Id.Value;
 
-            switch (formDatePicker.ElementOrder)
+            switch (formDatePicker.OrderElements)
             {
-                case ElementOrder.LabelMarkInput:
+                case OrderElements.LabelMarkInput:
 
                     htmlLabel.Add(new HtmlText(formDatePicker.Label));
 
@@ -72,7 +72,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.MarkLabelInput:
+                case OrderElements.MarkLabelInput:
 
                     if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
@@ -89,7 +89,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.InputLabelMark:
+                case OrderElements.InputLabelMark:
 
                     htmlLabel.Add(new HtmlText(formDatePicker.Label));
 
@@ -106,7 +106,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.InputMarkLabel:
+                case OrderElements.InputMarkLabel:
 
                     if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
@@ -123,7 +123,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.LabelInputMark:
+                case OrderElements.LabelInputMark:
 
                     htmlLabel.Add(new HtmlText(formDatePicker.Label));
 
@@ -140,7 +140,7 @@ namespace Form2.Form.Visitors
 
                     break;
 
-                case ElementOrder.MarkInputLabel:
+                case OrderElements.MarkInputLabel:
 
                     if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
                     {
@@ -158,7 +158,7 @@ namespace Form2.Form.Visitors
                     break;
 
                 default:
-                case ElementOrder.NotSet:
+                case OrderElements.NotSet:
 
                     break;
             }

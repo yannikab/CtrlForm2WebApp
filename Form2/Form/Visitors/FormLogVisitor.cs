@@ -129,6 +129,14 @@ namespace Form2.Form.Visitors
             sb.AppendLine(string.Format("{0}: {1}", formCheckBox.Label, formCheckBox.Value ? yes : no));
         }
 
+        public virtual void Visit(FormNumberBox formNumberBox)
+        {
+            if (formNumberBox.IsHidden)
+                return;
+
+            sb.AppendLine(string.Format("{0}: {1}", formNumberBox.Label, formNumberBox.Value));
+        }
+
         public virtual void Visit(FormSelect formSelect)
         {
             if (formSelect.IsHidden)

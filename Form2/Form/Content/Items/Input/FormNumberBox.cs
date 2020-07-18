@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,31 +13,39 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormDatePicker : FormInput<string, DateTime>, IReadOnly, IValidate<DateTime>
+    public class FormNumberBox : FormInput<string, decimal>, IReadOnly, IValidate<decimal>, IPostBack
     {
         #region Fields
 
-        private string placeHolder;
+        private OrderNumberBox orderNumberBox;
 
         private FormIcon icon;
 
+        private string decrText;
+
+        private string incrText;
+
+        private decimal? min;
+
+        private decimal? max;
+
+        private decimal step;
+
         private bool? readOnly;
 
-        private Func<DateTime, string> validator;
+        private Func<decimal, string> validator;
 
-        private Action<DateTime> actionInvalid;
-
-        private string dateFormat;
+        private Action<decimal> actionInvalid;
 
         #endregion
 
 
         #region Properties
 
-        public string PlaceHolder
+        public OrderNumberBox OrderNumberBox
         {
-            get { return placeHolder; }
-            set { placeHolder = value; }
+            get { return orderNumberBox; }
+            set { orderNumberBox = value; }
         }
 
         public FormIcon Icon
@@ -47,20 +54,83 @@ namespace Form2.Form.Content.Items.Input
             set { icon = value; }
         }
 
-        public string DateFormat
+        public string DecrText
         {
-            get { return dateFormat; }
-            set { dateFormat = value; }
+            get { return decrText; }
+            set { decrText = value; }
         }
 
-        public override DateTime Value
+        public string IncrText
         {
-            get { try { return DateTime.ParseExact(Content, dateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture); } catch { return DateTime.MinValue; }; }
+            get { return incrText; }
+            set { incrText = value; }
+        }
+
+        public decimal? Min
+        {
+            get { return min; }
+            set
+            {
+                if (max.HasValue && value > max.Value)
+                    throw new ArgumentException();
+
+                if (Value < value)
+                    Content = value.ToString();
+
+                min = value;
+            }
+        }
+
+        public decimal? Max
+        {
+            get { return max; }
+            set
+            {
+                if (min.HasValue && value < min.Value)
+                    throw new ArgumentException();
+
+                if (Value > value)
+                    Content = value.ToString();
+
+                max = value;
+            }
+        }
+
+        public decimal Step
+        {
+            get { return step; }
+            set { step = value; }
+        }
+
+        public override string Content
+        {
+            get { return base.Content; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException();
+
+                if (!decimal.TryParse(value, out decimal val))
+                    return;
+
+                if (min.HasValue && val < min.Value)
+                    value = min.Value.ToString();
+
+                if (max.HasValue && val > max.Value)
+                    value = max.Value.ToString();
+
+                base.Content = value;
+            }
+        }
+
+        public override decimal Value
+        {
+            get { try { return decimal.Parse(Content); } catch { return default; }; }
         }
 
         public override bool HasValue
         {
-            get { return Value != DateTime.MinValue; }
+            get { try { decimal.Parse(Content); return true; } catch { return false; } }
         }
 
         #endregion
@@ -121,15 +191,15 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<DateTime>
+        #region IValidate<decimal>
 
-        public Func<DateTime, string> Validator
+        public Func<decimal, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<DateTime> ActionInvalid
+        public Action<decimal> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -163,25 +233,40 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
+        #region IPostBack
+
+        public bool IsPostBack
+        {
+            get { return true; }
+            set { return; }
+        }
+
+        #endregion
+
+
         #region Constructors
 
-        public FormDatePicker(string baseId, string formId, string dateFormat)
+        public FormNumberBox(string baseId, string formId)
             : base(baseId, formId)
         {
             Content = "";
-            PlaceHolder = "";
-            Icon = FormIcon.Calendar;
+            min = null;
+            max = null;
+            step = 1;
 
-            DateFormat = dateFormat;
+            orderNumberBox = OrderNumberBox.NumberDecrIncr;
+            icon = FormIcon.NotSet;
+            decrText = "-";
+            incrText = "+";
 
             readOnly = null;
 
-            Validator = (v) => { return ""; };
-            ActionInvalid = (v) => { return; };
+            validator = (v) => { return ""; };
+            actionInvalid = (v) => { return; };
         }
 
-        public FormDatePicker(string baseId, string dateFormat)
-            : this(baseId, baseId.ToLower(), dateFormat)
+        public FormNumberBox(string baseId)
+            : this(baseId, baseId.ToLower())
         {
         }
 
@@ -192,7 +277,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0} (BaseId: '{1}', Label: '{2}', Value: {3})", GetType().Name, BaseId, Label, Value);
+            return string.Format("{0} (BaseId: '{1}', Label: '{2}', Value: '{3}')", GetType().Name, BaseId, Label, Value);
         }
 
         #endregion

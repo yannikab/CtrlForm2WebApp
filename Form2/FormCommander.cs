@@ -34,10 +34,10 @@ namespace Form2
             if (eventTarget == null || eventArgument == null)
                 return;
 
-            FormItem formItem = formModel.GetItem(eventTarget);
+            FormItem source = formModel.GetItem(eventTarget);
             string argument = eventArgument;
 
-            NameValueCollection form = new NameValueCollection();
+            NameValueCollection values = new NameValueCollection();
 
             foreach (var key in request.Form.Keys)
             {
@@ -47,26 +47,26 @@ namespace Form2
                 if (key.ToString().StartsWith("__"))
                     continue;
 
-                form.Add(key.ToString(), request.Form[key.ToString()]);
+                values.Add(key.ToString(), request.Form[key.ToString()]);
             }
 
-            ISubmit iSubmit = formItem as ISubmit;
+            ISubmit iSubmit = source as ISubmit;
 
             if (iSubmit == null)
             {
-                IPostBack iPostBack = formItem as IPostBack;
+                IPostBack iPostBack = source as IPostBack;
 
                 if (iPostBack == null || !iPostBack.IsPostBack)
                     throw new ApplicationException();
 
-                formModel.Update(formItem, argument, form);
+                formModel.Update(values, source, argument);
             }
             else
             {
                 if (!iSubmit.IsSubmit)
                     throw new ApplicationException();
 
-                formModel.Submit(formItem, argument, form);
+                formModel.Submit(values, source, argument);
             }
         }
     }

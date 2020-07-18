@@ -41,7 +41,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
         #endregion
 
 
-        #region IValidate<FormRadioGroup>
+        #region IValidate<FormRadioButton>
 
         public Func<FormRadioButton, string> Validator
         {

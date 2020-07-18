@@ -75,42 +75,42 @@ namespace Form2
             ApplyRules(false, null, null);
         }
 
-        public void Update(FormItem formItem, string argument, NameValueCollection form)
+        public void Update(NameValueCollection values, FormItem source, string argument)
         {
             if (formSection == null)
                 return;
 
             submitted = false;
 
-            ISubmit iSubmit = formItem as ISubmit;
+            ISubmit iSubmit = source as ISubmit;
 
             if (iSubmit != null)
                 throw new ApplicationException();
 
-            IPostBack iPostBack = formItem as IPostBack;
+            IPostBack iPostBack = source as IPostBack;
 
             if (iPostBack == null || !iPostBack.IsPostBack)
                 throw new ApplicationException();
 
-            new FormPostBackVisitor(formSection, form);
+            new FormPostBackVisitor(formSection, values, source, argument);
 
-            ApplyRules(true, formItem, argument);
+            ApplyRules(true, source, argument);
 
             new FormMessageVisitor(formSection, false);
         }
 
-        public void Submit(FormItem formItem, string argument, NameValueCollection form)
+        public void Submit(NameValueCollection values, FormItem source, string argument)
         {
             if (formSection == null)
                 return;
 
             submitted = false;
 
-            new FormPostBackVisitor(formSection, form);
+            new FormPostBackVisitor(formSection, values, source, argument);
 
-            ApplyRules(true, formItem, argument);
+            ApplyRules(true, source, argument);
 
-            ISubmit iSubmit = formItem as ISubmit;
+            ISubmit iSubmit = source as ISubmit;
 
             if (!iSubmit.IsSubmit)
                 throw new ApplicationException();
@@ -138,7 +138,7 @@ namespace Form2
 
                 this.formSection.RequiredMark = "*";
                 this.formSection.RequiredMessage = "!";
-                this.formSection.ElementOrder = ElementOrder.InputLabelMark;
+                this.formSection.OrderElements = OrderElements.InputLabelMark;
             }
             else
             {
@@ -258,21 +258,21 @@ namespace Form2
             }
         }
 
-        protected ElementOrder ElementOrder
+        protected OrderElements OrderElements
         {
             get
             {
                 if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get ElementOrder property.");
+                    throw new InvalidOperationException("No form section is currently open. Can not get OrderElements property.");
 
-                return formSections.Peek().ElementOrder;
+                return formSections.Peek().OrderElements;
             }
             set
             {
                 if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set ElementOrder property.");
+                    throw new InvalidOperationException("No form section is currently open. Can not set OrderElements property.");
 
-                formSections.Peek().ElementOrder = value;
+                formSections.Peek().OrderElements = value;
             }
         }
 

@@ -21,7 +21,7 @@ namespace Form2
 
         public string Render()
         {
-            HtmlContainer htmlContainer = new Form2HtmlVisitor(formModel.FormSection, formModel.Submitted).Html;
+            HtmlContainer htmlContainer = new Form2HtmlVisitor(formModel).Html;
 
             return new Html2TextVisitor(htmlContainer).Text;
         }

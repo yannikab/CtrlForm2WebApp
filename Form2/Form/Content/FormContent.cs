@@ -49,14 +49,6 @@ namespace Form2.Form.Content
             get { return container == null ? 0 : container.Depth + 1; }
         }
 
-        public string SessionKey
-        {
-            get
-            {
-                return string.Format("{0}_{1}", GetType().Name, BaseId);
-            }
-        }
-
         #endregion
 
 

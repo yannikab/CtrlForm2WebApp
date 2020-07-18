@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Form2.Form.Enums
 {
-    public enum ElementOrder
+    public enum OrderElements
     {
         NotSet,
         LabelMarkInput,
