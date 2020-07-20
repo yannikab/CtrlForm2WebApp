@@ -16,7 +16,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormButton formButton, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formButton.BaseId);
+            HtmlDiv htmlDiv =  new HtmlDiv(verbose ? formButton.BaseId : "");
             htmlDiv.Class.Add("form-button");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formButton.FormId));
 
@@ -24,7 +24,7 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlSubmit htmlSubmit = new HtmlSubmit(formButton.BaseId);
+            HtmlSubmit htmlSubmit = new HtmlSubmit(formButton.BaseId, verbose);
             htmlSubmit.Disabled.Value = formButton.IsDisabled;
             htmlDiv.Add(htmlSubmit);
 

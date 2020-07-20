@@ -55,8 +55,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlSubmit(string baseId)
-            : base(baseId)
+        public HtmlSubmit(string baseId, bool verbose)
+            : base(verbose ? baseId : "")
         {
             attributes.Add(attrType = new AttrType("button"));
 

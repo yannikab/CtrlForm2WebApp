@@ -30,11 +30,6 @@ namespace Form2.Html.Content.Elements.Containers
         {
         }
 
-        public HtmlDiv()
-            : this("")
-        {
-        }
-
         #endregion
     }
 }

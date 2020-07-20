@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormPasswordBox formPasswordBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formPasswordBox.BaseId);
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formPasswordBox.BaseId : "");
             htmlDiv.Class.Add("form-password");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
             htmlDiv.Class.Add("form-field");
@@ -45,7 +45,7 @@ namespace Form2.Form.Visitors
             htmlPasswordBox.Value.Value = formPasswordBox.Value;
             htmlPasswordBox.PlaceHolder.Value = !string.IsNullOrEmpty(formPasswordBox.PlaceHolder) ? formPasswordBox.PlaceHolder : null;
 
-            HtmlLabel htmlLabel = new HtmlLabel(formPasswordBox.BaseId);
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formPasswordBox.BaseId : "");
             htmlLabel.For.Value = htmlPasswordBox.Id.Value;
 
             switch (formPasswordBox.OrderElements)
@@ -56,7 +56,7 @@ namespace Form2.Form.Visitors
 
                     if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -71,7 +71,7 @@ namespace Form2.Form.Visitors
 
                     if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -90,7 +90,7 @@ namespace Form2.Form.Visitors
 
                     if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -105,7 +105,7 @@ namespace Form2.Form.Visitors
 
                     if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -127,7 +127,7 @@ namespace Form2.Form.Visitors
 
                     if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -139,7 +139,7 @@ namespace Form2.Form.Visitors
 
                     if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -180,7 +180,7 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formPasswordBox.BaseId, "Message"));
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formPasswordBox.BaseId, "Message") : "");
             htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlPasswordBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));

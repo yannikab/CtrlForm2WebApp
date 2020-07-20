@@ -328,6 +328,15 @@ namespace Form2WebApp.UserControls
 
                     OrderNumberBox = OrderNumberBox.NumberDecrIncr,
 
+                    //DecrText = "˅",
+                    //IncrText = "˄",
+
+                    DecrText = "▼",
+                    IncrText = "▲",
+
+                    //DecrText = "🠗",
+                    //IncrText = "🠕",
+
                     Validator = (v) =>
                     {
                         if (Math.Truncate(v) != v)
@@ -335,7 +344,7 @@ namespace Form2WebApp.UserControls
 
                         return "";
                     }
-                }) ;
+                });
 
                 AddItem(new FormTextArea("Message")
                 {

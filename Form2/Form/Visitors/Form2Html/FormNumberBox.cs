@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormNumberBox formNumberBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formNumberBox.BaseId);
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formNumberBox.BaseId : "");
             htmlDiv.Class.Add("form-numberbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formNumberBox.FormId));
             htmlDiv.Class.Add("form-field");
@@ -45,7 +45,7 @@ namespace Form2.Form.Visitors
             htmlTextBox.Value.Value = formNumberBox.Value.ToString();
             htmlTextBox.Change.Value = string.Format("__doPostBack('{0}', '');", formNumberBox.BaseId);
 
-            HtmlLabel htmlLabel = new HtmlLabel(formNumberBox.BaseId);
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formNumberBox.BaseId : "");
             htmlLabel.For.Value = htmlTextBox.Id.Value;
 
             HtmlDiv htmlDivNumberBox = BuildNumberBoxDiv(formNumberBox, htmlTextBox);
@@ -58,7 +58,7 @@ namespace Form2.Form.Visitors
 
                     if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -73,7 +73,7 @@ namespace Form2.Form.Visitors
 
                     if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -92,7 +92,7 @@ namespace Form2.Form.Visitors
 
                     if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -107,7 +107,7 @@ namespace Form2.Form.Visitors
 
                     if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -129,7 +129,7 @@ namespace Form2.Form.Visitors
 
                     if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -141,7 +141,7 @@ namespace Form2.Form.Visitors
 
                     if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -182,7 +182,7 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formNumberBox.BaseId, "Message"));
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formNumberBox.BaseId, "Message") : "");
             htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlTextBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
@@ -191,10 +191,10 @@ namespace Form2.Form.Visitors
 
         private HtmlDiv BuildNumberBoxDiv(FormNumberBox formNumberBox, HtmlTextBox htmlTextBox)
         {
-            HtmlDiv htmlDivNumberBox = new HtmlDiv();
+            HtmlDiv htmlDivNumberBox = new HtmlDiv("");
 
-            string btnDecrName = string.Format("{0}{1}", "Decr", formNumberBox.BaseId);
-            string btnIncrName = string.Format("{0}{1}", "Incr", formNumberBox.BaseId);
+            string btnDecrName = verbose ? string.Format("{0}{1}", "Decr", formNumberBox.BaseId) : "";
+            string btnIncrName = verbose ? string.Format("{0}{1}", "Incr", formNumberBox.BaseId) : "";
 
             string btnDecrOnClick = string.Format("__doPostBack('{0}', 'Decr');", formNumberBox.BaseId);
             string btnIncrOnClick = string.Format("__doPostBack('{0}', 'Incr');", formNumberBox.BaseId);

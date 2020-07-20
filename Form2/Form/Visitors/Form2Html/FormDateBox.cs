@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormDateBox formDateBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formDateBox.BaseId);
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formDateBox.BaseId : "");
             htmlDiv.Class.Add("form-datebox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDateBox.FormId));
             htmlDiv.Class.Add("form-field");
@@ -44,7 +44,7 @@ namespace Form2.Form.Visitors
             htmlDateBox.ReadOnly.Value = formDateBox.IsReadOnly;
             htmlDateBox.Value.Value = formDateBox.HasValue ? formDateBox.Value.ToString("yyyy-MM-dd") : "";
 
-            HtmlLabel htmlLabel = new HtmlLabel(formDateBox.BaseId);
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formDateBox.BaseId : "");
             htmlLabel.For.Value = htmlDateBox.Id.Value;
 
             switch (formDateBox.OrderElements)
@@ -55,7 +55,7 @@ namespace Form2.Form.Visitors
 
                     if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -70,7 +70,7 @@ namespace Form2.Form.Visitors
 
                     if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -89,7 +89,7 @@ namespace Form2.Form.Visitors
 
                     if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -104,7 +104,7 @@ namespace Form2.Form.Visitors
 
                     if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -126,7 +126,7 @@ namespace Form2.Form.Visitors
 
                     if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -138,7 +138,7 @@ namespace Form2.Form.Visitors
 
                     if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -179,7 +179,7 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formDateBox.BaseId, "Message"));
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formDateBox.BaseId, "Message") : "");
             htmlLabelMessage.For.Value = htmlDateBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

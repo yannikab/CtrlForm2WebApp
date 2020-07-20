@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormSelect formSelect, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formSelect.BaseId);
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formSelect.BaseId : "");
             htmlDiv.Class.Add("form-select");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formSelect.FormId));
             htmlDiv.Class.Add("form-field");
@@ -44,7 +44,7 @@ namespace Form2.Form.Visitors
                 new HtmlSelect(formSelect.BaseId, formSelect.IsMultiSelect, formSelect.IsPostBack);
             htmlSelect.Disabled.Value = formSelect.IsDisabled;
 
-            HtmlLabel htmlLabel = new HtmlLabel(formSelect.BaseId);
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formSelect.BaseId : "");
             htmlLabel.For.Value = htmlSelect.Id.Value;
 
             switch (formSelect.OrderElements)
@@ -55,7 +55,7 @@ namespace Form2.Form.Visitors
 
                     if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -70,7 +70,7 @@ namespace Form2.Form.Visitors
 
                     if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -89,7 +89,7 @@ namespace Form2.Form.Visitors
 
                     if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -104,7 +104,7 @@ namespace Form2.Form.Visitors
 
                     if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -126,7 +126,7 @@ namespace Form2.Form.Visitors
 
                     if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -138,7 +138,7 @@ namespace Form2.Form.Visitors
 
                     if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -182,7 +182,7 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formSelect.BaseId, "Message"));
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formSelect.BaseId, "Message") : "");
             htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlSelect.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));

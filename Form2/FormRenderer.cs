@@ -14,14 +14,23 @@ namespace Form2
     {
         private readonly FormModel formModel;
 
+        private readonly bool verbose;
+
+        public FormRenderer(FormModel formModel, bool verbose)
+        {
+            this.formModel = formModel;
+            this.verbose = verbose;
+        }
+
         public FormRenderer(FormModel formModel)
+            : this(formModel, false)
         {
             this.formModel = formModel;
         }
 
         public string Render()
         {
-            HtmlContainer htmlContainer = new Form2HtmlVisitor(formModel).Html;
+            HtmlContainer htmlContainer = new Form2HtmlVisitor(formModel, verbose).Html;
 
             return new Html2TextVisitor(htmlContainer).Text;
         }

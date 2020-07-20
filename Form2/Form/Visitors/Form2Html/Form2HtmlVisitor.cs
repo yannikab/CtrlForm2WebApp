@@ -19,6 +19,8 @@ namespace Form2.Form.Visitors
 
         private readonly bool initialize;
 
+        private readonly bool verbose;
+
         private HtmlContainer html;
 
         #endregion
@@ -58,9 +60,11 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public Form2HtmlVisitor(FormModel formModel)
+        public Form2HtmlVisitor(FormModel formModel, bool verbose)
         {
             initialize = formModel.Submitted;
+            
+            this.verbose = verbose;
 
             Visit(formModel.FormSection, null);
         }

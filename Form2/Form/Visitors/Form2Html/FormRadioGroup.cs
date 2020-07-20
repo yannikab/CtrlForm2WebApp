@@ -19,7 +19,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormRadioGroup formRadioGroup, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formRadioGroup.BaseId);
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formRadioGroup.BaseId : "");
             htmlDiv.Class.Add("form-radiogroup");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
             htmlDiv.Class.Add("form-field");
@@ -40,10 +40,10 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.BaseId, formRadioGroup.IsPostBack);
+            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.BaseId, verbose, formRadioGroup.IsPostBack);
             htmlRadioGroup.Disabled.Value = formRadioGroup.IsDisabled;
 
-            HtmlLabel htmlLabel = new HtmlLabel(formRadioGroup.BaseId);
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formRadioGroup.BaseId : "");
 
             switch (formRadioGroup.OrderElements)
             {
@@ -53,7 +53,7 @@ namespace Form2.Form.Visitors
 
                     if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -68,7 +68,7 @@ namespace Form2.Form.Visitors
 
                     if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -87,7 +87,7 @@ namespace Form2.Form.Visitors
 
                     if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -102,7 +102,7 @@ namespace Form2.Form.Visitors
 
                     if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -124,7 +124,7 @@ namespace Form2.Form.Visitors
 
                     if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -136,7 +136,7 @@ namespace Form2.Form.Visitors
 
                     if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -180,7 +180,7 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formRadioGroup.BaseId, "Message"));
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formRadioGroup.BaseId, "Message") : "");
             htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlRadioGroup.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
@@ -195,7 +195,7 @@ namespace Form2.Form.Visitors
             htmlRadioButton.Value.Value = formRadioButton.Value;
             htmlRadioButton.Checked.Value = formRadioButton.IsSelected;
 
-            HtmlLabel htmlLabel = new HtmlLabel(string.Format("{0}{1}", formRadioButton.FormRadioGroup.BaseId, formRadioButton.Value));
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? string.Format("{0}{1}", formRadioButton.FormRadioGroup.BaseId, formRadioButton.Value) : "");
             htmlLabel.For.Value = htmlRadioButton.Id.Value;
             htmlLabel.Hidden.Value = formRadioButton.IsHidden;
             htmlLabel.Add(new HtmlText(formRadioButton.Text));

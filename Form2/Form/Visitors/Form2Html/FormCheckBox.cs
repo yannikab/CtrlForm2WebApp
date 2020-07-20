@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formCheckBox.BaseId);
+            HtmlDiv htmlDiv =  new HtmlDiv(verbose ? formCheckBox.BaseId : "");
             htmlDiv.Class.Add("form-checkbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formCheckBox.FormId));
             htmlDiv.Class.Add("form-field");
@@ -43,7 +43,7 @@ namespace Form2.Form.Visitors
             htmlCheckBox.Disabled.Value = formCheckBox.IsDisabled;
             htmlCheckBox.Checked.Value = formCheckBox.Value;
 
-            HtmlLabel htmlLabel = new HtmlLabel(formCheckBox.BaseId);
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formCheckBox.BaseId : "");
             htmlLabel.For.Value = htmlCheckBox.Id.Value;
 
             switch (formCheckBox.OrderElements)
@@ -54,7 +54,7 @@ namespace Form2.Form.Visitors
 
                     if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -69,7 +69,7 @@ namespace Form2.Form.Visitors
 
                     if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -88,7 +88,7 @@ namespace Form2.Form.Visitors
 
                     if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -103,7 +103,7 @@ namespace Form2.Form.Visitors
 
                     if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
                         htmlLabel.Add(htmlSpan);
@@ -125,7 +125,7 @@ namespace Form2.Form.Visitors
 
                     if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -137,7 +137,7 @@ namespace Form2.Form.Visitors
 
                     if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
                     {
-                        HtmlSpan htmlSpan = new HtmlSpan();
+                        HtmlSpan htmlSpan = new HtmlSpan("");
                         htmlSpan.Class.Add("form-mark-required");
                         htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
                         htmlDiv.Add(htmlSpan);
@@ -178,7 +178,7 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(string.Format("{0}{1}", formCheckBox.BaseId, "Message"));
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formCheckBox.BaseId, "Message") : "");
             htmlLabelMessage.Class.Add("form-validation-message"); 
             htmlLabelMessage.For.Value = htmlCheckBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(formCheckBox.RequiredMessage));

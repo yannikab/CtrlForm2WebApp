@@ -55,8 +55,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlRadioGroup(string baseId, bool isPostBack)
-            : base(baseId)
+        public HtmlRadioGroup(string baseId, bool verbose, bool isPostBack)
+            : base(verbose ? baseId : "")
         {
             attrName = new AttrName(baseId);
 
@@ -67,7 +67,7 @@ namespace Form2.Html.Content.Elements.Containers
         }
 
         public HtmlRadioGroup(string baseId)
-            : this(baseId, false)
+            : this(baseId, false, false)
         {
         }
 

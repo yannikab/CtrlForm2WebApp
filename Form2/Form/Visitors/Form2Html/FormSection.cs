@@ -15,7 +15,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormSection formSection, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(formSection.BaseId);
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formSection.BaseId : "");
             htmlDiv.Class.Add("form-section");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formSection.FormId));
 
