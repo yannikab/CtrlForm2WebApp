@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Form2.Html.Content.Elements.HtmlContainer">
-    <Position X="26.5" Y="6.25" Width="1.5" />
+    <Position X="28.5" Y="6.25" Width="1.5" />
     <Members>
       <Field Name="contents" Hidden="true" />
       <Method Name="HtmlContainer" Hidden="true" />
@@ -41,12 +41,12 @@
     <Position X="7.25" Y="9.5" Width="1.5" />
     <Members>
       <Field Name="attrCols" Hidden="true" />
-      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Field Name="attrPlaceholder" Hidden="true" />
       <Field Name="attrRows" Hidden="true" />
       <Method Name="HtmlTextArea" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgBEAAAAAAAIICAAAAAAIAAAAAAAgAAAA=</HashCode>
+      <HashCode>CAAAAAAAAAAgBEAAAAAAAIICAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Html\Content\Elements\Input\HtmlTextArea.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -62,7 +62,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSubmit">
-    <Position X="32" Y="8.75" Width="1.5" />
+    <Position X="34.25" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrType" Hidden="true" />
@@ -75,7 +75,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlLabel">
-    <Position X="34.25" Y="8.75" Width="1.5" />
+    <Position X="36.5" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrFor" Hidden="true" />
       <Method Name="HtmlLabel" Hidden="true" />
@@ -86,7 +86,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlItalic">
-    <Position X="29.75" Y="8.75" Width="1.5" />
+    <Position X="32" Y="8.75" Width="1.5" />
     <Members>
       <Method Name="HtmlItalic" Hidden="true" />
     </Members>
@@ -96,7 +96,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlOption">
-    <Position X="27.5" Y="8.75" Width="1.5" />
+    <Position X="29.75" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrSelected" Hidden="true" />
@@ -111,16 +111,17 @@
   <Class Name="Form2.Html.Content.Elements.Input.HtmlTextBox">
     <Position X="2.75" Y="9.5" Width="1.5" />
     <Members>
-      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Field Name="attrPlaceholder" Hidden="true" />
+      <Field Name="eventChange" Hidden="true" />
       <Method Name="HtmlTextBox" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <HashCode>CAAAAAAAAABABAEAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Html\Content\Elements\Input\HtmlTextBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSelect">
-    <Position X="20.75" Y="8.75" Width="1.5" />
+    <Position X="23" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrMultiple" Hidden="true" />
@@ -135,7 +136,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlDiv">
-    <Position X="25.25" Y="8.75" Width="1.5" />
+    <Position X="27.5" Y="8.75" Width="1.5" />
     <Members>
       <Method Name="HtmlDiv" Hidden="true" />
     </Members>
@@ -147,11 +148,11 @@
   <Class Name="Form2.Html.Content.Elements.Input.HtmlPasswordBox">
     <Position X="11.75" Y="9.5" Width="1.5" />
     <Members>
-      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Field Name="attrPlaceholder" Hidden="true" />
       <Method Name="HtmlPasswordBox" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <HashCode>CAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Html\Content\Elements\Input\HtmlPasswordBox.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -166,7 +167,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSpan">
-    <Position X="23" Y="8.75" Width="1.5" />
+    <Position X="25.25" Y="8.75" Width="1.5" />
     <Members>
       <Method Name="HtmlSpan" Hidden="true" />
     </Members>
@@ -176,7 +177,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlContent">
-    <Position X="17.5" Y="0.5" Width="1.5" />
+    <Position X="18.5" Y="0.5" Width="1.5" />
     <Members>
       <Field Name="container" Hidden="true" />
     </Members>
@@ -186,7 +187,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlElement">
-    <Position X="18.5" Y="2.25" Width="1.5" />
+    <Position X="19.5" Y="2.25" Width="1.5" />
     <Members>
       <Field Name="attrClass" Hidden="true" />
       <Field Name="attrHidden" Hidden="true" />
@@ -212,7 +213,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlRadioGroup">
-    <Position X="18.5" Y="8.75" Width="1.5" />
+    <Position X="20.75" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrName" Hidden="true" />
@@ -229,12 +230,26 @@
     <Members>
       <Field Name="attrDataDateFormat" Hidden="true" />
       <Field Name="attrDataProvide" Hidden="true" />
-      <Field Name="attrPlaceHolder" Hidden="true" />
+      <Field Name="attrPlaceholder" Hidden="true" />
       <Method Name="HtmlDatePicker" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAABBAAAEAAAABCAAAAAAAAAAAAAAgCgAA=</HashCode>
+      <HashCode>CAAAAAAAQAAABBAAAEAAAABCAAAAAAAAAAAAAAACgAA=</HashCode>
       <FileName>Html\Content\Elements\Input\HtmlDatePicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlButton">
+    <Position X="18.5" Y="6.25" Width="1.5" />
+    <Members>
+      <Field Name="attrDisabled" Hidden="true" />
+      <Field Name="attrType" Hidden="true" />
+      <Field Name="attrValue" Hidden="true" />
+      <Field Name="eventClick" Hidden="true" />
+      <Method Name="HtmlButton" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAkAAAAAACAAAACAAAAAAAAAQAgAAAQAgA=</HashCode>
+      <FileName>Html\Content\Elements\HtmlButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

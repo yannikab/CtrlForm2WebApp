@@ -41,12 +41,28 @@ namespace Form2.Form.Visitors
 
             HtmlTextBox htmlTextBox = new HtmlTextBox(formNumberBox.BaseId);
             htmlTextBox.Disabled.Value = formNumberBox.IsDisabled;
-            htmlTextBox.ReadOnly.Value = formNumberBox.IsReadOnly;
-            htmlTextBox.Value.Value = formNumberBox.Value.ToString();
+            htmlTextBox.ReadOnly.Value = formNumberBox.IsReadOnly || !formNumberBox.IsDirectInput;
+            htmlTextBox.Value.Value = formNumberBox.HasValue ? formNumberBox.Value.ToString() : "";
+
+            string placeholder = null;
+
+            if (!string.IsNullOrWhiteSpace(formNumberBox.Placeholder))
+            {
+                if (formNumberBox.IsRequired && formNumberBox.IsRequiredInPlaceholder && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
+                    placeholder = string.Format("{0} {1}", formNumberBox.Placeholder, formNumberBox.RequiredMark);
+                else if (!formNumberBox.IsRequired && formNumberBox.IsOptionalInPlaceholder && !string.IsNullOrWhiteSpace(formNumberBox.OptionalMark))
+                    placeholder = string.Format("{0} {1}", formNumberBox.Placeholder, formNumberBox.OptionalMark);
+                else
+                    placeholder = formNumberBox.Placeholder;
+            }
+
+            htmlTextBox.Placeholder.Value = placeholder;
+
             htmlTextBox.Change.Value = string.Format("__doPostBack('{0}', '');", formNumberBox.BaseId);
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formNumberBox.BaseId : "");
             htmlLabel.For.Value = htmlTextBox.Id.Value;
+            htmlLabel.Add(new HtmlText(formNumberBox.Label));
 
             HtmlDiv htmlDivNumberBox = BuildNumberBoxDiv(formNumberBox, htmlTextBox);
 
@@ -54,33 +70,15 @@ namespace Form2.Form.Visitors
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlLabel.Add(new HtmlText(formNumberBox.Label));
-
-                    if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formNumberBox));
                     htmlDiv.Add(htmlDivNumberBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formNumberBox.Label));
-
+                    htmlDiv.Add(Mark(formNumberBox));
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDivNumberBox);
 
@@ -88,67 +86,31 @@ namespace Form2.Form.Visitors
 
                 case OrderElements.InputLabelMark:
 
-                    htmlLabel.Add(new HtmlText(formNumberBox.Label));
-
-                    if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlDivNumberBox);
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formNumberBox));
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formNumberBox.Label));
-
                     htmlDiv.Add(htmlDivNumberBox);
+                    htmlDiv.Add(Mark(formNumberBox));
                     htmlDiv.Add(htmlLabel);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlLabel.Add(new HtmlText(formNumberBox.Label));
-
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDivNumberBox);
-
-                    if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
+                    htmlDiv.Add(Mark(formNumberBox));
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    if (formNumberBox.IsRequired && !string.IsNullOrWhiteSpace(formNumberBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formNumberBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formNumberBox.Label));
-
+                    htmlDiv.Add(Mark(formNumberBox));
                     htmlDiv.Add(htmlDivNumberBox);
                     htmlDiv.Add(htmlLabel);
 
@@ -205,42 +167,56 @@ namespace Form2.Form.Visitors
             htmlButtonDecr.Value.Value = formNumberBox.DecrText;
             htmlButtonIncr.Value.Value = formNumberBox.IncrText;
 
+            htmlButtonDecr.Disabled.Value = htmlButtonIncr.Disabled.Value = formNumberBox.IsReadOnly || !formNumberBox.HasValue;
+            
             switch (formNumberBox.OrderNumberBox)
             {
                 case OrderNumberBox.NumberDecrIncr:
+
                     htmlDivNumberBox.Add(htmlTextBox);
                     htmlDivNumberBox.Add(htmlButtonDecr);
                     htmlDivNumberBox.Add(htmlButtonIncr);
+
                     break;
 
                 case OrderNumberBox.NumberIncrDecr:
+
                     htmlDivNumberBox.Add(htmlTextBox);
                     htmlDivNumberBox.Add(htmlButtonIncr);
                     htmlDivNumberBox.Add(htmlButtonDecr);
+
                     break;
 
                 case OrderNumberBox.DecrNumberIncr:
+
                     htmlDivNumberBox.Add(htmlButtonDecr);
                     htmlDivNumberBox.Add(htmlTextBox);
                     htmlDivNumberBox.Add(htmlButtonIncr);
+
                     break;
 
                 case OrderNumberBox.IncrNumberDecr:
+
                     htmlDivNumberBox.Add(htmlButtonIncr);
                     htmlDivNumberBox.Add(htmlTextBox);
                     htmlDivNumberBox.Add(htmlButtonDecr);
+
                     break;
 
                 case OrderNumberBox.DecrIncrNumber:
+
                     htmlDivNumberBox.Add(htmlButtonDecr);
                     htmlDivNumberBox.Add(htmlButtonIncr);
                     htmlDivNumberBox.Add(htmlTextBox);
+
                     break;
 
                 case OrderNumberBox.IncrDecrNumber:
+
                     htmlDivNumberBox.Add(htmlButtonIncr);
                     htmlDivNumberBox.Add(htmlButtonDecr);
                     htmlDivNumberBox.Add(htmlTextBox);
+
                     break;
 
                 default:

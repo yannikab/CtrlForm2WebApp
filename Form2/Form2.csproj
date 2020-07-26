@@ -64,10 +64,6 @@
     <Compile Include="Form\Visitors\Form2Html\FormRadioGroup.cs" />
     <Compile Include="Form\Visitors\FormLogVisitor.cs" />
     <Compile Include="Form\Visitors\FormMessageVisitor.cs" />
-    <Compile Include="Html\Attributes\Variable\Double\AttrStep.cs" />
-    <Compile Include="Html\Attributes\Variable\Double\DoubleAttribute.cs" />
-    <Compile Include="Html\Attributes\Variable\Double\AttrMax.cs" />
-    <Compile Include="Html\Attributes\Variable\Double\AttrMin.cs" />
     <Compile Include="Html\Attributes\Variable\String\AttrAutoComplete.cs" />
     <Compile Include="Html\Content\Elements\HtmlButton.cs" />
     <Compile Include="Html\Content\Elements\Input\HtmlRadioButton.cs" />

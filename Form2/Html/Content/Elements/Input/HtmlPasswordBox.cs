@@ -12,7 +12,7 @@ namespace Form2.Html.Content.Elements.Input
     {
         #region Fields
 
-        private readonly AttrPlaceHolder attrPlaceHolder;
+        private readonly AttrPlaceholder attrPlaceholder;
 
         #endregion
 
@@ -24,9 +24,9 @@ namespace Form2.Html.Content.Elements.Input
             get { return "txt"; }
         }
 
-        public AttrPlaceHolder PlaceHolder
+        public AttrPlaceholder Placeholder
         {
-            get { return attrPlaceHolder; }
+            get { return attrPlaceholder; }
         }
 
         #endregion
@@ -37,7 +37,7 @@ namespace Form2.Html.Content.Elements.Input
         public HtmlPasswordBox(string baseId)
             : base(baseId, "password")
         {
-            attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
+            attributes.Add(attrPlaceholder = new AttrPlaceholder());
         }
 
         #endregion

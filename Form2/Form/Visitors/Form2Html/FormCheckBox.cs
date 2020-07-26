@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv =  new HtmlDiv(verbose ? formCheckBox.BaseId : "");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formCheckBox.BaseId : "");
             htmlDiv.Class.Add("form-checkbox");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formCheckBox.FormId));
             htmlDiv.Class.Add("form-field");
@@ -45,38 +45,21 @@ namespace Form2.Form.Visitors
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formCheckBox.BaseId : "");
             htmlLabel.For.Value = htmlCheckBox.Id.Value;
+            htmlLabel.Add(new HtmlText(formCheckBox.Label));
 
             switch (formCheckBox.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlLabel.Add(new HtmlText(formCheckBox.Label));
-
-                    if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formCheckBox));
                     htmlDiv.Add(htmlCheckBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formCheckBox.Label));
-
+                    htmlDiv.Add(Mark(formCheckBox));
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlCheckBox);
 
@@ -84,67 +67,31 @@ namespace Form2.Form.Visitors
 
                 case OrderElements.InputLabelMark:
 
-                    htmlLabel.Add(new HtmlText(formCheckBox.Label));
-
-                    if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlCheckBox);
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formCheckBox));
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formCheckBox.Label));
-
                     htmlDiv.Add(htmlCheckBox);
+                    htmlDiv.Add(Mark(formCheckBox));
                     htmlDiv.Add(htmlLabel);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlLabel.Add(new HtmlText(formCheckBox.Label));
-
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlCheckBox);
-
-                    if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
+                    htmlDiv.Add(Mark(formCheckBox));
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    if (formCheckBox.IsRequired && !string.IsNullOrWhiteSpace(formCheckBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formCheckBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formCheckBox.Label));
-
+                    htmlDiv.Add(Mark(formCheckBox));
                     htmlDiv.Add(htmlCheckBox);
                     htmlDiv.Add(htmlLabel);
 
@@ -160,7 +107,7 @@ namespace Form2.Form.Visitors
                 return;
 
             string message = null;
-            
+
             if (formCheckBox.UseLastMessage)
             {
                 if (!string.IsNullOrEmpty(formCheckBox.LastMessage))
@@ -179,7 +126,7 @@ namespace Form2.Form.Visitors
                 return;
 
             HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formCheckBox.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message"); 
+            htmlLabelMessage.Class.Add("form-validation-message");
             htmlLabelMessage.For.Value = htmlCheckBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(formCheckBox.RequiredMessage));
             htmlDiv.Add(htmlLabelMessage);

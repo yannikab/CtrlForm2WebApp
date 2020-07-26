@@ -26,9 +26,19 @@ namespace Form2.Form.Content.Items
 
         private bool? required;
 
+        private string requiredMessage;
+
         private string requiredMark;
 
-        private string requiredMessage;
+        private bool? requiredInLabel;
+
+        private bool? requiredInPlaceholder;
+
+        private string optionalMark;
+
+        private bool? optionalInLabel;
+
+        private bool? optionalInPlaceholder;
 
         private string lastValidationMessage;
 
@@ -142,7 +152,7 @@ namespace Form2.Form.Content.Items
                 // a user can not be expected to fill out an input element that is hidden
                 if (IsHidden)
                     return false;
-                
+
                 // a user can not be expected to fill out an input element that is disabled
                 if (IsDisabled)
                     return false;
@@ -156,6 +166,24 @@ namespace Form2.Form.Content.Items
                     return false;
 
                 return container.IsRequired;
+            }
+        }
+
+        public string RequiredMessage
+        {
+            get
+            {
+                if (requiredMessage != null)
+                    return requiredMessage;
+
+                if (Container == null)
+                    return null;
+
+                return Container.RequiredMessage;
+            }
+            set
+            {
+                requiredMessage = value;
             }
         }
 
@@ -179,21 +207,107 @@ namespace Form2.Form.Content.Items
             }
         }
 
-        public string RequiredMessage
+        public bool? RequiredInLabel
+        {
+            set { requiredInLabel = value; }
+        }
+
+        public bool IsRequiredInLabel
         {
             get
             {
-                if (requiredMessage != null)
-                    return requiredMessage;
+                if (requiredInLabel.HasValue)
+                    return requiredInLabel.Value;
 
-                if (Container == null)
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsRequiredInLabel;
+            }
+        }
+
+        public bool? RequiredInPlaceholder
+        {
+            set { requiredInPlaceholder = value; }
+        }
+
+        public bool IsRequiredInPlaceholder
+        {
+            get
+            {
+                if (requiredInPlaceholder.HasValue)
+                    return requiredInPlaceholder.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsRequiredInPlaceholder;
+            }
+        }
+
+        public string OptionalMark
+        {
+            get
+            {
+                if (optionalMark != null)
+                    return optionalMark;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
                     return null;
 
-                return Container.RequiredMessage;
+                return container.OptionalMark;
             }
             set
             {
-                requiredMessage = value;
+                optionalMark = value;
+            }
+        }
+
+        public bool? OptionalInLabel
+        {
+            set { optionalInLabel = value; }
+        }
+
+        public bool IsOptionalInLabel
+        {
+            get
+            {
+                if (optionalInLabel.HasValue)
+                    return optionalInLabel.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsOptionalInLabel;
+            }
+        }
+
+        public bool? OptionalInPlaceholder
+        {
+            set { optionalInPlaceholder = value; }
+        }
+
+        public bool IsOptionalInPlaceholder
+        {
+            get
+            {
+                if (optionalInPlaceholder.HasValue)
+                    return optionalInPlaceholder.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsOptionalInPlaceholder;
             }
         }
 

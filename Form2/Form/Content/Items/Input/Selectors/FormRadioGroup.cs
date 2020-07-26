@@ -72,7 +72,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
                 if (IsDisabled)
                     return true;
 
-                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
+                return HasValue ? ValidationMessage == null : !IsRequired;
             }
         }
 
@@ -84,8 +84,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
         public FormRadioGroup(string baseId, string formId)
             : base(baseId, formId)
         {
-            Validator = (v) => { return ""; };
-            ActionInvalid = (v) => { return; };
+            validator = (v) => { return null; };
+            actionInvalid = (v) => { return; };
         }
 
         public FormRadioGroup(string baseId)

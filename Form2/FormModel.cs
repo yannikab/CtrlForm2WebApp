@@ -136,8 +136,16 @@ namespace Form2
             {
                 this.formSection = formSection;
 
-                this.formSection.RequiredMark = "*";
                 this.formSection.RequiredMessage = "!";
+
+                this.formSection.RequiredMark = "*";
+                this.formSection.RequiredInLabel = true;
+                this.formSection.RequiredInPlaceholder = false;
+
+                this.formSection.OptionalMark = "...";
+                this.formSection.OptionalInLabel = false;
+                this.formSection.OptionalInPlaceholder = false;
+                
                 this.formSection.OrderElements = OrderElements.InputLabelMark;
             }
             else
@@ -148,10 +156,13 @@ namespace Form2
             formSections.Push(formSection);
         }
 
-        protected void CloseSection()
+        protected void CloseSection(string baseId)
         {
             if (formSections.Count == 0)
                 throw new InvalidOperationException("No form section is currently open. Can not close section.");
+
+            if (formSections.Peek().BaseId != baseId)
+                throw new InvalidOperationException("Attempting to close a different form section than the one currently open.");
 
             formSections.Pop();
         }
@@ -222,6 +233,24 @@ namespace Form2
             }
         }
 
+        protected string RequiredMessage
+        {
+            get
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not get RequiredMessage property.");
+
+                return formSections.Peek().RequiredMessage;
+            }
+            set
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredMessage property.");
+
+                formSections.Peek().RequiredMessage = value;
+            }
+        }
+
         protected string RequiredMark
         {
             get
@@ -240,21 +269,109 @@ namespace Form2
             }
         }
 
-        protected string RequiredMessage
+        public bool? RequiredInLabel
+        {
+            set
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredInLabel property.");
+
+                formSections.Peek().RequiredInLabel = value;
+            }
+        }
+
+        public bool IsRequiredInLabel
         {
             get
             {
                 if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get RequiredMessage property.");
+                    throw new InvalidOperationException("No form section is currently open. Can not get IsRequiredInLabel property.");
 
-                return formSections.Peek().RequiredMessage;
+                return formSections.Peek().IsRequiredInLabel;
+            }
+        }
+
+        public bool? RequiredInPlaceholder
+        {
+            set
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredInPlaceholder property.");
+
+                formSections.Peek().RequiredInPlaceholder = value;
+            }
+        }
+
+        public bool IsRequiredInPlaceholder
+        {
+            get
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not get IsRequiredInPlaceholder property.");
+
+                return formSections.Peek().IsRequiredInPlaceholder;
+            }
+        }
+
+        protected string OptionalMark
+        {
+            get
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not get OptionalMark property.");
+
+                return formSections.Peek().OptionalMark;
             }
             set
             {
                 if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredMessage property.");
+                    throw new InvalidOperationException("No form section is currently open. Can not set OptionalMark property.");
 
-                formSections.Peek().RequiredMessage = value;
+                formSections.Peek().OptionalMark = value;
+            }
+        }
+
+        public bool? OptionalInLabel
+        {
+            set
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not set OptionalInLabel property.");
+
+                formSections.Peek().OptionalInLabel = value;
+            }
+        }
+
+        public bool IsOptionalInLabel
+        {
+            get
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not get IsOptionalInLabel property.");
+
+                return formSections.Peek().IsOptionalInLabel;
+            }
+        }
+
+        public bool? OptionalInPlaceholder
+        {
+            set
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not set OptionalInPlaceholder property.");
+
+                formSections.Peek().OptionalInPlaceholder = value;
+            }
+        }
+
+        public bool IsOptionalInPlaceholder
+        {
+            get
+            {
+                if (formSections.Count == 0)
+                    throw new InvalidOperationException("No form section is currently open. Can not get IsOptionalInPlaceholder property.");
+
+                return formSections.Peek().IsOptionalInPlaceholder;
             }
         }
 

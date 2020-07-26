@@ -147,14 +147,14 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resDateOfBirth,
 
-                    PlaceHolder = resDateOfBirth,
+                    Placeholder = resDateOfBirth,
 
                     Validator = (v) =>
                     {
                         if (v > DateTime.Now)
                             return resDateInvalid;
 
-                        return "";
+                        return null;
                     }
                 });
 
@@ -224,7 +224,7 @@ namespace Form2WebApp.UserControls
                         if (!new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]*$").IsMatch(v.Trim()))
                             return resEmailInvalid;
 
-                        return "";
+                        return null;
                     },
                 });
 
@@ -308,6 +308,18 @@ namespace Form2WebApp.UserControls
 
                 #endregion
 
+                AddItem(new FormNumberBox("NumberBox")
+                {
+                    Label = "Number",
+
+                    OrderNumberBox = OrderNumberBox.DecrIncrNumber,
+
+                    Content = "0",
+
+                    DirectInput = false,
+
+                    Min = 0,
+                });
 
                 #region Submit
 
@@ -320,7 +332,7 @@ namespace Form2WebApp.UserControls
 
                 #endregion
 
-                CloseSection();
+                CloseSection("Container");
             }
 
             #endregion

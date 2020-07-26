@@ -106,7 +106,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                CloseSection();
+                CloseSection("Container");
             }
 
             protected override void AddRules(List<FormRule> rules)

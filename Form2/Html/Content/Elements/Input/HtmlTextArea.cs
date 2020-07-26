@@ -13,7 +13,7 @@ namespace Form2.Html.Content.Elements.Input
     {
         #region Fields
 
-        private readonly AttrPlaceHolder attrPlaceHolder;
+        private readonly AttrPlaceholder attrPlaceholder;
 
         private readonly AttrRows attrRows;
 
@@ -34,9 +34,9 @@ namespace Form2.Html.Content.Elements.Input
             get { return "txa"; }
         }
 
-        public AttrPlaceHolder PlaceHolder
+        public AttrPlaceholder Placeholder
         {
-            get { return attrPlaceHolder; }
+            get { return attrPlaceholder; }
         }
 
         public AttrRows Rows
@@ -57,7 +57,7 @@ namespace Form2.Html.Content.Elements.Input
         public HtmlTextArea(string baseId)
             : base(baseId, null)
         {
-            attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
+            attributes.Add(attrPlaceholder = new AttrPlaceholder());
 
             attributes.Add(attrRows = new AttrRows());
 

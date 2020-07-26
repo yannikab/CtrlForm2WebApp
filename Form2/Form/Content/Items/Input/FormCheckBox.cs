@@ -66,7 +66,7 @@ namespace Form2.Form.Content.Items.Input
                 if (IsDisabled)
                     return true;
 
-                return string.IsNullOrEmpty(ValidationMessage);
+                return ValidationMessage == null;
             }
         }
 
@@ -80,8 +80,8 @@ namespace Form2.Form.Content.Items.Input
         {
             Content = false;
 
-            Validator = (v) => { return ""; };
-            ActionInvalid = (v) => { return; };
+            validator = (v) => { return null; };
+            actionInvalid = (v) => { return; };
         }
 
         public FormCheckBox(string baseId)

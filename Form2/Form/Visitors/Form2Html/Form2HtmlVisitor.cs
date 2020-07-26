@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Web.SessionState;
 
 using Form2.Form.Content;
+using Form2.Form.Interfaces;
+using Form2.Html.Content;
 using Form2.Html.Content.Elements;
+using Form2.Html.Content.Elements.Containers;
 
 namespace Form2.Form.Visitors
 {
@@ -55,6 +58,41 @@ namespace Form2.Form.Visitors
                 throw new NotImplementedException();
         }
 
+        private HtmlLabel Mark(IRequired formItem)
+        {
+            HtmlLabel htmlLabel = null;
+
+            if (formItem is IHidden && (formItem as IHidden).IsHidden)
+                return htmlLabel;
+
+            if (formItem is IDisabled && (formItem as IDisabled).IsDisabled)
+                return htmlLabel;
+
+            if (formItem is IReadOnly && (formItem as IReadOnly).IsReadOnly)
+                return htmlLabel;
+
+            if (formItem.IsRequired)
+            {
+                if (formItem.IsRequiredInLabel && !string.IsNullOrWhiteSpace(formItem.RequiredMark))
+                {
+                    htmlLabel = new HtmlLabel("");
+                    htmlLabel.Class.Add("form-mark-required");
+                    htmlLabel.Add(new HtmlText(formItem.RequiredMark));
+                }
+            }
+            else
+            {
+                if (formItem.IsOptionalInLabel && !string.IsNullOrWhiteSpace(formItem.OptionalMark))
+                {
+                    htmlLabel = new HtmlLabel("");
+                    htmlLabel.Class.Add("form-mark-optional");
+                    htmlLabel.Add(new HtmlText(formItem.OptionalMark));
+                }
+            }
+
+            return htmlLabel;
+        }
+
         #endregion
 
 
@@ -63,7 +101,7 @@ namespace Form2.Form.Visitors
         public Form2HtmlVisitor(FormModel formModel, bool verbose)
         {
             initialize = formModel.Submitted;
-            
+
             this.verbose = verbose;
 
             Visit(formModel.FormSection, null);

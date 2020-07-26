@@ -30,6 +30,9 @@ namespace Form2.Html.Content.Elements
 
         public void Add(HtmlContent content)
         {
+            if (content == null)
+                return;
+
             if (contents.Contains(content))
                 return;
 

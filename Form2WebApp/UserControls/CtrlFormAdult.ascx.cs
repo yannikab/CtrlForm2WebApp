@@ -135,14 +135,14 @@ namespace Form2WebApp.UserControls
                 {
                     Label = resDateOfBirth,
 
-                    PlaceHolder = resDateOfBirth,
+                    Placeholder = resDateOfBirth,
 
                     Validator = (v) =>
                     {
                         if (v > DateTime.Now)
                             return resDateInvalid;
 
-                        return "";
+                        return null;
                     }
                 });
 
@@ -258,7 +258,7 @@ namespace Form2WebApp.UserControls
 
                 #endregion
 
-                CloseSection();
+                CloseSection("Container");
             }
 
             #endregion

@@ -45,45 +45,28 @@ namespace Form2.Form.Visitors
             htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
             htmlDatePicker.DataDateFormat.Value = formDatePicker.DateFormat;
             htmlDatePicker.Value.Value = formDatePicker.HasValue ? formDatePicker.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : "";
-            htmlDatePicker.PlaceHolder.Value = !string.IsNullOrEmpty(formDatePicker.PlaceHolder) ? formDatePicker.PlaceHolder : null;
+            htmlDatePicker.Placeholder.Value = !string.IsNullOrEmpty(formDatePicker.Placeholder) ? formDatePicker.Placeholder : null;
             htmlDatePicker.AutoComplete.Value = "off";
             if (formDatePicker.IsReadOnly)
                 htmlDatePicker.DataProvide.Value = null;
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formDatePicker.BaseId : "");
             htmlLabel.For.Value = htmlDatePicker.Id.Value;
+            htmlLabel.Add(new HtmlText(formDatePicker.Label));
 
             switch (formDatePicker.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlLabel.Add(new HtmlText(formDatePicker.Label));
-
-                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDatePicker.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formDatePicker));
                     htmlDiv.Add(htmlDatePicker);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDatePicker.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formDatePicker.Label));
-
+                    htmlDiv.Add(Mark(formDatePicker));
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDatePicker);
 
@@ -91,67 +74,31 @@ namespace Form2.Form.Visitors
 
                 case OrderElements.InputLabelMark:
 
-                    htmlLabel.Add(new HtmlText(formDatePicker.Label));
-
-                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDatePicker.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlDatePicker);
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formDatePicker));
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDatePicker.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formDatePicker.Label));
-
                     htmlDiv.Add(htmlDatePicker);
+                    htmlDiv.Add(Mark(formDatePicker));
                     htmlDiv.Add(htmlLabel);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlLabel.Add(new HtmlText(formDatePicker.Label));
-
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDatePicker);
-
-                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDatePicker.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
+                    htmlDiv.Add(Mark(formDatePicker));
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    if (formDatePicker.IsRequired && !string.IsNullOrWhiteSpace(formDatePicker.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDatePicker.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formDatePicker.Label));
-
+                    htmlDiv.Add(Mark(formDatePicker));
                     htmlDiv.Add(htmlDatePicker);
                     htmlDiv.Add(htmlLabel);
 

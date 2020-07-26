@@ -29,7 +29,19 @@ namespace Form2.Form.Content
 
         private string requiredMessage;
 
+        private bool? requiredInLabel;
+
+        private bool? requiredInPlaceholder;
+
+        private string optionalMark;
+
+        private bool? optionalInLabel;
+
+        private bool? optionalInPlaceholder;
+
         private bool? readOnly;
+
+        private bool? directInput;
 
         #endregion
 
@@ -191,6 +203,24 @@ namespace Form2.Form.Content
             }
         }
 
+        public string RequiredMessage
+        {
+            get
+            {
+                if (requiredMessage != null)
+                    return requiredMessage;
+
+                if (Container == null)
+                    return null;
+
+                return Container.RequiredMessage;
+            }
+            set
+            {
+                requiredMessage = value;
+            }
+        }
+
         public string RequiredMark
         {
             get
@@ -209,21 +239,131 @@ namespace Form2.Form.Content
             }
         }
 
-        public string RequiredMessage
+        public bool? RequiredInLabel
+        {
+            set { requiredInLabel = value; }
+        }
+
+        public bool IsRequiredInLabel
         {
             get
             {
-                if (requiredMessage != null)
-                    return requiredMessage;
+                if (requiredInLabel.HasValue)
+                    return requiredInLabel.Value;
 
-                if (Container == null)
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsRequiredInLabel;
+            }
+        }
+
+        public bool? RequiredInPlaceholder
+        {
+            set { requiredInPlaceholder = value; }
+        }
+
+        public bool IsRequiredInPlaceholder
+        {
+            get
+            {
+                if (requiredInPlaceholder.HasValue)
+                    return requiredInPlaceholder.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsRequiredInPlaceholder;
+            }
+        }
+
+        public string OptionalMark
+        {
+            get
+            {
+                if (optionalMark != null)
+                    return optionalMark;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
                     return null;
 
-                return Container.RequiredMessage;
+                return container.OptionalMark;
             }
             set
             {
-                requiredMessage = value;
+                optionalMark = value;
+            }
+        }
+
+        public bool? OptionalInLabel
+        {
+            set { optionalInLabel = value; }
+        }
+
+        public bool IsOptionalInLabel
+        {
+            get
+            {
+                if (optionalInLabel.HasValue)
+                    return optionalInLabel.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsOptionalInLabel;
+            }
+        }
+
+        public bool? OptionalInPlaceholder
+        {
+            set { optionalInPlaceholder = value; }
+        }
+
+        public bool IsOptionalInPlaceholder
+        {
+            get
+            {
+                if (optionalInPlaceholder.HasValue)
+                    return optionalInPlaceholder.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return true;
+
+                return container.IsOptionalInPlaceholder;
+            }
+        }
+
+        public bool? DirectInput
+        {
+            set { directInput = value; }
+        }
+
+        public bool IsDirectInput
+        {
+            get
+            {
+                if (IsReadOnly)
+                    return false;
+
+                if (directInput.HasValue)
+                    return directInput.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return false;
+
+                return container.IsDirectInput;
             }
         }
 

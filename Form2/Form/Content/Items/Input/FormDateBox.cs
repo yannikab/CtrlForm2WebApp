@@ -131,7 +131,7 @@ namespace Form2.Form.Content.Items.Input
                 if (IsReadOnly)
                     return true;
 
-                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
+                return HasValue ? ValidationMessage == null : !IsRequired;
             }
         }
 
@@ -147,7 +147,7 @@ namespace Form2.Form.Content.Items.Input
 
             readOnly = null;
 
-            validator = (v) => { return ""; };
+            validator = (v) => { return null; };
             actionInvalid = (v) => { return; };
         }
 

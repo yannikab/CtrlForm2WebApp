@@ -12,7 +12,7 @@ namespace Form2.Html.Content.Elements.Input
     {
         #region Fields
 
-        private readonly AttrPlaceHolder attrPlaceHolder;
+        private readonly AttrPlaceholder attrPlaceholder;
 
         private readonly AttrDataDateFormat attrDataDateFormat;
 
@@ -30,9 +30,9 @@ namespace Form2.Html.Content.Elements.Input
             get { return "dtp"; }
         }
 
-        public AttrPlaceHolder PlaceHolder
+        public AttrPlaceholder Placeholder
         {
-            get { return attrPlaceHolder; }
+            get { return attrPlaceholder; }
         }
 
         public AttrDataDateFormat DataDateFormat
@@ -58,7 +58,7 @@ namespace Form2.Html.Content.Elements.Input
         public HtmlDatePicker(string baseId)
             : base(baseId, "text")
         {
-            attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
+            attributes.Add(attrPlaceholder = new AttrPlaceholder());
             attributes.Add(attrDataDateFormat = new AttrDataDateFormat());
             attributes.Add(attrDataProvide = new AttrDataProvide("datepicker"));
             attributes.Add(attrAutoComplete = new AttrAutoComplete());

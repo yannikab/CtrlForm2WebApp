@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Form2.Html.Attributes.Variable.String
 {
-    public class AttrPlaceHolder : StringAttribute
+    public class AttrPlaceholder : StringAttribute
     {
         #region Properties
 
@@ -20,12 +20,12 @@ namespace Form2.Html.Attributes.Variable.String
 
         #region Constructors
 
-        public AttrPlaceHolder(string value)
+        public AttrPlaceholder(string value)
             : base(value)
         {
         }
 
-        public AttrPlaceHolder()
+        public AttrPlaceholder()
             : this(null)
         {
         }

@@ -141,8 +141,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
             this.size = size;
             Header = null;
 
-            Validator = (v) => { return ""; };
-            ActionInvalid = (v) => { return; };
+            validator = (v) => { return null; };
+            actionInvalid = (v) => { return; };
         }
 
         public FormSelect(string baseId, string formId, bool multiSelect)
@@ -152,8 +152,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
             this.size = null;
             Header = null;
 
-            Validator = (v) => { return ""; };
-            ActionInvalid = (v) => { return; };
+            validator = (v) => { return null; };
+            actionInvalid = (v) => { return; };
         }
 
         public FormSelect(string baseId, int size)

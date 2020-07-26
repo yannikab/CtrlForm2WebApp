@@ -19,9 +19,9 @@ namespace Form2.Form.Visitors
     public class FormPostBackVisitor
     {
         #region Fields
-        
+
         private readonly NameValueCollection values;
-        
+
         private readonly FormItem source;
 
         private readonly string argument;
@@ -110,11 +110,13 @@ namespace Form2.Form.Visitors
             switch (argument)
             {
                 case "Incr":
-                    formNumberBox.Content = (formNumberBox.Value + formNumberBox.Step).ToString();
+                    if (formNumberBox.HasValue)
+                        formNumberBox.Content = (formNumberBox.Value + formNumberBox.Step).ToString();
                     break;
 
                 case "Decr":
-                    formNumberBox.Content = (formNumberBox.Value - formNumberBox.Step).ToString();
+                    if (formNumberBox.HasValue)
+                        formNumberBox.Content = (formNumberBox.Value - formNumberBox.Step).ToString();
                     break;
 
                 default:

@@ -13,7 +13,7 @@ namespace Form2.Html.Content.Elements.Input
     {
         #region Fields
 
-        private readonly AttrPlaceHolder attrPlaceHolder;
+        private readonly AttrPlaceholder attrPlaceholder;
 
         private readonly EventChange eventChange;
 
@@ -27,9 +27,9 @@ namespace Form2.Html.Content.Elements.Input
             get { return "txt"; }
         }
 
-        public AttrPlaceHolder PlaceHolder
+        public AttrPlaceholder Placeholder
         {
-            get { return attrPlaceHolder; }
+            get { return attrPlaceholder; }
         }
 
         public EventChange Change
@@ -45,7 +45,7 @@ namespace Form2.Html.Content.Elements.Input
         public HtmlTextBox(string baseId)
             : base(baseId, "text")
         {
-            attributes.Add(attrPlaceHolder = new AttrPlaceHolder());
+            attributes.Add(attrPlaceholder = new AttrPlaceholder());
 
             events.Add(eventChange = new EventChange(null));
         }

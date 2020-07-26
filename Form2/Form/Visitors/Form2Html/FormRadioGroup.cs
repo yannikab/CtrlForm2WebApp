@@ -44,38 +44,21 @@ namespace Form2.Form.Visitors
             htmlRadioGroup.Disabled.Value = formRadioGroup.IsDisabled;
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formRadioGroup.BaseId : "");
+            htmlLabel.Add(new HtmlText(formRadioGroup.Label));
 
             switch (formRadioGroup.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlLabel.Add(new HtmlText(formRadioGroup.Label));
-
-                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formRadioGroup));
                     htmlDiv.Add(htmlRadioGroup);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formRadioGroup.Label));
-
+                    htmlDiv.Add(Mark(formRadioGroup));
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlRadioGroup);
 
@@ -83,67 +66,31 @@ namespace Form2.Form.Visitors
 
                 case OrderElements.InputLabelMark:
 
-                    htmlLabel.Add(new HtmlText(formRadioGroup.Label));
-
-                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlRadioGroup);
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formRadioGroup));
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formRadioGroup.Label));
-
                     htmlDiv.Add(htmlRadioGroup);
+                    htmlDiv.Add(Mark(formRadioGroup));
                     htmlDiv.Add(htmlLabel);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlLabel.Add(new HtmlText(formRadioGroup.Label));
-
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlRadioGroup);
-
-                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
+                    htmlDiv.Add(Mark(formRadioGroup));
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    if (formRadioGroup.IsRequired && !string.IsNullOrWhiteSpace(formRadioGroup.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formRadioGroup.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formRadioGroup.Label));
-
+                    htmlDiv.Add(Mark(formRadioGroup));
                     htmlDiv.Add(htmlRadioGroup);
                     htmlDiv.Add(htmlLabel);
 

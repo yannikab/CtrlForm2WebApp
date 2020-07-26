@@ -17,6 +17,8 @@ namespace Form2.Form.Content.Items.Input
     {
         #region Fields
 
+        private string placeholder;
+
         private OrderNumberBox orderNumberBox;
 
         private FormIcon icon;
@@ -33,6 +35,8 @@ namespace Form2.Form.Content.Items.Input
 
         private bool? readOnly;
 
+        private bool? directInput;
+
         private Func<decimal, string> validator;
 
         private Action<decimal> actionInvalid;
@@ -41,6 +45,12 @@ namespace Form2.Form.Content.Items.Input
 
 
         #region Properties
+
+        public string Placeholder
+        {
+            get { return placeholder; }
+            set { placeholder = value; }
+        }
 
         public OrderNumberBox OrderNumberBox
         {
@@ -102,6 +112,30 @@ namespace Form2.Form.Content.Items.Input
             set { step = value; }
         }
 
+        public bool? DirectInput
+        {
+            set { directInput = value; }
+        }
+
+        public bool IsDirectInput
+        {
+            get
+            {
+                if (IsReadOnly)
+                    return false;
+
+                if (directInput.HasValue)
+                    return directInput.Value;
+
+                FormSection container = Container as FormSection;
+
+                if (container == null)
+                    return false;
+
+                return container.IsDirectInput;
+            }
+        }
+
         public override string Content
         {
             get { return base.Content; }
@@ -111,7 +145,10 @@ namespace Form2.Form.Content.Items.Input
                     throw new ArgumentNullException();
 
                 if (!decimal.TryParse(value, out decimal val))
+                {
+                    base.Content = "";
                     return;
+                }
 
                 if (min.HasValue && val < min.Value)
                     value = min.Value.ToString();
@@ -226,7 +263,7 @@ namespace Form2.Form.Content.Items.Input
                 if (IsReadOnly)
                     return true;
 
-                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
+                return HasValue ? ValidationMessage == null : !IsRequired;
             }
         }
 
@@ -250,18 +287,19 @@ namespace Form2.Form.Content.Items.Input
             : base(baseId, formId)
         {
             Content = "";
+            placeholder = "";
             min = null;
             max = null;
             step = 1;
 
             orderNumberBox = OrderNumberBox.NumberDecrIncr;
             icon = FormIcon.NotSet;
-            decrText = "-";
-            incrText = "+";
+            decrText = "▼";
+            incrText = "▲";
 
             readOnly = null;
 
-            validator = (v) => { return ""; };
+            validator = (v) => { return null; };
             actionInvalid = (v) => { return; };
         }
 

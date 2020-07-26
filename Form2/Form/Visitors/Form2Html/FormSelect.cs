@@ -46,38 +46,21 @@ namespace Form2.Form.Visitors
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formSelect.BaseId : "");
             htmlLabel.For.Value = htmlSelect.Id.Value;
+            htmlLabel.Add(new HtmlText(formSelect.Label));
 
             switch (formSelect.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlLabel.Add(new HtmlText(formSelect.Label));
-
-                    if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formSelect));
                     htmlDiv.Add(htmlSelect);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formSelect.Label));
-
+                    htmlDiv.Add(Mark(formSelect));
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlSelect);
 
@@ -85,67 +68,31 @@ namespace Form2.Form.Visitors
 
                 case OrderElements.InputLabelMark:
 
-                    htmlLabel.Add(new HtmlText(formSelect.Label));
-
-                    if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlSelect);
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formSelect));
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formSelect.Label));
-
                     htmlDiv.Add(htmlSelect);
+                    htmlDiv.Add(Mark(formSelect));
                     htmlDiv.Add(htmlLabel);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlLabel.Add(new HtmlText(formSelect.Label));
-
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlSelect);
-
-                    if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
+                    htmlDiv.Add(Mark(formSelect));
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    if (formSelect.IsRequired && !string.IsNullOrWhiteSpace(formSelect.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formSelect.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formSelect.Label));
-
+                    htmlDiv.Add(Mark(formSelect));
                     htmlDiv.Add(htmlSelect);
                     htmlDiv.Add(htmlLabel);
 

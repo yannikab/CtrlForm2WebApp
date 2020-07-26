@@ -43,41 +43,24 @@ namespace Form2.Form.Visitors
             htmlDateBox.Disabled.Value = formDateBox.IsDisabled;
             htmlDateBox.ReadOnly.Value = formDateBox.IsReadOnly;
             htmlDateBox.Value.Value = formDateBox.HasValue ? formDateBox.Value.ToString("yyyy-MM-dd") : "";
-
+            
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formDateBox.BaseId : "");
             htmlLabel.For.Value = htmlDateBox.Id.Value;
+            htmlLabel.Add(new HtmlText(formDateBox.Label));
 
             switch (formDateBox.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlLabel.Add(new HtmlText(formDateBox.Label));
-
-                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formDateBox));
                     htmlDiv.Add(htmlDateBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formDateBox.Label));
-
+                    htmlDiv.Add(Mark(formDateBox));
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDateBox);
 
@@ -85,67 +68,31 @@ namespace Form2.Form.Visitors
 
                 case OrderElements.InputLabelMark:
 
-                    htmlLabel.Add(new HtmlText(formDateBox.Label));
-
-                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlDateBox);
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formDateBox));
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formDateBox.Label));
-
                     htmlDiv.Add(htmlDateBox);
+                    htmlDiv.Add(Mark(formDateBox));
                     htmlDiv.Add(htmlLabel);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlLabel.Add(new HtmlText(formDateBox.Label));
-
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDateBox);
-
-                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
+                    htmlDiv.Add(Mark(formDateBox));
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    if (formDateBox.IsRequired && !string.IsNullOrWhiteSpace(formDateBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formDateBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formDateBox.Label));
-
+                    htmlDiv.Add(Mark(formDateBox));
                     htmlDiv.Add(htmlDateBox);
                     htmlDiv.Add(htmlLabel);
 

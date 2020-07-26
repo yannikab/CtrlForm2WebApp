@@ -62,11 +62,17 @@ namespace Form2WebApp.UserControls
 
                 Required = false;
 
-                //RequiredMark = "(required)";
+                RequiredMark = "(required)";
 
                 RequiredMessage = "Field is required";
 
                 OrderElements = OrderElements.LabelMarkInput;
+
+                OptionalMark = "(optional)";
+
+                RequiredInLabel = false;
+
+                OptionalInLabel = true;
 
 
                 AddItem(new FormTitle("Title")
@@ -85,7 +91,9 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    PlaceHolder = "Enter your first name",
+                    Placeholder = "Enter your first name",
+
+                    RequiredMark = "(required)",
                 });
 
                 AddItem(new FormTextBox("LastName")
@@ -96,10 +104,10 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    PlaceHolder = "Enter your last name",
+                    Placeholder = "Enter your last name",
                 });
 
-                CloseSection();
+                CloseSection("FirstName-LastName");
 
 
                 OpenSection("DateOfBirth-DateOfMembership");
@@ -120,7 +128,7 @@ namespace Form2WebApp.UserControls
                         if (DateTime.Now - v < TimeSpan.FromDays(18 * 365.25))
                             return "You must be at least 18 to use this site";
 
-                        return "";
+                        return null;
                     },
                 });
 
@@ -130,9 +138,11 @@ namespace Form2WebApp.UserControls
 
                     Content = string.Format("{0:00}/{1:00}/{2:0000}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year - 1),
 
-                    PlaceHolder = "dd/mm/yyyy",
+                    Placeholder = "dd/mm/yyyy",
 
                     Required = false,
+
+                    OptionalInLabel = true,
 
                     Validator = (v) =>
                     {
@@ -142,11 +152,11 @@ namespace Form2WebApp.UserControls
                         if (DateTime.Now - v > TimeSpan.FromDays(365))
                             return "Only members that have renewed their memberships in the last year can participate";
 
-                        return "";
+                        return null;
                     },
                 });
 
-                CloseSection();
+                CloseSection("DateOfBirth-DateOfMembership");
 
 
                 OpenSection("Email-Phone");
@@ -159,13 +169,13 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    PlaceHolder = "Enter your email",
+                    Placeholder = "Enter your email",
 
                     Icon = FormIcon.Envelope,
 
                     Validator = (v) =>
                     {
-                        return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(v) ? "Invalid Email" : "";
+                        return !new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").IsMatch(v) ? "Invalid Email" : null;
                     },
                 });
 
@@ -177,7 +187,7 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    PlaceHolder = "Enter your phone number",
+                    Placeholder = "Enter your phone number",
 
                     Icon = FormIcon.Phone,
 
@@ -188,11 +198,11 @@ namespace Form2WebApp.UserControls
                         if (!new Regex(@"^[0-9\(\)\+\ -]+$").IsMatch(v) || digits < 10 || digits > 15)
                             return "Invalid Phone";
 
-                        return "";
+                        return null;
                     },
                 });
 
-                CloseSection();
+                CloseSection("DateOfBirth-DateOfMembership");
 
 
                 OpenSection("Password-ConfirmPassword");
@@ -205,7 +215,7 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    PlaceHolder = "Enter your password",
+                    Placeholder = "Enter your password",
 
                     Icon = FormIcon.Lock,
 
@@ -214,7 +224,7 @@ namespace Form2WebApp.UserControls
                         if (GetItem<FormPasswordBox>("ConfirmPassword").Value != v)
                             return "Passwords do not match";
 
-                        return "";
+                        return null;
                     },
                 });
 
@@ -227,7 +237,7 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    PlaceHolder = "Confirm your password",
+                    Placeholder = "Confirm your password",
 
                     Icon = FormIcon.Lock,
 
@@ -236,11 +246,11 @@ namespace Form2WebApp.UserControls
                         if (GetItem<FormPasswordBox>("Password").Value != v)
                             return "Passwords do not match";
 
-                        return "";
+                        return null;
                     },
                 });
 
-                CloseSection();
+                CloseSection("Password-ConfirmPassword");
 
 
                 OpenSection("Selects");
@@ -284,7 +294,7 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseSection();
+                CloseSection("Selects");
 
 
                 OpenSection("RadioGroups");
@@ -308,17 +318,19 @@ namespace Form2WebApp.UserControls
                         if (v.Text == "Post")
                             return "Contact by post can not be used at the moment";
 
-                        return "";
+                        return null;
                     },
 
                     OrderElements = OrderElements.LabelMarkInput
                 });
 
-                CloseSection();
+                CloseSection("RadioGroups");
 
                 AddItem(new FormNumberBox("YearsInService")
                 {
                     Label = "Years in service",
+
+                    Placeholder = "Years in service",
 
                     Content = "1.2",
 
@@ -342,7 +354,7 @@ namespace Form2WebApp.UserControls
                         if (Math.Truncate(v) != v)
                             return "Please enter an integer number";
 
-                        return "";
+                        return null;
                     }
                 });
 
@@ -352,9 +364,11 @@ namespace Form2WebApp.UserControls
 
                     Content = "My Message",
 
-                    Required = true,
+                    Required = false,
 
-                    PlaceHolder = "Enter your message",
+                    OptionalInLabel = true,
+
+                    Placeholder = "Enter your message",
 
                     Rows = 4,
 
@@ -384,7 +398,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                CloseSection();
+                CloseSection("Container");
             }
 
             protected override void AddRules(List<FormRule> rules)

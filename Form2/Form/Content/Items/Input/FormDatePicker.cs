@@ -18,7 +18,7 @@ namespace Form2.Form.Content.Items.Input
     {
         #region Fields
 
-        private string placeHolder;
+        private string placeholder;
 
         private FormIcon icon;
 
@@ -35,10 +35,10 @@ namespace Form2.Form.Content.Items.Input
 
         #region Properties
 
-        public string PlaceHolder
+        public string Placeholder
         {
-            get { return placeHolder; }
-            set { placeHolder = value; }
+            get { return placeholder; }
+            set { placeholder = value; }
         }
 
         public FormIcon Icon
@@ -156,7 +156,7 @@ namespace Form2.Form.Content.Items.Input
                 if (IsReadOnly)
                     return true;
 
-                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
+                return HasValue ? ValidationMessage == null : !IsRequired;
             }
         }
 
@@ -169,15 +169,15 @@ namespace Form2.Form.Content.Items.Input
             : base(baseId, formId)
         {
             Content = "";
-            PlaceHolder = "";
+            Placeholder = "";
             Icon = FormIcon.Calendar;
 
             DateFormat = dateFormat;
 
             readOnly = null;
 
-            Validator = (v) => { return ""; };
-            ActionInvalid = (v) => { return; };
+            validator = (v) => { return null; };
+            actionInvalid = (v) => { return; };
         }
 
         public FormDatePicker(string baseId, string dateFormat)

@@ -22,7 +22,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Class.Add("form-password");
             htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
             htmlDiv.Class.Add("form-field");
-            
+
             if (initialize)
             {
                 htmlDiv.Class.Add(formPasswordBox.IsRequired ? "form-required" : "form-optional");
@@ -43,42 +43,38 @@ namespace Form2.Form.Visitors
             htmlPasswordBox.Disabled.Value = formPasswordBox.IsDisabled;
             htmlPasswordBox.ReadOnly.Value = formPasswordBox.IsReadOnly;
             htmlPasswordBox.Value.Value = formPasswordBox.Value;
-            htmlPasswordBox.PlaceHolder.Value = !string.IsNullOrEmpty(formPasswordBox.PlaceHolder) ? formPasswordBox.PlaceHolder : null;
+            
+            string placeholder = null;
+
+            if (!string.IsNullOrWhiteSpace(formPasswordBox.Placeholder))
+            {
+                if (formPasswordBox.IsRequired && formPasswordBox.IsRequiredInPlaceholder && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
+                    placeholder = string.Format("{0} {1}", formPasswordBox.Placeholder, formPasswordBox.RequiredMark);
+                else if (!formPasswordBox.IsRequired && formPasswordBox.IsOptionalInPlaceholder && !string.IsNullOrWhiteSpace(formPasswordBox.OptionalMark))
+                    placeholder = string.Format("{0} {1}", formPasswordBox.Placeholder, formPasswordBox.OptionalMark);
+                else
+                    placeholder = formPasswordBox.Placeholder;
+            }
+
+            htmlPasswordBox.Placeholder.Value = placeholder;
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formPasswordBox.BaseId : "");
             htmlLabel.For.Value = htmlPasswordBox.Id.Value;
+            htmlLabel.Add(new HtmlText(formPasswordBox.Label));
 
             switch (formPasswordBox.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlLabel.Add(new HtmlText(formPasswordBox.Label));
-
-                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formPasswordBox));
                     htmlDiv.Add(htmlPasswordBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formPasswordBox.Label));
-
+                    htmlDiv.Add(Mark(formPasswordBox));
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlPasswordBox);
 
@@ -86,67 +82,31 @@ namespace Form2.Form.Visitors
 
                 case OrderElements.InputLabelMark:
 
-                    htmlLabel.Add(new HtmlText(formPasswordBox.Label));
-
-                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
                     htmlDiv.Add(htmlPasswordBox);
                     htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(Mark(formPasswordBox));
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
-                        htmlLabel.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formPasswordBox.Label));
-
                     htmlDiv.Add(htmlPasswordBox);
+                    htmlDiv.Add(Mark(formPasswordBox));
                     htmlDiv.Add(htmlLabel);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlLabel.Add(new HtmlText(formPasswordBox.Label));
-
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlPasswordBox);
-
-                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
+                    htmlDiv.Add(Mark(formPasswordBox));
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    if (formPasswordBox.IsRequired && !string.IsNullOrWhiteSpace(formPasswordBox.RequiredMark))
-                    {
-                        HtmlSpan htmlSpan = new HtmlSpan("");
-                        htmlSpan.Class.Add("form-mark-required");
-                        htmlSpan.Add(new HtmlText(formPasswordBox.RequiredMark));
-                        htmlDiv.Add(htmlSpan);
-                    }
-
-                    htmlLabel.Add(new HtmlText(formPasswordBox.Label));
-
+                    htmlDiv.Add(Mark(formPasswordBox));
                     htmlDiv.Add(htmlPasswordBox);
                     htmlDiv.Add(htmlLabel);
 
