@@ -19,28 +19,29 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormDatePicker formDatePicker, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formDatePicker.BaseId : "");
-            htmlDiv.Class.Add("form-datepicker");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formDatePicker.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formDatePicker.Path : "");
+            htmlDiv.Class.Add("formDatePicker");
+            if (!string.IsNullOrWhiteSpace(formDatePicker.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formDatePicker.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formDatePicker.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formDatePicker.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (!formDatePicker.IsRequired || formDatePicker.HasValue)
-                    htmlDiv.Class.Add(formDatePicker.IsValid ? "form-valid" : "form-invalid");
+                    htmlDiv.Class.Add(formDatePicker.IsValid ? "formValid" : "formInvalid");
                 else
-                    htmlDiv.Class.Add(formDatePicker.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formDatePicker.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formDatePicker.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlDatePicker htmlDatePicker = new HtmlDatePicker(formDatePicker.BaseId);
+            HtmlDatePicker htmlDatePicker = new HtmlDatePicker(formDatePicker.Path);
             htmlDatePicker.Disabled.Value = formDatePicker.IsDisabled;
             htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
             htmlDatePicker.DataDateFormat.Value = formDatePicker.DateFormat;
@@ -50,7 +51,7 @@ namespace Form2.Form.Visitors
             if (formDatePicker.IsReadOnly)
                 htmlDatePicker.DataProvide.Value = null;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formDatePicker.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formDatePicker.Path : "");
             htmlLabel.For.Value = htmlDatePicker.Id.Value;
             htmlLabel.Add(new HtmlText(formDatePicker.Label));
 
@@ -132,8 +133,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formDatePicker.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formDatePicker.Path, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlDatePicker.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

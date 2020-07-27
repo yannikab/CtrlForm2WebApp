@@ -15,11 +15,9 @@ namespace Form2.Form.Content
     {
         #region Fields
 
-        private readonly string baseId;
+        private readonly string name;
 
-        private readonly string formId;
-
-        private FormSection container;
+        private FormGroup container;
 
         private bool? hidden;
 
@@ -28,17 +26,23 @@ namespace Form2.Form.Content
 
         #region Properties
 
-        public string BaseId
+        public string Name
         {
-            get { return baseId; }
+            get { return name; }
         }
 
-        public string FormId
+        public string Path
         {
-            get { return formId; }
+            get
+            {
+                if (container == null)
+                    return "";
+
+                return string.Format("{0}{1}", container.Path, name);
+            }
         }
 
-        public virtual FormSection Container
+        public virtual FormGroup Container
         {
             get { return container; }
             set { container = value; }
@@ -78,16 +82,12 @@ namespace Form2.Form.Content
 
         #region Constructors
 
-        public FormContent(string baseId, string formId)
+        public FormContent(string name)
         {
-            if (baseId == null)
+            if (name == null)
                 throw new ArgumentNullException();
 
-            if (formId == null)
-                throw new ArgumentNullException();
-
-            this.baseId = baseId;
-            this.formId = formId;
+            this.name = name;
 
             container = null;
 

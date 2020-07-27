@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Form2.Form.Content.Items.Input.FormDateBox">
-    <Position X="12.75" Y="11" Width="1.5" />
+    <Position X="14" Y="11" Width="2" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Method Name="FormDateBox" Hidden="true" />
@@ -15,7 +15,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Selectables.FormOption">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.75" />
     <Members>
       <Method Name="FormOption" Hidden="true" />
       <Field Name="formSelect" Hidden="true" />
@@ -28,7 +28,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.FormTextBox">
-    <Position X="7" Y="11" Width="1.5" />
+    <Position X="7.75" Y="11" Width="1.75" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Method Name="FormTextBox" Hidden="true" />
@@ -44,7 +44,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.FormSelector&lt;S, V&gt;">
-    <Position X="16" Y="11" Width="1.5" />
+    <Position X="19.25" Y="11" Width="2" />
     <Members>
       <Method Name="FormSelector" Hidden="true" />
       <Field Name="isPostBack" Hidden="true" />
@@ -57,7 +57,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.FormCheckBox">
-    <Position X="3.75" Y="11" Width="1.5" />
+    <Position X="4.25" Y="11" Width="1.75" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Method Name="FormCheckBox" Hidden="true" />
@@ -70,7 +70,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.Selectors.FormSelect">
-    <Position X="17.25" Y="14.25" Width="1.5" />
+    <Position X="20.5" Y="14.25" Width="3.25" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Method Name="FormSelect" Hidden="true" />
@@ -86,7 +86,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Selectables.FormSelectable">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.75" />
     <Members>
       <Field Name="disabled" Hidden="true" />
       <Field Name="hidden" Hidden="true" />
@@ -99,7 +99,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.Selectors.FormRadioGroup">
-    <Position X="15" Y="14.25" Width="1.5" />
+    <Position X="16.75" Y="14.25" Width="3" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Method Name="FormRadioGroup" Hidden="true" />
@@ -111,13 +111,13 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Form2.Form.Content.FormSection">
-    <Position X="21.75" Y="3.25" Width="1.5" />
+  <Class Name="Form2.Form.Content.FormGroup">
+    <Position X="26.75" Y="3.25" Width="2" />
     <Members>
       <Field Name="contents" Hidden="true" />
       <Field Name="directInput" Hidden="true" />
       <Field Name="disabled" Hidden="true" />
-      <Method Name="FormSection" Hidden="true" />
+      <Method Name="FormGroup" Hidden="true" />
       <Field Name="optionalInLabel" Hidden="true" />
       <Field Name="optionalInPlaceholder" Hidden="true" />
       <Field Name="optionalMark" Hidden="true" />
@@ -131,12 +131,12 @@
     </Members>
     <TypeIdentifier>
       <HashCode>A0MAAQAQAAECEIBVAQiAFAEggAAkEIEAIACIAAZACAA=</HashCode>
-      <FileName>Form\Content\FormSection.cs</FileName>
+      <FileName>Form\Content\FormGroup.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.FormInput&lt;C, V&gt;">
-    <Position X="9.25" Y="5" Width="1.5" />
+    <Position X="11.75" Y="5" Width="2" />
     <Members>
       <Field Name="content" Hidden="true" />
       <Field Name="disabled" Hidden="true" />
@@ -161,7 +161,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.FormLabel">
-    <Position X="19.5" Y="5" Width="1.5" />
+    <Position X="24.5" Y="5" Width="1.5" />
     <Members>
       <Field Name="content" Hidden="true" />
       <Method Name="FormLabel" Hidden="true" />
@@ -172,7 +172,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.FormTextArea">
-    <Position X="6" Y="15.75" Width="1.5" />
+    <Position X="6.75" Y="15.75" Width="1.5" />
     <Members>
       <Field Name="columns" Hidden="true" />
       <Method Name="FormTextArea" Hidden="true" />
@@ -184,22 +184,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Form.Content.FormContent">
-    <Position X="11.5" Y="0.5" Width="1.5" />
+    <Position X="14.5" Y="0.5" Width="1.5" />
     <Members>
-      <Field Name="baseId" Hidden="true" />
       <Field Name="container" Hidden="true" />
       <Method Name="FormContent" Hidden="true" />
-      <Field Name="formId" Hidden="true" />
       <Field Name="hidden" Hidden="true" />
+      <Field Name="name" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>BAAAAAQAAAAAAAAAAAAAAAAAACAAAAAgCAQAAAgEEAA=</HashCode>
+      <HashCode>BAAAAAQAAAAAAAIAAAAAAAQAAAAEAAAgAAQAAAAEEAA=</HashCode>
       <FileName>Form\Content\FormContent.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.FormItem">
-    <Position X="10.5" Y="3.25" Width="1.5" />
+    <Position X="13" Y="3.25" Width="1.5" />
     <Members>
       <Method Name="FormItem" Hidden="true" />
     </Members>
@@ -209,7 +208,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Form.Content.Items.FormTitle">
-    <Position X="19.5" Y="7.75" Width="1.5" />
+    <Position X="24.5" Y="7.75" Width="1.5" />
     <Members>
       <Method Name="FormTitle" Hidden="true" />
     </Members>
@@ -219,7 +218,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.FormPasswordBox">
-    <Position X="8.25" Y="15.75" Width="1.5" />
+    <Position X="9" Y="15.75" Width="1.5" />
     <Members>
       <Method Name="FormPasswordBox" Hidden="true" />
     </Members>
@@ -229,7 +228,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.FormDatePicker">
-    <Position X="10.5" Y="11" Width="1.5" />
+    <Position X="11.25" Y="11" Width="2" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Field Name="dateFormat" Hidden="true" />
@@ -246,7 +245,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.FormNumberBox">
-    <Position X="1.5" Y="11" Width="1.5" />
+    <Position X="1.75" Y="11" Width="1.75" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Field Name="decrText" Hidden="true" />

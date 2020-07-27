@@ -15,7 +15,7 @@ namespace Form2.Form.Visitors
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0029:Use coalesce expression", Justification = "<Pending>")]
 
-    public class FormMessageVisitor
+    public class FormLastMessageVisitor
     {
         #region Fields
 
@@ -53,9 +53,9 @@ namespace Form2.Form.Visitors
         {
         }
 
-        public virtual void Visit(FormSection formSection)
+        public virtual void Visit(FormGroup formGroup)
         {
-            foreach (var i in formSection.Contents)
+            foreach (var i in formGroup.Contents)
                 Visit(i);
         }
 
@@ -137,11 +137,11 @@ namespace Form2.Form.Visitors
         #region Constructors
 
 
-        public FormMessageVisitor(FormSection formSection, bool submit)
+        public FormLastMessageVisitor(FormGroup formGroup, bool submit)
         {
             this.submit = submit;
 
-            Visit(formSection);
+            Visit(formGroup);
         }
 
         #endregion

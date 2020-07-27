@@ -16,15 +16,16 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormLabel formLabel, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formLabel.BaseId : "");
-            htmlDiv.Class.Add("form-label");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formLabel.FormId));
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formLabel.Path : "");
+            htmlDiv.Class.Add("formLabel");
+            if (!string.IsNullOrWhiteSpace(formLabel.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formLabel.Path));
 
             htmlDiv.Hidden.Value = formLabel.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formLabel.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formLabel.Path : "");
             htmlDiv.Add(htmlLabel);
 
             htmlLabel.Add(new HtmlText(formLabel.Content));
@@ -32,15 +33,16 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTitle formTitle, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTitle.BaseId : "");
-            htmlDiv.Class.Add("form-title");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTitle.FormId));
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTitle.Path : "");
+            htmlDiv.Class.Add("formTitle");
+            if (!string.IsNullOrWhiteSpace(formTitle.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formTitle.Path));
 
             htmlDiv.Hidden.Value = formTitle.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTitle.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTitle.Path : "");
             htmlDiv.Add(htmlLabel);
 
             htmlLabel.Add(new HtmlText(formTitle.Content));

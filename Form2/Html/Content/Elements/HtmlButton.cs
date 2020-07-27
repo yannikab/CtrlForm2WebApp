@@ -63,8 +63,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlButton(string baseId, string onClick)
-            : base(baseId)
+        public HtmlButton(string name, string onClick)
+            : base(name)
         {
             attributes.Add(attrType = new AttrType("button"));
 
@@ -75,8 +75,8 @@ namespace Form2.Html.Content.Elements.Containers
             events.Add(eventClick = new EventClick(onClick));
         }
 
-        public HtmlButton(string baseId)
-            : this(baseId, "")
+        public HtmlButton(string name)
+            : this(name, "")
         {
         }
 

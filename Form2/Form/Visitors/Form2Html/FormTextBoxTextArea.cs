@@ -18,28 +18,29 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormTextBox formTextBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTextBox.BaseId : "");
-            htmlDiv.Class.Add("form-textbox");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextBox.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTextBox.Name : "");
+            htmlDiv.Class.Add("formTextBox");
+            if (!string.IsNullOrWhiteSpace(formTextBox.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formTextBox.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formTextBox.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formTextBox.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (formTextBox.HasValue)
-                    htmlDiv.Class.Add(formTextBox.IsValid ? "form-valid" : "form-invalid");
+                    htmlDiv.Class.Add(formTextBox.IsValid ? "formValid" : "formInvalid");
                 else
-                    htmlDiv.Class.Add(formTextBox.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formTextBox.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formTextBox.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlTextBox htmlTextBox = new HtmlTextBox(formTextBox.BaseId);
+            HtmlTextBox htmlTextBox = new HtmlTextBox(formTextBox.Path);
             htmlTextBox.Disabled.Value = formTextBox.IsDisabled;
             htmlTextBox.ReadOnly.Value = formTextBox.IsReadOnly;
             htmlTextBox.Value.Value = formTextBox.Value;
@@ -58,7 +59,7 @@ namespace Form2.Form.Visitors
 
             htmlTextBox.Placeholder.Value = placeholder;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTextBox.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTextBox.Path : "");
             htmlLabel.For.Value = htmlTextBox.Id.Value;
             htmlLabel.Add(new HtmlText(formTextBox.Label));
 
@@ -140,8 +141,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formTextBox.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formTextBox.Name, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlTextBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);
@@ -149,28 +150,29 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTextArea formTextArea, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTextArea.BaseId : "");
-            htmlDiv.Class.Add("form-textarea");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formTextArea.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTextArea.Path : "");
+            htmlDiv.Class.Add("formTextArea");
+            if (!string.IsNullOrWhiteSpace(formTextArea.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formTextArea.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formTextArea.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formTextArea.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (formTextArea.HasValue)
-                    htmlDiv.Class.Add(formTextArea.IsValid ? "form-valid" : "form-invalid");
+                    htmlDiv.Class.Add(formTextArea.IsValid ? "formValid" : "formInvalid");
                 else
-                    htmlDiv.Class.Add(formTextArea.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formTextArea.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formTextArea.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlTextArea htmlTextArea = new HtmlTextArea(formTextArea.BaseId);
+            HtmlTextArea htmlTextArea = new HtmlTextArea(formTextArea.Path);
             htmlTextArea.Disabled.Value = formTextArea.IsDisabled;
             htmlTextArea.ReadOnly.Value = formTextArea.IsReadOnly;
             htmlTextArea.Value.Value = formTextArea.Value;
@@ -192,7 +194,7 @@ namespace Form2.Form.Visitors
             htmlTextArea.Rows.Value = formTextArea.Rows;
             htmlTextArea.Cols.Value = formTextArea.Columns;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTextArea.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTextArea.Path : "");
             htmlLabel.For.Value = htmlTextArea.Id.Value;
             htmlLabel.Add(new HtmlText(formTextArea.Label));
 
@@ -274,8 +276,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formTextArea.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formTextArea.Path, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlTextArea.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

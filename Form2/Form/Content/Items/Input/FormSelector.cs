@@ -103,17 +103,12 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormSelector(string baseId, string formId)
-            : base(baseId, formId)
+        public FormSelector(string name)
+            : base(name)
         {
             selectables = new List<S>();
 
             IsPostBack = false;
-        }
-
-        public FormSelector(string baseId)
-            : this(baseId, baseId.ToLower())
-        {
         }
 
         #endregion

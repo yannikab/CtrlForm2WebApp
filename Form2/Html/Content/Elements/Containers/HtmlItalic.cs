@@ -25,8 +25,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlItalic(string baseId)
-            : base(baseId)
+        public HtmlItalic(string name)
+            : base(name)
         {
         }
 

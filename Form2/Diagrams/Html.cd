@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Form2.Html.Content.Elements.HtmlContainer">
-    <Position X="28.5" Y="6.25" Width="1.5" />
+    <Position X="28.75" Y="6.25" Width="1.5" />
     <Members>
       <Field Name="contents" Hidden="true" />
       <Method Name="HtmlContainer" Hidden="true" />
@@ -38,7 +38,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlTextArea">
-    <Position X="7.25" Y="9.5" Width="1.5" />
+    <Position X="7.5" Y="9.5" Width="1.5" />
     <Members>
       <Field Name="attrCols" Hidden="true" />
       <Field Name="attrPlaceholder" Hidden="true" />
@@ -51,7 +51,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlCheckBox">
-    <Position X="14" Y="9.5" Width="1.5" />
+    <Position X="14.25" Y="9.5" Width="1.5" />
     <Members>
       <Field Name="attrChecked" Hidden="true" />
       <Method Name="HtmlCheckBox" Hidden="true" />
@@ -62,7 +62,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSubmit">
-    <Position X="34.25" Y="8.75" Width="1.5" />
+    <Position X="34.5" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrType" Hidden="true" />
@@ -75,7 +75,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlLabel">
-    <Position X="36.5" Y="8.75" Width="1.5" />
+    <Position X="36.75" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrFor" Hidden="true" />
       <Method Name="HtmlLabel" Hidden="true" />
@@ -86,7 +86,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlItalic">
-    <Position X="32" Y="8.75" Width="1.5" />
+    <Position X="32.25" Y="8.75" Width="1.5" />
     <Members>
       <Method Name="HtmlItalic" Hidden="true" />
     </Members>
@@ -96,7 +96,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlOption">
-    <Position X="29.75" Y="8.75" Width="1.5" />
+    <Position X="30" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrSelected" Hidden="true" />
@@ -121,7 +121,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSelect">
-    <Position X="23" Y="8.75" Width="1.5" />
+    <Position X="23.25" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrMultiple" Hidden="true" />
@@ -136,7 +136,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlDiv">
-    <Position X="27.5" Y="8.75" Width="1.5" />
+    <Position X="27.75" Y="8.75" Width="1.5" />
     <Members>
       <Method Name="HtmlDiv" Hidden="true" />
     </Members>
@@ -146,7 +146,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlPasswordBox">
-    <Position X="11.75" Y="9.5" Width="1.5" />
+    <Position X="12" Y="9.5" Width="1.5" />
     <Members>
       <Field Name="attrPlaceholder" Hidden="true" />
       <Method Name="HtmlPasswordBox" Hidden="true" />
@@ -157,7 +157,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlDateBox">
-    <Position X="9.5" Y="9.5" Width="1.5" />
+    <Position X="9.75" Y="9.5" Width="1.5" />
     <Members>
       <Method Name="HtmlDateBox" Hidden="true" />
     </Members>
@@ -167,7 +167,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSpan">
-    <Position X="25.25" Y="8.75" Width="1.5" />
+    <Position X="25.5" Y="8.75" Width="1.5" />
     <Members>
       <Method Name="HtmlSpan" Hidden="true" />
     </Members>
@@ -187,7 +187,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlElement">
-    <Position X="19.5" Y="2.25" Width="1.5" />
+    <Position X="19.75" Y="2.25" Width="1.5" />
     <Members>
       <Field Name="attrClass" Hidden="true" />
       <Field Name="attrHidden" Hidden="true" />
@@ -202,7 +202,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlRadioButton">
-    <Position X="16.25" Y="9.5" Width="1.5" />
+    <Position X="16.5" Y="9.5" Width="1.5" />
     <Members>
       <Field Name="attrChecked" Hidden="true" />
       <Method Name="HtmlRadioButton" Hidden="true" />
@@ -213,7 +213,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlRadioGroup">
-    <Position X="20.75" Y="8.75" Width="1.5" />
+    <Position X="21" Y="8.75" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrName" Hidden="true" />
@@ -226,7 +226,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Input.HtmlDatePicker">
-    <Position X="5" Y="9.5" Width="1.5" />
+    <Position X="5" Y="9.5" Width="1.75" />
     <Members>
       <Field Name="attrDataDateFormat" Hidden="true" />
       <Field Name="attrDataProvide" Hidden="true" />
@@ -239,7 +239,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlButton">
-    <Position X="18.5" Y="6.25" Width="1.5" />
+    <Position X="18.75" Y="6.25" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrType" Hidden="true" />

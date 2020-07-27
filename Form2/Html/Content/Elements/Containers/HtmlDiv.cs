@@ -25,8 +25,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlDiv(string baseId)
-            : base(baseId)
+        public HtmlDiv(string name)
+            : base(name)
         {
         }
 

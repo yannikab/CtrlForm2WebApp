@@ -34,8 +34,8 @@ namespace Form2.Html.Content.Elements.Input
 
         #region Constructors
 
-        public HtmlCheckBox(string baseId)
-            : base(baseId, "checkbox")
+        public HtmlCheckBox(string name)
+            : base(name, "checkbox")
         {
             attributes.Add(attrChecked = new AttrChecked());
         }

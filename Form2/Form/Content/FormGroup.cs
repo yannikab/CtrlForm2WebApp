@@ -13,7 +13,7 @@ namespace Form2.Form.Content
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
 
-    public class FormSection : FormContent, IDisabled, IRequired, IReadOnly
+    public class FormGroup : FormContent, IDisabled, IRequired, IReadOnly
     {
         #region Fields
 
@@ -106,22 +106,22 @@ namespace Form2.Form.Content
                 if (f is T)
                     yield return f;
 
-            foreach (var s in Contents.OfType<FormSection>())
+            foreach (var g in Contents.OfType<FormGroup>())
             {
-                foreach (var f in s.Get<T>())
+                foreach (var f in g.Get<T>())
                     yield return f;
             }
         }
 
-        public T Get<T>(string baseId) where T : FormItem
+        public T Get<T>(string path) where T : FormItem
         {
             foreach (var f in Contents.OfType<T>())
-                if (f.BaseId == baseId)
+                if (f.Path == path)
                     return f;
 
-            foreach (var s in Contents.OfType<FormSection>())
+            foreach (var g in Contents.OfType<FormGroup>())
             {
-                T formItem = s.Get<T>(baseId);
+                T formItem = g.Get<T>(path);
 
                 if (formItem != default(T))
                     return formItem;
@@ -130,15 +130,15 @@ namespace Form2.Form.Content
             return default(T);
         }
 
-        public FormItem Get(string baseId)
+        public FormItem Get(string path)
         {
             foreach (var f in Contents.OfType<FormItem>())
-                if (f.BaseId == baseId)
+                if (f.Path == path)
                     return f;
 
-            foreach (var s in Contents.OfType<FormSection>())
+            foreach (var g in Contents.OfType<FormGroup>())
             {
-                FormItem formItem = s.Get(baseId);
+                FormItem formItem = g.Get(path);
 
                 if (formItem != null)
                     return formItem;
@@ -164,7 +164,7 @@ namespace Form2.Form.Content
                 if (disabled.HasValue)
                     return disabled.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return false;
@@ -251,7 +251,7 @@ namespace Form2.Form.Content
                 if (requiredInLabel.HasValue)
                     return requiredInLabel.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -272,7 +272,7 @@ namespace Form2.Form.Content
                 if (requiredInPlaceholder.HasValue)
                     return requiredInPlaceholder.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -288,7 +288,7 @@ namespace Form2.Form.Content
                 if (optionalMark != null)
                     return optionalMark;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return null;
@@ -313,7 +313,7 @@ namespace Form2.Form.Content
                 if (optionalInLabel.HasValue)
                     return optionalInLabel.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -334,7 +334,7 @@ namespace Form2.Form.Content
                 if (optionalInPlaceholder.HasValue)
                     return optionalInPlaceholder.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -358,7 +358,7 @@ namespace Form2.Form.Content
                 if (directInput.HasValue)
                     return directInput.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return false;
@@ -408,7 +408,7 @@ namespace Form2.Form.Content
             {
                 foreach (var c in Contents)
                 {
-                    if (c is FormSection)
+                    if (c is FormGroup)
                         continue;
 
                     if (c is IHidden && (c as IHidden).IsHidden)
@@ -427,7 +427,7 @@ namespace Form2.Form.Content
                         return false;
                 }
 
-                foreach (var s in Contents.OfType<FormSection>())
+                foreach (var s in Contents.OfType<FormGroup>())
                 {
                     if (!s.IsValid)
                         return false;
@@ -442,18 +442,13 @@ namespace Form2.Form.Content
 
         #region Constructors
 
-        public FormSection(string baseId, string formId)
-            : base(baseId.Replace("-", ""), formId)
+        public FormGroup(string name)
+            : base(name)
         {
             contents = new List<FormContent>();
 
             requiredMark = null;
             orderElements = OrderElements.NotSet;
-        }
-
-        public FormSection(string baseId)
-            : this(baseId.Replace("-", ""), baseId.ToLower())
-        {
         }
 
         #endregion
@@ -463,7 +458,7 @@ namespace Form2.Form.Content
 
         public override string ToString()
         {
-            return string.Format("{0} (BaseId: '{1}', FormId: '{2}')", GetType().Name, BaseId, FormId);
+            return string.Format("{0} (Name: '{1}', Path: '{2}')", GetType().Name, Name, Path);
         }
 
         #endregion

@@ -76,8 +76,8 @@ namespace Form2.Form.Visitors
                 if (formItem.IsRequiredInLabel && !string.IsNullOrWhiteSpace(formItem.RequiredMark))
                 {
                     htmlLabel = new HtmlLabel("");
-                    htmlLabel.Class.Add("form-mark-required");
-                    htmlLabel.Add(new HtmlText(formItem.RequiredMark));
+                    htmlLabel.Class.Add("formMarkRequired");
+                    htmlLabel.Add(new HtmlText(formItem.RequiredMark.Replace(" ", "&nbsp;")));
                 }
             }
             else
@@ -85,8 +85,8 @@ namespace Form2.Form.Visitors
                 if (formItem.IsOptionalInLabel && !string.IsNullOrWhiteSpace(formItem.OptionalMark))
                 {
                     htmlLabel = new HtmlLabel("");
-                    htmlLabel.Class.Add("form-mark-optional");
-                    htmlLabel.Add(new HtmlText(formItem.OptionalMark));
+                    htmlLabel.Class.Add("formMarkOptional");
+                    htmlLabel.Add(new HtmlText(formItem.OptionalMark.Replace(" ", "&nbsp;")));
                 }
             }
 
@@ -104,7 +104,7 @@ namespace Form2.Form.Visitors
 
             this.verbose = verbose;
 
-            Visit(formModel.FormSection, null);
+            Visit(formModel.FormGroup, null);
         }
 
         #endregion

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items.Input
@@ -75,18 +74,13 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormCheckBox(string baseId, string formId)
-            : base(baseId, formId)
+        public FormCheckBox(string name)
+            : base(name)
         {
             Content = false;
 
             validator = (v) => { return null; };
             actionInvalid = (v) => { return; };
-        }
-
-        public FormCheckBox(string baseId)
-            : this(baseId, baseId.ToLower())
-        {
         }
 
         #endregion
@@ -96,7 +90,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0} (BaseId: '{1}', Label: '{2}', Value: {3})", GetType().Name, BaseId, Label, Value);
+            return string.Format("{0} (Name: '{1}', Label: '{2}', Value: {3})", GetType().Name, Name, Label, Value);
         }
 
         #endregion

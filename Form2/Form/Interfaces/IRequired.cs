@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Form2.Form.Interfaces
 {
-    interface IRequired
+    public interface IRequired
     {
         bool? Required { set; }
         bool IsRequired { get; }

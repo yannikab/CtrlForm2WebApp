@@ -18,32 +18,33 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formCheckBox.BaseId : "");
-            htmlDiv.Class.Add("form-checkbox");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formCheckBox.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formCheckBox.Path : "");
+            htmlDiv.Class.Add("formCheckBox");
+            if (!string.IsNullOrWhiteSpace(formCheckBox.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formCheckBox.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formCheckBox.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formCheckBox.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (!formCheckBox.IsRequired || formCheckBox.Value)
-                    htmlDiv.Class.Add("form-valid");
+                    htmlDiv.Class.Add("formValid");
                 else
-                    htmlDiv.Class.Add(formCheckBox.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formCheckBox.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formCheckBox.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlCheckBox htmlCheckBox = new HtmlCheckBox(formCheckBox.BaseId);
+            HtmlCheckBox htmlCheckBox = new HtmlCheckBox(formCheckBox.Path);
             htmlCheckBox.Disabled.Value = formCheckBox.IsDisabled;
             htmlCheckBox.Checked.Value = formCheckBox.Value;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formCheckBox.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formCheckBox.Path : "");
             htmlLabel.For.Value = htmlCheckBox.Id.Value;
             htmlLabel.Add(new HtmlText(formCheckBox.Label));
 
@@ -125,8 +126,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formCheckBox.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formCheckBox.Path, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlCheckBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(formCheckBox.RequiredMessage));
             htmlDiv.Add(htmlLabelMessage);

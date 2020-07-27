@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Form2.Form.Enums;
 using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items.Input
@@ -84,7 +83,7 @@ namespace Form2.Form.Content.Items.Input
                 if (readOnly.HasValue)
                     return readOnly.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return false;
@@ -140,8 +139,8 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormDateBox(string baseId, string formId)
-            : base(baseId, formId)
+        public FormDateBox(string name)
+            : base(name)
         {
             Content = "";
 
@@ -151,11 +150,6 @@ namespace Form2.Form.Content.Items.Input
             actionInvalid = (v) => { return; };
         }
 
-        public FormDateBox(string baseId)
-            : this(baseId, baseId.ToLower())
-        {
-        }
-
         #endregion
 
 
@@ -163,7 +157,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0} (BaseId: '{1}', Label: '{2}', Value: {3})", GetType().Name, BaseId, Label, Value);
+            return string.Format("{0} (Name: '{1}', Label: '{2}', Value: {3})", GetType().Name, Name, Label, Value);
         }
 
         #endregion

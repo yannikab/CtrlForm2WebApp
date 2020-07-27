@@ -56,8 +56,8 @@ namespace Form2.Html.Content.Elements
 
         #region Constructors
 
-        public HtmlContainer(string baseId)
-            : base(baseId)
+        public HtmlContainer(string name)
+            : base(name)
         {
             contents = contents = new List<HtmlContent>();
         }

@@ -16,15 +16,16 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormButton formButton, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formButton.BaseId : "");
-            htmlDiv.Class.Add("form-button");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formButton.FormId));
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formButton.Path : "");
+            htmlDiv.Class.Add("formButton");
+            if (!string.IsNullOrWhiteSpace(formButton.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formButton.Path));
 
             htmlDiv.Hidden.Value = formButton.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlSubmit htmlSubmit = new HtmlSubmit(formButton.BaseId, verbose);
+            HtmlSubmit htmlSubmit = new HtmlSubmit(formButton.Path, verbose);
             htmlSubmit.Disabled.Value = formButton.IsDisabled;
             htmlDiv.Add(htmlSubmit);
 

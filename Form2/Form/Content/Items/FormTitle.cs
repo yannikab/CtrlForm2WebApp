@@ -10,13 +10,8 @@ namespace Form2.Form.Content.Items
     {
         #region Constructors
 
-        public FormTitle(string baseId, string formId)
-            : base(baseId, formId)
-        {
-        }
-
-        public FormTitle(string baseId)
-            : this(baseId, baseId.ToLower())
+        public FormTitle(string name)
+            : base(name)
         {
         }
 

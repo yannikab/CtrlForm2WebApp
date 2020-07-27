@@ -48,15 +48,8 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormTextArea(string baseId, string formId)
-            : base(baseId, formId)
-        {
-            rows = null;
-            columns = null;
-        }
-
-        public FormTextArea(string baseId)
-            : this(baseId, baseId.ToLower())
+        public FormTextArea(string name)
+            : base(name)
         {
         }
 

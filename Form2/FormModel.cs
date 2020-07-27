@@ -21,9 +21,9 @@ namespace Form2
     {
         #region Fields
 
-        private FormSection formSection;
+        private FormGroup formGroup;
 
-        private readonly Stack<FormSection> formSections;
+        private readonly Stack<FormGroup> formGroups;
 
         protected delegate void FormRule(bool isPostBack, FormItem formItem, string argument);
 
@@ -36,7 +36,7 @@ namespace Form2
 
         #region Properties
 
-        public FormSection FormSection { get { return formSection; } }
+        public FormGroup FormGroup { get { return formGroup; } }
 
         public bool Submitted { get { return submitted; } }
 
@@ -47,8 +47,8 @@ namespace Form2
 
         public FormModel()
         {
-            formSection = null;
-            formSections = new Stack<FormSection>();
+            formGroup = null;
+            formGroups = new Stack<FormGroup>();
             rules = new List<FormRule>();
             submitted = true;
         }
@@ -60,14 +60,14 @@ namespace Form2
 
         public void Initialize()
         {
-            formSection = null;
-            formSections.Clear();
+            formGroup = null;
+            formGroups.Clear();
             rules.Clear();
             submitted = true;
 
             CreateForm();
 
-            if (formSection == null)
+            if (formGroup == null)
                 return;
 
             AddRules(rules);
@@ -77,7 +77,7 @@ namespace Form2
 
         public void Update(NameValueCollection values, FormItem source, string argument)
         {
-            if (formSection == null)
+            if (formGroup == null)
                 return;
 
             submitted = false;
@@ -92,21 +92,21 @@ namespace Form2
             if (iPostBack == null || !iPostBack.IsPostBack)
                 throw new ApplicationException();
 
-            new FormPostBackVisitor(formSection, values, source, argument);
+            new FormUpdateVisitor(formGroup, values, source, argument);
 
             ApplyRules(true, source, argument);
 
-            new FormMessageVisitor(formSection, false);
+            new FormLastMessageVisitor(formGroup, false);
         }
 
         public void Submit(NameValueCollection values, FormItem source, string argument)
         {
-            if (formSection == null)
+            if (formGroup == null)
                 return;
 
             submitted = false;
 
-            new FormPostBackVisitor(formSection, values, source, argument);
+            new FormUpdateVisitor(formGroup, values, source, argument);
 
             ApplyRules(true, source, argument);
 
@@ -115,9 +115,9 @@ namespace Form2
             if (!iSubmit.IsSubmit)
                 throw new ApplicationException();
 
-            if (!formSection.IsValid)
+            if (!formGroup.IsValid)
             {
-                new FormMessageVisitor(formSection, true);
+                new FormLastMessageVisitor(formGroup, true);
                 return;
             }
 
@@ -128,53 +128,53 @@ namespace Form2
 
         protected abstract void CreateForm();
 
-        protected void OpenSection(string baseId)
+        protected void OpenGroup(string name)
         {
-            FormSection formSection = new FormSection(baseId);
+            FormGroup formGroup = new FormGroup(name);
 
-            if (formSections.Count == 0)
+            if (formGroups.Count == 0)
             {
-                this.formSection = formSection;
+                this.formGroup = formGroup;
 
-                this.formSection.RequiredMessage = "!";
+                this.formGroup.RequiredMessage = "!";
 
-                this.formSection.RequiredMark = "*";
-                this.formSection.RequiredInLabel = true;
-                this.formSection.RequiredInPlaceholder = false;
+                this.formGroup.RequiredMark = "*";
+                this.formGroup.RequiredInLabel = true;
+                this.formGroup.RequiredInPlaceholder = false;
 
-                this.formSection.OptionalMark = "...";
-                this.formSection.OptionalInLabel = false;
-                this.formSection.OptionalInPlaceholder = false;
+                this.formGroup.OptionalMark = "...";
+                this.formGroup.OptionalInLabel = false;
+                this.formGroup.OptionalInPlaceholder = false;
                 
-                this.formSection.OrderElements = OrderElements.InputLabelMark;
+                this.formGroup.OrderElements = OrderElements.InputLabelMark;
             }
             else
             {
-                formSections.Peek().Add(formSection);
+                formGroups.Peek().Add(formGroup);
             }
 
-            formSections.Push(formSection);
+            formGroups.Push(formGroup);
         }
 
-        protected void CloseSection(string baseId)
+        protected void CloseGroup(string name)
         {
-            if (formSections.Count == 0)
-                throw new InvalidOperationException("No form section is currently open. Can not close section.");
+            if (formGroups.Count == 0)
+                throw new InvalidOperationException("No form group is currently open. Can not close group.");
 
-            if (formSections.Peek().BaseId != baseId)
-                throw new InvalidOperationException("Attempting to close a different form section than the one currently open.");
+            if (formGroups.Peek().Name != name)
+                throw new InvalidOperationException("Attempting to close a different form group than the one currently open.");
 
-            formSections.Pop();
+            formGroups.Pop();
         }
 
         protected bool? Hidden
         {
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set Hidden property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set Hidden property.");
 
-                formSections.Peek().Hidden = value;
+                formGroups.Peek().Hidden = value;
             }
         }
 
@@ -182,10 +182,10 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get Hidden property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get Hidden property.");
 
-                return formSections.Peek().IsHidden;
+                return formGroups.Peek().IsHidden;
             }
         }
 
@@ -193,10 +193,10 @@ namespace Form2
         {
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set ReadOnly property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set ReadOnly property.");
 
-                formSections.Peek().ReadOnly = value;
+                formGroups.Peek().ReadOnly = value;
             }
         }
 
@@ -204,10 +204,10 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get ReadOnly property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get ReadOnly property.");
 
-                return formSections.Peek().IsReadOnly;
+                return formGroups.Peek().IsReadOnly;
             }
         }
 
@@ -215,10 +215,10 @@ namespace Form2
         {
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set Required property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set Required property.");
 
-                formSections.Peek().Required = value;
+                formGroups.Peek().Required = value;
             }
         }
 
@@ -226,10 +226,10 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get Required property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get Required property.");
 
-                return formSections.Peek().IsRequired;
+                return formGroups.Peek().IsRequired;
             }
         }
 
@@ -237,17 +237,17 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get RequiredMessage property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMessage property.");
 
-                return formSections.Peek().RequiredMessage;
+                return formGroups.Peek().RequiredMessage;
             }
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredMessage property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMessage property.");
 
-                formSections.Peek().RequiredMessage = value;
+                formGroups.Peek().RequiredMessage = value;
             }
         }
 
@@ -255,17 +255,17 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get RequiredMark property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get RequiredMark property.");
 
-                return formSections.Peek().RequiredMark;
+                return formGroups.Peek().RequiredMark;
             }
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredMark property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredMark property.");
 
-                formSections.Peek().RequiredMark = value;
+                formGroups.Peek().RequiredMark = value;
             }
         }
 
@@ -273,10 +273,10 @@ namespace Form2
         {
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredInLabel property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredInLabel property.");
 
-                formSections.Peek().RequiredInLabel = value;
+                formGroups.Peek().RequiredInLabel = value;
             }
         }
 
@@ -284,10 +284,10 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get IsRequiredInLabel property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get IsRequiredInLabel property.");
 
-                return formSections.Peek().IsRequiredInLabel;
+                return formGroups.Peek().IsRequiredInLabel;
             }
         }
 
@@ -295,10 +295,10 @@ namespace Form2
         {
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set RequiredInPlaceholder property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set RequiredInPlaceholder property.");
 
-                formSections.Peek().RequiredInPlaceholder = value;
+                formGroups.Peek().RequiredInPlaceholder = value;
             }
         }
 
@@ -306,10 +306,10 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get IsRequiredInPlaceholder property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get IsRequiredInPlaceholder property.");
 
-                return formSections.Peek().IsRequiredInPlaceholder;
+                return formGroups.Peek().IsRequiredInPlaceholder;
             }
         }
 
@@ -317,17 +317,17 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get OptionalMark property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get OptionalMark property.");
 
-                return formSections.Peek().OptionalMark;
+                return formGroups.Peek().OptionalMark;
             }
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set OptionalMark property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set OptionalMark property.");
 
-                formSections.Peek().OptionalMark = value;
+                formGroups.Peek().OptionalMark = value;
             }
         }
 
@@ -335,10 +335,10 @@ namespace Form2
         {
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set OptionalInLabel property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set OptionalInLabel property.");
 
-                formSections.Peek().OptionalInLabel = value;
+                formGroups.Peek().OptionalInLabel = value;
             }
         }
 
@@ -346,10 +346,10 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get IsOptionalInLabel property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get IsOptionalInLabel property.");
 
-                return formSections.Peek().IsOptionalInLabel;
+                return formGroups.Peek().IsOptionalInLabel;
             }
         }
 
@@ -357,10 +357,10 @@ namespace Form2
         {
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set OptionalInPlaceholder property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set OptionalInPlaceholder property.");
 
-                formSections.Peek().OptionalInPlaceholder = value;
+                formGroups.Peek().OptionalInPlaceholder = value;
             }
         }
 
@@ -368,10 +368,10 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get IsOptionalInPlaceholder property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get IsOptionalInPlaceholder property.");
 
-                return formSections.Peek().IsOptionalInPlaceholder;
+                return formGroups.Peek().IsOptionalInPlaceholder;
             }
         }
 
@@ -379,48 +379,48 @@ namespace Form2
         {
             get
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not get OrderElements property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get OrderElements property.");
 
-                return formSections.Peek().OrderElements;
+                return formGroups.Peek().OrderElements;
             }
             set
             {
-                if (formSections.Count == 0)
-                    throw new InvalidOperationException("No form section is currently open. Can not set OrderElements property.");
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set OrderElements property.");
 
-                formSections.Peek().OrderElements = value;
+                formGroups.Peek().OrderElements = value;
             }
         }
 
         protected void AddItem<T>(T formItem) where T : FormItem
         {
-            if (formSections.Count == 0)
-                throw new InvalidOperationException("No form section is currently open. Can not add form item.");
+            if (formGroups.Count == 0)
+                throw new InvalidOperationException("No form group is currently open. Can not add form item.");
 
-            formSections.Peek().Add(formItem);
+            formGroups.Peek().Add(formItem);
         }
 
-        public T GetItem<T>(string baseId) where T : FormItem
+        public T GetItem<T>(string path) where T : FormItem
         {
-            if (baseId == null)
+            if (path == null)
                 throw new ArgumentNullException();
 
-            if (formSection == null)
+            if (formGroup == null)
                 throw new InvalidOperationException("No form container exists. Can not get any form item.");
 
-            return formSection.Get<T>(baseId);
+            return formGroup.Get<T>(path);
         }
 
-        public FormItem GetItem(string baseId)
+        public FormItem GetItem(string path)
         {
-            if (baseId == null)
+            if (path == null)
                 throw new ArgumentNullException();
 
-            if (formSection == null)
+            if (formGroup == null)
                 throw new InvalidOperationException("No form container exists. Can not get any form item.");
 
-            return formSection.Get(baseId);
+            return formGroup.Get(path);
         }
 
         protected abstract void AddRules(List<FormRule> rules);

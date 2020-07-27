@@ -56,7 +56,7 @@ namespace Form2WebApp.UserControls
 
             protected override void CreateForm()
             {
-                OpenSection("Container");
+                OpenGroup("Container");
 
                 ReadOnly = false;
 
@@ -81,7 +81,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                OpenSection("FirstName-LastName");
+                OpenGroup("FirstName-LastName");
 
                 AddItem(new FormTextBox("FirstName")
                 {
@@ -107,10 +107,10 @@ namespace Form2WebApp.UserControls
                     Placeholder = "Enter your last name",
                 });
 
-                CloseSection("FirstName-LastName");
+                CloseGroup("FirstName-LastName");
 
 
-                OpenSection("DateOfBirth-DateOfMembership");
+                OpenGroup("DateOfBirth-DateOfMembership");
 
                 AddItem(new FormDateBox("DateOfBirth")
                 {
@@ -156,10 +156,10 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseSection("DateOfBirth-DateOfMembership");
+                CloseGroup("DateOfBirth-DateOfMembership");
 
 
-                OpenSection("Email-Phone");
+                OpenGroup("Email-Phone");
 
                 AddItem(new FormTextBox("Email")
                 {
@@ -202,10 +202,10 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseSection("DateOfBirth-DateOfMembership");
+                CloseGroup("Email-Phone");
 
 
-                OpenSection("Password-ConfirmPassword");
+                OpenGroup("Password-ConfirmPassword");
 
                 AddItem(new FormPasswordBox("Password")
                 {
@@ -250,10 +250,10 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseSection("Password-ConfirmPassword");
+                CloseGroup("Password-ConfirmPassword");
 
 
-                OpenSection("Selects");
+                OpenGroup("Selects");
 
                 AddItem(new FormSelect("Grade", false)
                 {
@@ -294,10 +294,10 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseSection("Selects");
+                CloseGroup("Selects");
 
 
-                OpenSection("RadioGroups");
+                OpenGroup("RadioGroups");
 
                 AddItem(new FormRadioGroup("Contact")
                 {
@@ -324,7 +324,7 @@ namespace Form2WebApp.UserControls
                     OrderElements = OrderElements.LabelMarkInput
                 });
 
-                CloseSection("RadioGroups");
+                CloseGroup("RadioGroups");
 
                 AddItem(new FormNumberBox("YearsInService")
                 {
@@ -398,7 +398,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                CloseSection("Container");
+                CloseGroup("Container");
             }
 
             protected override void AddRules(List<FormRule> rules)
@@ -412,9 +412,9 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                log.Info(new FormLogVisitor(FormSection, "Ναι", "Όχι").Text);
+                log.Info(new FormLogVisitor(FormGroup, "Ναι", "Όχι", true, true).Text);
 
-                var emailVisitor = new FormEmailVisitor(FormSection, "Ναι", "Όχι");
+                var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι", true, true);
 
                 page.Response.Write(emailVisitor.Subject);
                 page.Response.Write("<br><br>");

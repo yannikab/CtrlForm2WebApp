@@ -19,31 +19,32 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormRadioGroup formRadioGroup, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formRadioGroup.BaseId : "");
-            htmlDiv.Class.Add("form-radiogroup");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formRadioGroup.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formRadioGroup.Path : "");
+            htmlDiv.Class.Add("formRadioGroup");
+            if (!string.IsNullOrWhiteSpace(formRadioGroup.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formRadioGroup.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formRadioGroup.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formRadioGroup.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (!formRadioGroup.IsRequired || formRadioGroup.HasValue)
-                    htmlDiv.Class.Add("form-valid");
+                    htmlDiv.Class.Add("formValid");
                 else
-                    htmlDiv.Class.Add(formRadioGroup.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formRadioGroup.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formRadioGroup.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.BaseId, verbose, formRadioGroup.IsPostBack);
+            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.Path, verbose, formRadioGroup.IsPostBack);
             htmlRadioGroup.Disabled.Value = formRadioGroup.IsDisabled;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formRadioGroup.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formRadioGroup.Path : "");
             htmlLabel.Add(new HtmlText(formRadioGroup.Label));
 
             switch (formRadioGroup.OrderElements)
@@ -127,8 +128,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formRadioGroup.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formRadioGroup.Path, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlRadioGroup.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);
@@ -136,13 +137,13 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormRadioButton formRadioButton, HtmlContainer htmlContainer)
         {
-            HtmlRadioButton htmlRadioButton = new HtmlRadioButton(formRadioButton.FormRadioGroup.BaseId, formRadioButton.Value);
+            HtmlRadioButton htmlRadioButton = new HtmlRadioButton(formRadioButton.FormRadioGroup.Path, formRadioButton.Value);
             htmlRadioButton.Hidden.Value = formRadioButton.IsHidden;
             htmlRadioButton.Disabled.Value = formRadioButton.IsDisabled;
             htmlRadioButton.Value.Value = formRadioButton.Value;
             htmlRadioButton.Checked.Value = formRadioButton.IsSelected;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? string.Format("{0}{1}", formRadioButton.FormRadioGroup.BaseId, formRadioButton.Value) : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? string.Format("{0}{1}", formRadioButton.FormRadioGroup.Path, formRadioButton.Value) : "");
             htmlLabel.For.Value = htmlRadioButton.Id.Value;
             htmlLabel.Hidden.Value = formRadioButton.IsHidden;
             htmlLabel.Add(new HtmlText(formRadioButton.Text));

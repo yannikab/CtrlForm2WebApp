@@ -54,7 +54,7 @@ namespace Form2.Form.Content.Items
                 if (disabled.HasValue)
                     return disabled.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return false;
@@ -79,19 +79,14 @@ namespace Form2.Form.Content.Items
 
         #region Constructors
 
-        public FormButton(string baseId, string formId)
-            : base(baseId, formId)
+        public FormButton(string name)
+            : base(name)
         {
             content = "";
 
             disabled = null;
 
             isSubmit = false;
-        }
-
-        public FormButton(string baseId)
-            : this(baseId, baseId.ToLower())
-        {
         }
 
         #endregion
@@ -101,7 +96,7 @@ namespace Form2.Form.Content.Items
 
         public override string ToString()
         {
-            return string.Format("{0} (BaseId: '{1}', Value: '{2}')", GetType().Name, BaseId, Value);
+            return string.Format("{0} (Name: '{1}', Value: '{2}')", GetType().Name, Name, Value);
         }
 
         #endregion

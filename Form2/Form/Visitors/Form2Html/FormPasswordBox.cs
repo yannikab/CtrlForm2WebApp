@@ -18,28 +18,29 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormPasswordBox formPasswordBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formPasswordBox.BaseId : "");
-            htmlDiv.Class.Add("form-password");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formPasswordBox.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formPasswordBox.Path : "");
+            htmlDiv.Class.Add("formPasswordBox");
+            if (!string.IsNullOrWhiteSpace(formPasswordBox.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formPasswordBox.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formPasswordBox.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formPasswordBox.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (!string.IsNullOrEmpty(formPasswordBox.Value))
-                    htmlDiv.Class.Add(formPasswordBox.IsValid ? "form-valid" : "form-invalid");
+                    htmlDiv.Class.Add(formPasswordBox.IsValid ? "formValid" : "formInvalid");
                 else
-                    htmlDiv.Class.Add(formPasswordBox.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formPasswordBox.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formPasswordBox.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlPasswordBox htmlPasswordBox = new HtmlPasswordBox(formPasswordBox.BaseId);
+            HtmlPasswordBox htmlPasswordBox = new HtmlPasswordBox(formPasswordBox.Path);
             htmlPasswordBox.Disabled.Value = formPasswordBox.IsDisabled;
             htmlPasswordBox.ReadOnly.Value = formPasswordBox.IsReadOnly;
             htmlPasswordBox.Value.Value = formPasswordBox.Value;
@@ -58,7 +59,7 @@ namespace Form2.Form.Visitors
 
             htmlPasswordBox.Placeholder.Value = placeholder;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formPasswordBox.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formPasswordBox.Path : "");
             htmlLabel.For.Value = htmlPasswordBox.Id.Value;
             htmlLabel.Add(new HtmlText(formPasswordBox.Label));
 
@@ -140,8 +141,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formPasswordBox.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formPasswordBox.Path, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlPasswordBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

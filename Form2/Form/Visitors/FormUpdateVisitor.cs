@@ -16,7 +16,7 @@ namespace Form2.Form.Visitors
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0029:Use coalesce expression", Justification = "<Pending>")]
 
-    public class FormPostBackVisitor
+    public class FormUpdateVisitor
     {
         #region Fields
 
@@ -58,51 +58,51 @@ namespace Form2.Form.Visitors
         {
         }
 
-        public virtual void Visit(FormSection formSection)
+        public virtual void Visit(FormGroup formGroup)
         {
-            foreach (var i in formSection.Contents)
+            foreach (var i in formGroup.Contents)
                 Visit(i);
         }
 
         public virtual void Visit(FormTextBox formTextBox)
         {
-            formTextBox.Content = values[formTextBox.BaseId];
+            formTextBox.Content = values[formTextBox.Path];
         }
 
         public virtual void Visit(FormTextArea formTextArea)
         {
-            formTextArea.Content = values[formTextArea.BaseId];
+            formTextArea.Content = values[formTextArea.Path];
         }
 
         public virtual void Visit(FormPasswordBox formPasswordBox)
         {
-            formPasswordBox.Content = values[formPasswordBox.BaseId];
+            formPasswordBox.Content = values[formPasswordBox.Path];
         }
 
         public virtual void Visit(FormDateBox formDateBox)
         {
-            formDateBox.Content = values[formDateBox.BaseId];
+            formDateBox.Content = values[formDateBox.Path];
         }
 
         public virtual void Visit(FormDatePicker formDatePicker)
         {
-            formDatePicker.Content = values[formDatePicker.BaseId];
+            formDatePicker.Content = values[formDatePicker.Path];
         }
 
         public virtual void Visit(FormCheckBox formCheckBox)
         {
-            if (values[formCheckBox.BaseId] == null)
+            if (values[formCheckBox.Path] == null)
             {
                 formCheckBox.Content = false;
                 return;
             }
 
-            formCheckBox.Content = values[formCheckBox.BaseId].ToLower() == "on";
+            formCheckBox.Content = values[formCheckBox.Path].ToLower() == "on";
         }
 
         public virtual void Visit(FormNumberBox formNumberBox)
         {
-            formNumberBox.Content = values[formNumberBox.BaseId];
+            formNumberBox.Content = values[formNumberBox.Path];
 
             if (source != formNumberBox)
                 return;
@@ -133,10 +133,10 @@ namespace Form2.Form.Visitors
             for (int i = 0; i < content.Count; i++)
                 content[i].IsSelected = false;
 
-            if (values[formSelect.BaseId] == null)
+            if (values[formSelect.Path] == null)
                 return;
 
-            foreach (var o in values[formSelect.BaseId].Split(','))
+            foreach (var o in values[formSelect.Path].Split(','))
             {
                 for (int i = previousIndex; i < content.Count; i++)
                 {
@@ -170,7 +170,7 @@ namespace Form2.Form.Visitors
                 if (c.IsDisabled)
                     continue;
 
-                c.IsSelected = c.Value == values[formRadioGroup.BaseId];
+                c.IsSelected = c.Value == values[formRadioGroup.Path];
             }
         }
 
@@ -179,13 +179,13 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public FormPostBackVisitor(FormSection formSection, NameValueCollection values, FormItem source, string argument)
+        public FormUpdateVisitor(FormGroup formGroup, NameValueCollection values, FormItem source, string argument)
         {
             this.values = values;
             this.source = source;
             this.argument = argument;
 
-            Visit(formSection);
+            Visit(formGroup);
         }
 
         #endregion

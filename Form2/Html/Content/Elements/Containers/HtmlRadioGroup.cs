@@ -55,19 +55,19 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlRadioGroup(string baseId, bool verbose, bool isPostBack)
-            : base(verbose ? baseId : "")
+        public HtmlRadioGroup(string name, bool verbose, bool isPostBack)
+            : base(verbose ? name : "")
         {
-            attrName = new AttrName(baseId);
+            attrName = new AttrName(name);
 
             attributes.Add(attrDisabled = new AttrDisabled());
 
             if (isPostBack)
-                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", baseId)));
+                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", name)));
         }
 
-        public HtmlRadioGroup(string baseId)
-            : this(baseId, false, false)
+        public HtmlRadioGroup(string name)
+            : this(name, false, false)
         {
         }
 

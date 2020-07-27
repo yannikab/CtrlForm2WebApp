@@ -131,8 +131,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
 
         #region Constructors
 
-        public FormSelect(string baseId, string formId, int size)
-            : base(baseId, formId)
+        public FormSelect(string name, int size)
+            : base(name)
         {
             if (size < 1)
                 throw new ArgumentException();
@@ -145,8 +145,8 @@ namespace Form2.Form.Content.Items.Input.Selectors
             actionInvalid = (v) => { return; };
         }
 
-        public FormSelect(string baseId, string formId, bool multiSelect)
-            : base(baseId, formId)
+        public FormSelect(string name, bool multiSelect)
+            : base(name)
         {
             this.isMultiSelect = multiSelect;
             this.size = null;
@@ -154,16 +154,6 @@ namespace Form2.Form.Content.Items.Input.Selectors
 
             validator = (v) => { return null; };
             actionInvalid = (v) => { return; };
-        }
-
-        public FormSelect(string baseId, int size)
-            : this(baseId, baseId.ToLower(), size)
-        {
-        }
-
-        public FormSelect(string baseId, bool multiSelect)
-            : this(baseId, baseId.ToLower(), multiSelect)
-        {
         }
 
         #endregion
@@ -175,7 +165,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(string.Format("{0} (BaseId: '{1}', Value: [", GetType().Name, BaseId));
+            sb.Append(string.Format("{0} (Name: '{1}', Value: [", GetType().Name, Name));
 
             int i = 0;
             foreach (var c in Content.Where(c => c.IsSelected))

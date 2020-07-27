@@ -37,7 +37,7 @@ namespace Form2.Html.Content.Elements.Input
         #region Constructors
 
         public HtmlRadioButton(string name, string value)
-            : base(string.Format("{0}{1}", name, value), name, "radio")
+            : base(string.Format("{0}{1}", name, value), "radio")
         {
             attributes.Add(attrChecked = new AttrChecked());
         }

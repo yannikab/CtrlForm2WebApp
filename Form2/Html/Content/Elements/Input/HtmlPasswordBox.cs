@@ -34,8 +34,8 @@ namespace Form2.Html.Content.Elements.Input
 
         #region Constructors
 
-        public HtmlPasswordBox(string baseId)
-            : base(baseId, "password")
+        public HtmlPasswordBox(string name)
+            : base(name, "password")
         {
             attributes.Add(attrPlaceholder = new AttrPlaceholder());
         }

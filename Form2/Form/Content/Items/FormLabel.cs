@@ -33,15 +33,10 @@ namespace Form2.Form.Content.Items
 
         #region Constructors
 
-        public FormLabel(string baseId, string formId)
-            : base(baseId, formId)
+        public FormLabel(string name)
+            : base(name)
         {
             Content = "";
-        }
-
-        public FormLabel(string baseId)
-            : this(baseId, baseId.ToLower())
-        {
         }
 
         #endregion
@@ -51,7 +46,7 @@ namespace Form2.Form.Content.Items
 
         public override string ToString()
         {
-            return string.Format("{0} (BaseId: '{1}', Value: '{2}')", GetType().Name, BaseId, Value);
+            return string.Format("{0} (Name: '{1}', Value: '{2}')", GetType().Name, Name, Value);
         }
 
         #endregion

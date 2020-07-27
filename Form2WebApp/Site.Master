@@ -61,6 +61,7 @@
                         <%--<li><a runat="server" href="~/Pages/ContactForm2Student">Μαθητές</a></li>--%>
                         <li><a runat="server" href="~/Pages/ContactStudent">Μαθητές</a></li>
                         <li><a runat="server" href="~/Pages/ContactAdult">Ενήλικοι</a></li>
+                        <li><a runat="server" href="~/Pages/ContactMinetta">Minetta</a></li>
                     </ul>
                 </div>
             </div>

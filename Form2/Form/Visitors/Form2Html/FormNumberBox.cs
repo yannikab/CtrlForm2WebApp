@@ -18,28 +18,29 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormNumberBox formNumberBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formNumberBox.BaseId : "");
-            htmlDiv.Class.Add("form-numberbox");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formNumberBox.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formNumberBox.Path : "");
+            htmlDiv.Class.Add("formNumberBox");
+            if (!string.IsNullOrWhiteSpace(formNumberBox.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formNumberBox.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formNumberBox.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formNumberBox.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (formNumberBox.HasValue)
-                    htmlDiv.Class.Add(formNumberBox.IsValid ? "form-valid" : "form-invalid");
+                    htmlDiv.Class.Add(formNumberBox.IsValid ? "formValid" : "formInvalid");
                 else
-                    htmlDiv.Class.Add(formNumberBox.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formNumberBox.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formNumberBox.IsHidden;
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlTextBox htmlTextBox = new HtmlTextBox(formNumberBox.BaseId);
+            HtmlTextBox htmlTextBox = new HtmlTextBox(formNumberBox.Path);
             htmlTextBox.Disabled.Value = formNumberBox.IsDisabled;
             htmlTextBox.ReadOnly.Value = formNumberBox.IsReadOnly || !formNumberBox.IsDirectInput;
             htmlTextBox.Value.Value = formNumberBox.HasValue ? formNumberBox.Value.ToString() : "";
@@ -58,9 +59,9 @@ namespace Form2.Form.Visitors
 
             htmlTextBox.Placeholder.Value = placeholder;
 
-            htmlTextBox.Change.Value = string.Format("__doPostBack('{0}', '');", formNumberBox.BaseId);
+            htmlTextBox.Change.Value = string.Format("__doPostBack('{0}', '');", formNumberBox.Path);
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formNumberBox.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formNumberBox.Path : "");
             htmlLabel.For.Value = htmlTextBox.Id.Value;
             htmlLabel.Add(new HtmlText(formNumberBox.Label));
 
@@ -144,8 +145,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formNumberBox.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formNumberBox.Path, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlTextBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);
@@ -155,11 +156,11 @@ namespace Form2.Form.Visitors
         {
             HtmlDiv htmlDivNumberBox = new HtmlDiv("");
 
-            string btnDecrName = verbose ? string.Format("{0}{1}", "Decr", formNumberBox.BaseId) : "";
-            string btnIncrName = verbose ? string.Format("{0}{1}", "Incr", formNumberBox.BaseId) : "";
+            string btnDecrName = verbose ? string.Format("{0}{1}", "Decr", formNumberBox.Path) : "";
+            string btnIncrName = verbose ? string.Format("{0}{1}", "Incr", formNumberBox.Path) : "";
 
-            string btnDecrOnClick = string.Format("__doPostBack('{0}', 'Decr');", formNumberBox.BaseId);
-            string btnIncrOnClick = string.Format("__doPostBack('{0}', 'Incr');", formNumberBox.BaseId);
+            string btnDecrOnClick = string.Format("__doPostBack('{0}', 'Decr');", formNumberBox.Path);
+            string btnIncrOnClick = string.Format("__doPostBack('{0}', 'Incr');", formNumberBox.Path);
 
             HtmlButton htmlButtonDecr = new HtmlButton(btnDecrName, btnDecrOnClick);
             HtmlButton htmlButtonIncr = new HtmlButton(btnIncrName, btnIncrOnClick);

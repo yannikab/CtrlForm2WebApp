@@ -10,8 +10,8 @@ namespace Form2.Form.Content
 {
     public abstract class FormItem : FormContent
     {
-        public FormItem(string baseId, string formId)
-            : base(baseId, formId)
+        public FormItem(string name)
+            : base(name)
         {
         }
     }

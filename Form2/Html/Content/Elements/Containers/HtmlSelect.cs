@@ -71,10 +71,10 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlSelect(string baseId, int size, bool isPostBack)
-            : base(baseId)
+        public HtmlSelect(string name, int size, bool isPostBack)
+            : base(name)
         {
-            attributes.Add(attrName = new AttrName(baseId));
+            attributes.Add(attrName = new AttrName(name));
 
             attributes.Add(attrDisabled = new AttrDisabled());
 
@@ -86,13 +86,13 @@ namespace Form2.Html.Content.Elements.Containers
                 attributes.Add(attrSize = new AttrSize(size));
 
             if (isPostBack)
-                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", baseId)));
+                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", name)));
         }
 
-        public HtmlSelect(string baseId, bool multiple, bool isPostBack)
-            : base(baseId)
+        public HtmlSelect(string name, bool multiple, bool isPostBack)
+            : base(name)
         {
-            attributes.Add(attrName = new AttrName(baseId));
+            attributes.Add(attrName = new AttrName(name));
 
             attributes.Add(attrDisabled = new AttrDisabled());
 
@@ -101,16 +101,16 @@ namespace Form2.Html.Content.Elements.Containers
             attributes.Add(attrSize = new AttrSize());
 
             if (isPostBack)
-                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", baseId)));
+                events.Add(eventChange = new EventChange(string.Format("__doPostBack('{0}', '');", name)));
         }
 
-        public HtmlSelect(string baseId, bool isPostBack)
-            : this(baseId, false, isPostBack)
+        public HtmlSelect(string name, bool isPostBack)
+            : this(name, false, isPostBack)
         {
         }
 
-        public HtmlSelect(string baseId)
-            : this(baseId, false)
+        public HtmlSelect(string name)
+            : this(name, false)
         {
         }
 

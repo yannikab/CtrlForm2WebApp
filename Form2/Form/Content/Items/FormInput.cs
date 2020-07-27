@@ -62,7 +62,7 @@ namespace Form2.Form.Content.Items
                 if (orderElements != OrderElements.NotSet)
                     return orderElements;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return OrderElements.NotSet;
@@ -126,7 +126,7 @@ namespace Form2.Form.Content.Items
                 if (disabled.HasValue)
                     return disabled.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return false;
@@ -160,7 +160,7 @@ namespace Form2.Form.Content.Items
                 if (required.HasValue)
                     return required.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return false;
@@ -194,7 +194,7 @@ namespace Form2.Form.Content.Items
                 if (requiredMark != null)
                     return requiredMark;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return null;
@@ -219,7 +219,7 @@ namespace Form2.Form.Content.Items
                 if (requiredInLabel.HasValue)
                     return requiredInLabel.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -240,7 +240,7 @@ namespace Form2.Form.Content.Items
                 if (requiredInPlaceholder.HasValue)
                     return requiredInPlaceholder.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -256,7 +256,7 @@ namespace Form2.Form.Content.Items
                 if (optionalMark != null)
                     return optionalMark;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return null;
@@ -281,7 +281,7 @@ namespace Form2.Form.Content.Items
                 if (optionalInLabel.HasValue)
                     return optionalInLabel.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -302,7 +302,7 @@ namespace Form2.Form.Content.Items
                 if (optionalInPlaceholder.HasValue)
                     return optionalInPlaceholder.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return true;
@@ -316,10 +316,10 @@ namespace Form2.Form.Content.Items
 
         #region Constructors
 
-        public FormInput(string baseId, string formId, string label)
-            : base(baseId, formId)
+        public FormInput(string name)
+            : base(name)
         {
-            this.label = label;
+            label = null;
 
             disabled = null;
 
@@ -331,11 +331,6 @@ namespace Form2.Form.Content.Items
             useLastValidationMessage = false;
 
             orderElements = OrderElements.NotSet;
-        }
-
-        public FormInput(string baseId, string formId)
-            : this(baseId, formId, "")
-        {
         }
 
         #endregion

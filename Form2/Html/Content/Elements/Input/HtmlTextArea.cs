@@ -54,8 +54,8 @@ namespace Form2.Html.Content.Elements.Input
 
         #region Constructors
 
-        public HtmlTextArea(string baseId)
-            : base(baseId, null)
+        public HtmlTextArea(string name)
+            : base(name, null)
         {
             attributes.Add(attrPlaceholder = new AttrPlaceholder());
 

@@ -18,21 +18,22 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormSelect formSelect, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formSelect.BaseId : "");
-            htmlDiv.Class.Add("form-select");
-            htmlDiv.Class.Add(string.Format("{0}-{1}", "form-id", formSelect.FormId));
-            htmlDiv.Class.Add("form-field");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formSelect.Path : "");
+            htmlDiv.Class.Add("formSelect");
+            if (!string.IsNullOrWhiteSpace(formSelect.Path))
+                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formSelect.Path));
+            htmlDiv.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formSelect.IsRequired ? "form-required" : "form-optional");
+                htmlDiv.Class.Add(formSelect.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (!formSelect.IsRequired || formSelect.HasValue)
-                    htmlDiv.Class.Add("form-valid");
+                    htmlDiv.Class.Add("formValid");
                 else
-                    htmlDiv.Class.Add(formSelect.IsRequired ? "form-not-entered" : "form-optional");
+                    htmlDiv.Class.Add(formSelect.IsRequired ? "formNotEntered" : "formOptional");
             }
 
             htmlDiv.Hidden.Value = formSelect.IsHidden;
@@ -40,11 +41,11 @@ namespace Form2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlSelect htmlSelect = formSelect.Size.HasValue ?
-                new HtmlSelect(formSelect.BaseId, formSelect.Size.Value, formSelect.IsPostBack) :
-                new HtmlSelect(formSelect.BaseId, formSelect.IsMultiSelect, formSelect.IsPostBack);
+                new HtmlSelect(formSelect.Path, formSelect.Size.Value, formSelect.IsPostBack) :
+                new HtmlSelect(formSelect.Path, formSelect.IsMultiSelect, formSelect.IsPostBack);
             htmlSelect.Disabled.Value = formSelect.IsDisabled;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formSelect.BaseId : "");
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formSelect.Path : "");
             htmlLabel.For.Value = htmlSelect.Id.Value;
             htmlLabel.Add(new HtmlText(formSelect.Label));
 
@@ -129,8 +130,8 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formSelect.BaseId, "Message") : "");
-            htmlLabelMessage.Class.Add("form-validation-message");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formSelect.Path, "Message") : "");
+            htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlSelect.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
             htmlDiv.Add(htmlLabelMessage);

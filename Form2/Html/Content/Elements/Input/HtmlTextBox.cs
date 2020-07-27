@@ -42,8 +42,8 @@ namespace Form2.Html.Content.Elements.Input
 
         #region Constructors
 
-        public HtmlTextBox(string baseId)
-            : base(baseId, "text")
+        public HtmlTextBox(string name)
+            : base(name, "text")
         {
             attributes.Add(attrPlaceholder = new AttrPlaceholder());
 

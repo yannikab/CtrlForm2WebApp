@@ -55,8 +55,8 @@ namespace Form2.Html.Content.Elements.Input
 
         #region Constructors
 
-        public HtmlDatePicker(string baseId)
-            : base(baseId, "text")
+        public HtmlDatePicker(string name)
+            : base(name, "text")
         {
             attributes.Add(attrPlaceholder = new AttrPlaceholder());
             attributes.Add(attrDataDateFormat = new AttrDataDateFormat());

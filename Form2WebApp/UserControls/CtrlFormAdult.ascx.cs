@@ -106,7 +106,7 @@ namespace Form2WebApp.UserControls
 
             protected override void CreateForm()
             {
-                OpenSection("Container");
+                OpenGroup("Container");
 
                 #region Defaults
 
@@ -258,7 +258,7 @@ namespace Form2WebApp.UserControls
 
                 #endregion
 
-                CloseSection("Container");
+                CloseGroup("Container");
             }
 
             #endregion
@@ -329,7 +329,7 @@ namespace Form2WebApp.UserControls
 
             protected override void PerformAction()
             {
-                log.Info(new FormLogVisitor(FormSection, resYes, resNo).Text);
+                log.Info(new FormLogVisitor(FormGroup, resYes, resNo, true, true).Text);
 
                 tblRegisterAdult tra = new tblRegisterAdult()
                 {

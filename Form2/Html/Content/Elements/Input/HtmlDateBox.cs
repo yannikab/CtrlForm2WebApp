@@ -20,8 +20,8 @@ namespace Form2.Html.Content.Elements.Input
 
         #region Constructors
 
-        public HtmlDateBox(string baseId)
-            : base(baseId, "date")
+        public HtmlDateBox(string name)
+            : base(name, "date")
         {
         }
 

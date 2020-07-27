@@ -39,8 +39,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlLabel(string baseId)
-            : base(baseId)
+        public HtmlLabel(string name)
+            : base(name)
         {
             attributes.Add(attrFor = new AttrFor());
         }

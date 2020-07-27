@@ -64,8 +64,8 @@ namespace Form2.Html.Content.Elements
 
         #region Constructors
 
-        public HtmlInput(string baseId, string name, string type)
-            : base(baseId)
+        public HtmlInput(string name, string type)
+            : base(name)
         {
             attributes.Add(attrReadOnly = new AttrReadOnly());
 
@@ -76,11 +76,6 @@ namespace Form2.Html.Content.Elements
             attributes.Add(attrName = new AttrName(name));
 
             attributes.Add(attrValue = new AttrValue());
-        }
-
-        public HtmlInput(string baseId, string type)
-            : this(baseId, baseId, type)
-        {
         }
 
         #endregion

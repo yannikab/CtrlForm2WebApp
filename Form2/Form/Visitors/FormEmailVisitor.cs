@@ -10,6 +10,7 @@ using Form2.Form.Content;
 using Form2.Form.Content.Items;
 using Form2.Form.Content.Items.Input;
 using Form2.Form.Content.Items.Input.Selectors;
+using Form2.Form.Interfaces;
 
 namespace Form2.Form.Visitors
 {
@@ -27,6 +28,12 @@ namespace Form2.Form.Visitors
         private readonly string yes;
 
         private readonly string no;
+
+        protected readonly bool showMarks;
+
+        protected readonly bool showRequired;
+
+        private bool firstTitle;
 
         #endregion
 
@@ -63,9 +70,28 @@ namespace Form2.Form.Visitors
                 throw new NotImplementedException();
         }
 
+        protected virtual string Mark(IRequired formItem)
+        {
+            if (showMarks && formItem.IsRequired && showRequired)
+                return formItem.RequiredMark;
+            else if (showMarks && !formItem.IsRequired && !showRequired)
+                return formItem.OptionalMark;
+            else
+                return "";
+        }
+
         public virtual void Visit(FormTitle formTitle)
         {
-            subject = formTitle.Value.Trim();
+            if (firstTitle)
+            {
+                subject = formTitle.Value.Trim();
+
+                firstTitle = false;
+            }
+            else
+            {
+                sb.AppendLine(string.Format("<br><b>{0}</b><br><br>", formTitle.Value.Trim()));
+            }
         }
 
         public virtual void Visit(FormLabel formLabel)
@@ -76,76 +102,49 @@ namespace Form2.Form.Visitors
         {
         }
 
-        public virtual void Visit(FormSection formSection)
+        public virtual void Visit(FormGroup formGroup)
         {
-            if (formSection.IsHidden)
-                return;
-
-            foreach (var i in formSection.Contents)
-                Visit(i);
+            foreach (var c in formGroup.Contents.Where(c => !c.IsHidden))
+                Visit(c);
         }
 
         public virtual void Visit(FormTextBox formTextBox)
         {
-            if (formTextBox.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formTextBox.Label, formTextBox.Value.Trim()));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formTextBox.Label, Mark(formTextBox), formTextBox.Value));
         }
 
         public virtual void Visit(FormTextArea formTextArea)
         {
-            if (formTextArea.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formTextArea.Label, formTextArea.Value.Trim()));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formTextArea.Label, Mark(formTextArea), formTextArea.Value));
         }
 
         public virtual void Visit(FormPasswordBox formPasswordBox)
         {
-            if (formPasswordBox.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formPasswordBox.Label, formPasswordBox.Value.Trim()));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formPasswordBox.Label, Mark(formPasswordBox), formPasswordBox.Value));
         }
 
         public virtual void Visit(FormDateBox formDateBox)
         {
-            if (formDateBox.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDateBox.Label, formDateBox.Value));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formDateBox.Label, Mark(formDateBox), formDateBox.Value));
         }
 
         public virtual void Visit(FormDatePicker formDatePicker)
         {
-            if (formDatePicker.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formDatePicker.Label, formDatePicker.HasValue ? formDatePicker.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : ""));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formDatePicker.Label, Mark(formDatePicker), formDatePicker.HasValue ? formDatePicker.Value.ToString(formDatePicker.DateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture) : ""));
         }
 
         public virtual void Visit(FormCheckBox formCheckBox)
         {
-            if (formCheckBox.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formCheckBox.Label, formCheckBox.Value ? yes : no));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formCheckBox.Label, Mark(formCheckBox), formCheckBox.Value ? yes : no));
         }
 
         public virtual void Visit(FormNumberBox formNumberBox)
         {
-            if (formNumberBox.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formNumberBox.Label, formNumberBox.Value));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formNumberBox.Label, Mark(formNumberBox), formNumberBox.Value));
         }
 
         public virtual void Visit(FormSelect formSelect)
         {
-            if (formSelect.IsHidden)
-                return;
-
             StringBuilder sbValues = new StringBuilder();
 
             foreach (var v in formSelect.Value)
@@ -156,15 +155,12 @@ namespace Form2.Form.Visitors
             if (value.EndsWith(", "))
                 value = value.Substring(0, value.Length - 2);
 
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formSelect.Label, value));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formSelect.Label, Mark(formSelect), value));
         }
 
         public virtual void Visit(FormRadioGroup formRadioGroup)
         {
-            if (formRadioGroup.IsHidden)
-                return;
-
-            sb.AppendLine(string.Format("<b>{0}:</b> {1}<br /><br />", formRadioGroup.Label, formRadioGroup.Value != null ? formRadioGroup.Value.Text : ""));
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formRadioGroup.Label, Mark(formRadioGroup), formRadioGroup.Value != null ? formRadioGroup.Value.Text : ""));
         }
 
         #endregion
@@ -172,12 +168,17 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        public FormEmailVisitor(FormSection formSection, string yes, string no)
+        public FormEmailVisitor(FormGroup formGroup, string yes, string no, bool showMarks, bool showRequired)
         {
             this.yes = yes;
             this.no = no;
+            this.showMarks = showMarks;
+            this.showRequired = showRequired;
 
-            Visit(formSection);
+            firstTitle = true;
+
+            if (!formGroup.IsHidden)
+                Visit(formGroup);
         }
 
         #endregion

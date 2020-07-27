@@ -109,7 +109,7 @@ namespace Form2.Form.Content.Items.Input
                 if (readOnly.HasValue)
                     return readOnly.Value;
 
-                FormSection container = Container as FormSection;
+                FormGroup container = Container as FormGroup;
 
                 if (container == null)
                     return false;
@@ -165,8 +165,8 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormDatePicker(string baseId, string formId, string dateFormat)
-            : base(baseId, formId)
+        public FormDatePicker(string name, string dateFormat)
+            : base(name)
         {
             Content = "";
             Placeholder = "";
@@ -180,11 +180,6 @@ namespace Form2.Form.Content.Items.Input
             actionInvalid = (v) => { return; };
         }
 
-        public FormDatePicker(string baseId, string dateFormat)
-            : this(baseId, baseId.ToLower(), dateFormat)
-        {
-        }
-
         #endregion
 
 
@@ -192,7 +187,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0} (BaseId: '{1}', Label: '{2}', Value: {3})", GetType().Name, BaseId, Label, Value);
+            return string.Format("{0} (Name: '{1}', Label: '{2}', Value: {3})", GetType().Name, Name, Label, Value);
         }
 
         #endregion
