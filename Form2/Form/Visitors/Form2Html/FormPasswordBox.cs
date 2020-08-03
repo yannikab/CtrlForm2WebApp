@@ -68,14 +68,14 @@ namespace Form2.Form.Visitors
                 case OrderElements.LabelMarkInput:
 
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formPasswordBox));
+                    AddMark(formPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlPasswordBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    htmlDiv.Add(Mark(formPasswordBox));
+                    AddMark(formPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlPasswordBox);
 
@@ -85,14 +85,14 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlPasswordBox);
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formPasswordBox));
+                    AddMark(formPasswordBox, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlPasswordBox);
-                    htmlDiv.Add(Mark(formPasswordBox));
+                    AddMark(formPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlLabel);
 
                     break;
@@ -101,13 +101,13 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlPasswordBox);
-                    htmlDiv.Add(Mark(formPasswordBox));
+                    AddMark(formPasswordBox, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    htmlDiv.Add(Mark(formPasswordBox));
+                    AddMark(formPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlPasswordBox);
                     htmlDiv.Add(htmlLabel);
 

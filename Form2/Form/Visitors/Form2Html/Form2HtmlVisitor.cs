@@ -58,39 +58,37 @@ namespace Form2.Form.Visitors
                 throw new NotImplementedException();
         }
 
-        private HtmlLabel Mark(IRequired formItem)
+        void AddMark(IRequired formItem, HtmlContainer htmlContainer)
         {
-            HtmlLabel htmlLabel = null;
-
             if (formItem is IHidden && (formItem as IHidden).IsHidden)
-                return htmlLabel;
+                return;
 
             if (formItem is IDisabled && (formItem as IDisabled).IsDisabled)
-                return htmlLabel;
+                return;
 
             if (formItem is IReadOnly && (formItem as IReadOnly).IsReadOnly)
-                return htmlLabel;
+                return;
 
             if (formItem.IsRequired)
             {
                 if (formItem.IsRequiredInLabel && !string.IsNullOrWhiteSpace(formItem.RequiredMark))
                 {
-                    htmlLabel = new HtmlLabel("");
+                    HtmlLabel htmlLabel = new HtmlLabel("");
                     htmlLabel.Class.Add("formMarkRequired");
                     htmlLabel.Add(new HtmlText(formItem.RequiredMark.Replace(" ", "&nbsp;")));
+                    htmlContainer.Add(htmlLabel);
                 }
             }
             else
             {
                 if (formItem.IsOptionalInLabel && !string.IsNullOrWhiteSpace(formItem.OptionalMark))
                 {
-                    htmlLabel = new HtmlLabel("");
+                    HtmlLabel htmlLabel = new HtmlLabel("");
                     htmlLabel.Class.Add("formMarkOptional");
                     htmlLabel.Add(new HtmlText(formItem.OptionalMark.Replace(" ", "&nbsp;")));
+                    htmlContainer.Add(htmlLabel);
                 }
             }
-
-            return htmlLabel;
         }
 
         #endregion

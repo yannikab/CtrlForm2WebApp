@@ -161,7 +161,7 @@ namespace Form2.Form.Content.Items.Input
         {
             Content = "";
             placeholder = "";
-            Icon = FormIcon.NotSet;
+            icon = FormIcon.NotSet;;
 
             readOnly = null;
 

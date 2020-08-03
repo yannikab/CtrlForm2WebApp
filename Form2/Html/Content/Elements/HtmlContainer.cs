@@ -28,27 +28,110 @@ namespace Form2.Html.Content.Elements
 
         #region Methods
 
-        public void Add(HtmlContent content)
+        public void Add(HtmlContent c)
         {
-            if (content == null)
+            if (c == null)
+                throw new ArgumentNullException();
+
+            if (c.Container == null)
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
+
+                contents.Add(c);
+
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                c.Container = this;
+            }
+            else if (ReferenceEquals(c.Container, this))
+            {
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
                 return;
+            }
+            else
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
 
-            if (contents.Contains(content))
-                return;
+                if (!c.Container.Remove(c))
+                    throw new ApplicationException();
+                
+                contents.Add(c);
 
-            contents.Add(content);
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
 
-            content.Container = this;
+                c.Container = this;
+            }
         }
 
-        public bool Remove(HtmlContent content)
+        public void Insert(int index, HtmlContent c)
         {
-            if (!contents.Contains(content))
+            if (index < 0 || index > contents.Count)
+                throw new ArgumentOutOfRangeException();
+
+            if (c == null)
+                throw new ArgumentNullException();
+
+            if (c.Container == null)
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
+
+                contents.Insert(index, c);
+
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                c.Container = this;
+            }
+            else if (ReferenceEquals(c.Container, this))
+            {
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                return;
+            }
+            else
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
+
+                if (!c.Container.Remove(c))
+                    throw new ApplicationException();
+
+                contents.Insert(index, c);
+
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                c.Container = this;
+            }
+        }
+
+        public bool Remove(HtmlContent c)
+        {
+            if (c == null)
+                throw new ArgumentNullException();
+
+            if (!contents.Contains(c))
+            {
+                if (c.Container == this)
+                    throw new ApplicationException();
+
                 return false;
+            }
 
-            content.Container = null;
+            bool removed = contents.Remove(c);
 
-            return contents.Remove(content);
+            if (removed)
+                c.Container = null;
+
+            return removed;
         }
 
         #endregion

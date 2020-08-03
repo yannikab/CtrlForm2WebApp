@@ -21,8 +21,6 @@ namespace Form2.Form.Content.Items.Input
 
         private OrderNumberBox orderNumberBox;
 
-        private FormIcon icon;
-
         private string decrText;
 
         private string incrText;
@@ -56,12 +54,6 @@ namespace Form2.Form.Content.Items.Input
         {
             get { return orderNumberBox; }
             set { orderNumberBox = value; }
-        }
-
-        public FormIcon Icon
-        {
-            get { return icon; }
-            set { icon = value; }
         }
 
         public string DecrText
@@ -288,12 +280,12 @@ namespace Form2.Form.Content.Items.Input
         {
             Content = "";
             placeholder = "";
+
             min = null;
             max = null;
             step = 1;
 
             orderNumberBox = OrderNumberBox.NumberDecrIncr;
-            icon = FormIcon.NotSet;
             decrText = "▼";
             incrText = "▲";
 

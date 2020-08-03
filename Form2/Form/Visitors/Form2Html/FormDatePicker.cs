@@ -60,14 +60,14 @@ namespace Form2.Form.Visitors
                 case OrderElements.LabelMarkInput:
 
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formDatePicker));
+                    AddMark(formDatePicker, htmlDiv);
                     htmlDiv.Add(htmlDatePicker);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    htmlDiv.Add(Mark(formDatePicker));
+                    AddMark(formDatePicker, htmlDiv);
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDatePicker);
 
@@ -77,14 +77,14 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlDatePicker);
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formDatePicker));
+                    AddMark(formDatePicker, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlDatePicker);
-                    htmlDiv.Add(Mark(formDatePicker));
+                    AddMark(formDatePicker, htmlDiv);
                     htmlDiv.Add(htmlLabel);
 
                     break;
@@ -93,13 +93,13 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlDatePicker);
-                    htmlDiv.Add(Mark(formDatePicker));
+                    AddMark(formDatePicker, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    htmlDiv.Add(Mark(formDatePicker));
+                    AddMark(formDatePicker, htmlDiv);
                     htmlDiv.Add(htmlDatePicker);
                     htmlDiv.Add(htmlLabel);
 

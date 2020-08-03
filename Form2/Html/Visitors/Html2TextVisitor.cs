@@ -87,6 +87,9 @@ namespace Form2.Html.Visitors
 
         public void Visit(HtmlItalic h)
         {
+            if (h.Container is HtmlDiv)
+                sb.Append(Tabs(h.Depth));
+            
             sb.Append(string.Format("<{0}", h.Tag));
 
             foreach (var a in h.Attributes.Where(a => a.IsSet))
@@ -98,6 +101,9 @@ namespace Form2.Html.Visitors
                 Visit(c);
 
             sb.Append(string.Format("</{0}>", h.Tag));
+
+            if (h.Container is HtmlDiv)
+                sb.AppendLine();
         }
 
         public void Visit(HtmlLabel h)

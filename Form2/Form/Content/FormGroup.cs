@@ -79,19 +79,58 @@ namespace Form2.Form.Content
 
         public void Add(FormContent c)
         {
-            if (contents.Contains(c))
+            if (c == null)
+                throw new ArgumentNullException();
+
+            if (c.Container == null)
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
+
+                contents.Add(c);
+
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                c.Container = this;
+            }
+            else if (ReferenceEquals(c.Container, this))
+            {
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
                 return;
+            }
+            else
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
 
-            contents.Add(c);
+                if (!c.Container.Remove(c))
+                    throw new ApplicationException();
 
-            c.Container = this;
+                contents.Add(c);
+
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                c.Container = this;
+            }
         }
 
         public bool Remove(FormContent c)
         {
-            if (!contents.Contains(c))
-                return false;
+            if (c == null)
+                throw new ArgumentNullException();
 
+            if (!contents.Contains(c))
+            {
+                if (c.Container == this)
+                    throw new ApplicationException();
+
+                return false;
+            }
+             
             bool removed = contents.Remove(c);
 
             if (removed)
@@ -188,8 +227,8 @@ namespace Form2.Form.Content
             get
             {
                 if (IsHidden)
-                    return false; 
-                
+                    return false;
+
                 if (IsDisabled)
                     return false;
 
@@ -382,8 +421,8 @@ namespace Form2.Form.Content
             get
             {
                 if (IsHidden)
-                    return false; 
-                
+                    return false;
+
                 if (IsDisabled)
                     return false;
 

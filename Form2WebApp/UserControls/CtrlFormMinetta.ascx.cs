@@ -115,7 +115,7 @@ namespace Form2WebApp.UserControls
 
                 OpenGroup("Contact");
 
-                AddItem(new FormTextBox("Phone") { Label = "Τηλέφωνο Επικοινωνίας" });
+                AddItem(new FormTextBox("Phone") { Label = "Τηλέφωνο Επικοινωνίας", Icon = FormIcon.Phone });
 
                 CloseGroup("Contact");
 
@@ -230,18 +230,18 @@ namespace Form2WebApp.UserControls
 
                 OpenGroup("Contact1");
 
-                AddItem(new FormTextBox("Landline") { Label = "Τηλέφωνο επικοινωνίας σταθερό" });
+                AddItem(new FormTextBox("Landline") { Label = "Τηλέφωνο επικοινωνίας σταθερό", Icon = FormIcon.Phone });
 
-                AddItem(new FormTextBox("Mobile") { Label = "Τηλέφωνο επικοινωνίας κινητό" });
+                AddItem(new FormTextBox("Mobile") { Label = "Τηλέφωνο επικοινωνίας κινητό", Icon = FormIcon.Mobile });
 
                 CloseGroup("Contact1");
 
 
                 OpenGroup("Contact2");
 
-                AddItem(new FormTextBox("Fax") { Label = "FAX", Required = false, OptionalInLabel = true });
+                AddItem(new FormTextBox("Fax") { Label = "FAX", Required = false, OptionalInLabel = true, Icon = FormIcon.Fax });
 
-                AddItem(new FormTextBox("Email") { Label = "E-mail" });
+                AddItem(new FormTextBox("Email") { Label = "E-mail", Icon = FormIcon.Envelope });
 
                 CloseGroup("Contact2");
 
@@ -266,18 +266,18 @@ namespace Form2WebApp.UserControls
 
                 OpenGroup("URL1");
 
-                AddItem(new FormTextBox("Facebook") { Label = "Facebook Url" });
+                AddItem(new FormTextBox("Facebook") { Label = "Facebook Url", Icon = FormIcon.Facebook });
 
-                AddItem(new FormTextBox("Instagram") { Label = "Instagram Url" });
+                AddItem(new FormTextBox("Instagram") { Label = "Instagram Url", Icon = FormIcon.Instagram });
 
                 CloseGroup("URL1");
 
 
                 OpenGroup("URL2");
 
-                AddItem(new FormTextBox("LinkedIn") { Label = "LinkedIn Url" });
+                AddItem(new FormTextBox("LinkedIn") { Label = "LinkedIn Url", Icon = FormIcon.LinkedIn });
 
-                AddItem(new FormTextBox("YouTube") { Label = "YouTube Url" });
+                AddItem(new FormTextBox("YouTube") { Label = "YouTube Url", Icon = FormIcon.YouTube });
 
                 CloseGroup("URL2");
 

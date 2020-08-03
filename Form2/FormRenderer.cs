@@ -32,6 +32,8 @@ namespace Form2
         {
             HtmlContainer htmlContainer = new Form2HtmlVisitor(formModel, verbose).Html;
 
+            new FormIconVisitor(formModel.FormGroup, htmlContainer, false);
+
             return new Html2TextVisitor(htmlContainer).Text;
         }
     }

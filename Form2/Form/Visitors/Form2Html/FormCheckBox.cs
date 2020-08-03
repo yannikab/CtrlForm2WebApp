@@ -53,14 +53,14 @@ namespace Form2.Form.Visitors
                 case OrderElements.LabelMarkInput:
 
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formCheckBox));
+                    AddMark(formCheckBox, htmlDiv);
                     htmlDiv.Add(htmlCheckBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    htmlDiv.Add(Mark(formCheckBox));
+                    AddMark(formCheckBox, htmlDiv);
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlCheckBox);
 
@@ -70,14 +70,14 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlCheckBox);
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formCheckBox));
+                    AddMark(formCheckBox, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlCheckBox);
-                    htmlDiv.Add(Mark(formCheckBox));
+                    AddMark(formCheckBox, htmlDiv);
                     htmlDiv.Add(htmlLabel);
 
                     break;
@@ -86,13 +86,13 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlCheckBox);
-                    htmlDiv.Add(Mark(formCheckBox));
+                    AddMark(formCheckBox, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    htmlDiv.Add(Mark(formCheckBox));
+                    AddMark(formCheckBox, htmlDiv);
                     htmlDiv.Add(htmlCheckBox);
                     htmlDiv.Add(htmlLabel);
 

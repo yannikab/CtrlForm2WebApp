@@ -169,8 +169,8 @@ namespace Form2.Form.Content.Items.Input
             : base(name)
         {
             Content = "";
-            Placeholder = "";
-            Icon = FormIcon.Calendar;
+            placeholder = "";
+            icon = FormIcon.Calendar;
 
             DateFormat = dateFormat;
 

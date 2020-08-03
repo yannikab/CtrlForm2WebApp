@@ -58,6 +58,7 @@
     <Compile Include="Form\Selectables\FormRadioButton.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormGroup.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormNumberBox.cs" />
+    <Compile Include="Form\Visitors\FormIconVisitor.cs" />
     <Compile Include="Form\Visitors\FormEmailVisitor.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormDateBox.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormDatePicker.cs" />

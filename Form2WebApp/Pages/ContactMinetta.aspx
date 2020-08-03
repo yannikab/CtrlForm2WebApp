@@ -1,4 +1,4 @@
-﻿[<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ContactMinetta.aspx.cs" Inherits="ContactMinetta" %>
+﻿[<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ContactMinetta.aspx.cs" Inherits="ContactMinetta" EnableViewState="false" %>
 
 <%@ Register Src="~/UserControls/CtrlFormMinetta.ascx" TagPrefix="uc1" TagName="CtrlFormMinetta" %>
 
@@ -17,6 +17,7 @@
     <link href="/assetsClever/css/style.css" rel="stylesheet" />
     <link href="/assetsClever/css/custom.css" rel="stylesheet" />
     <link href="/assets/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
 </head>
 
 <body>

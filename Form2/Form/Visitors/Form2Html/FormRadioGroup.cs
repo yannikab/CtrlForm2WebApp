@@ -52,14 +52,14 @@ namespace Form2.Form.Visitors
                 case OrderElements.LabelMarkInput:
 
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formRadioGroup));
+                    AddMark(formRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlRadioGroup);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    htmlDiv.Add(Mark(formRadioGroup));
+                    AddMark(formRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlRadioGroup);
 
@@ -69,14 +69,14 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlRadioGroup);
                     htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(Mark(formRadioGroup));
+                    AddMark(formRadioGroup, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlRadioGroup);
-                    htmlDiv.Add(Mark(formRadioGroup));
+                    AddMark(formRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlLabel);
 
                     break;
@@ -85,13 +85,13 @@ namespace Form2.Form.Visitors
 
                     htmlDiv.Add(htmlLabel);
                     htmlDiv.Add(htmlRadioGroup);
-                    htmlDiv.Add(Mark(formRadioGroup));
+                    AddMark(formRadioGroup, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    htmlDiv.Add(Mark(formRadioGroup));
+                    AddMark(formRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlRadioGroup);
                     htmlDiv.Add(htmlLabel);
 

@@ -13,6 +13,12 @@ namespace Form2.Form.Enums
         Lock,
         Calendar,
         Phone,
-        Mobile
+        Mobile,
+        Fax,
+        Facebook,
+        Instagram,
+        Twitter,
+        LinkedIn,
+        YouTube
     }
 }
