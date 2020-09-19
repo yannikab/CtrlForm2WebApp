@@ -48,7 +48,7 @@
     <Compile Include="Form\Content\Items\Input\FormDateBox.cs" />
     <Compile Include="Form\Content\Items\Input\FormDatePicker.cs" />
     <Compile Include="Form\Content\Items\Input\FormPasswordBox.cs" />
-    <Compile Include="Form\Content\Items\Input\FormNumberBox.cs" />
+    <Compile Include="Form\Content\Items\Input\FormNumberSpinner.cs" />
     <Compile Include="Form\Enums\OrderNumberBox.cs" />
     <Compile Include="Form\Interfaces\IDisabled.cs" />
     <Compile Include="Form\Interfaces\ISubmit.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Form\Interfaces\IReadOnly.cs" />
     <Compile Include="Form\Selectables\FormRadioButton.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormGroup.cs" />
-    <Compile Include="Form\Visitors\Form2Html\FormNumberBox.cs" />
+    <Compile Include="Form\Visitors\Form2Html\FormNumberSpinner.cs" />
     <Compile Include="Form\Visitors\FormIconVisitor.cs" />
     <Compile Include="Form\Visitors\FormEmailVisitor.cs" />
     <Compile Include="Form\Visitors\Form2Html\FormDateBox.cs" />

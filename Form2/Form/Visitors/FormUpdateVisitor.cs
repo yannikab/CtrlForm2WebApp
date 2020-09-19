@@ -100,23 +100,23 @@ namespace Form2.Form.Visitors
             formCheckBox.Content = values[formCheckBox.Path].ToLower() == "on";
         }
 
-        public virtual void Visit(FormNumberBox formNumberBox)
+        public virtual void Visit(FormNumberSpinner formNumberSpinner)
         {
-            formNumberBox.Content = values[formNumberBox.Path];
+            formNumberSpinner.Content = values[formNumberSpinner.Path];
 
-            if (source != formNumberBox)
+            if (source != formNumberSpinner)
                 return;
 
             switch (argument)
             {
                 case "Incr":
-                    if (formNumberBox.HasValue)
-                        formNumberBox.Content = (formNumberBox.Value + formNumberBox.Step).ToString();
+                    if (formNumberSpinner.HasValue)
+                        formNumberSpinner.Content = (formNumberSpinner.Value + formNumberSpinner.Step).ToString();
                     break;
 
                 case "Decr":
-                    if (formNumberBox.HasValue)
-                        formNumberBox.Content = (formNumberBox.Value - formNumberBox.Step).ToString();
+                    if (formNumberSpinner.HasValue)
+                        formNumberSpinner.Content = (formNumberSpinner.Value - formNumberSpinner.Step).ToString();
                     break;
 
                 default:

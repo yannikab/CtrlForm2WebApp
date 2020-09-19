@@ -326,7 +326,7 @@ namespace Form2WebApp.UserControls
 
                 CloseGroup("RadioGroups");
 
-                AddItem(new FormNumberBox("YearsInService")
+                AddItem(new FormNumberSpinner("YearsInService")
                 {
                     Label = "Years in service",
 
@@ -338,14 +338,14 @@ namespace Form2WebApp.UserControls
 
                     Max = 10,
 
-                    OrderNumberBox = OrderNumberBox.NumberDecrIncr,
+                    OrderNumberSpinner = OrderNumberSpinner.NumberDecrIncr,
 
                     //DecrText = "˅",
                     //IncrText = "˄",
 
                     DecrText = "▼",
                     IncrText = "▲",
-
+                    
                     //DecrText = "🠗",
                     //IncrText = "🠕",
 

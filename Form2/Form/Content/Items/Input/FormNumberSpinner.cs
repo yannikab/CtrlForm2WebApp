@@ -13,13 +13,13 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormNumberBox : FormInput<string, decimal>, IReadOnly, IValidate<decimal>, IPostBack
+    public class FormNumberSpinner : FormInput<string, decimal>, IReadOnly, IValidate<decimal>, IPostBack
     {
         #region Fields
 
         private string placeholder;
 
-        private OrderNumberBox orderNumberBox;
+        private OrderNumberSpinner orderNumberSpinner;
 
         private string decrText;
 
@@ -50,10 +50,10 @@ namespace Form2.Form.Content.Items.Input
             set { placeholder = value; }
         }
 
-        public OrderNumberBox OrderNumberBox
+        public OrderNumberSpinner OrderNumberSpinner
         {
-            get { return orderNumberBox; }
-            set { orderNumberBox = value; }
+            get { return orderNumberSpinner; }
+            set { orderNumberSpinner = value; }
         }
 
         public string DecrText
@@ -275,7 +275,7 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormNumberBox(string name)
+        public FormNumberSpinner(string name)
             : base(name)
         {
             Content = "";
@@ -285,7 +285,7 @@ namespace Form2.Form.Content.Items.Input
             max = null;
             step = 1;
 
-            orderNumberBox = OrderNumberBox.NumberDecrIncr;
+            orderNumberSpinner = OrderNumberSpinner.NumberDecrIncr;
             decrText = "▼";
             incrText = "▲";
 

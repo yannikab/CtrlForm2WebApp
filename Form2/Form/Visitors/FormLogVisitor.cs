@@ -121,9 +121,9 @@ namespace Form2.Form.Visitors
             sb.AppendLine(string.Format("{0}{1}: {2}", formCheckBox.Label, Mark(formCheckBox), formCheckBox.Value ? yes : no));
         }
 
-        public virtual void Visit(FormNumberBox formNumberBox)
+        public virtual void Visit(FormNumberSpinner formNumberSpinner)
         {
-            sb.AppendLine(string.Format("{0}{1}: {2}", formNumberBox.Label, Mark(formNumberBox), formNumberBox.Value));
+            sb.AppendLine(string.Format("{0}{1}: {2}", formNumberSpinner.Label, Mark(formNumberSpinner), formNumberSpinner.Value));
         }
 
         public virtual void Visit(FormSelect formSelect)

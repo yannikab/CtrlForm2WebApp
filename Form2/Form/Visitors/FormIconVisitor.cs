@@ -220,7 +220,7 @@ namespace Form2.Form.Visitors
         {
         }
 
-        public virtual void Visit(FormNumberBox formNumberBox, HtmlContainer htmlContainer)
+        public virtual void Visit(FormNumberSpinner formNumberSpinner, HtmlContainer htmlContainer)
         {
         }
 

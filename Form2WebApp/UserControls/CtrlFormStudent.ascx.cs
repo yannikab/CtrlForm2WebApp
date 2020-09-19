@@ -308,11 +308,11 @@ namespace Form2WebApp.UserControls
 
                 #endregion
 
-                AddItem(new FormNumberBox("NumberBox")
+                AddItem(new FormNumberSpinner("NumberSpinner")
                 {
                     Label = "Number",
 
-                    OrderNumberBox = OrderNumberBox.DecrIncrNumber,
+                    OrderNumberSpinner = OrderNumberSpinner.DecrIncrNumber,
 
                     Content = "0",
 

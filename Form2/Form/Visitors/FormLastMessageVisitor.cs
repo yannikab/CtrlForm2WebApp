@@ -107,12 +107,12 @@ namespace Form2.Form.Visitors
             formCheckBox.UseLastMessage = !submit;
         }
 
-        public virtual void Visit(FormNumberBox formNumberBox)
+        public virtual void Visit(FormNumberSpinner formNumberSpinner)
         {
             if (submit)
-                formNumberBox.LastMessage = formNumberBox.IsRequired && !formNumberBox.HasValue ? formNumberBox.RequiredMessage : formNumberBox.ValidationMessage;
+                formNumberSpinner.LastMessage = formNumberSpinner.IsRequired && !formNumberSpinner.HasValue ? formNumberSpinner.RequiredMessage : formNumberSpinner.ValidationMessage;
 
-            formNumberBox.UseLastMessage = !submit;
+            formNumberSpinner.UseLastMessage = !submit;
         }
 
         public virtual void Visit(FormSelect formSelect)

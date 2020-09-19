@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Form2.Form.Enums
 {
-    public enum OrderNumberBox
+    public enum OrderNumberSpinner
     {
         NotSet,
         NumberDecrIncr,
