@@ -25,7 +25,7 @@ namespace Form2
 
         private readonly Stack<FormGroup> formGroups;
 
-        protected delegate void FormRule(bool isPostBack, FormItem formItem, string argument);
+        protected delegate void FormRule(bool isUpdate, FormItem source, string argument);
 
         private readonly List<FormRule> rules;
 
@@ -87,9 +87,9 @@ namespace Form2
             if (iSubmit != null)
                 throw new ApplicationException();
 
-            IPostBack iPostBack = source as IPostBack;
+            IUpdateForm iUpdateForm = source as IUpdateForm;
 
-            if (iPostBack == null || !iPostBack.IsPostBack)
+            if (iUpdateForm == null || !iUpdateForm.IsUpdateForm)
                 throw new ApplicationException();
 
             new FormUpdateVisitor(formGroup, values, source, argument);
@@ -425,10 +425,10 @@ namespace Form2
 
         protected abstract void AddRules(List<FormRule> rules);
 
-        protected virtual void ApplyRules(bool isPostBack, FormItem formItem, string argument)
+        protected virtual void ApplyRules(bool isUpdate, FormItem source, string argument)
         {
             foreach (var r in rules)
-                r(isPostBack, formItem, argument);
+                r(isUpdate, source, argument);
         }
 
         protected abstract void PerformAction();

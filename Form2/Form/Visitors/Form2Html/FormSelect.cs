@@ -41,8 +41,8 @@ namespace Form2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlSelect htmlSelect = formSelect.Size.HasValue ?
-                new HtmlSelect(formSelect.Path, formSelect.Size.Value, formSelect.IsPostBack) :
-                new HtmlSelect(formSelect.Path, formSelect.IsMultiSelect, formSelect.IsPostBack);
+                new HtmlSelect(formSelect.Path, formSelect.Size.Value, formSelect.IsUpdateForm) :
+                new HtmlSelect(formSelect.Path, formSelect.IsMultiSelect, formSelect.IsUpdateForm);
             htmlSelect.Disabled.Value = formSelect.IsDisabled;
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formSelect.Path : "");

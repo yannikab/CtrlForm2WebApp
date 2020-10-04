@@ -29,28 +29,12 @@ namespace Form2WebApp
 
         void Application_Error(object sender, EventArgs e)
         {
-            Exception exception = Server.GetLastError();
+            for (Exception ex = Server.GetLastError(); ex != null; ex = ex.InnerException)
+                log.Error(ex.Message != null ? ex.Message.Replace(Environment.NewLine, " ") : " - ");
+            
+            log.Error(string.Format("Stack Trace:{0}{1}", Environment.NewLine, Server.GetLastError()));
 
-            if (exception == null)
-                return;
-
-            Exception ex = exception;
-
-            do
-            {
-                if (ex.Message != null)
-                {
-                    if (log != null)
-                        log.Error(ex.Message.Replace("\r\n", " "));
-                }
-
-                ex = ex.InnerException;
-
-            } while (ex != null);
-
-            log.Error(string.Format("Stack Trace:\r\n{0}", exception));
-
-            Server.ClearError();
+            //Server.ClearError();
 
             Response.Redirect("~/Pages/Default.aspx");
         }

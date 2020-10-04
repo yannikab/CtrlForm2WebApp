@@ -22,7 +22,7 @@ namespace Form2.Html.Events
         #region Constructors
 
         public EventChange(string value)
-            : base(value)
+            : base(!string.IsNullOrEmpty(value) ? value : null)
         {
         }
 

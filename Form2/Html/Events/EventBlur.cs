@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Form2.Html.Events
 {
-    public class EventClick : HtmlEvent
+    public class EventBlur : HtmlEvent
     {
         #region Properties
 
         public override string Name
         {
-            get { return "onclick"; }
+            get { return "onblur"; }
         }
 
         #endregion
@@ -21,12 +21,12 @@ namespace Form2.Html.Events
 
         #region Constructors
 
-        public EventClick(string value)
+        public EventBlur(string value)
             : base(!string.IsNullOrEmpty(value) ? value : null)
         {
         }
 
-        public EventClick()
+        public EventBlur()
             : base(null)
         {
         }

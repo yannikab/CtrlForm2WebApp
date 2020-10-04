@@ -61,6 +61,19 @@ namespace Form2.Html.Visitors
             sb.AppendLine(string.Format("</{0}>", h.Tag));
         }
 
+        public void Visit(HtmlScript h)
+        {
+            sb.AppendLine();
+            sb.Append(Tabs(h.Depth));
+            sb.AppendLine(string.Format("<{0}>", h.Tag));
+
+            foreach (var c in h.Contents)
+                Visit(c);
+
+            sb.Append(Tabs(h.Depth));
+            sb.AppendLine(string.Format("</{0}>", h.Tag));
+        }
+
         public void Visit(HtmlSpan h)
         {
             if (h.Container is HtmlDiv)

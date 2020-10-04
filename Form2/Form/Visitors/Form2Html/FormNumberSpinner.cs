@@ -43,7 +43,7 @@ namespace Form2.Form.Visitors
             HtmlTextBox htmlTextBox = new HtmlTextBox(formNumberSpinner.Path);
             htmlTextBox.Disabled.Value = formNumberSpinner.IsDisabled;
             htmlTextBox.ReadOnly.Value = formNumberSpinner.IsReadOnly || !formNumberSpinner.IsDirectInput;
-            htmlTextBox.Value.Value = formNumberSpinner.HasValue ? formNumberSpinner.Value.ToString() : "";
+            htmlTextBox.Value.Value = formNumberSpinner.HasValue ? formNumberSpinner.Value.ToString(string.Format("F{0}", formNumberSpinner.Precision)) : "";
 
             string placeholder = null;
 
@@ -59,13 +59,35 @@ namespace Form2.Form.Visitors
 
             htmlTextBox.Placeholder.Value = placeholder;
 
-            htmlTextBox.Change.Value = string.Format("__doPostBack('{0}', '');", formNumberSpinner.Path);
+            if (formNumberSpinner.IsUpdateForm)
+            {
+                htmlTextBox.Change.Value = string.Format("__doPostBack('{0}', '');", formNumberSpinner.Path);
+            }
+            else
+            {
+                if (formNumberSpinner.HasValue)
+                    htmlTextBox.DataNumber.Value = formNumberSpinner.Value;
+
+                if (formNumberSpinner.Min.HasValue)
+                    htmlTextBox.DataMin.Value = formNumberSpinner.Min.Value;
+
+                if (formNumberSpinner.Max.HasValue)
+                    htmlTextBox.DataMax.Value = formNumberSpinner.Max.Value;
+
+                htmlTextBox.DataStep.Value = formNumberSpinner.Step;
+
+                htmlTextBox.DataPrecision.Value = formNumberSpinner.Precision;
+
+                htmlTextBox.Blur.Value = string.Format("NumberSpinnerBlur('{0}')", htmlTextBox.Id.Value);
+                
+                scriptRegistry.Include("NumberSpinnerBlur");
+            }
 
             HtmlLabel htmlLabel = new HtmlLabel(verbose ? formNumberSpinner.Path : "");
             htmlLabel.For.Value = htmlTextBox.Id.Value;
             htmlLabel.Add(new HtmlText(formNumberSpinner.Label));
 
-            HtmlDiv htmlDivNumberBox = BuildNumberBoxDiv(formNumberSpinner, htmlTextBox);
+            HtmlDiv htmlDivNumberBox = BuildNumberSpinnerDiv(formNumberSpinner, htmlTextBox);
 
             switch (formNumberSpinner.OrderElements)
             {
@@ -152,15 +174,29 @@ namespace Form2.Form.Visitors
             htmlDiv.Add(htmlLabelMessage);
         }
 
-        private HtmlDiv BuildNumberBoxDiv(FormNumberSpinner formNumberSpinner, HtmlTextBox htmlTextBox)
+        private HtmlDiv BuildNumberSpinnerDiv(FormNumberSpinner formNumberSpinner, HtmlTextBox htmlTextBox)
         {
-            HtmlDiv htmlDivNumberBox = new HtmlDiv("");
+            HtmlDiv htmlDivNumberSpinner = new HtmlDiv("");
 
             string btnDecrName = verbose ? string.Format("{0}{1}", "Decr", formNumberSpinner.Path) : "";
             string btnIncrName = verbose ? string.Format("{0}{1}", "Incr", formNumberSpinner.Path) : "";
 
-            string btnDecrOnClick = string.Format("__doPostBack('{0}', 'Decr');", formNumberSpinner.Path);
-            string btnIncrOnClick = string.Format("__doPostBack('{0}', 'Incr');", formNumberSpinner.Path);
+            string btnDecrOnClick = null;
+            string btnIncrOnClick = null;
+
+            if (formNumberSpinner.IsUpdateForm)
+            {
+                btnDecrOnClick = string.Format("__doPostBack('{0}', 'Decr');", formNumberSpinner.Path);
+                btnIncrOnClick = string.Format("__doPostBack('{0}', 'Incr');", formNumberSpinner.Path);
+            }
+            else if (htmlTextBox.Id.IsSet)
+            {
+                btnDecrOnClick = string.Format("NumberSpinnerDecr('{0}');", htmlTextBox.Id.Value);
+                btnIncrOnClick = string.Format("NumberSpinnerIncr('{0}');", htmlTextBox.Id.Value);
+
+                scriptRegistry.Include("NumberSpinnerDecr");
+                scriptRegistry.Include("NumberSpinnerIncr");
+            }
 
             HtmlButton htmlButtonDecr = new HtmlButton(btnDecrName, btnDecrOnClick);
             HtmlButton htmlButtonIncr = new HtmlButton(btnIncrName, btnIncrOnClick);
@@ -168,55 +204,55 @@ namespace Form2.Form.Visitors
             htmlButtonDecr.Value.Value = formNumberSpinner.DecrText;
             htmlButtonIncr.Value.Value = formNumberSpinner.IncrText;
 
-            htmlButtonDecr.Disabled.Value = htmlButtonIncr.Disabled.Value = formNumberSpinner.IsReadOnly || !formNumberSpinner.HasValue;
-            
+            htmlButtonDecr.Disabled.Value = htmlButtonIncr.Disabled.Value = formNumberSpinner.IsReadOnly || (formNumberSpinner.IsUpdateForm && !formNumberSpinner.HasValue);
+
             switch (formNumberSpinner.OrderNumberSpinner)
             {
                 case OrderNumberSpinner.NumberDecrIncr:
 
-                    htmlDivNumberBox.Add(htmlTextBox);
-                    htmlDivNumberBox.Add(htmlButtonDecr);
-                    htmlDivNumberBox.Add(htmlButtonIncr);
+                    htmlDivNumberSpinner.Add(htmlTextBox);
+                    htmlDivNumberSpinner.Add(htmlButtonDecr);
+                    htmlDivNumberSpinner.Add(htmlButtonIncr);
 
                     break;
 
                 case OrderNumberSpinner.NumberIncrDecr:
 
-                    htmlDivNumberBox.Add(htmlTextBox);
-                    htmlDivNumberBox.Add(htmlButtonIncr);
-                    htmlDivNumberBox.Add(htmlButtonDecr);
+                    htmlDivNumberSpinner.Add(htmlTextBox);
+                    htmlDivNumberSpinner.Add(htmlButtonIncr);
+                    htmlDivNumberSpinner.Add(htmlButtonDecr);
 
                     break;
 
                 case OrderNumberSpinner.DecrNumberIncr:
 
-                    htmlDivNumberBox.Add(htmlButtonDecr);
-                    htmlDivNumberBox.Add(htmlTextBox);
-                    htmlDivNumberBox.Add(htmlButtonIncr);
+                    htmlDivNumberSpinner.Add(htmlButtonDecr);
+                    htmlDivNumberSpinner.Add(htmlTextBox);
+                    htmlDivNumberSpinner.Add(htmlButtonIncr);
 
                     break;
 
                 case OrderNumberSpinner.IncrNumberDecr:
 
-                    htmlDivNumberBox.Add(htmlButtonIncr);
-                    htmlDivNumberBox.Add(htmlTextBox);
-                    htmlDivNumberBox.Add(htmlButtonDecr);
+                    htmlDivNumberSpinner.Add(htmlButtonIncr);
+                    htmlDivNumberSpinner.Add(htmlTextBox);
+                    htmlDivNumberSpinner.Add(htmlButtonDecr);
 
                     break;
 
                 case OrderNumberSpinner.DecrIncrNumber:
 
-                    htmlDivNumberBox.Add(htmlButtonDecr);
-                    htmlDivNumberBox.Add(htmlButtonIncr);
-                    htmlDivNumberBox.Add(htmlTextBox);
+                    htmlDivNumberSpinner.Add(htmlButtonDecr);
+                    htmlDivNumberSpinner.Add(htmlButtonIncr);
+                    htmlDivNumberSpinner.Add(htmlTextBox);
 
                     break;
 
                 case OrderNumberSpinner.IncrDecrNumber:
 
-                    htmlDivNumberBox.Add(htmlButtonIncr);
-                    htmlDivNumberBox.Add(htmlButtonDecr);
-                    htmlDivNumberBox.Add(htmlTextBox);
+                    htmlDivNumberSpinner.Add(htmlButtonIncr);
+                    htmlDivNumberSpinner.Add(htmlButtonDecr);
+                    htmlDivNumberSpinner.Add(htmlTextBox);
 
                     break;
 
@@ -226,7 +262,166 @@ namespace Form2.Form.Visitors
                     break;
             }
 
-            return htmlDivNumberBox;
+            return htmlDivNumberSpinner;
         }
+
+
+        #region ScriptRegistry
+
+        [SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+
+        private partial class ScriptRegistry
+        {
+            private static string NumberSpinnerDecr
+            {
+                get
+                {
+                    return @"
+                        function NumberSpinnerDecr(id) {
+
+                            let textBox = document.getElementById(id);
+
+                            if (textBox == null)
+                                return;
+
+                            if (typeof textBox.dataset.number === 'undefined')
+                                return;
+
+                            if (typeof textBox.dataset.step === 'undefined')
+                                return;
+
+                            if (typeof textBox.dataset.precision === 'undefined')
+                                return;
+
+                            let number = Number(textBox.dataset.number);
+                            let step = Number(textBox.dataset.step)
+                            let precision = Number(textBox.dataset.precision)
+
+                            if (isNaN(number) || isNaN(step) || isNaN(precision))
+                                return;
+
+                            if (typeof textBox.dataset.min === 'undefined')
+                            {
+                                textBox.dataset.number = number - step;
+                            }
+                            else
+                            {
+                                let min = Number(textBox.dataset.min);
+
+                                if (isNaN(min))
+                                    return;
+
+                                textBox.dataset.number = number - step < min ? min : number - step;
+                            }
+
+                            textBox.value = (Math.round(textBox.dataset.number * Math.pow(10, precision)) / Math.pow(10, precision)).toFixed(precision);
+                        }
+                    ";
+                }
+            }
+
+            private static string NumberSpinnerIncr
+            {
+                get
+                {
+                    return @"
+                        function NumberSpinnerIncr(id) {
+
+                            let textBox = document.getElementById(id);
+
+                            if (textBox == null)
+                                return;
+
+                            if (typeof textBox.dataset.number === 'undefined')
+                                return;
+
+                            if (typeof textBox.dataset.step === 'undefined')
+                                return;
+
+                            if (typeof textBox.dataset.precision === 'undefined')
+                                return;
+
+                            let number = Number(textBox.dataset.number);
+                            let step = Number(textBox.dataset.step)
+                            let precision = Number(textBox.dataset.precision)
+
+                            if (isNaN(number) || isNaN(step) || isNaN(precision))
+                                return;
+
+                            if (typeof textBox.dataset.max === 'undefined')
+                            {
+                                textBox.dataset.number = number + step;
+                            }
+                            else
+                            {
+                                let max = Number(textBox.dataset.max);
+
+                                if (isNaN(max))
+                                    return;
+
+                                textBox.dataset.number = number + step > max ? max : number + step;
+                            }
+
+                            textBox.value = (Math.round(textBox.dataset.number * Math.pow(10, precision)) / Math.pow(10, precision)).toFixed(precision);
+                        }
+                    ";
+                }
+            }
+
+            private static string NumberSpinnerBlur
+            {
+                get
+                {
+                    return @"
+                        function NumberSpinnerBlur(id) {
+
+                            let textBox = document.getElementById(id);
+
+                            if (textBox == null)
+                                return;
+
+                            if (typeof textBox.dataset.number === 'undefined')
+                                return;
+
+                            if (typeof textBox.dataset.precision === 'undefined')
+                                return;
+
+                            let number = Number(textBox.dataset.number);
+                            let precision = Number(textBox.dataset.precision)
+                            
+                            if (isNaN(number) || isNaN(precision))
+                                return;
+
+                            let newNumber = Number(textBox.value);
+
+                            if (!isNaN(newNumber))
+                            {
+                                textBox.dataset.number = textBox.value;
+                            }
+
+                            if (!(typeof textBox.dataset.min === 'undefined'))
+                            {
+                                let min = Number(textBox.dataset.min);
+                        
+                                if (!isNaN(min) && textBox.dataset.number < min)
+                                    textBox.dataset.number = min;
+                            } 
+                            
+                            if (!(typeof textBox.dataset.max === 'undefined'))
+                            {
+                                let max = Number(textBox.dataset.max);
+                        
+                                if (!isNaN(max) && textBox.dataset.number > max)
+                                    textBox.dataset.number = max;
+                            }
+
+                            textBox.value = (Math.round(textBox.dataset.number * Math.pow(10, precision)) / Math.pow(10, precision)).toFixed(precision);
+                        }
+                    ";
+                }
+            }
+        }
+
+        #endregion
     }
 }

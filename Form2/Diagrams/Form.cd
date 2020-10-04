@@ -15,7 +15,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Selectables.FormOption">
-    <Position X="0.5" Y="3.5" Width="1.75" />
+    <Position X="3.5" Y="3.5" Width="1.75" />
     <Members>
       <Method Name="FormOption" Hidden="true" />
       <Field Name="formSelect" Hidden="true" />
@@ -47,11 +47,10 @@
     <Position X="19.25" Y="11" Width="2" />
     <Members>
       <Method Name="FormSelector" Hidden="true" />
-      <Field Name="isPostBack" Hidden="true" />
       <Field Name="selectables" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAIAQEAAAgAAAAAAAIAARAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <HashCode>AAIAAEEAAgABAAAAAIAABAAAAAAAAAAAAAAAABAAAAA=</HashCode>
       <FileName>Form\Content\Items\Input\FormSelector.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -70,7 +69,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.Selectors.FormSelect">
-    <Position X="20.5" Y="14.25" Width="3.25" />
+    <Position X="20.5" Y="14.75" Width="3.25" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Method Name="FormSelect" Hidden="true" />
@@ -86,7 +85,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Selectables.FormSelectable">
-    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Position X="3.5" Y="0.5" Width="1.75" />
     <Members>
       <Field Name="disabled" Hidden="true" />
       <Field Name="hidden" Hidden="true" />
@@ -99,7 +98,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Form.Content.Items.Input.Selectors.FormRadioGroup">
-    <Position X="16.75" Y="14.25" Width="3" />
+    <Position X="16.75" Y="14.75" Width="3" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Method Name="FormRadioGroup" Hidden="true" />
@@ -244,28 +243,85 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Form2.Form.Content.Items.Input.FormNumberBox">
+  <Class Name="Form2.Form.Content.Items.Input.FormNumberSpinner">
     <Position X="1.75" Y="11" Width="1.75" />
     <Members>
       <Field Name="actionInvalid" Hidden="true" />
       <Field Name="decrText" Hidden="true" />
       <Field Name="directInput" Hidden="true" />
-      <Method Name="FormNumberBox" Hidden="true" />
-      <Field Name="icon" Hidden="true" />
+      <Method Name="FormNumberSpinner" Hidden="true" />
       <Field Name="incrText" Hidden="true" />
+      <Field Name="isUpdateForm" Hidden="true" />
       <Field Name="max" Hidden="true" />
       <Field Name="min" Hidden="true" />
-      <Field Name="orderNumberBox" Hidden="true" />
+      <Field Name="orderNumberSpinner" Hidden="true" />
       <Field Name="placeholder" Hidden="true" />
+      <Field Name="precision" Hidden="true" />
       <Field Name="readOnly" Hidden="true" />
       <Field Name="step" Hidden="true" />
       <Field Name="validator" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAVABEAhUSBQAUEAggMAAgJCAgAQAAoQAoAIMACAA=</HashCode>
-      <FileName>Form\Content\Items\Input\FormNumberBox.cs</FileName>
+      <HashCode>AAACEAFEAhETBQAUEAggMAAgJCAgAQAAoIA4AIIAGAA=</HashCode>
+      <FileName>Form\Content\Items\Input\FormNumberSpinner.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Interface Name="Form2.Form.Interfaces.IDisabled" Collapsed="true">
+    <Position X="29.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Interfaces\IDisabled.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Form2.Form.Interfaces.IHidden" Collapsed="true">
+    <Position X="31.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEAA=</HashCode>
+      <FileName>Form\Interfaces\IHidden.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Form2.Form.Interfaces.IReadOnly" Collapsed="true">
+    <Position X="33.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Form\Interfaces\IReadOnly.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Form2.Form.Interfaces.IRequired" Collapsed="true">
+    <Position X="29.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEAAAAAAAEAEAAAAACAAAEgAAAEEIAAAAAAAAYAAAA=</HashCode>
+      <FileName>Form\Interfaces\IRequired.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Form2.Form.Interfaces.ISubmit" Collapsed="true">
+    <Position X="31.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Interfaces\ISubmit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Form2.Form.Interfaces.IUpdateForm" Collapsed="true">
+    <Position X="33.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Interfaces\IUpdateForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Form2.Form.Interfaces.IValidate" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Form\Interfaces\IValidate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Form2.Form.Interfaces.IValidate&lt;F&gt;" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Form\Interfaces\IValidate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -4,19 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Form2.Html.Attributes.ReadOnly.String
+namespace Form2.Html.Attributes.Variable.Decimal
 {
-    public abstract class StringReadOnlyAttribute : HtmlReadOnlyAttribute<string>
+    public abstract class DecimalAttribute : HtmlAttribute<decimal?>
     {
+        #region Properties
+
+        public override bool IsSet
+        {
+            get { return Value.HasValue; }
+        }
+
+        #endregion
+
+
         #region Constructors
 
-        public StringReadOnlyAttribute(string value)
-             : base(!string.IsNullOrEmpty(value) ? value : null)
+        public DecimalAttribute(decimal value)
+            : base(value)
         {
         }
 
-        public StringReadOnlyAttribute()
-            : base()
+        public DecimalAttribute()
+            : base(null)
         {
         }
 

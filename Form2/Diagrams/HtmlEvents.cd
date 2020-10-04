@@ -21,7 +21,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Events.HtmlEvent">
-    <Position X="1.75" Y="1.25" Width="1.5" />
+    <Position X="3.75" Y="1.25" Width="1.5" />
     <Members>
       <Method Name="HtmlEvent" Hidden="true" />
       <Field Name="value" Hidden="true" />
@@ -29,6 +29,26 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAACAAACAgAAAAAAA=</HashCode>
       <FileName>Html\Events\HtmlEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Events.EventBlur">
+    <Position X="5" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="EventBlur" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Events\EventBlur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Events.EventFocus">
+    <Position X="7.25" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="EventFocus" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Events\EventFocus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

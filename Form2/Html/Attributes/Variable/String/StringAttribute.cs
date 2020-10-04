@@ -11,7 +11,7 @@ namespace Form2.Html.Attributes.Variable.String
         #region Constructors
 
         public StringAttribute(string value)
-            : base(value)
+            : base(!string.IsNullOrEmpty(value) ? value : null)
         {
         }
 

@@ -54,9 +54,9 @@ namespace Form2
 
             if (iSubmit == null)
             {
-                IPostBack iPostBack = source as IPostBack;
+                IUpdateForm iUpdateForm = source as IUpdateForm;
 
-                if (iPostBack == null || !iPostBack.IsPostBack)
+                if (iUpdateForm == null || !iUpdateForm.IsUpdateForm)
                     throw new ApplicationException();
 
                 formModel.Update(values, source, argument);

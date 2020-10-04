@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Form2.Html.Content.Elements.HtmlContainer">
-    <Position X="28.75" Y="6.25" Width="1.5" />
+    <Position X="30" Y="6.25" Width="1.5" />
     <Members>
       <Field Name="contents" Hidden="true" />
       <Method Name="HtmlContainer" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AEIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AEIAAEAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Html\Content\Elements\HtmlContainer.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -23,7 +23,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.HtmlInput">
-    <Position X="9.5" Y="6.25" Width="1.5" />
+    <Position X="9.75" Y="6.25" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrName" Hidden="true" />
@@ -62,7 +62,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSubmit">
-    <Position X="34.5" Y="8.75" Width="1.5" />
+    <Position X="36.75" Y="9" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrType" Hidden="true" />
@@ -75,7 +75,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlLabel">
-    <Position X="36.75" Y="8.75" Width="1.5" />
+    <Position X="39" Y="9" Width="1.5" />
     <Members>
       <Field Name="attrFor" Hidden="true" />
       <Method Name="HtmlLabel" Hidden="true" />
@@ -86,7 +86,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlItalic">
-    <Position X="32.25" Y="8.75" Width="1.5" />
+    <Position X="34.5" Y="9" Width="1.5" />
     <Members>
       <Method Name="HtmlItalic" Hidden="true" />
     </Members>
@@ -96,7 +96,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlOption">
-    <Position X="30" Y="8.75" Width="1.5" />
+    <Position X="32.25" Y="9" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrSelected" Hidden="true" />
@@ -116,12 +116,12 @@
       <Method Name="HtmlTextBox" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAABABAEAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>CCAEgAAAAABABAEIIAAAAABCAACQIAABAAIgBAAAAEA=</HashCode>
       <FileName>Html\Content\Elements\Input\HtmlTextBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSelect">
-    <Position X="23.25" Y="8.75" Width="1.5" />
+    <Position X="25.5" Y="9" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrMultiple" Hidden="true" />
@@ -136,7 +136,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlDiv">
-    <Position X="27.75" Y="8.75" Width="1.5" />
+    <Position X="30" Y="9" Width="1.5" />
     <Members>
       <Method Name="HtmlDiv" Hidden="true" />
     </Members>
@@ -167,7 +167,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlSpan">
-    <Position X="25.5" Y="8.75" Width="1.5" />
+    <Position X="27.75" Y="9" Width="1.5" />
     <Members>
       <Method Name="HtmlSpan" Hidden="true" />
     </Members>
@@ -177,7 +177,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlContent">
-    <Position X="18.5" Y="0.5" Width="1.5" />
+    <Position X="19.75" Y="0.5" Width="1.5" />
     <Members>
       <Field Name="container" Hidden="true" />
     </Members>
@@ -187,7 +187,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.HtmlElement">
-    <Position X="19.75" Y="2.25" Width="1.5" />
+    <Position X="21" Y="2.25" Width="1.5" />
     <Members>
       <Field Name="attrClass" Hidden="true" />
       <Field Name="attrHidden" Hidden="true" />
@@ -213,7 +213,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Content.Elements.Containers.HtmlRadioGroup">
-    <Position X="21" Y="8.75" Width="1.5" />
+    <Position X="23.25" Y="9" Width="1.5" />
     <Members>
       <Field Name="attrDisabled" Hidden="true" />
       <Field Name="attrName" Hidden="true" />
@@ -250,6 +250,16 @@
     <TypeIdentifier>
       <HashCode>AAACAEAAAAAkAAAAAACAAAACAAAAAAAAAQAgAAAQAgA=</HashCode>
       <FileName>Html\Content\Elements\HtmlButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Content.Elements.Containers.HtmlScript">
+    <Position X="21" Y="9" Width="1.5" />
+    <Members>
+      <Method Name="HtmlScript" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Html\Content\Elements\Containers\HtmlScript.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

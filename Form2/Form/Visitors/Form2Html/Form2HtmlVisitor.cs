@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web.SessionState;
 
 using Form2.Form.Content;
 using Form2.Form.Interfaces;
@@ -16,6 +16,8 @@ using Form2.Html.Content.Elements.Containers;
 
 namespace Form2.Form.Visitors
 {
+    [SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "<Pending>")]
+
     public partial class Form2HtmlVisitor
     {
         #region Fields
@@ -23,6 +25,8 @@ namespace Form2.Form.Visitors
         private readonly bool initialize;
 
         private readonly bool verbose;
+
+        private readonly ScriptRegistry scriptRegistry = new ScriptRegistry();
 
         private HtmlContainer html;
 
@@ -103,6 +107,92 @@ namespace Form2.Form.Visitors
             this.verbose = verbose;
 
             Visit(formModel.FormGroup, null);
+
+            AddScripts();
+        }
+
+        private void AddScripts()
+        {
+            foreach (var s in scriptRegistry.SelectedScripts)
+            {
+                HtmlScript htmlScript = new HtmlScript();
+                Html.Add(htmlScript);
+                htmlScript.Add(new HtmlText(FormatScript(scriptRegistry.GetText(s), htmlScript.Depth + 1)));
+            }
+        }
+
+        private string FormatScript(string script, int depth)
+        {
+            var split = script.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Select(s => !string.IsNullOrWhiteSpace(s) ? s : "");
+
+            var leadingWhitespace = split.Where(s => s != "").Min(s => new Regex("^ *").Match(s).Length);
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var s in split)
+            {
+                if (s != "")
+                    sb.Append(new string('\t', depth));
+
+                sb.AppendLine(s != "" ? s.Substring(leadingWhitespace).Replace("    ", "\t") : "");
+            }
+
+            return sb.ToString();
+        }
+
+        #endregion
+
+
+        #region ScriptRegistry
+
+        private partial class ScriptRegistry
+        {
+            private static readonly Dictionary<string, string> scriptRegistry = new Dictionary<string, string>();
+
+            public IEnumerable<string> Scripts
+            {
+                get { return scriptRegistry.Keys.Cast<string>(); }
+            }
+
+            private readonly ISet<string> selectedScripts = new HashSet<string>();
+
+            public IEnumerable<string> SelectedScripts
+            {
+                get { return selectedScripts; }
+            }
+
+            public void Include(string scriptName)
+            {
+                if (!scriptRegistry.ContainsKey(scriptName))
+                    throw new ArgumentOutOfRangeException("scriptName");
+
+                selectedScripts.Add(scriptName);
+            }
+
+            public string GetText(string scriptName)
+            {
+                if (!scriptRegistry.ContainsKey(scriptName))
+                    throw new ArgumentOutOfRangeException("scriptName");
+
+                return scriptRegistry[scriptName];
+            }
+
+            static ScriptRegistry()
+            {
+                var properties = typeof(ScriptRegistry)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Static)
+                    .Where(p => p.CanRead && !p.CanWrite && p.PropertyType == typeof(string));
+
+                foreach (var p in properties)
+                {
+                    string scriptText = (string)p.GetValue(null, null);
+
+                    if (string.IsNullOrWhiteSpace(scriptText))
+                        throw new ApplicationException("Invalid script text.");
+
+                    scriptRegistry.Add(p.Name, scriptText);
+                }
+            }
         }
 
         #endregion

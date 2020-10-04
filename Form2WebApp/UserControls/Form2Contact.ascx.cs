@@ -81,9 +81,9 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                OpenGroup("FirstName-LastName");
+                OpenGroup("Name");
 
-                AddItem(new FormTextBox("FirstName")
+                AddItem(new FormTextBox("First")
                 {
                     Label = "First Name",
 
@@ -96,7 +96,7 @@ namespace Form2WebApp.UserControls
                     RequiredMark = "(required)",
                 });
 
-                AddItem(new FormTextBox("LastName")
+                AddItem(new FormTextBox("Last")
                 {
                     Label = "Last Name",
 
@@ -107,12 +107,12 @@ namespace Form2WebApp.UserControls
                     Placeholder = "Enter your last name",
                 });
 
-                CloseGroup("FirstName-LastName");
+                CloseGroup("Name");
 
 
-                OpenGroup("DateOfBirth-DateOfMembership");
+                OpenGroup("Date");
 
-                AddItem(new FormDateBox("DateOfBirth")
+                AddItem(new FormDateBox("Birth")
                 {
                     Label = "Date of birth",
 
@@ -132,7 +132,7 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                AddItem(new FormDatePicker("DateOfMembership", "dd/mm/yyyy")
+                AddItem(new FormDatePicker("Membership", "dd/mm/yyyy")
                 {
                     Label = "Membership renewal",
 
@@ -156,10 +156,10 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseGroup("DateOfBirth-DateOfMembership");
+                CloseGroup("Date");
 
 
-                OpenGroup("Email-Phone");
+                OpenGroup("Contact");
 
                 AddItem(new FormTextBox("Email")
                 {
@@ -202,12 +202,12 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseGroup("Email-Phone");
+                CloseGroup("Contact");
 
 
-                OpenGroup("Password-ConfirmPassword");
+                OpenGroup("Password");
 
-                AddItem(new FormPasswordBox("Password")
+                AddItem(new FormPasswordBox("First")
                 {
                     Label = "Password",
 
@@ -221,7 +221,7 @@ namespace Form2WebApp.UserControls
 
                     Validator = (v) =>
                     {
-                        if (GetItem<FormPasswordBox>("ConfirmPassword").Value != v)
+                        if (GetItem<FormPasswordBox>("PasswordSecond").Value != v)
                             return "Passwords do not match";
 
                         return null;
@@ -229,7 +229,7 @@ namespace Form2WebApp.UserControls
                 });
 
 
-                AddItem(new FormPasswordBox("ConfirmPassword")
+                AddItem(new FormPasswordBox("Second")
                 {
                     Label = "Confirm Password",
 
@@ -243,17 +243,17 @@ namespace Form2WebApp.UserControls
 
                     Validator = (v) =>
                     {
-                        if (GetItem<FormPasswordBox>("Password").Value != v)
+                        if (GetItem<FormPasswordBox>("PasswordFirst").Value != v)
                             return "Passwords do not match";
 
                         return null;
                     },
                 });
 
-                CloseGroup("Password-ConfirmPassword");
+                CloseGroup("Password");
 
 
-                OpenGroup("Selects");
+                OpenGroup("Select");
 
                 AddItem(new FormSelect("Grade", false)
                 {
@@ -274,7 +274,7 @@ namespace Form2WebApp.UserControls
                         new FormOption("Γ' Λυκείου")
                     },
 
-                    IsPostBack = true,
+                    IsUpdateForm = true,
                 });
 
                 AddItem(new FormSelect("Orientation", false)
@@ -294,12 +294,12 @@ namespace Form2WebApp.UserControls
                     },
                 });
 
-                CloseGroup("Selects");
+                CloseGroup("Select");
 
 
-                OpenGroup("RadioGroups");
+                OpenGroup("RadioGroup");
 
-                AddItem(new FormRadioGroup("Contact")
+                AddItem(new FormRadioGroup("ContactMethod")
                 {
                     Required = true,
 
@@ -324,7 +324,7 @@ namespace Form2WebApp.UserControls
                     OrderElements = OrderElements.LabelMarkInput
                 });
 
-                CloseGroup("RadioGroups");
+                CloseGroup("RadioGroup");
 
                 AddItem(new FormNumberSpinner("YearsInService")
                 {
@@ -332,11 +332,17 @@ namespace Form2WebApp.UserControls
 
                     Placeholder = "Years in service",
 
-                    Content = "1.2",
+                    Content = Math.PI.ToString(),
 
-                    Min = 0,
+                    Min = -0.2m,
 
-                    Max = 10,
+                    Max = 5.6m,
+
+                    Step = Convert.ToDecimal(Math.E) / 10m,
+
+                    Precision = 1,
+
+                    DirectInput = true,
 
                     OrderNumberSpinner = OrderNumberSpinner.NumberDecrIncr,
 
@@ -355,7 +361,9 @@ namespace Form2WebApp.UserControls
                             return "Please enter an integer number";
 
                         return null;
-                    }
+                    },
+
+                    IsUpdateForm = false
                 });
 
                 AddItem(new FormTextArea("Message")
@@ -405,8 +413,8 @@ namespace Form2WebApp.UserControls
             {
                 rules.Add((isPostBack, formItem, argument) =>
                 {
-                    GetItem<FormSelect>("Orientation").Disabled =
-                    GetItem<FormSelect>("Grade").Value.Any(o => o.Text == "Β' Λυκείου" || o.Text == "Γ' Λυκείου") == false;
+                    GetItem<FormSelect>("SelectOrientation").Disabled =
+                    GetItem<FormSelect>("SelectGrade").Value.Any(o => o.Text == "Β' Λυκείου" || o.Text == "Γ' Λυκείου") == false;
                 });
             }
 

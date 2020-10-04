@@ -13,7 +13,7 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormNumberSpinner : FormInput<string, decimal>, IReadOnly, IValidate<decimal>, IPostBack
+    public class FormNumberSpinner : FormInput<string, decimal>, IReadOnly, IValidate<decimal>, IUpdateForm
     {
         #region Fields
 
@@ -31,6 +31,8 @@ namespace Form2.Form.Content.Items.Input
 
         private decimal step;
 
+        private long precision;
+
         private bool? readOnly;
 
         private bool? directInput;
@@ -38,6 +40,8 @@ namespace Form2.Form.Content.Items.Input
         private Func<decimal, string> validator;
 
         private Action<decimal> actionInvalid;
+
+        private bool isUpdateForm;
 
         #endregion
 
@@ -102,6 +106,12 @@ namespace Form2.Form.Content.Items.Input
         {
             get { return step; }
             set { step = value; }
+        }
+
+        public long Precision
+        {
+            get { return precision; }
+            set { precision = value; }
         }
 
         public bool? DirectInput
@@ -262,12 +272,12 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IPostBack
+        #region IUpdateForm
 
-        public bool IsPostBack
+        public bool IsUpdateForm
         {
-            get { return true; }
-            set { return; }
+            get { return isUpdateForm; }
+            set { isUpdateForm = value; }
         }
 
         #endregion
@@ -284,6 +294,7 @@ namespace Form2.Form.Content.Items.Input
             min = null;
             max = null;
             step = 1;
+            precision = 3;
 
             orderNumberSpinner = OrderNumberSpinner.NumberDecrIncr;
             decrText = "▼";
@@ -293,6 +304,8 @@ namespace Form2.Form.Content.Items.Input
 
             validator = (v) => { return null; };
             actionInvalid = (v) => { return; };
+
+            isUpdateForm = false;
         }
 
         #endregion

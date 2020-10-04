@@ -9,13 +9,13 @@ using Form2.Form.Selectables;
 
 namespace Form2.Form.Content.Items.Input
 {
-    public abstract class FormSelector<S, V> : FormInput<IEnumerable<S>, V>, IPostBack where S : FormSelectable
+    public abstract class FormSelector<S, V> : FormInput<IEnumerable<S>, V>, IUpdateForm where S : FormSelectable
     {
         #region Fields
 
         private readonly List<S> selectables;
 
-        private bool isPostBack;
+        private bool isUpdateForm;
 
         #endregion
 
@@ -90,12 +90,12 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IPostBack
+        #region IUpdateForm
 
-        public bool IsPostBack
+        public bool IsUpdateForm
         {
-            get { return isPostBack; }
-            set { isPostBack = value; }
+            get { return isUpdateForm; }
+            set { isUpdateForm = value; }
         }
 
         #endregion
@@ -108,7 +108,7 @@ namespace Form2.Form.Content.Items.Input
         {
             selectables = new List<S>();
 
-            IsPostBack = false;
+            isUpdateForm = false;
         }
 
         #endregion
