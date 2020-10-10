@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,21 +13,25 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormDatePicker : FormInput<string, DateTime>, IReadOnly, IValidate<DateTime>
+    public class FormNumberBox : FormInput<string, decimal>, IReadOnly, IValidate<decimal>
     {
         #region Fields
 
         private string placeholder;
 
+        private decimal? min;
+
+        private decimal? max;
+
+        private decimal? step;
+
         private FormIcon icon;
 
         private bool? readOnly;
 
-        private Func<DateTime, string> validator;
+        private Func<decimal, string> validator;
 
-        private Action<DateTime> actionInvalid;
-
-        private string dateFormat;
+        private Action<decimal> actionInvalid;
 
         #endregion
 
@@ -47,20 +50,32 @@ namespace Form2.Form.Content.Items.Input
             set { icon = value; }
         }
 
-        public string DateFormat
+        public decimal? Min
         {
-            get { return dateFormat; }
-            set { dateFormat = value; }
+            get { return min; }
+            set { min = value; }
         }
 
-        public override DateTime Value
+        public decimal? Max
         {
-            get { try { return DateTime.ParseExact(Content, dateFormat.Replace('m', 'M'), CultureInfo.InvariantCulture); } catch { return DateTime.MinValue; }; }
+            get { return max; }
+            set { max = value; }
+        }
+
+        public decimal? Step
+        {
+            get { return step; }
+            set { step = value; }
+        }
+
+        public override decimal Value
+        {
+            get { try { return decimal.Parse(Content); } catch { return decimal.MinValue; }; }
         }
 
         public override bool HasValue
         {
-            get { return Value != DateTime.MinValue; }
+            get { return Value != decimal.MinValue; }
         }
 
         #endregion
@@ -121,15 +136,15 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<DateTime>
+        #region IValidate<decimal>
 
-        public Func<DateTime, string> Validator
+        public Func<decimal, string> Validator
         {
             get { return validator; }
             set { validator = value; }
         }
 
-        public Action<DateTime> ActionInvalid
+        public Action<decimal> ActionInvalid
         {
             get { return actionInvalid; }
             set { actionInvalid = value; }
@@ -156,7 +171,7 @@ namespace Form2.Form.Content.Items.Input
                 if (IsReadOnly)
                     return true;
 
-                return HasValue ? ValidationMessage == null : !IsRequired;
+                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
             }
         }
 
@@ -165,14 +180,17 @@ namespace Form2.Form.Content.Items.Input
 
         #region Constructors
 
-        public FormDatePicker(string name, string dateFormat)
+        public FormNumberBox(string name)
             : base(name)
         {
-            Content = "";
+            Content = "0";
             placeholder = "";
-            icon = FormIcon.Calendar;
 
-            DateFormat = dateFormat;
+            min = null;
+            max = null;
+            step = null;
+
+            Icon = FormIcon.NotSet;
 
             readOnly = null;
 
@@ -187,7 +205,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0} (Path: '{1}', Label: '{2}', Value: {3})", GetType().Name, Path, Label, Value);
+            return string.Format("{0} (Path: '{1}', Label: '{2}', Value: '{3}')", GetType().Name, Path, Label, Value);
         }
 
         #endregion

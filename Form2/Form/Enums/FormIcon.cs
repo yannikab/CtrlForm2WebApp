@@ -15,6 +15,8 @@ namespace Form2.Form.Enums
         Phone,
         Mobile,
         Fax,
+        Home,
+        IdCard,
         Facebook,
         Instagram,
         Twitter,

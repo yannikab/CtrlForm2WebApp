@@ -10,17 +10,13 @@ using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items
 {
-    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-
-    public abstract class FormInput<C, V> : FormItem, IDisabled, IRequired
+    public abstract class FormInput : FormItem, IDisabled, IRequired
     {
         #region Fields
 
         private string label;
 
         private OrderElements orderElements;
-
-        private C content;
 
         private bool? disabled;
 
@@ -40,9 +36,9 @@ namespace Form2.Form.Content.Items
 
         private bool? optionalInPlaceholder;
 
-        private string lastValidationMessage;
+        private string lastMessage;
 
-        private bool useLastValidationMessage;
+        private bool useLastMessage;
 
         #endregion
 
@@ -75,38 +71,19 @@ namespace Form2.Form.Content.Items
             }
         }
 
-        public virtual C Content
+        public bool IsLabeled
         {
-            get { return content; }
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException();
-
-                content = value;
-            }
+            get { return !string.IsNullOrWhiteSpace(label); }
         }
 
-        public abstract V Value
+        public bool IsMarkedRequired
         {
-            get;
+            get { return IsLabeled && !string.IsNullOrWhiteSpace(RequiredMark) && IsRequiredInLabel; }
         }
 
-        public abstract bool HasValue
+        public bool IsMarkedOptional
         {
-            get;
-        }
-
-        public string LastMessage
-        {
-            get { return lastValidationMessage; }
-            set { lastValidationMessage = value; }
-        }
-
-        public bool UseLastMessage
-        {
-            get { return useLastValidationMessage; }
-            set { useLastValidationMessage = value; }
+            get { return IsLabeled && !string.IsNullOrWhiteSpace(OptionalMark) && IsOptionalInLabel; }
         }
 
         #endregion
@@ -311,6 +288,18 @@ namespace Form2.Form.Content.Items
             }
         }
 
+        public string LastMessage
+        {
+            get { return lastMessage; }
+            set { lastMessage = value; }
+        }
+
+        public bool UseLastMessage
+        {
+            get { return useLastMessage; }
+            set { useLastMessage = value; }
+        }
+
         #endregion
 
 
@@ -321,16 +310,58 @@ namespace Form2.Form.Content.Items
         {
             label = null;
 
-            disabled = null;
-
-            required = null;
-            requiredMark = null;
-            requiredMessage = null;
-
-            lastValidationMessage = null;
-            useLastValidationMessage = false;
-
             orderElements = OrderElements.NotSet;
+
+            lastMessage = null;
+            useLastMessage = false;
+        }
+
+        #endregion
+    }
+
+
+
+    public abstract class FormInput<C, V> : FormInput
+    {
+        #region Fields
+
+        private C content;
+
+        #endregion
+
+
+        #region Properties
+
+        public virtual C Content
+        {
+            get { return content; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException();
+
+                content = value;
+            }
+        }
+
+        public abstract V Value
+        {
+            get;
+        }
+
+        public abstract bool HasValue
+        {
+            get;
+        }
+
+        #endregion
+
+
+        #region Constructors
+
+        public FormInput(string name)
+            : base(name)
+        {
         }
 
         #endregion

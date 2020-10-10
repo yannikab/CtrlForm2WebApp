@@ -94,7 +94,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
 
         public override string ToString()
         {
-            return string.Format("{0} (Name: '{1}', Value: '{2}')", GetType().Name, Name, Value != null ? Value.Value : "");
+            return string.Format("{0} (Path: '{1}', Value: '{2}')", GetType().Name, Path, Value != null ? Value.Value : "");
         }
 
         #endregion

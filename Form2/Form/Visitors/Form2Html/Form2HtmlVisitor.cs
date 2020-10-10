@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Form2.Form.Content;
+using Form2.Form.Content.Items;
 using Form2.Form.Interfaces;
 using Form2.Html.Content;
 using Form2.Html.Content.Elements;
@@ -62,37 +63,94 @@ namespace Form2.Form.Visitors
                 throw new NotImplementedException();
         }
 
-        void AddMark(IRequired formItem, HtmlContainer htmlContainer)
+        private void AddLabel(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv)
         {
-            if (formItem is IHidden && (formItem as IHidden).IsHidden)
+            if (formInput.IsHidden)
                 return;
 
-            if (formItem is IDisabled && (formItem as IDisabled).IsDisabled)
+            if (!formInput.IsLabeled)
                 return;
 
-            if (formItem is IReadOnly && (formItem as IReadOnly).IsReadOnly)
+            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formInput.Path : "");
+            htmlLabel.Class.Add("formInputLabel");
+            htmlLabel.For.Value = htmlElement.Id.Value;
+            htmlLabel.Add(new HtmlText(formInput.Label));
+
+            htmlDiv.Add(htmlLabel);
+        }
+
+        private void AddMark(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv)
+        {
+            if (formInput.IsHidden)
                 return;
 
-            if (formItem.IsRequired)
+            if (formInput.IsDisabled)
+                return;
+
+            if (formInput is IReadOnly && (formInput as IReadOnly).IsReadOnly)
+                return;
+
+            if (!formInput.IsLabeled)
+                return;
+
+            HtmlLabel htmlLabelMark;
+
+            if (formInput.IsRequired)
             {
-                if (formItem.IsRequiredInLabel && !string.IsNullOrWhiteSpace(formItem.RequiredMark))
-                {
-                    HtmlLabel htmlLabel = new HtmlLabel("");
-                    htmlLabel.Class.Add("formMarkRequired");
-                    htmlLabel.Add(new HtmlText(formItem.RequiredMark.Replace(" ", "&nbsp;")));
-                    htmlContainer.Add(htmlLabel);
-                }
+                if (!formInput.IsMarkedRequired)
+                    return;
+
+                htmlLabelMark = new HtmlLabel("");
+                htmlLabelMark.Class.Add("formMarkRequired");
+                htmlLabelMark.For.Value = htmlElement.Id.Value;
+                htmlLabelMark.Add(new HtmlText(formInput.RequiredMark.Replace(" ", "&nbsp;")));
             }
             else
             {
-                if (formItem.IsOptionalInLabel && !string.IsNullOrWhiteSpace(formItem.OptionalMark))
-                {
-                    HtmlLabel htmlLabel = new HtmlLabel("");
-                    htmlLabel.Class.Add("formMarkOptional");
-                    htmlLabel.Add(new HtmlText(formItem.OptionalMark.Replace(" ", "&nbsp;")));
-                    htmlContainer.Add(htmlLabel);
-                }
+                if (!formInput.IsMarkedOptional)
+                    return;
+
+                htmlLabelMark = new HtmlLabel("");
+                htmlLabelMark.Class.Add("formMarkOptional");
+                htmlLabelMark.For.Value = htmlElement.Id.Value;
+                htmlLabelMark.Add(new HtmlText(formInput.OptionalMark.Replace(" ", "&nbsp;")));
             }
+
+            htmlDiv.Add(htmlLabelMark);
+        }
+
+        private void AddLabelMark(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmDiv)
+        {
+            if (!(formInput.IsMarkedRequired || formInput.IsMarkedOptional))
+            {
+                AddLabel(formInput, htmlElement, htmDiv);
+                return;
+            }
+
+            HtmlDiv htmlDivLabelMark = new HtmlDiv("");
+
+            AddLabel(formInput, htmlElement, htmlDivLabelMark);
+            AddMark(formInput, htmlElement, htmlDivLabelMark);
+
+            if (htmlDivLabelMark.Contents.Count > 0)
+                htmDiv.Add(htmlDivLabelMark);
+        }
+
+        private void AddMarkLabel(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmDiv)
+        {
+            if (!(formInput.IsMarkedRequired || formInput.IsMarkedOptional))
+            {
+                AddLabel(formInput, htmlElement, htmDiv);
+                return;
+            }
+
+            HtmlDiv htmlDivLabelMark = new HtmlDiv("");
+
+            AddMark(formInput, htmlElement, htmlDivLabelMark);
+            AddLabel(formInput, htmlElement, htmlDivLabelMark);
+
+            if (htmlDivLabelMark.Contents.Count > 0)
+                htmDiv.Add(htmlDivLabelMark);
         }
 
         #endregion

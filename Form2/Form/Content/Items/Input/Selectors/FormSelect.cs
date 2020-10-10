@@ -164,7 +164,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(string.Format("{0} (Name: '{1}', Value: [", GetType().Name, Name));
+            sb.Append(string.Format("{0} (Path: '{1}', Value: [", GetType().Name, Path));
 
             int i = 0;
             foreach (var c in Content.Where(c => c.IsSelected))

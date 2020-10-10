@@ -83,59 +83,51 @@ namespace Form2.Form.Visitors
                 scriptRegistry.Include("NumberSpinnerBlur");
             }
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formNumberSpinner.Path : "");
-            htmlLabel.For.Value = htmlTextBox.Id.Value;
-            htmlLabel.Add(new HtmlText(formNumberSpinner.Label));
-
-            HtmlDiv htmlDivNumberBox = BuildNumberSpinnerDiv(formNumberSpinner, htmlTextBox);
+            HtmlDiv htmlDivNumberSpinner = BuildDivNumberSpinner(formNumberSpinner, htmlTextBox);
 
             switch (formNumberSpinner.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formNumberSpinner, htmlDiv);
-                    htmlDiv.Add(htmlDivNumberBox);
+                    AddLabelMark(formNumberSpinner, htmlTextBox, htmlDiv);
+                    htmlDiv.Add(htmlDivNumberSpinner);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formNumberSpinner, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(htmlDivNumberBox);
+                    AddMarkLabel(formNumberSpinner, htmlTextBox, htmlDiv);
+                    htmlDiv.Add(htmlDivNumberSpinner);
 
                     break;
 
                 case OrderElements.InputLabelMark:
 
-                    htmlDiv.Add(htmlDivNumberBox);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formNumberSpinner, htmlDiv);
+                    htmlDiv.Add(htmlTextBox);
+                    AddLabelMark(formNumberSpinner, htmlTextBox, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    htmlDiv.Add(htmlDivNumberBox);
-                    AddMark(formNumberSpinner, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    htmlDiv.Add(htmlDivNumberSpinner);
+                    AddMarkLabel(formNumberSpinner, htmlTextBox, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
-                    htmlDiv.Add(htmlDivNumberBox);
-                    AddMark(formNumberSpinner, htmlDiv);
+                    AddLabel(formNumberSpinner, htmlTextBox, htmlDiv);
+                    htmlDiv.Add(htmlDivNumberSpinner);
+                    AddMark(formNumberSpinner, htmlTextBox, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formNumberSpinner, htmlDiv);
-                    htmlDiv.Add(htmlDivNumberBox);
-                    htmlDiv.Add(htmlLabel);
+                    AddMark(formNumberSpinner, htmlTextBox, htmlDiv);
+                    htmlDiv.Add(htmlDivNumberSpinner);
+                    AddLabel(formNumberSpinner, htmlTextBox, htmlDiv);
 
                     break;
 
@@ -174,7 +166,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Add(htmlLabelMessage);
         }
 
-        private HtmlDiv BuildNumberSpinnerDiv(FormNumberSpinner formNumberSpinner, HtmlTextBox htmlTextBox)
+        private HtmlDiv BuildDivNumberSpinner(FormNumberSpinner formNumberSpinner, HtmlTextBox htmlTextBox)
         {
             HtmlDiv htmlDivNumberSpinner = new HtmlDiv("");
 

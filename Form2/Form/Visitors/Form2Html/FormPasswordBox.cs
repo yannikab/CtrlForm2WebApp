@@ -44,7 +44,7 @@ namespace Form2.Form.Visitors
             htmlPasswordBox.Disabled.Value = formPasswordBox.IsDisabled;
             htmlPasswordBox.ReadOnly.Value = formPasswordBox.IsReadOnly;
             htmlPasswordBox.Value.Value = formPasswordBox.Value;
-            
+
             string placeholder = null;
 
             if (!string.IsNullOrWhiteSpace(formPasswordBox.Placeholder))
@@ -59,24 +59,18 @@ namespace Form2.Form.Visitors
 
             htmlPasswordBox.Placeholder.Value = placeholder;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formPasswordBox.Path : "");
-            htmlLabel.For.Value = htmlPasswordBox.Id.Value;
-            htmlLabel.Add(new HtmlText(formPasswordBox.Label));
-
             switch (formPasswordBox.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formPasswordBox, htmlDiv);
+                    AddLabelMark(formPasswordBox, htmlPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlPasswordBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formPasswordBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formPasswordBox, htmlPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlPasswordBox);
 
                     break;
@@ -84,32 +78,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlPasswordBox);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formPasswordBox, htmlDiv);
+                    AddLabelMark(formPasswordBox, htmlPasswordBox, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlPasswordBox);
-                    AddMark(formPasswordBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formPasswordBox, htmlPasswordBox, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formPasswordBox, htmlPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlPasswordBox);
-                    AddMark(formPasswordBox, htmlDiv);
+                    AddMark(formPasswordBox, htmlPasswordBox, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formPasswordBox, htmlDiv);
+                    AddMark(formPasswordBox, htmlPasswordBox, htmlDiv);
                     htmlDiv.Add(htmlPasswordBox);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formPasswordBox, htmlPasswordBox, htmlDiv);
 
                     break;
 

@@ -45,24 +45,18 @@ namespace Form2.Form.Visitors
                 new HtmlSelect(formSelect.Path, formSelect.IsMultiSelect, formSelect.IsUpdateForm);
             htmlSelect.Disabled.Value = formSelect.IsDisabled;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formSelect.Path : "");
-            htmlLabel.For.Value = htmlSelect.Id.Value;
-            htmlLabel.Add(new HtmlText(formSelect.Label));
-
             switch (formSelect.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formSelect, htmlDiv);
+                    AddLabelMark(formSelect, htmlSelect, htmlDiv);
                     htmlDiv.Add(htmlSelect);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formSelect, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formSelect, htmlSelect, htmlDiv);
                     htmlDiv.Add(htmlSelect);
 
                     break;
@@ -70,32 +64,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlSelect);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formSelect, htmlDiv);
+                    AddLabelMark(formSelect, htmlSelect, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlSelect);
-                    AddMark(formSelect, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formSelect, htmlSelect, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formSelect, htmlSelect, htmlDiv);
                     htmlDiv.Add(htmlSelect);
-                    AddMark(formSelect, htmlDiv);
+                    AddMark(formSelect, htmlSelect, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formSelect, htmlDiv);
+                    AddMark(formSelect, htmlSelect, htmlDiv);
                     htmlDiv.Add(htmlSelect);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formSelect, htmlSelect, htmlDiv);
 
                     break;
 

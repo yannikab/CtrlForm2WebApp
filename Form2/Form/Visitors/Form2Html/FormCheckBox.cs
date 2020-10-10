@@ -44,24 +44,18 @@ namespace Form2.Form.Visitors
             htmlCheckBox.Disabled.Value = formCheckBox.IsDisabled;
             htmlCheckBox.Checked.Value = formCheckBox.Value;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formCheckBox.Path : "");
-            htmlLabel.For.Value = htmlCheckBox.Id.Value;
-            htmlLabel.Add(new HtmlText(formCheckBox.Label));
-
             switch (formCheckBox.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formCheckBox, htmlDiv);
+                    AddLabelMark(formCheckBox, htmlCheckBox, htmlDiv);
                     htmlDiv.Add(htmlCheckBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formCheckBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formCheckBox, htmlCheckBox, htmlDiv);
                     htmlDiv.Add(htmlCheckBox);
 
                     break;
@@ -69,32 +63,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlCheckBox);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formCheckBox, htmlDiv);
+                    AddLabelMark(formCheckBox, htmlCheckBox, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlCheckBox);
-                    AddMark(formCheckBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formCheckBox, htmlCheckBox, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formCheckBox, htmlCheckBox, htmlDiv);
                     htmlDiv.Add(htmlCheckBox);
-                    AddMark(formCheckBox, htmlDiv);
+                    AddMark(formCheckBox, htmlCheckBox, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formCheckBox, htmlDiv);
+                    AddMark(formCheckBox, htmlCheckBox, htmlDiv);
                     htmlDiv.Add(htmlCheckBox);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formCheckBox, htmlCheckBox, htmlDiv);
 
                     break;
 

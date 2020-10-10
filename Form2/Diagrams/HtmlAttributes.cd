@@ -1,33 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Form2.Html.Attributes.Variable.Integer.AttrSize">
-    <Position X="31.75" Y="4.5" Width="1.5" />
+    <Position X="38.75" Y="4.5" Width="1.5" />
     <Members>
       <Method Name="AttrSize" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Integer\AttrSize.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Integer\AttrSize.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.String.AttrFor">
-    <Position X="18.25" Y="5" Width="1.5" />
+    <Position X="25.25" Y="5" Width="1.5" />
     <Members>
       <Method Name="AttrFor" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\String\AttrFor.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\String\AttrFor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Boolean.AttrSelected">
-    <Position X="34" Y="5.5" Width="1.5" />
+    <Position X="41" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrSelected" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Boolean\AttrSelected.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Boolean\AttrSelected.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.ReadOnly.String.AttrId">
@@ -37,7 +37,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\ReadOnly\String\AttrId.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\ReadOnly\String\AttrId.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.ReadOnly.String.AttrName">
@@ -47,27 +47,28 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\ReadOnly\String\AttrName.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\ReadOnly\String\AttrName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.String.AttrPlaceholder">
-    <Position X="20.5" Y="5" Width="1.5" />
+    <Position X="27.5" Y="5" Width="1.5" />
     <Members>
       <Method Name="AttrPlaceholder" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\String\AttrPlaceHolder.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\String\AttrPlaceholder.cs</FileName>
+      <NewMemberFileName>App_Code\Form2\Html\Attributes\Variable\String\AttrPlaceHolder.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Integer.AttrRows">
-    <Position X="29.5" Y="4.5" Width="1.5" />
+    <Position X="36.5" Y="4.5" Width="1.5" />
     <Members>
       <Method Name="AttrRows" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Integer\AttrRows.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Integer\AttrRows.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.ReadOnly.String.StringReadOnlyAttribute">
@@ -77,38 +78,38 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\ReadOnly\String\StringReadOnlyAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\ReadOnly\String\StringReadOnlyAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.String.AttrValue">
-    <Position X="22.75" Y="5" Width="1.5" />
+    <Position X="29.75" Y="5" Width="1.5" />
     <Members>
       <Method Name="AttrValue" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\String\AttrValue.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\String\AttrValue.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Decimal.DecimalAttribute">
-    <Position X="5.5" Y="3" Width="1.75" />
+    <Position X="9.25" Y="3" Width="1.75" />
     <Members>
       <Method Name="DecimalAttribute" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Decimal\DecimalAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\DecimalAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.HtmlAttribute&lt;T&gt;">
-    <Position X="22.5" Y="0.75" Width="1.5" />
+    <Position X="26.25" Y="0.75" Width="1.5" />
     <Members>
       <Method Name="HtmlAttribute" Hidden="true" />
       <Field Name="value" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAACAgAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\HtmlAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\HtmlAttribute.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -120,38 +121,38 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAACAgAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\ReadOnly\HtmlReadOnlyAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\ReadOnly\HtmlReadOnlyAttribute.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.String.StringAttribute">
-    <Position X="17" Y="3" Width="1.5" />
+    <Position X="24" Y="3" Width="1.5" />
     <Members>
       <Method Name="StringAttribute" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\String\StringAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\String\StringAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Boolean.BooleanAttribute">
-    <Position X="38.5" Y="3" Width="1.5" />
+    <Position X="45.5" Y="3" Width="1.5" />
     <Members>
       <Method Name="BooleanAttribute" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgEAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Boolean\BooleanAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Boolean\BooleanAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Boolean.AttrHidden">
-    <Position X="36.25" Y="5.5" Width="1.5" />
+    <Position X="43.25" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrHidden" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Boolean\AttrHidden.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Boolean\AttrHidden.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.ReadOnly.String.AttrType">
@@ -161,7 +162,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\ReadOnly\String\AttrType.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\ReadOnly\String\AttrType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.ReadOnly.Boolean.BooleanReadOnlyAttribute">
@@ -171,7 +172,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\ReadOnly\Boolean\BooleanReadOnlyAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\ReadOnly\Boolean\BooleanReadOnlyAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.ReadOnly.Boolean.AttrMultiple">
@@ -181,7 +182,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\ReadOnly\Boolean\AttrMultiple.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\ReadOnly\Boolean\AttrMultiple.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.MultiValue.HtmlMultiValueAttribute&lt;T&gt;">
@@ -191,7 +192,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\MultiValue\HtmlMultiValueAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\MultiValue\HtmlMultiValueAttribute.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -202,141 +203,172 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\MultiValue\AttrClass.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\MultiValue\AttrClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Boolean.AttrChecked">
-    <Position X="40.75" Y="5.5" Width="1.5" />
+    <Position X="47.75" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrChecked" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Boolean\AttrChecked.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Boolean\AttrChecked.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Boolean.AttrDisabled">
-    <Position X="38.5" Y="5.5" Width="1.5" />
+    <Position X="45.5" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrDisabled" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Boolean\AttrDisabled.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Boolean\AttrDisabled.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Boolean.AttrReadOnly">
-    <Position X="43" Y="5.5" Width="1.5" />
+    <Position X="50" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrReadOnly" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Boolean\AttrReadOnly.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Boolean\AttrReadOnly.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.String.AttrDataDateFormat">
-    <Position X="13.5" Y="5" Width="1.75" />
+    <Position X="20.5" Y="5" Width="1.75" />
     <Members>
       <Method Name="AttrDataDateFormat" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\String\AttrDataDateFormat.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\String\AttrDataDateFormat.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.String.AttrDataProvide">
-    <Position X="11.25" Y="5" Width="1.5" />
+    <Position X="18.25" Y="5" Width="1.5" />
     <Members>
       <Method Name="AttrDataProvide" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\String\AttrDataProvide.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\String\AttrDataProvide.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Decimal.AttrDataMin">
-    <Position X="4.5" Y="5.5" Width="1.5" />
+    <Position X="7" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrDataMin" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Decimal\AttrDataMin.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrDataMin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.String.AttrAutoComplete">
-    <Position X="16" Y="5" Width="1.5" />
+    <Position X="23" Y="5" Width="1.5" />
     <Members>
       <Method Name="AttrAutoComplete" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\String\AttrAutoComplete.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\String\AttrAutoComplete.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Decimal.AttrDataMax">
-    <Position X="6.75" Y="5.5" Width="1.5" />
+    <Position X="9.25" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrDataMax" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Decimal\AttrDataMax.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrDataMax.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Decimal.AttrDataNumber">
-    <Position X="2.25" Y="5.5" Width="1.5" />
+    <Position X="4.75" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrDataNumber" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Decimal\AttrDataNumber.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrDataNumber.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Decimal.AttrDataStep">
-    <Position X="9" Y="5.5" Width="1.5" />
+    <Position X="11.5" Y="5.5" Width="1.5" />
     <Members>
       <Method Name="AttrDataStep" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Decimal\AttrDataStep.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrDataStep.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Integer.AttrCols">
-    <Position X="25" Y="4.5" Width="1.5" />
+    <Position X="32" Y="4.5" Width="1.5" />
     <Members>
       <Method Name="AttrCols" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Integer\AttrCols.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Integer\AttrCols.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Integer.AttrDataPrecision">
-    <Position X="27.25" Y="4.5" Width="1.5" />
+    <Position X="34.25" Y="4.5" Width="1.5" />
     <Members>
       <Method Name="AttrDataPrecision" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Integer\AttrDataPrecision.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Integer\AttrDataPrecision.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Form2.Html.Attributes.Variable.Integer.IntegerAttribute" Collapsed="true">
-    <Position X="28.25" Y="3" Width="1.5" />
+    <Position X="35.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>Html\Attributes\Variable\Integer\IntegerAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Integer\IntegerAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Attributes.Variable.Decimal.AttrMax">
+    <Position X="2.5" Y="5.5" Width="1.5" />
+    <Members>
+      <Method Name="AttrMax" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrMax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Attributes.Variable.Decimal.AttrMin">
+    <Position X="16" Y="5.5" Width="1.5" />
+    <Members>
+      <Method Name="AttrMin" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrMin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form2.Html.Attributes.Variable.Decimal.AttrStep">
+    <Position X="13.75" Y="5.5" Width="1.5" />
+    <Members>
+      <Method Name="AttrStep" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrStep.cs</FileName>
+      <NewMemberFileName>App_Code\Form2\Html\Attributes\Variable\Decimal\AttrDataStep.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Form2.Html.Interfaces.IHtmlAttribute" Collapsed="true">
-    <Position X="45.5" Y="0.75" Width="1.5" />
+    <Position X="52.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>Html\Interfaces\IHtmlAttribute.cs</FileName>
+      <FileName>App_Code\Form2\Html\Interfaces\IHtmlAttribute.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

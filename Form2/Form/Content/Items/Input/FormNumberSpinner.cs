@@ -146,7 +146,9 @@ namespace Form2.Form.Content.Items.Input
                 if (value == null)
                     throw new ArgumentNullException();
 
-                if (!decimal.TryParse(value, out decimal val))
+                decimal val;
+
+                if (!decimal.TryParse(value, out val))
                 {
                     base.Content = "";
                     return;
@@ -164,12 +166,12 @@ namespace Form2.Form.Content.Items.Input
 
         public override decimal Value
         {
-            get { try { return decimal.Parse(Content); } catch { return default; }; }
+            get { try { return decimal.Parse(Content); } catch { return decimal.MinValue; }; }
         }
 
         public override bool HasValue
         {
-            get { try { decimal.Parse(Content); return true; } catch { return false; } }
+            get { return Value != decimal.MinValue; }
         }
 
         #endregion
@@ -315,7 +317,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0} (Name: '{1}', Label: '{2}', Value: '{3}')", GetType().Name, Name, Label, Value);
+            return string.Format("{0} (Path: '{1}', Label: '{2}', Value: '{3}')", GetType().Name, Path, Label, Value);
         }
 
         #endregion

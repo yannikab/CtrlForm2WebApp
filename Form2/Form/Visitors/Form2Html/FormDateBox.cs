@@ -44,25 +44,19 @@ namespace Form2.Form.Visitors
             htmlDateBox.Disabled.Value = formDateBox.IsDisabled;
             htmlDateBox.ReadOnly.Value = formDateBox.IsReadOnly;
             htmlDateBox.Value.Value = formDateBox.HasValue ? formDateBox.Value.ToString("yyyy-MM-dd") : "";
-            
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formDateBox.Path : "");
-            htmlLabel.For.Value = htmlDateBox.Id.Value;
-            htmlLabel.Add(new HtmlText(formDateBox.Label));
 
             switch (formDateBox.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formDateBox, htmlDiv);
+                    AddLabelMark(formDateBox, htmlDateBox, htmlDiv);
                     htmlDiv.Add(htmlDateBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formDateBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formDateBox, htmlDateBox, htmlDiv);
                     htmlDiv.Add(htmlDateBox);
 
                     break;
@@ -70,32 +64,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlDateBox);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formDateBox, htmlDiv);
+                    AddLabelMark(formDateBox, htmlDateBox, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlDateBox);
-                    AddMark(formDateBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formDateBox, htmlDateBox, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formDateBox, htmlDateBox, htmlDiv);
                     htmlDiv.Add(htmlDateBox);
-                    AddMark(formDateBox, htmlDiv);
+                    AddMark(formDateBox, htmlDateBox, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formDateBox, htmlDiv);
+                    AddMark(formDateBox, htmlDateBox, htmlDiv);
                     htmlDiv.Add(htmlDateBox);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formDateBox, htmlDateBox, htmlDiv);
 
                     break;
 

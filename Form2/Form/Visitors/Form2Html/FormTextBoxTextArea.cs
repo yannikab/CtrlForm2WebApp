@@ -59,24 +59,18 @@ namespace Form2.Form.Visitors
 
             htmlTextBox.Placeholder.Value = placeholder;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTextBox.Path : "");
-            htmlLabel.For.Value = htmlTextBox.Id.Value;
-            htmlLabel.Add(new HtmlText(formTextBox.Label));
-
             switch (formTextBox.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formTextBox, htmlDiv);
+                    AddLabelMark(formTextBox, htmlTextBox, htmlDiv);
                     htmlDiv.Add(htmlTextBox);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formTextBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formTextBox, htmlTextBox, htmlDiv);
                     htmlDiv.Add(htmlTextBox);
 
                     break;
@@ -84,32 +78,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlTextBox);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formTextBox, htmlDiv);
+                    AddLabelMark(formTextBox, htmlTextBox, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlTextBox);
-                    AddMark(formTextBox, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formTextBox, htmlTextBox, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formTextBox, htmlTextBox, htmlDiv);
                     htmlDiv.Add(htmlTextBox);
-                    AddMark(formTextBox, htmlDiv);
+                    AddMark(formTextBox, htmlTextBox, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formTextBox, htmlDiv);
+                    AddMark(formTextBox, htmlTextBox, htmlDiv);
                     htmlDiv.Add(htmlTextBox);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formTextBox, htmlTextBox, htmlDiv);
 
                     break;
 
@@ -194,24 +186,18 @@ namespace Form2.Form.Visitors
             htmlTextArea.Rows.Value = formTextArea.Rows;
             htmlTextArea.Cols.Value = formTextArea.Columns;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTextArea.Path : "");
-            htmlLabel.For.Value = htmlTextArea.Id.Value;
-            htmlLabel.Add(new HtmlText(formTextArea.Label));
-
             switch (formTextArea.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formTextArea, htmlDiv);
+                    AddLabelMark(formTextArea, htmlTextArea, htmlDiv);
                     htmlDiv.Add(htmlTextArea);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formTextArea, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formTextArea, htmlTextArea, htmlDiv);
                     htmlDiv.Add(htmlTextArea);
 
                     break;
@@ -219,32 +205,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlTextArea);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formTextArea, htmlDiv);
+                    AddLabelMark(formTextArea, htmlTextArea, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlTextArea);
-                    AddMark(formTextArea, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formTextArea, htmlTextArea, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formTextArea, htmlTextArea, htmlDiv);
                     htmlDiv.Add(htmlTextArea);
-                    AddMark(formTextArea, htmlDiv);
+                    AddMark(formTextArea, htmlTextArea, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formTextArea, htmlDiv);
+                    AddMark(formTextArea, htmlTextArea, htmlDiv);
                     htmlDiv.Add(htmlTextArea);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formTextArea, htmlTextArea, htmlDiv);
 
                     break;
 

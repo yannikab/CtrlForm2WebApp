@@ -51,24 +51,18 @@ namespace Form2.Form.Visitors
             if (formDatePicker.IsReadOnly)
                 htmlDatePicker.DataProvide.Value = null;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formDatePicker.Path : "");
-            htmlLabel.For.Value = htmlDatePicker.Id.Value;
-            htmlLabel.Add(new HtmlText(formDatePicker.Label));
-
             switch (formDatePicker.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formDatePicker, htmlDiv);
+                    AddLabelMark(formDatePicker, htmlDatePicker, htmlDiv);
                     htmlDiv.Add(htmlDatePicker);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formDatePicker, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formDatePicker, htmlDatePicker, htmlDiv);
                     htmlDiv.Add(htmlDatePicker);
 
                     break;
@@ -76,32 +70,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlDatePicker);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formDatePicker, htmlDiv);
+                    AddLabelMark(formDatePicker, htmlDatePicker, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlDatePicker);
-                    AddMark(formDatePicker, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formDatePicker, htmlDatePicker, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formDatePicker, htmlDatePicker, htmlDiv);
                     htmlDiv.Add(htmlDatePicker);
-                    AddMark(formDatePicker, htmlDiv);
+                    AddMark(formDatePicker, htmlDatePicker, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formDatePicker, htmlDiv);
+                    AddMark(formDatePicker, htmlDatePicker, htmlDiv);
                     htmlDiv.Add(htmlDatePicker);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formDatePicker, htmlDatePicker, htmlDiv);
 
                     break;
 

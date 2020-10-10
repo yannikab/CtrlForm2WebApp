@@ -61,6 +61,11 @@ namespace Form2.Form.Visitors
                     iconClass.Add(string.Format("fa-{0}", formIcon.ToString().ToLower()));
                     break;
 
+                case FormIcon.IdCard:
+                    iconClass.Add("fa-id-card-o");
+                    //iconClass.Add("fa-id-card");
+                    break;
+
                 case FormIcon.Facebook:
                     iconClass.Add("fa-facebook-square");
                     //iconClass.Add("fa-facebook-official");
@@ -217,6 +222,10 @@ namespace Form2.Form.Visitors
         }
 
         public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
+        {
+        }
+
+        public virtual void Visit(FormNumberBox formNumberBox, HtmlContainer htmlContainer)
         {
         }
 

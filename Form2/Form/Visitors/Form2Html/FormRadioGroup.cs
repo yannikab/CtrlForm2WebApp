@@ -44,23 +44,18 @@ namespace Form2.Form.Visitors
             HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.Path, verbose, formRadioGroup.IsUpdateForm);
             htmlRadioGroup.Disabled.Value = formRadioGroup.IsDisabled;
 
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formRadioGroup.Path : "");
-            htmlLabel.Add(new HtmlText(formRadioGroup.Label));
-
             switch (formRadioGroup.OrderElements)
             {
                 case OrderElements.LabelMarkInput:
 
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formRadioGroup, htmlDiv);
+                    AddLabelMark(formRadioGroup, htmlRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlRadioGroup);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMark(formRadioGroup, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formRadioGroup, htmlRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlRadioGroup);
 
                     break;
@@ -68,32 +63,30 @@ namespace Form2.Form.Visitors
                 case OrderElements.InputLabelMark:
 
                     htmlDiv.Add(htmlRadioGroup);
-                    htmlDiv.Add(htmlLabel);
-                    AddMark(formRadioGroup, htmlDiv);
+                    AddLabelMark(formRadioGroup, htmlRadioGroup, htmlDiv);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
                     htmlDiv.Add(htmlRadioGroup);
-                    AddMark(formRadioGroup, htmlDiv);
-                    htmlDiv.Add(htmlLabel);
+                    AddMarkLabel(formRadioGroup, htmlRadioGroup, htmlDiv);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formRadioGroup, htmlRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlRadioGroup);
-                    AddMark(formRadioGroup, htmlDiv);
+                    AddMark(formRadioGroup, htmlRadioGroup, htmlDiv);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formRadioGroup, htmlDiv);
+                    AddMark(formRadioGroup, htmlRadioGroup, htmlDiv);
                     htmlDiv.Add(htmlRadioGroup);
-                    htmlDiv.Add(htmlLabel);
+                    AddLabel(formRadioGroup, htmlRadioGroup, htmlDiv);
 
                     break;
 

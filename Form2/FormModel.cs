@@ -423,7 +423,9 @@ namespace Form2
             return formGroup.Get(path);
         }
 
-        protected abstract void AddRules(List<FormRule> rules);
+        protected virtual void AddRules(List<FormRule> rules)
+        {
+        }
 
         protected virtual void ApplyRules(bool isUpdate, FormItem source, string argument)
         {

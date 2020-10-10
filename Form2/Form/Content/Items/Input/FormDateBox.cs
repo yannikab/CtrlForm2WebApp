@@ -34,7 +34,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override bool HasValue
         {
-            get { try { Convert.ToDateTime(Content); return true; } catch { return false; }; }
+            get { return Value != DateTime.MinValue; }
         }
 
         #endregion
@@ -157,7 +157,7 @@ namespace Form2.Form.Content.Items.Input
 
         public override string ToString()
         {
-            return string.Format("{0} (Name: '{1}', Label: '{2}', Value: {3})", GetType().Name, Name, Label, Value);
+            return string.Format("{0} (Path: '{1}', Label: '{2}', Value: {3})", GetType().Name, Path, Label, Value);
         }
 
         #endregion
