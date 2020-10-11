@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Form2.Form.Content;
 using Form2.Form.Content.Items;
+using Form2.Form.Interfaces;
 
 namespace Form2.Form.Visitors
 {
@@ -48,7 +49,11 @@ namespace Form2.Form.Visitors
             if (submit)
                 formInput.LastMessage = formInput.IsRequired && !formInput.HasValue ? formInput.RequiredMessage : formInput.ValidationMessage;
 
-            formInput.UseLastMessage = !submit;
+            formInput.UseLastMessage = 
+                !submit &&
+                !formInput.IsHidden &&
+                !formInput.IsDisabled &&
+                (!(formInput is IReadOnly) || !(formInput as IReadOnly).IsReadOnly);
         }
 
         public virtual void Visit(FormLabel formLabel)
