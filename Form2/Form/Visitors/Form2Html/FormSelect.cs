@@ -41,8 +41,8 @@ namespace Form2.Form.Visitors
             htmlContainer.Add(htmlDiv);
 
             HtmlSelect htmlSelect = formSelect.Size.HasValue ?
-                new HtmlSelect(formSelect.Path, formSelect.Size.Value, formSelect.IsUpdate) :
-                new HtmlSelect(formSelect.Path, formSelect.IsMultiSelect, formSelect.IsUpdate);
+                new HtmlSelect(formSelect.Path, formSelect.Size.Value, formSelect.Update) :
+                new HtmlSelect(formSelect.Path, formSelect.IsMultiSelect, formSelect.Update);
             htmlSelect.Disabled.Value = formSelect.IsDisabled;
 
             switch (formSelect.OrderElements)

@@ -38,7 +38,7 @@ namespace Form2.Form.Content.Items.Input
 
         private bool? directInput;
 
-        private bool isUpdate;
+        private bool update;
 
         #endregion
 
@@ -251,10 +251,10 @@ namespace Form2.Form.Content.Items.Input
 
         #region IUpdate
 
-        public bool IsUpdate
+        public bool Update
         {
-            get { return isUpdate; }
-            set { isUpdate = value; }
+            get { return update; }
+            set { update = value; }
         }
 
         #endregion
@@ -279,7 +279,7 @@ namespace Form2.Form.Content.Items.Input
 
             readOnly = null;
 
-            isUpdate = false;
+            update = false;
         }
 
         #endregion

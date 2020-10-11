@@ -8,6 +8,6 @@ namespace Form2.Form.Interfaces
 {
     interface ISubmit
     {
-        bool IsSubmit { get; set; }
+        bool Submit { get; set; }
     }
 }

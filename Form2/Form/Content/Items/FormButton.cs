@@ -19,7 +19,7 @@ namespace Form2.Form.Content.Items
 
         private bool? disabled;
 
-        private bool isSubmit;
+        private bool submit;
 
         #endregion
 
@@ -68,10 +68,10 @@ namespace Form2.Form.Content.Items
 
         #region ISubmit
 
-        public bool IsSubmit
+        public bool Submit
         {
-            get { return isSubmit; }
-            set { isSubmit = value; }
+            get { return submit; }
+            set { submit = value; }
         }
 
         #endregion
@@ -86,7 +86,7 @@ namespace Form2.Form.Content.Items
 
             disabled = null;
 
-            isSubmit = false;
+            submit = false;
         }
 
         #endregion

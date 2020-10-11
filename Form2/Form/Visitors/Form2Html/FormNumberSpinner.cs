@@ -59,7 +59,7 @@ namespace Form2.Form.Visitors
 
             htmlTextBox.Placeholder.Value = placeholder;
 
-            if (formNumberSpinner.IsUpdate)
+            if (formNumberSpinner.Update)
             {
                 htmlTextBox.Change.Value = string.Format("__doPostBack('{0}', '');", formNumberSpinner.Path);
             }
@@ -176,7 +176,7 @@ namespace Form2.Form.Visitors
             string btnDecrOnClick = null;
             string btnIncrOnClick = null;
 
-            if (formNumberSpinner.IsUpdate)
+            if (formNumberSpinner.Update)
             {
                 btnDecrOnClick = string.Format("__doPostBack('{0}', 'Decr');", formNumberSpinner.Path);
                 btnIncrOnClick = string.Format("__doPostBack('{0}', 'Incr');", formNumberSpinner.Path);
@@ -196,7 +196,7 @@ namespace Form2.Form.Visitors
             htmlButtonDecr.Value.Value = formNumberSpinner.DecrText;
             htmlButtonIncr.Value.Value = formNumberSpinner.IncrText;
 
-            htmlButtonDecr.Disabled.Value = htmlButtonIncr.Disabled.Value = formNumberSpinner.IsReadOnly || (formNumberSpinner.IsUpdate && !formNumberSpinner.HasValue);
+            htmlButtonDecr.Disabled.Value = htmlButtonIncr.Disabled.Value = formNumberSpinner.IsReadOnly || (formNumberSpinner.Update && !formNumberSpinner.HasValue);
 
             switch (formNumberSpinner.OrderNumberSpinner)
             {

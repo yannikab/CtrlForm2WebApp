@@ -8,6 +8,6 @@ namespace Form2.Form.Interfaces
 {
     interface IUpdate
     {
-        bool IsUpdate { get; set; }
+        bool Update { get; set; }
     }
 }

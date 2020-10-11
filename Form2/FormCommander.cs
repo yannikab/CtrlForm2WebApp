@@ -56,14 +56,14 @@ namespace Form2
             {
                 IUpdate iUpdate = source as IUpdate;
 
-                if (iUpdate == null || !iUpdate.IsUpdate)
+                if (iUpdate == null || !iUpdate.Update)
                     throw new ApplicationException();
 
                 formModel.Update(values, source, argument);
             }
             else
             {
-                if (!iSubmit.IsSubmit)
+                if (!iSubmit.Submit)
                     throw new ApplicationException();
 
                 formModel.Submit(values, source, argument);
