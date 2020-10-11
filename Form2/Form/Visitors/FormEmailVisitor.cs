@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,8 @@ namespace Form2.Form.Visitors
     public class FormEmailVisitor
     {
         #region Fields
+
+        private static readonly MethodInfo[] visitorMethods;
 
         private string subject;
 
@@ -55,17 +58,12 @@ namespace Form2.Form.Visitors
 
         #region Methods
 
-        public void Visit(FormContent formItem)
+        public void Visit(FormContent formContent)
         {
-            var mi = (from m in GetType().GetMethods()
-                      where
-                      m.ReturnType.Equals(typeof(void)) &&
-                      m.GetParameters().Length == 1 &&
-                      m.GetParameters()[0].ParameterType.Equals(formItem.GetType())
-                      select m).SingleOrDefault();
+            var mi = visitorMethods.SingleOrDefault(m => m.GetParameters()[0].ParameterType.Equals(formContent.GetType()));
 
             if (mi != null)
-                mi.Invoke(this, new object[] { formItem });
+                mi.Invoke(this, new object[] { formContent });
             else
                 throw new NotImplementedException();
         }
@@ -167,6 +165,17 @@ namespace Form2.Form.Visitors
 
 
         #region Constructors
+
+        static FormEmailVisitor()
+        {
+            visitorMethods = (from mi in typeof(FormEmailVisitor).GetMethods()
+                              where
+                              mi.Name == "Visit" &&
+                              mi.ReturnType.Equals(typeof(void)) &&
+                              mi.GetParameters().Length == 1 &&
+                              mi.GetParameters()[0].ParameterType.Equals(typeof(FormContent)) == false
+                              select mi).ToArray();
+        }
 
         public FormEmailVisitor(FormGroup formGroup, string yes, string no, bool showMarks, bool showRequired)
         {

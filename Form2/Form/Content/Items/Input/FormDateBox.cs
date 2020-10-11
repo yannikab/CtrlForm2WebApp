@@ -12,15 +12,11 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormDateBox : FormInput<string, DateTime>, IReadOnly, IValidate<DateTime>
+    public class FormDateBox : FormInput<string, DateTime>, IReadOnly
     {
         #region Fields
 
         private bool? readOnly;
-
-        private Func<DateTime, string> validator;
-
-        private Action<DateTime> actionInvalid;
 
         #endregion
 
@@ -35,6 +31,26 @@ namespace Form2.Form.Content.Items.Input
         public override bool HasValue
         {
             get { return Value != DateTime.MinValue; }
+        }
+
+        public override bool IsValid
+        {
+            get
+            {
+                // a user can not edit hidden elements, it is unfair for them to participate in validation
+                if (IsHidden)
+                    return true;
+
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
+                    return true;
+
+                // a user can not edit readonly elements, it is unfair for them to participate in validation
+                if (IsReadOnly)
+                    return true;
+
+                return HasValue ? ValidationMessage == null : !IsRequired;
+            }
         }
 
         #endregion
@@ -95,48 +111,6 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<DateTime>
-
-        public Func<DateTime, string> Validator
-        {
-            get { return validator; }
-            set { validator = value; }
-        }
-
-        public Action<DateTime> ActionInvalid
-        {
-            get { return actionInvalid; }
-            set { actionInvalid = value; }
-        }
-
-        public string ValidationMessage
-        {
-            get { return Validator(Value); }
-        }
-
-        public bool IsValid
-        {
-            get
-            {
-                // a user can not edit hidden elements, it is unfair for them to participate in validation
-                if (IsHidden)
-                    return true;
-
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
-                // a user can not edit readonly elements, it is unfair for them to participate in validation
-                if (IsReadOnly)
-                    return true;
-
-                return HasValue ? ValidationMessage == null : !IsRequired;
-            }
-        }
-
-        #endregion
-
-
         #region Constructors
 
         public FormDateBox(string name)
@@ -145,9 +119,6 @@ namespace Form2.Form.Content.Items.Input
             Content = "";
 
             readOnly = null;
-
-            validator = (v) => { return null; };
-            actionInvalid = (v) => { return; };
         }
 
         #endregion

@@ -15,10 +15,10 @@ namespace Form2.Form.Interfaces
         bool IsValid { get; }
     }
 
-    public interface IValidate<F> : IValidate
+    public interface IValidate<V> : IValidate
     {
-        Func<F, string> Validator { get; set; }
+        Func<V, string> Validator { get; set; }
 
-        Action<F> ActionInvalid { get; set; }
+        Action<V> ActionInvalid { get; set; }
     }
 }

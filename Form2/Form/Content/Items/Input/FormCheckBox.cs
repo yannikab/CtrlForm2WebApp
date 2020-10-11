@@ -8,17 +8,8 @@ using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items.Input
 {
-    public class FormCheckBox : FormInput<bool, bool>, IValidate<bool>
+    public class FormCheckBox : FormInput<bool, bool>
     {
-        #region Fields
-
-        private Func<bool, string> validator;
-
-        private Action<bool> actionInvalid;
-
-        #endregion
-
-
         #region Properties
 
         public override bool Value
@@ -31,29 +22,7 @@ namespace Form2.Form.Content.Items.Input
             get { return true; }
         }
 
-        #endregion
-
-
-        #region IValidate<bool>
-
-        public Func<bool, string> Validator
-        {
-            get { return validator; }
-            set { validator = value; }
-        }
-
-        public Action<bool> ActionInvalid
-        {
-            get { return actionInvalid; }
-            set { actionInvalid = value; }
-        }
-
-        public string ValidationMessage
-        {
-            get { return Validator(Value); }
-        }
-
-        public bool IsValid
+        public override bool IsValid
         {
             get
             {
@@ -78,9 +47,6 @@ namespace Form2.Form.Content.Items.Input
             : base(name)
         {
             Content = false;
-
-            validator = (v) => { return null; };
-            actionInvalid = (v) => { return; };
         }
 
         #endregion

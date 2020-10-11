@@ -87,9 +87,9 @@ namespace Form2
             if (iSubmit != null)
                 throw new ApplicationException();
 
-            IUpdateForm iUpdateForm = source as IUpdateForm;
+            IUpdate iUpdate = source as IUpdate;
 
-            if (iUpdateForm == null || !iUpdateForm.IsUpdateForm)
+            if (iUpdate == null || !iUpdate.IsUpdate)
                 throw new ApplicationException();
 
             new FormUpdateVisitor(formGroup, values, source, argument);

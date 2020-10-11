@@ -11,9 +11,10 @@ using Form2.Form.Interfaces;
 namespace Form2.Form.Content.Items.Input
 {
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
+    [SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormNumberSpinner : FormInput<string, decimal>, IReadOnly, IValidate<decimal>, IUpdateForm
+    public class FormNumberSpinner : FormInput<string, decimal>, IReadOnly, IUpdate
     {
         #region Fields
 
@@ -37,11 +38,7 @@ namespace Form2.Form.Content.Items.Input
 
         private bool? directInput;
 
-        private Func<decimal, string> validator;
-
-        private Action<decimal> actionInvalid;
-
-        private bool isUpdateForm;
+        private bool isUpdate;
 
         #endregion
 
@@ -174,6 +171,26 @@ namespace Form2.Form.Content.Items.Input
             get { return Value != decimal.MinValue; }
         }
 
+        public override bool IsValid
+        {
+            get
+            {
+                // a user can not edit hidden elements, it is unfair for them to participate in validation
+                if (IsHidden)
+                    return true;
+
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
+                    return true;
+
+                // a user can not edit readonly elements, it is unfair for them to participate in validation
+                if (IsReadOnly)
+                    return true;
+
+                return HasValue ? ValidationMessage == null : !IsRequired;
+            }
+        }
+
         #endregion
 
 
@@ -232,54 +249,12 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<decimal>
+        #region IUpdate
 
-        public Func<decimal, string> Validator
+        public bool IsUpdate
         {
-            get { return validator; }
-            set { validator = value; }
-        }
-
-        public Action<decimal> ActionInvalid
-        {
-            get { return actionInvalid; }
-            set { actionInvalid = value; }
-        }
-
-        public string ValidationMessage
-        {
-            get { return Validator(Value); }
-        }
-
-        public bool IsValid
-        {
-            get
-            {
-                // a user can not edit hidden elements, it is unfair for them to participate in validation
-                if (IsHidden)
-                    return true;
-
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
-                // a user can not edit readonly elements, it is unfair for them to participate in validation
-                if (IsReadOnly)
-                    return true;
-
-                return HasValue ? ValidationMessage == null : !IsRequired;
-            }
-        }
-
-        #endregion
-
-
-        #region IUpdateForm
-
-        public bool IsUpdateForm
-        {
-            get { return isUpdateForm; }
-            set { isUpdateForm = value; }
+            get { return isUpdate; }
+            set { isUpdate = value; }
         }
 
         #endregion
@@ -304,10 +279,7 @@ namespace Form2.Form.Content.Items.Input
 
             readOnly = null;
 
-            validator = (v) => { return null; };
-            actionInvalid = (v) => { return; };
-
-            isUpdateForm = false;
+            isUpdate = false;
         }
 
         #endregion

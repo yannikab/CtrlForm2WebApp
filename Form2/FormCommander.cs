@@ -13,7 +13,7 @@ using Form2.Form.Interfaces;
 namespace Form2
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-    
+
     public class FormCommander
     {
         private readonly FormModel formModel;
@@ -54,9 +54,9 @@ namespace Form2
 
             if (iSubmit == null)
             {
-                IUpdateForm iUpdateForm = source as IUpdateForm;
+                IUpdate iUpdate = source as IUpdate;
 
-                if (iUpdateForm == null || !iUpdateForm.IsUpdateForm)
+                if (iUpdate == null || !iUpdate.IsUpdate)
                     throw new ApplicationException();
 
                 formModel.Update(values, source, argument);

@@ -13,7 +13,7 @@ namespace Form2.Form.Content.Items.Input
     [SuppressMessage("Style", "IDE0016:Use 'throw' expression", Justification = "<Pending>")]
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormTextBox : FormInput<string, string>, IReadOnly, IValidate<string>
+    public class FormTextBox : FormInput<string, string>, IReadOnly
     {
         #region Fields
 
@@ -22,10 +22,6 @@ namespace Form2.Form.Content.Items.Input
         private FormIcon icon;
 
         private bool? readOnly;
-
-        private Func<string, string> validator;
-
-        private Action<string> actionInvalid;
 
         #endregion
 
@@ -52,6 +48,26 @@ namespace Form2.Form.Content.Items.Input
         public override bool HasValue
         {
             get { return !string.IsNullOrWhiteSpace(Value); }
+        }
+
+        public override bool IsValid
+        {
+            get
+            {
+                // a user can not edit hidden elements, it is unfair for them to participate in validation
+                if (IsHidden)
+                    return true;
+
+                // disabled elements are not submitted, it does not make sense to validate them
+                if (IsDisabled)
+                    return true;
+
+                // a user can not edit readonly elements, it is unfair for them to participate in validation
+                if (IsReadOnly)
+                    return true;
+
+                return HasValue ? ValidationMessage == null : !IsRequired;
+            }
         }
 
         #endregion
@@ -112,48 +128,6 @@ namespace Form2.Form.Content.Items.Input
         #endregion
 
 
-        #region IValidate<string>
-
-        public Func<string, string> Validator
-        {
-            get { return validator; }
-            set { validator = value; }
-        }
-
-        public Action<string> ActionInvalid
-        {
-            get { return actionInvalid; }
-            set { actionInvalid = value; }
-        }
-
-        public string ValidationMessage
-        {
-            get { return Validator(Value); }
-        }
-
-        public bool IsValid
-        {
-            get
-            {
-                // a user can not edit hidden elements, it is unfair for them to participate in validation
-                if (IsHidden)
-                    return true;
-
-                // disabled elements are not submitted, it does not make sense to validate them
-                if (IsDisabled)
-                    return true;
-
-                // a user can not edit readonly elements, it is unfair for them to participate in validation
-                if (IsReadOnly)
-                    return true;
-
-                return HasValue ? ValidationMessage == null : !IsRequired;
-            }
-        }
-
-        #endregion
-
-
         #region Constructors
 
         public FormTextBox(string name)
@@ -161,12 +135,9 @@ namespace Form2.Form.Content.Items.Input
         {
             Content = "";
             placeholder = "";
-            icon = FormIcon.NotSet;;
+            icon = FormIcon.NotSet; ;
 
             readOnly = null;
-
-            validator = (v) => { return null; };
-            actionInvalid = (v) => { return; };
         }
 
         #endregion

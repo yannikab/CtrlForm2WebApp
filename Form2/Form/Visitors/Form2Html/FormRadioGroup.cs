@@ -41,7 +41,7 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.Path, verbose, formRadioGroup.IsUpdateForm);
+            HtmlRadioGroup htmlRadioGroup = new HtmlRadioGroup(formRadioGroup.Path, verbose, formRadioGroup.IsUpdate);
             htmlRadioGroup.Disabled.Value = formRadioGroup.IsDisabled;
 
             switch (formRadioGroup.OrderElements)

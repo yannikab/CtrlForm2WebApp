@@ -10,7 +10,9 @@ using Form2.Form.Interfaces;
 
 namespace Form2.Form.Content.Items
 {
-    public abstract class FormInput : FormItem, IDisabled, IRequired
+    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
+
+    public abstract class FormInput : FormItem, IDisabled, IRequired, IValidate
     {
         #region Fields
 
@@ -44,6 +46,11 @@ namespace Form2.Form.Content.Items
 
 
         #region Properties
+
+        public abstract bool HasValue
+        {
+            get;
+        }
 
         public string Label
         {
@@ -303,6 +310,21 @@ namespace Form2.Form.Content.Items
         #endregion
 
 
+        #region IValidate
+
+        public abstract string ValidationMessage
+        {
+            get;
+        }
+
+        public abstract bool IsValid
+        {
+            get;
+        }
+
+        #endregion
+
+
         #region Constructors
 
         public FormInput(string name)
@@ -320,12 +342,15 @@ namespace Form2.Form.Content.Items
     }
 
 
-
-    public abstract class FormInput<C, V> : FormInput
+    public abstract class FormInput<C, V> : FormInput, IValidate<V>
     {
         #region Fields
 
         private C content;
+
+        private Func<V, string> validator;
+
+        private Action<V> actionInvalid;
 
         #endregion
 
@@ -349,9 +374,26 @@ namespace Form2.Form.Content.Items
             get;
         }
 
-        public abstract bool HasValue
+        #endregion
+
+
+        #region IValidate<V>
+
+        public override string ValidationMessage
         {
-            get;
+            get { return Validator(Value); }
+        }
+
+        public Func<V, string> Validator
+        {
+            get { return validator; }
+            set { validator = value; }
+        }
+
+        public Action<V> ActionInvalid
+        {
+            get { return actionInvalid; }
+            set { actionInvalid = value; }
         }
 
         #endregion
@@ -362,6 +404,8 @@ namespace Form2.Form.Content.Items
         public FormInput(string name)
             : base(name)
         {
+            validator = (v) => { return null; };
+            actionInvalid = (v) => { return; };
         }
 
         #endregion

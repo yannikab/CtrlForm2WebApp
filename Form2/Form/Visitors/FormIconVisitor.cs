@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,8 @@ namespace Form2.Form.Visitors
     {
         #region Fields
 
+        private static readonly MethodInfo[] visitorMethods;
+
         private readonly bool prepend;
 
         #endregion
@@ -32,18 +35,12 @@ namespace Form2.Form.Visitors
 
         #region Methods
 
-        public void Visit(FormContent formItem, HtmlContainer htmlContainer)
+        public void Visit(FormContent formContent, HtmlContainer htmlContainer)
         {
-            var mi = (from m in GetType().GetMethods()
-                      where
-                      m.ReturnType.Equals(typeof(void)) &&
-                      m.GetParameters().Length == 2 &&
-                      m.GetParameters()[0].ParameterType.Equals(formItem.GetType()) &&
-                      m.GetParameters()[1].ParameterType.Equals(typeof(HtmlContainer))
-                      select m).SingleOrDefault();
+            var mi = visitorMethods.SingleOrDefault(m => m.GetParameters()[0].ParameterType.Equals(formContent.GetType()));
 
             if (mi != null)
-                mi.Invoke(this, new object[] { formItem, htmlContainer });
+                mi.Invoke(this, new object[] { formContent, htmlContainer });
             else
                 throw new NotImplementedException();
         }
@@ -245,6 +242,18 @@ namespace Form2.Form.Visitors
 
 
         #region Constructors
+
+        static FormIconVisitor()
+        {
+            visitorMethods = (from mi in typeof(FormIconVisitor).GetMethods()
+                              where
+                              mi.Name == "Visit" &&
+                              mi.ReturnType.Equals(typeof(void)) &&
+                              mi.GetParameters().Length == 2 &&
+                              mi.GetParameters()[0].ParameterType.Equals(typeof(FormContent)) == false &&
+                              mi.GetParameters()[1].ParameterType.Equals(typeof(HtmlContainer))
+                              select mi).ToArray();
+        }
 
         public FormIconVisitor(FormGroup formGroup, HtmlContainer htmlContainer, bool prepend)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,8 @@ namespace Form2.Form.Visitors
     {
         #region Fields
 
+        private static readonly MethodInfo[] visitorMethods;
+
         private readonly NameValueCollection values;
 
         private readonly FormItem source;
@@ -31,17 +34,12 @@ namespace Form2.Form.Visitors
 
         #region Methods
 
-        public void Visit(FormContent formItem)
+        public void Visit(FormContent formContent)
         {
-            var mi = (from m in GetType().GetMethods()
-                      where
-                      m.ReturnType.Equals(typeof(void)) &&
-                      m.GetParameters().Length == 1 &&
-                      m.GetParameters()[0].ParameterType.Equals(formItem.GetType())
-                      select m).SingleOrDefault();
+            var mi = visitorMethods.SingleOrDefault(m => formContent.GetType().Equals(m.GetParameters()[0].ParameterType));
 
             if (mi != null)
-                mi.Invoke(this, new object[] { formItem });
+                mi.Invoke(this, new object[] { formContent });
             else
                 throw new NotImplementedException();
         }
@@ -178,6 +176,16 @@ namespace Form2.Form.Visitors
 
 
         #region Constructors
+
+        static FormUpdateVisitor()
+        {
+            visitorMethods = (from m in typeof(FormUpdateVisitor).GetMethods()
+                              where
+                              m.ReturnType.Equals(typeof(void)) &&
+                              m.GetParameters().Length == 1 &&
+                              m.GetParameters()[0].ParameterType.Equals(typeof(FormContent)) == false
+                              select m).ToArray();
+        }
 
         public FormUpdateVisitor(FormGroup formGroup, NameValueCollection values, FormItem source, string argument)
         {

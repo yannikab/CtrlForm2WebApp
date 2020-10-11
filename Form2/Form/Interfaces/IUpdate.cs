@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Form2.Form.Interfaces
 {
-    interface IUpdateForm
+    interface IUpdate
     {
-        bool IsUpdateForm { get; set; }
+        bool IsUpdate { get; set; }
     }
 }

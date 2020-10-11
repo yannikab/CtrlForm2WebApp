@@ -4,22 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Form2.Form.Interfaces;
 using Form2.Form.Selectables;
 
 namespace Form2.Form.Content.Items.Input.Selectors
 {
-    public class FormRadioGroup : FormSelector<FormRadioButton, FormRadioButton>, IValidate<FormRadioButton>
+    public class FormRadioGroup : FormSelector<FormRadioButton, FormRadioButton>
     {
-        #region Fields
-
-        private Func<FormRadioButton, string> validator;
-
-        private Action<FormRadioButton> actionInvalid;
-
-        #endregion
-
-
         #region Properties
 
         public override bool IsMultiSelect
@@ -37,29 +27,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
             get { return Value != null; }
         }
 
-        #endregion
-
-
-        #region IValidate<FormRadioButton>
-
-        public Func<FormRadioButton, string> Validator
-        {
-            get { return validator; }
-            set { validator = value; }
-        }
-
-        public Action<FormRadioButton> ActionInvalid
-        {
-            get { return actionInvalid; }
-            set { actionInvalid = value; }
-        }
-
-        public string ValidationMessage
-        {
-            get { return Validator(Value); }
-        }
-
-        public bool IsValid
+        public override bool IsValid
         {
             get
             {
@@ -83,8 +51,6 @@ namespace Form2.Form.Content.Items.Input.Selectors
         public FormRadioGroup(string name)
             : base(name)
         {
-            validator = (v) => { return null; };
-            actionInvalid = (v) => { return; };
         }
 
         #endregion

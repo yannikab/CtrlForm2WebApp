@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,8 @@ namespace Form2.Form.Visitors
     public class FormLogVisitor
     {
         #region Fields
+
+        private static readonly MethodInfo[] visitorMethods;
 
         protected readonly StringBuilder sb = new StringBuilder();
 
@@ -46,17 +49,12 @@ namespace Form2.Form.Visitors
 
         #region Methods
 
-        public void Visit(FormContent formItem)
+        public void Visit(FormContent formContent)
         {
-            var mi = (from m in GetType().GetMethods()
-                      where
-                      m.ReturnType.Equals(typeof(void)) &&
-                      m.GetParameters().Length == 1 &&
-                      m.GetParameters()[0].ParameterType.Equals(formItem.GetType())
-                      select m).SingleOrDefault();
+            var mi = visitorMethods.SingleOrDefault(m => formContent.GetType().Equals(m.GetParameters()[0].ParameterType));
 
             if (mi != null)
-                mi.Invoke(this, new object[] { formItem });
+                mi.Invoke(this, new object[] { formContent });
             else
                 throw new NotImplementedException();
         }
@@ -150,6 +148,17 @@ namespace Form2.Form.Visitors
 
 
         #region Constructors
+
+        static FormLogVisitor()
+        {
+            visitorMethods = (from mi in typeof(FormLogVisitor).GetMethods()
+                              where
+                              mi.Name == "Visit" &&
+                              mi.ReturnType.Equals(typeof(void)) &&
+                              mi.GetParameters().Length == 1 &&
+                              mi.GetParameters()[0].ParameterType.Equals(typeof(FormContent)) == false
+                              select mi).ToArray();
+        }
 
         public FormLogVisitor(FormGroup formGroup, string yes, string no, bool showMarks, bool showRequired)
         {

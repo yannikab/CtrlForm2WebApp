@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Form2.Form.Interfaces;
 using Form2.Form.Selectables;
 
 namespace Form2.Form.Content.Items.Input.Selectors
 {
-    public class FormSelect : FormSelector<FormOption, IEnumerable<FormOption>>, IValidate<IEnumerable<FormOption>>
+    public class FormSelect : FormSelector<FormOption, IEnumerable<FormOption>>
     {
         #region Fields
 
@@ -17,10 +16,6 @@ namespace Form2.Form.Content.Items.Input.Selectors
         private readonly int? size;
 
         private FormOption header;
-
-        private Func<IEnumerable<FormOption>, string> validator;
-
-        private Action<IEnumerable<FormOption>> actionInvalid;
 
         #endregion
 
@@ -87,29 +82,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
             get { return Value.Any(); }
         }
 
-        #endregion
-
-
-        #region IValidate<IEnumerable<FormOption>>
-
-        public Func<IEnumerable<FormOption>, string> Validator
-        {
-            get { return validator; }
-            set { validator = value; }
-        }
-
-        public Action<IEnumerable<FormOption>> ActionInvalid
-        {
-            get { return actionInvalid; }
-            set { actionInvalid = value; }
-        }
-
-        public string ValidationMessage
-        {
-            get { return Validator(Value); }
-        }
-
-        public bool IsValid
+        public override bool IsValid
         {
             get
             {
@@ -121,7 +94,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
                 if (IsDisabled)
                     return true;
 
-                return HasValue ? string.IsNullOrEmpty(ValidationMessage) : !IsRequired;
+                return HasValue ? ValidationMessage == null : !IsRequired;
             }
         }
 
@@ -139,9 +112,6 @@ namespace Form2.Form.Content.Items.Input.Selectors
             this.isMultiSelect = true;
             this.size = size;
             Header = null;
-
-            validator = (v) => { return null; };
-            actionInvalid = (v) => { return; };
         }
 
         public FormSelect(string name, bool multiSelect)
@@ -150,9 +120,6 @@ namespace Form2.Form.Content.Items.Input.Selectors
             this.isMultiSelect = multiSelect;
             this.size = null;
             Header = null;
-
-            validator = (v) => { return null; };
-            actionInvalid = (v) => { return; };
         }
 
         #endregion
