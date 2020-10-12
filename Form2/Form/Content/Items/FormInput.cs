@@ -85,12 +85,36 @@ namespace Form2.Form.Content.Items
 
         public bool IsMarkedRequired
         {
-            get { return IsLabeled && !string.IsNullOrWhiteSpace(RequiredMark) && IsRequiredInLabel; }
+            get
+            {
+                if (IsHidden)
+                    return false;
+
+                if (IsDisabled)
+                    return false;
+
+                if (this is IReadOnly && (this as IReadOnly).IsReadOnly)
+                    return false;
+
+                return IsRequired && IsLabeled && !string.IsNullOrWhiteSpace(RequiredMark) && IsRequiredInLabel;
+            }
         }
 
         public bool IsMarkedOptional
         {
-            get { return IsLabeled && !string.IsNullOrWhiteSpace(OptionalMark) && IsOptionalInLabel; }
+            get
+            {
+                if (IsHidden)
+                    return false;
+
+                if (IsDisabled)
+                    return false;
+
+                if (this is IReadOnly && (this as IReadOnly).IsReadOnly)
+                    return false;
+
+                return !IsRequired && IsLabeled && !string.IsNullOrWhiteSpace(OptionalMark) && IsOptionalInLabel;
+            }
         }
 
         #endregion

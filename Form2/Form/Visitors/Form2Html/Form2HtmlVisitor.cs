@@ -91,25 +91,23 @@ namespace Form2.Form.Visitors
 
             HtmlLabel htmlLabelMark;
 
-            if (formInput.IsRequired)
+            if (formInput.IsMarkedRequired)
             {
-                if (!formInput.IsMarkedRequired)
-                    return;
-
                 htmlLabelMark = new HtmlLabel("");
                 htmlLabelMark.Class.Add("formMarkRequired");
                 htmlLabelMark.For.Value = htmlElement.Id.Value;
                 htmlLabelMark.Add(new HtmlText(formInput.RequiredMark.Replace(" ", "&nbsp;")));
             }
-            else
+            else if (formInput.IsMarkedOptional)
             {
-                if (!formInput.IsMarkedOptional)
-                    return;
-
                 htmlLabelMark = new HtmlLabel("");
                 htmlLabelMark.Class.Add("formMarkOptional");
                 htmlLabelMark.For.Value = htmlElement.Id.Value;
                 htmlLabelMark.Add(new HtmlText(formInput.OptionalMark.Replace(" ", "&nbsp;")));
+            }
+            else
+            {
+                throw new ApplicationException("Form input item should be either marked required or optional in this context.");
             }
 
             htmlDiv.Add(htmlLabelMark);

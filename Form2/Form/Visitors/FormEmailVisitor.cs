@@ -24,8 +24,6 @@ namespace Form2.Form.Visitors
 
         private static readonly MethodInfo[] visitorMethods;
 
-        private string subject;
-
         protected readonly StringBuilder sb = new StringBuilder();
 
         private readonly string yes;
@@ -43,12 +41,7 @@ namespace Form2.Form.Visitors
 
         #region Properties
 
-        public string Subject
-        {
-            get { return subject; }
-        }
-
-        public string Body
+        public string Html
         {
             get { return sb.ToString(); }
         }
@@ -80,16 +73,9 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTitle formTitle)
         {
-            if (firstTitle)
-            {
-                subject = formTitle.Value.Trim();
+            sb.AppendLine(string.Format("{0}<b>{1}</b><br><br>", firstTitle ? "" : "<br>", formTitle.Value.Trim()));
 
-                firstTitle = false;
-            }
-            else
-            {
-                sb.AppendLine(string.Format("<br><b>{0}</b><br><br>", formTitle.Value.Trim()));
-            }
+            firstTitle = false;
         }
 
         public virtual void Visit(FormLabel formLabel)

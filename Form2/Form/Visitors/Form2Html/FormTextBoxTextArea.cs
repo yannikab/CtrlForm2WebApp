@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormTextBox formTextBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTextBox.Name : "");
+            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTextBox.Path : "");
             htmlDiv.Class.Add("formTextBox");
             if (!string.IsNullOrWhiteSpace(formTextBox.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formTextBox.Path));
@@ -133,7 +133,7 @@ namespace Form2.Form.Visitors
             if (message == null)
                 return;
 
-            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formTextBox.Name, "Message") : "");
+            HtmlLabel htmlLabelMessage = new HtmlLabel(verbose ? string.Format("{0}{1}", formTextBox.Path, "Message") : "");
             htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlTextBox.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));

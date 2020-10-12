@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Form2.Html.Attributes.ReadOnly.String;
 using Form2.Html.Attributes.Variable.Boolean;
-using Form2.Html.Attributes.Variable.String;
 
 namespace Form2.Html.Content.Elements.Input
 {
@@ -37,7 +35,7 @@ namespace Form2.Html.Content.Elements.Input
         #region Constructors
 
         public HtmlRadioButton(string name, string value)
-            : base(string.Format("{0}{1}", name, value), "radio")
+            : base(string.Format("{0}{1}", name, value), name, "radio")
         {
             attributes.Add(attrChecked = new AttrChecked());
         }
