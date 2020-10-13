@@ -1,7 +1,5 @@
 ﻿<%@ Page MasterPageFile="~/Site.master" Language="C#" AutoEventWireup="true" CodeBehind="ContactForm2.aspx.cs" Inherits="Form2WebApp.Pages.ContactCtrlForm2" %>
 
-<%@ Register Src="~/UserControls/Form2Contact.ascx" TagPrefix="uc1" TagName="Form2Contact" %>
-
 <asp:Content ID="Content3" ContentPlaceHolderID="cphHead" runat="Server">
     <link rel="stylesheet" href="/assets/css/datepicker.css" />
 </asp:Content>
@@ -17,7 +15,7 @@
     </div>
 
     <div>
-        <uc1:Form2Contact runat="server" ID="Form2Contact" />
+        <asp:Literal ID="ltrForm" runat="server" ViewStateMode="Disabled" />
     </div>
 
 </asp:Content>
