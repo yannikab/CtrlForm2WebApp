@@ -59,7 +59,7 @@ namespace Form2.Form.Visitors
                 throw new NotImplementedException();
         }
 
-        private void AddLabel(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv)
+        private void AddLabel(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv, bool tabs, bool lineBreak)
         {
             if (formInput.IsHidden)
                 return;
@@ -71,11 +71,13 @@ namespace Form2.Form.Visitors
             htmlLabel.Class.Add("formInputLabel");
             htmlLabel.For.Value = htmlElement.Id.Value;
             htmlLabel.Add(new HtmlText(formInput.Label));
+            htmlLabel.Tabs = tabs;
+            htmlLabel.LineBreak = lineBreak;
 
             htmlDiv.Add(htmlLabel);
         }
 
-        private void AddMark(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv)
+        private void AddMark(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv, bool tabs, bool lineBreak)
         {
             if (formInput.IsHidden)
                 return;
@@ -89,20 +91,16 @@ namespace Form2.Form.Visitors
             if (!formInput.IsLabeled)
                 return;
 
-            HtmlLabel htmlLabelMark;
+            HtmlLabel htmlLabelMark = new HtmlLabel("");
 
             if (formInput.IsMarkedRequired)
             {
-                htmlLabelMark = new HtmlLabel("");
                 htmlLabelMark.Class.Add("formMarkRequired");
-                htmlLabelMark.For.Value = htmlElement.Id.Value;
                 htmlLabelMark.Add(new HtmlText(formInput.RequiredMark.Replace(" ", "&nbsp;")));
             }
             else if (formInput.IsMarkedOptional)
             {
-                htmlLabelMark = new HtmlLabel("");
                 htmlLabelMark.Class.Add("formMarkOptional");
-                htmlLabelMark.For.Value = htmlElement.Id.Value;
                 htmlLabelMark.Add(new HtmlText(formInput.OptionalMark.Replace(" ", "&nbsp;")));
             }
             else
@@ -110,7 +108,21 @@ namespace Form2.Form.Visitors
                 throw new ApplicationException("Form input item should be either marked required or optional in this context.");
             }
 
+            htmlLabelMark.For.Value = htmlElement.Id.Value;
+            htmlLabelMark.Tabs = tabs;
+            htmlLabelMark.LineBreak = lineBreak;
+
             htmlDiv.Add(htmlLabelMark);
+        }
+
+        private void AddLabel(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv)
+        {
+            AddLabel(formInput, htmlElement, htmlDiv, true, true);
+        }
+
+        private void AddMark(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmlDiv)
+        {
+            AddMark(formInput, htmlElement, htmlDiv, true, true);
         }
 
         private void AddLabelMark(FormInput formInput, HtmlElement htmlElement, HtmlDiv htmDiv)
@@ -123,8 +135,8 @@ namespace Form2.Form.Visitors
 
             HtmlDiv htmlDivLabelMark = new HtmlDiv("");
 
-            AddLabel(formInput, htmlElement, htmlDivLabelMark);
-            AddMark(formInput, htmlElement, htmlDivLabelMark);
+            AddLabel(formInput, htmlElement, htmlDivLabelMark, true, false);
+            AddMark(formInput, htmlElement, htmlDivLabelMark, false, true);
 
             if (htmlDivLabelMark.Contents.Count > 0)
                 htmDiv.Add(htmlDivLabelMark);
@@ -140,8 +152,8 @@ namespace Form2.Form.Visitors
 
             HtmlDiv htmlDivLabelMark = new HtmlDiv("");
 
-            AddMark(formInput, htmlElement, htmlDivLabelMark);
-            AddLabel(formInput, htmlElement, htmlDivLabelMark);
+            AddMark(formInput, htmlElement, htmlDivLabelMark, true, false);
+            AddLabel(formInput, htmlElement, htmlDivLabelMark, false, true);
 
             if (htmlDivLabelMark.Contents.Count > 0)
                 htmDiv.Add(htmlDivLabelMark);

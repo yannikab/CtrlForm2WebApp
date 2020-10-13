@@ -14,6 +14,10 @@ namespace Form2.Html.Content.Elements.Containers
 
         private readonly AttrFor attrFor;
 
+        private bool tabs;
+
+        private bool lineBreak;
+
         #endregion
 
 
@@ -34,6 +38,18 @@ namespace Form2.Html.Content.Elements.Containers
             get { return attrFor; }
         }
 
+        public bool Tabs
+        {
+            get { return tabs; }
+            set { tabs = value; }
+        }
+
+        public bool LineBreak
+        {
+            get { return lineBreak; }
+            set { lineBreak = value; }
+        }
+
         #endregion
 
 
@@ -43,6 +59,9 @@ namespace Form2.Html.Content.Elements.Containers
             : base(name)
         {
             attributes.Add(attrFor = new AttrFor());
+
+            tabs = true;
+            lineBreak = true;
         }
 
         #endregion
