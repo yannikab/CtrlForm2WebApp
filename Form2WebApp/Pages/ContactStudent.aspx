@@ -40,23 +40,49 @@
 
         .form-field {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             margin: 0 0 20px 0;
+        }
+
+        .form-field > label:first-child {
+            margin-right: 3px;
         }
 
         .form-textbox input,
         .form-datepicker input,
-        .form-select select {
+        .form-select select,
+        .form-radiogroup div,
+        .form-numberbox div {
+            width: 100%;
+        }
+
+        .form-textbox input,
+        .form-datepicker input,
+        .form-select select,
+        .form-numberbox input {
             border: 1px solid rgba(54, 59, 76, 0.3);
             border-radius: 4px;
             padding: 9px;
             color: #757575;
         }
 
+        .form-numberbox input[type="button"][disabled] {
+            opacity: 0.7;
+        }
+
+        .form-numberbox input[type="button"] {
+            max-width: 41px;
+            width: 100%;
+        }
+
         .form-textbox input:focus,
         .form-datepicker input:focus,
-        .form-select select:focus {
-            border: 1px solid var(--color-main) !important;
+        .form-select select:focus,
+        .form-numberbox input[type="text"]:focus {
+            /*border: 1px solid var(--color-main) !important;*/
+            border: 1px solid !important;
+            border-color: blue;
             outline: none;
         }
 

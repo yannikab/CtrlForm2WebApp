@@ -8,19 +8,19 @@ namespace Form2WebApp
 {
     public static class Extensions
     {
-        public static T SessionGet<T>(this UserControl userControl, string key, Func<T> create) where T : class
+        public static T SessionGet<T>(this Page page, string key, Func<T> create) where T : class
         {
             T item = null;
 
-            if (!userControl.IsPostBack)
+            if (!page.IsPostBack)
             {
                 item = create();
-                userControl.Session[key] = item;
+                page.Session[key] = item;
             }
             else
             {
-                if (userControl.Session[key] != null)
-                    item = (T)userControl.Session[key];
+                if (page.Session[key] != null)
+                    item = (T)page.Session[key];
             }
 
             return item;

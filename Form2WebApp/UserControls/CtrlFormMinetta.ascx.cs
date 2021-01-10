@@ -33,7 +33,7 @@ namespace Form2WebApp.UserControls
         {
             string formSessionKey = string.Format("{0}_{1}_{2}", Page.GetType().Name, GetType().Name, typeof(Form).Name);
 
-            Form form = this.SessionGet(formSessionKey, () => new Form());
+            Form form = this.Page.SessionGet(formSessionKey, () => new Form());
 
             if (form == null)
                 return;
@@ -292,7 +292,7 @@ namespace Form2WebApp.UserControls
 
                 #region Submit
 
-                AddItem(new FormButton("Submit") { Content = "ΥΠΟΒΟΛΗ", IsSubmit = true });
+                AddItem(new FormButton("Submit") { Content = "ΥΠΟΒΟΛΗ", Submit = true });
 
                 #endregion
 

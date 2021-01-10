@@ -32,7 +32,7 @@ namespace Form2WebApp.UserControls
         {
             string formSessionKey = string.Format("{0}_{1}_{2}", Page.GetType().Name, GetType().Name, typeof(Form).Name);
 
-            Form form = this.SessionGet(formSessionKey, () => new Form());
+            Form form = this.Page.SessionGet(formSessionKey, () => new Form());
 
             if (form == null)
                 return;
@@ -183,7 +183,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsPostBack = true,
+                    Update = true,
 
                     Content = tblCity.ListAll().OrderBy(c => c.name).Select(c => new FormOption(c.id, c.name))
                 });
@@ -239,7 +239,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsPostBack = true,
+                    Update = true,
 
                     Content = tblEducationalStage.ListAll().Select(s => new FormOption(s.id, s.name))
                 });
@@ -257,7 +257,7 @@ namespace Form2WebApp.UserControls
 
                     Hidden = true,
 
-                    IsPostBack = true,
+                    Update = true,
                 });
 
                 #endregion
@@ -327,7 +327,7 @@ namespace Form2WebApp.UserControls
                 {
                     Content = resSend,
 
-                    IsSubmit = true
+                    Submit = true
                 });
 
                 #endregion

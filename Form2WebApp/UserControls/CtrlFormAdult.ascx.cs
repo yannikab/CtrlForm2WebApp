@@ -31,7 +31,7 @@ namespace Form2WebApp.UserControls
         {
             string formSessionKey = string.Format("{0}_{1}_{2}", Page.GetType().Name, GetType().Name, typeof(Form).Name);
 
-            Form form = this.SessionGet(formSessionKey, () => new Form());
+            Form form = this.Page.SessionGet(formSessionKey, () => new Form());
 
             if (form == null)
                 return;
@@ -157,7 +157,7 @@ namespace Form2WebApp.UserControls
 
                     Required = true,
 
-                    IsPostBack = true,
+                    Update = true,
 
                     Content = tblEmploymentStatus.ListAll().Select(s => new FormRadioButton(s.id, s.descr))
                 });
@@ -217,7 +217,7 @@ namespace Form2WebApp.UserControls
 
                     Header = new FormOption(resChoose),
 
-                    IsPostBack = true,
+                    Update = true,
 
                     Content = tblCity.ListAll().OrderBy(c => c.name).Select(c => new FormOption(c.id, c.name))
                 });
@@ -253,7 +253,7 @@ namespace Form2WebApp.UserControls
                 {
                     Content = resSend,
 
-                    IsSubmit = true
+                    Submit = true
                 });
 
                 #endregion

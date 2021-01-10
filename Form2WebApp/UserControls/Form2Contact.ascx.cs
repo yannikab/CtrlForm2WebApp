@@ -8,10 +8,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using Form2;
+using Form2.Form.Content;
 using Form2.Form.Content.Items;
 using Form2.Form.Content.Items.Input;
 using Form2.Form.Content.Items.Input.Selectors;
 using Form2.Form.Enums;
+using Form2.Form.Interfaces;
 using Form2.Form.Selectables;
 using Form2.Form.Visitors;
 
@@ -27,7 +29,7 @@ namespace Form2WebApp.UserControls
 
             string formSessionKey = string.Format("{0}_{1}_{2}", Page.GetType().Name, GetType().Name, typeof(Form).Name);
 
-            Form form = this.SessionGet(formSessionKey, () => new Form());
+            Form form = this.Page.SessionGet(formSessionKey, () => new Form());
 
             if (form == null)
                 return;
@@ -274,7 +276,7 @@ namespace Form2WebApp.UserControls
                         new FormOption("Γ' Λυκείου")
                     },
 
-                    IsUpdateForm = true,
+                    Update = true,
                 });
 
                 AddItem(new FormSelect("Orientation", false)
@@ -363,7 +365,7 @@ namespace Form2WebApp.UserControls
                         return null;
                     },
 
-                    IsUpdateForm = false
+                    Update = false
                 });
 
                 AddItem(new FormTextArea("Message")
@@ -402,7 +404,7 @@ namespace Form2WebApp.UserControls
 
                     Disabled = false,
 
-                    IsSubmit = true,
+                    Submit = true,
                 });
 
 
@@ -422,12 +424,28 @@ namespace Form2WebApp.UserControls
             {
                 log.Info(new FormLogVisitor(FormGroup, "Ναι", "Όχι", true, true).Text);
 
-                var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι", true, true);
+                var emailVisitor = new ContactEmailVisitor(FormGroup, "Ναι", "Όχι");
 
-                page.Response.Write(emailVisitor.Subject);
+                page.Response.Write(emailVisitor.Html);
                 page.Response.Write("<br><br>");
-                page.Response.Write(emailVisitor.Body);
-                page.Response.Write("<br><br>");
+            }
+
+            private class ContactEmailVisitor : FormEmailVisitor
+            {
+                public ContactEmailVisitor(FormGroup formGroup, string yes, string no)
+                    : base(formGroup, yes, no, true, true)
+                {
+                }
+
+                protected override string Mark(IRequired formItem)
+                {
+                    if (showMarks && formItem.IsRequired && showRequired)
+                        return string.Format(" {0}", formItem.RequiredMark);
+                    else if (showMarks && !formItem.IsRequired && !showRequired)
+                        return string.Format(" {0}", formItem.OptionalMark);
+                    else
+                        return "";
+                }
             }
         }
     }

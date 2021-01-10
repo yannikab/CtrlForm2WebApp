@@ -27,7 +27,7 @@ namespace Form2WebApp.UserControls
 
             string formSessionKey = string.Format("{0}_{1}_{2}", Page.GetType().Name, GetType().Name, typeof(Form).Name);
 
-            Form form = this.SessionGet(formSessionKey, () => new Form());
+            Form form = this.Page.SessionGet(formSessionKey, () => new Form());
 
             if (form == null)
                 return;
@@ -80,7 +80,7 @@ namespace Form2WebApp.UserControls
 
                     Content = tblCity.ListAll().Select(c => new FormOption((int)c.id, c.name)),
 
-                    IsPostBack = true,
+                    Update = true,
                 });
 
 
@@ -102,7 +102,7 @@ namespace Form2WebApp.UserControls
                 {
                     Content = "Υποβολή",
 
-                    IsSubmit = true
+                    Submit = true
                 });
 
 
@@ -153,10 +153,10 @@ namespace Form2WebApp.UserControls
 
                 var emailVisitor = new FormEmailVisitor(FormGroup, "Ναι", "Όχι", true, false);
 
-                page.Response.Write(emailVisitor.Subject);
-                page.Response.Write("<br /><br />");
-                page.Response.Write(emailVisitor.Body);
-                page.Response.Write("<br /><br />");
+                page.Response.Write(FormGroup.Contents.OfType<FormTitle>().First().Content);
+                page.Response.Write("<br><br>");
+                page.Response.Write(emailVisitor.Html);
+                page.Response.Write("<br><br>");
             }
         }
     }
