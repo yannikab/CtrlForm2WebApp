@@ -136,10 +136,10 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Remove(htmlTextBox);
 
-            HtmlItalic htmlItalic = new HtmlItalic("");
+            HtmlItalic htmlItalic = new HtmlItalic();
             htmlItalic.Class.AddRange(IconClass(formTextBox.Icon));
 
-            HtmlDiv htmlDiv = new HtmlDiv("");
+            HtmlDiv htmlDiv = new HtmlDiv();
             htmlDiv.Add(htmlTextBox);
             htmlDiv.Insert(prepend ? 0 : 1, htmlItalic);
 
@@ -172,10 +172,10 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Remove(htmlTextBox);
 
-            HtmlItalic htmlItalic = new HtmlItalic("");
+            HtmlItalic htmlItalic = new HtmlItalic();
             htmlItalic.Class.AddRange(IconClass(formPasswordBox.Icon));
 
-            HtmlDiv htmlDiv = new HtmlDiv("");
+            HtmlDiv htmlDiv = new HtmlDiv();
             htmlDiv.Add(htmlTextBox);
             htmlDiv.Insert(prepend ? 0 : 1, htmlItalic);
 
@@ -208,10 +208,10 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Remove(htmlTextBox);
 
-            HtmlItalic htmlItalic = new HtmlItalic("");
+            HtmlItalic htmlItalic = new HtmlItalic();
             htmlItalic.Class.AddRange(IconClass(formDatePicker.Icon));
 
-            HtmlDiv htmlDiv = new HtmlDiv("");
+            HtmlDiv htmlDiv = new HtmlDiv();
             htmlDiv.Add(htmlTextBox);
             htmlDiv.Insert(prepend ? 0 : 1, htmlItalic);
 

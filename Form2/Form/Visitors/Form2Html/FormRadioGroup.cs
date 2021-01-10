@@ -19,7 +19,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormRadioGroup formRadioGroup, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formRadioGroup.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formRadioGroup.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formRadioGroup");
             if (!string.IsNullOrWhiteSpace(formRadioGroup.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formRadioGroup.Path));

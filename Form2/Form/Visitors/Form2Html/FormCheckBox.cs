@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formCheckBox.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formCheckBox.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formCheckBox");
             if (!string.IsNullOrWhiteSpace(formCheckBox.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formCheckBox.Path));

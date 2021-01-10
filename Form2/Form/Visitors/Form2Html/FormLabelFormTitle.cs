@@ -16,7 +16,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormLabel formLabel, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formLabel.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formLabel.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formLabel");
             if (!string.IsNullOrWhiteSpace(formLabel.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formLabel.Path));
@@ -33,7 +33,7 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTitle formTitle, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formTitle.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formTitle.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formTitle");
             if (!string.IsNullOrWhiteSpace(formTitle.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formTitle.Path));

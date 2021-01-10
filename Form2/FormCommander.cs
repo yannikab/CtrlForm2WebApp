@@ -56,7 +56,10 @@ namespace Form2
             {
                 IUpdate iUpdate = source as IUpdate;
 
-                if (iUpdate == null || !iUpdate.Update)
+                if (iUpdate == null)
+                    return;
+
+                if (!iUpdate.Update)
                     throw new ApplicationException();
 
                 formModel.Update(values, source, argument);

@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormNumberSpinner formNumberSpinner, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formNumberSpinner.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formNumberSpinner.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formNumberSpinner");
             if (!string.IsNullOrWhiteSpace(formNumberSpinner.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formNumberSpinner.Path));
@@ -79,7 +79,7 @@ namespace Form2.Form.Visitors
                 htmlTextBox.DataPrecision.Value = formNumberSpinner.Precision;
 
                 htmlTextBox.Blur.Value = string.Format("NumberSpinnerBlur('{0}')", htmlTextBox.Id.Value);
-                
+
                 scriptRegistry.Include("NumberSpinnerBlur");
             }
 
@@ -168,7 +168,7 @@ namespace Form2.Form.Visitors
 
         private HtmlDiv BuildDivNumberSpinner(FormNumberSpinner formNumberSpinner, HtmlTextBox htmlTextBox)
         {
-            HtmlDiv htmlDivNumberSpinner = new HtmlDiv("");
+            HtmlDiv htmlDivNumberSpinner = new HtmlDiv();
 
             string btnDecrName = verbose ? string.Format("{0}{1}", "Decr", formNumberSpinner.Path) : "";
             string btnIncrName = verbose ? string.Format("{0}{1}", "Incr", formNumberSpinner.Path) : "";

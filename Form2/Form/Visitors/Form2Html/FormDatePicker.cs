@@ -19,7 +19,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormDatePicker formDatePicker, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formDatePicker.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formDatePicker.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formDatePicker");
             if (!string.IsNullOrWhiteSpace(formDatePicker.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formDatePicker.Path));

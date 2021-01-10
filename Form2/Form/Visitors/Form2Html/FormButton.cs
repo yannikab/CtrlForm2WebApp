@@ -16,7 +16,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormButton formButton, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formButton.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formButton.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formButton");
             if (!string.IsNullOrWhiteSpace(formButton.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formButton.Path));

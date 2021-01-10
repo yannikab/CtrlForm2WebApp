@@ -25,8 +25,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlSpan(string name)
-            : base(name)
+        public HtmlSpan()
+            : base("")
         {
         }
 

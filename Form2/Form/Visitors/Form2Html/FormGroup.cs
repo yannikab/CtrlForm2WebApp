@@ -15,7 +15,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormGroup formGroup, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formGroup.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formGroup.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formGroup");
 
             if (formGroup.Container == null)
@@ -32,7 +32,7 @@ namespace Form2.Form.Visitors
             htmlDiv.Hidden.Value = formGroup.IsHidden;
 
             if (htmlContainer == null)
-                Html = htmlDiv;
+                html = htmlDiv;
             else
                 htmlContainer.Add(htmlDiv);
 

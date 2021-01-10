@@ -11,7 +11,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
     {
         #region Fields
 
-        private readonly bool isMultiSelect;
+        private readonly bool multiSelect;
 
         private readonly int? size;
 
@@ -24,7 +24,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
 
         public override bool IsMultiSelect
         {
-            get { return isMultiSelect; }
+            get { return multiSelect; }
         }
 
         public int? Size
@@ -109,7 +109,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
             if (size < 1)
                 throw new ArgumentException();
 
-            this.isMultiSelect = true;
+            this.multiSelect = true;
             this.size = size;
             Header = null;
         }
@@ -117,7 +117,7 @@ namespace Form2.Form.Content.Items.Input.Selectors
         public FormSelect(string name, bool multiSelect)
             : base(name)
         {
-            this.isMultiSelect = multiSelect;
+            this.multiSelect = multiSelect;
             this.size = null;
             Header = null;
         }

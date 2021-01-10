@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormPasswordBox formPasswordBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formPasswordBox.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formPasswordBox.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formPasswordBox");
             if (!string.IsNullOrWhiteSpace(formPasswordBox.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formPasswordBox.Path));

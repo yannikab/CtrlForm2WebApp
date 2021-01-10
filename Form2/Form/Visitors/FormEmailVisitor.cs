@@ -26,15 +26,15 @@ namespace Form2.Form.Visitors
 
         protected readonly StringBuilder sb = new StringBuilder();
 
-        private readonly string yes;
+        protected readonly string yes;
 
-        private readonly string no;
+        protected readonly string no;
 
         protected readonly bool showMarks;
 
         protected readonly bool showRequired;
 
-        private bool firstTitle;
+        protected int titlesVisited;
 
         #endregion
 
@@ -73,9 +73,9 @@ namespace Form2.Form.Visitors
 
         public virtual void Visit(FormTitle formTitle)
         {
-            sb.AppendLine(string.Format("{0}<b>{1}</b><br><br>", firstTitle ? "" : "<br>", formTitle.Value.Trim()));
+            sb.AppendLine(string.Format("{0}<b>{1}</b><br><br>", titlesVisited > 0 ? "<br>" : "", formTitle.Value.Trim()));
 
-            firstTitle = false;
+            titlesVisited++;
         }
 
         public virtual void Visit(FormLabel formLabel)
@@ -105,6 +105,11 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormPasswordBox formPasswordBox)
         {
             sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formPasswordBox.Label, Mark(formPasswordBox), formPasswordBox.Value));
+        }
+
+        public virtual void Visit(FormNumberBox formNumberBox)
+        {
+            sb.AppendLine(string.Format("<b>{0}{1}:</b> {2}<br><br>", formNumberBox.Label, Mark(formNumberBox), formNumberBox.Value));
         }
 
         public virtual void Visit(FormDateBox formDateBox)
@@ -170,10 +175,15 @@ namespace Form2.Form.Visitors
             this.showMarks = showMarks;
             this.showRequired = showRequired;
 
-            firstTitle = true;
+            titlesVisited = 0;
 
             if (!formGroup.IsHidden)
                 Visit(formGroup);
+        }
+
+        public FormEmailVisitor(FormGroup formGroup, string yes, string no)
+            : this(formGroup, yes, no, false, false)
+        {
         }
 
         #endregion

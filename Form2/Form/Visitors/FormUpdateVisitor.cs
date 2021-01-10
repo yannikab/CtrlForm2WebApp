@@ -77,6 +77,11 @@ namespace Form2.Form.Visitors
             formPasswordBox.Content = values[formPasswordBox.Path];
         }
 
+        public virtual void Visit(FormNumberBox formNumberBox)
+        {
+            formNumberBox.Content = values[formNumberBox.Path];
+        }
+
         public virtual void Visit(FormDateBox formDateBox)
         {
             formDateBox.Content = values[formDateBox.Path];

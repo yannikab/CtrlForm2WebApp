@@ -78,11 +78,6 @@ namespace Form2.Form.Content.Items
             }
         }
 
-        public bool IsLabeled
-        {
-            get { return !string.IsNullOrWhiteSpace(label); }
-        }
-
         public bool IsMarkedRequired
         {
             get
@@ -96,7 +91,7 @@ namespace Form2.Form.Content.Items
                 if (this is IReadOnly && (this as IReadOnly).IsReadOnly)
                     return false;
 
-                return IsRequired && IsLabeled && !string.IsNullOrWhiteSpace(RequiredMark) && IsRequiredInLabel;
+                return IsRequired && !string.IsNullOrWhiteSpace(label) && IsRequiredInLabel && !string.IsNullOrWhiteSpace(RequiredMark);
             }
         }
 
@@ -113,7 +108,7 @@ namespace Form2.Form.Content.Items
                 if (this is IReadOnly && (this as IReadOnly).IsReadOnly)
                     return false;
 
-                return !IsRequired && IsLabeled && !string.IsNullOrWhiteSpace(OptionalMark) && IsOptionalInLabel;
+                return !IsRequired && !string.IsNullOrWhiteSpace(label) && IsOptionalInLabel && !string.IsNullOrWhiteSpace(OptionalMark);
             }
         }
 

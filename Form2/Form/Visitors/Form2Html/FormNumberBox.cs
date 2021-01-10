@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormNumberBox formNumberBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formNumberBox.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formNumberBox.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formNumberBox");
             if (!string.IsNullOrWhiteSpace(formNumberBox.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formNumberBox.Path));
@@ -43,7 +43,7 @@ namespace Form2.Form.Visitors
             HtmlNumberBox htmlNumberBox = new HtmlNumberBox(formNumberBox.Path);
             htmlNumberBox.Disabled.Value = formNumberBox.IsDisabled;
             htmlNumberBox.ReadOnly.Value = formNumberBox.IsReadOnly;
-            htmlNumberBox.Value.Value = formNumberBox.Value.ToString();
+            htmlNumberBox.Value.Value = formNumberBox.HasValue ? formNumberBox.Value.ToString() : "";
             htmlNumberBox.Min.Value = formNumberBox.Min;
             htmlNumberBox.Max.Value = formNumberBox.Max;
             htmlNumberBox.Step.Value = formNumberBox.Step;

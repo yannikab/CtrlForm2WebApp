@@ -18,7 +18,7 @@ namespace Form2.Form.Visitors
     {
         public virtual void Visit(FormDateBox formDateBox, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = new HtmlDiv(verbose ? formDateBox.Path : "");
+            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formDateBox.Path) : new HtmlDiv();
             htmlDiv.Class.Add("formDateBox");
             if (!string.IsNullOrWhiteSpace(formDateBox.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formDateBox.Path));

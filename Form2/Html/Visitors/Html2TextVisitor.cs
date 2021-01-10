@@ -121,9 +121,7 @@ namespace Form2.Html.Visitors
 
         public void Visit(HtmlLabel h)
         {
-            if (h.Tabs)
-                sb.Append(Tabs(h.Depth));
-
+            sb.Append(Tabs(h.Depth));
             sb.Append(string.Format("<{0}", h.Tag));
 
             foreach (var a in h.Attributes.Where(a => a.IsSet))
@@ -134,10 +132,7 @@ namespace Form2.Html.Visitors
             foreach (var c in h.Contents)
                 Visit(c);
 
-            sb.Append(string.Format("</{0}>", h.Tag));
-
-            if (h.LineBreak)
-                sb.AppendLine();
+            sb.AppendLine(string.Format("</{0}>", h.Tag));
         }
 
         public void Visit(HtmlTextBox h)
