@@ -14,41 +14,44 @@ using Form2.Html.Content.Elements.Containers;
 
 namespace Form2.Form.Visitors
 {
-    public partial class Form2HtmlVisitor
+    public partial class Form2HtmlMELOVisitor
     {
         public virtual void Visit(FormSelect formSelect, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formSelect.Path) : new HtmlDiv();
+            HtmlFieldset htmlFieldset = verbose ? new HtmlFieldset(formSelect.Path) : new HtmlFieldset();
 
-            htmlDiv.Class.Add("formSelect");
+            htmlFieldset.Class.Add("formSelect");
 
             if (!string.IsNullOrWhiteSpace(formSelect.CssClass))
-                htmlDiv.Class.AddRange(formSelect.CssClass.Split(' ').Where(s => s != string.Empty));
+                htmlFieldset.Class.AddRange(formSelect.CssClass.Split(' ').Where(s => s != string.Empty));
+
+            htmlFieldset.Class.Add("form-group");
 
             if (!string.IsNullOrWhiteSpace(formSelect.Path))
-                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formSelect.Path));
+                htmlFieldset.Class.Add(string.Format("{0}{1}", "formId", formSelect.Path));
 
-            htmlDiv.Class.Add("formField");
+            htmlFieldset.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formSelect.IsRequired ? "formRequired" : "formOptional");
+                htmlFieldset.Class.Add(formSelect.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (!formSelect.IsRequired || formSelect.HasValue)
-                    htmlDiv.Class.Add("formValid");
+                    htmlFieldset.Class.Add("formValid");
                 else
-                    htmlDiv.Class.Add(formSelect.IsRequired ? "formNotEntered" : "formOptional");
+                    htmlFieldset.Class.Add(formSelect.IsRequired ? "formNotEntered" : "formOptional");
             }
 
-            htmlDiv.Hidden.Value = formSelect.IsHidden;
+            htmlFieldset.Hidden.Value = formSelect.IsHidden;
 
-            htmlContainer.Add(htmlDiv);
+            htmlContainer.Add(htmlFieldset);
 
             HtmlSelect htmlSelect = formSelect.Size.HasValue ?
                 new HtmlSelect(formSelect.Path, formSelect.Size.Value, formSelect.Update) :
                 new HtmlSelect(formSelect.Path, formSelect.IsMultiSelect, formSelect.Update);
+            htmlSelect.Class.Add("form-control");
             htmlSelect.Disabled.Value = formSelect.IsDisabled;
 
             if (!initialize && firstInvalidId == null)
@@ -59,45 +62,45 @@ namespace Form2.Form.Visitors
             {
                 case OrderElements.LabelMarkInput:
 
-                    AddLabelMark(formSelect, htmlSelect, htmlDiv);
-                    htmlDiv.Add(htmlSelect);
+                    AddLabelMark(formSelect, htmlSelect, htmlFieldset);
+                    htmlFieldset.Add(htmlSelect);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMarkLabel(formSelect, htmlSelect, htmlDiv);
-                    htmlDiv.Add(htmlSelect);
+                    AddMarkLabel(formSelect, htmlSelect, htmlFieldset);
+                    htmlFieldset.Add(htmlSelect);
 
                     break;
 
                 case OrderElements.InputLabelMark:
 
-                    htmlDiv.Add(htmlSelect);
-                    AddLabelMark(formSelect, htmlSelect, htmlDiv);
+                    htmlFieldset.Add(htmlSelect);
+                    AddLabelMark(formSelect, htmlSelect, htmlFieldset);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    htmlDiv.Add(htmlSelect);
-                    AddMarkLabel(formSelect, htmlSelect, htmlDiv);
+                    htmlFieldset.Add(htmlSelect);
+                    AddMarkLabel(formSelect, htmlSelect, htmlFieldset);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    AddLabel(formSelect, htmlSelect, htmlDiv);
-                    htmlDiv.Add(htmlSelect);
-                    AddMark(formSelect, htmlSelect, htmlDiv);
+                    AddLabel(formSelect, htmlSelect, htmlFieldset);
+                    htmlFieldset.Add(htmlSelect);
+                    AddMark(formSelect, htmlSelect, htmlFieldset);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formSelect, htmlSelect, htmlDiv);
-                    htmlDiv.Add(htmlSelect);
-                    AddLabel(formSelect, htmlSelect, htmlDiv);
+                    AddMark(formSelect, htmlSelect, htmlFieldset);
+                    htmlFieldset.Add(htmlSelect);
+                    AddLabel(formSelect, htmlSelect, htmlFieldset);
 
                     break;
 
@@ -136,7 +139,7 @@ namespace Form2.Form.Visitors
             htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlSelect.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
-            htmlDiv.Add(htmlLabelMessage);
+            htmlFieldset.Add(htmlLabelMessage);
         }
 
         public virtual void Visit(FormOption formOption, HtmlContainer htmlContainer)

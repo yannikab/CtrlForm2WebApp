@@ -57,8 +57,6 @@ namespace Form2.Form.Visitors
 
             if (mi != null)
                 mi.Invoke(this, new object[] { formContent });
-            else
-                throw new NotImplementedException();
         }
 
         protected virtual string Mark(IRequired formItem)
@@ -76,14 +74,6 @@ namespace Form2.Form.Visitors
             sb.AppendLine(string.Format("{0}<b>{1}</b><br><br>", titlesVisited > 0 ? "<br>" : "", formTitle.Value.Trim()));
 
             titlesVisited++;
-        }
-
-        public virtual void Visit(FormLabel formLabel)
-        {
-        }
-
-        public virtual void Visit(FormButton formButton)
-        {
         }
 
         public virtual void Visit(FormGroup formGroup)

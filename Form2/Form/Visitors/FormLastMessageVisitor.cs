@@ -34,8 +34,6 @@ namespace Form2.Form.Visitors
 
             if (mi != null)
                 mi.Invoke(this, new object[] { formContent });
-            else
-                throw new NotImplementedException();
         }
 
         public virtual void Visit(FormGroup formGroup)
@@ -54,14 +52,6 @@ namespace Form2.Form.Visitors
                 !formInput.IsHidden &&
                 !formInput.IsDisabled &&
                 (!(formInput is IReadOnly) || !(formInput as IReadOnly).IsReadOnly);
-        }
-
-        public virtual void Visit(FormLabel formLabel)
-        {
-        }
-
-        public virtual void Visit(FormButton formButton)
-        {
         }
 
         #endregion

@@ -21,6 +21,8 @@ namespace Form2.Form.Enums
         Instagram,
         Twitter,
         LinkedIn,
-        YouTube
+        YouTube,
+        Globe,
+        Info,
     }
 }

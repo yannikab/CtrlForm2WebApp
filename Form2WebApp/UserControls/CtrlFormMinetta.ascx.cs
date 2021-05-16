@@ -40,13 +40,16 @@ namespace Form2WebApp.UserControls
 
             form.SetPage(Page);
 
-            FormCommander formCommander = new FormCommander(form);
+            new FormCommander(form).HandleRequest(Request);
 
             FormRenderer formRenderer = new FormRenderer(form);
 
-            formCommander.HandleRequest(IsPostBack, Request);
+            ltrForm.Text = formRenderer.Html;
 
-            ltrForm.Text = formRenderer.Render();
+            int i = 0;
+
+            foreach (var s in formRenderer.Scripts)
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), string.Format("FormScript{0}", i++), s, false);
         }
 
         private class Form : FormModel
@@ -62,6 +65,11 @@ namespace Form2WebApp.UserControls
             public void SetPage(Page page)
             {
                 this.page = page;
+            }
+
+            public Form()
+            {
+                Initialize();
             }
 
             #region CreateForm()
@@ -292,21 +300,12 @@ namespace Form2WebApp.UserControls
 
                 #region Submit
 
-                AddItem(new FormButton("Submit") { Content = "ΥΠΟΒΟΛΗ", Submit = true });
+                AddItem(new FormSubmit("Submit") { Content = "ΥΠΟΒΟΛΗ", Submit = true });
 
                 #endregion
 
 
                 CloseGroup("Container");
-            }
-
-            #endregion
-
-
-            #region AddRules()
-
-            protected override void AddRules(List<FormRule> rules)
-            {
             }
 
             #endregion
@@ -318,11 +317,11 @@ namespace Form2WebApp.UserControls
             {
                 //var emailVisitor = new MinettaEmailVisitor(FormGroup, "Ναι", "Όχι", true, false);
 
-                //page.Response.Write(emailVisitor.Subject);
-
-                //page.Response.Write(emailVisitor.Body);
+                //page.Response.Write(emailVisitor.Html);
 
                 log.Info(new MinettaLogVisitor(FormGroup, "Ναι", "Όχι", true, false).Text);
+
+                Initialize();
             }
 
             #endregion

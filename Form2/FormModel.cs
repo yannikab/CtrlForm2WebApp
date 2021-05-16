@@ -14,9 +14,6 @@ using Form2.Form.Visitors;
 
 namespace Form2
 {
-    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-    [SuppressMessage("Style", "IDE0031:Use null propagation", Justification = "<Pending>")]
-
     public abstract class FormModel
     {
         #region Fields
@@ -36,7 +33,7 @@ namespace Form2
 
         #region Properties
 
-        public FormGroup FormGroup { get { return formGroup; } }
+        public FormGroup FormGroup { get { return formGroup ?? new FormGroup(string.Empty); } }
 
         public bool Submitted { get { return submitted; } }
 
@@ -84,7 +81,7 @@ namespace Form2
 
             ISubmit iSubmit = source as ISubmit;
 
-            if (iSubmit != null)
+            if (iSubmit != null && iSubmit.Submit)
                 throw new ApplicationException();
 
             IUpdate iUpdate = source as IUpdate;
@@ -112,7 +109,7 @@ namespace Form2
 
             ISubmit iSubmit = source as ISubmit;
 
-            if (!iSubmit.Submit)
+            if (iSubmit == null || !iSubmit.Submit)
                 throw new ApplicationException();
 
             if (!formGroup.IsValid)
@@ -122,8 +119,6 @@ namespace Form2
             }
 
             PerformAction();
-
-            Initialize();
         }
 
         protected abstract void CreateForm();
@@ -145,7 +140,7 @@ namespace Form2
                 this.formGroup.OptionalMark = "...";
                 this.formGroup.OptionalInLabel = false;
                 this.formGroup.OptionalInPlaceholder = false;
-                
+
                 this.formGroup.OrderElements = OrderElements.InputLabelMark;
             }
             else
@@ -393,6 +388,24 @@ namespace Form2
             }
         }
 
+        protected string CssClass
+        {
+            get
+            {
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not get CSS class property.");
+
+                return formGroups.Peek().CssClass;
+            }
+            set
+            {
+                if (formGroups.Count == 0)
+                    throw new InvalidOperationException("No form group is currently open. Can not set CSS class property.");
+
+                formGroups.Peek().CssClass = value;
+            }
+        }
+
         protected void AddItem<T>(T formItem) where T : FormItem
         {
             if (formGroups.Count == 0)
@@ -401,15 +414,30 @@ namespace Form2
             formGroups.Peek().Add(formItem);
         }
 
+        public FormGroup GetGroup(string path)
+        {
+            if (path == null)
+                throw new ArgumentNullException();
+
+            FormGroup fg = formGroup.GetGroup(path);
+
+            if (fg == null)
+                throw new ArgumentException("path");
+
+            return fg;
+        }
+
         public T GetItem<T>(string path) where T : FormItem
         {
             if (path == null)
                 throw new ArgumentNullException();
 
-            if (formGroup == null)
-                throw new InvalidOperationException("No form container exists. Can not get any form item.");
+            T fi = formGroup.GetItem<T>(path);
 
-            return formGroup.Get<T>(path);
+            if (fi == null)
+                throw new ArgumentException("path");
+
+            return fi;
         }
 
         public FormItem GetItem(string path)
@@ -417,10 +445,12 @@ namespace Form2
             if (path == null)
                 throw new ArgumentNullException();
 
-            if (formGroup == null)
-                throw new InvalidOperationException("No form container exists. Can not get any form item.");
+            FormItem fi = formGroup.GetItem(path);
 
-            return formGroup.Get(path);
+            if (fi == null)
+                throw new ArgumentException("path");
+
+            return formGroup.GetItem(path);
         }
 
         protected virtual void AddRules(List<FormRule> rules)

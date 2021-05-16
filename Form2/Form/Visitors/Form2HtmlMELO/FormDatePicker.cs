@@ -15,39 +15,42 @@ using Form2.Html.Content.Elements.Input;
 
 namespace Form2.Form.Visitors
 {
-    public partial class Form2HtmlVisitor
+    public partial class Form2HtmlMELOVisitor
     {
         public virtual void Visit(FormDatePicker formDatePicker, HtmlContainer htmlContainer)
         {
-            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formDatePicker.Path) : new HtmlDiv();
+            HtmlFieldset htmlFieldset = verbose ? new HtmlFieldset(formDatePicker.Path) : new HtmlFieldset();
 
-            htmlDiv.Class.Add("formDatePicker");
+            htmlFieldset.Class.Add("formDatePicker");
 
             if (!string.IsNullOrWhiteSpace(formDatePicker.CssClass))
-                htmlDiv.Class.AddRange(formDatePicker.CssClass.Split(' ').Where(s => s != string.Empty));
+                htmlFieldset.Class.AddRange(formDatePicker.CssClass.Split(' ').Where(s => s != string.Empty));
+
+            htmlFieldset.Class.Add("form-group");
 
             if (!string.IsNullOrWhiteSpace(formDatePicker.Path))
-                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formDatePicker.Path));
+                htmlFieldset.Class.Add(string.Format("{0}{1}", "formId", formDatePicker.Path));
 
-            htmlDiv.Class.Add("formField");
+            htmlFieldset.Class.Add("formField");
 
             if (initialize)
             {
-                htmlDiv.Class.Add(formDatePicker.IsRequired ? "formRequired" : "formOptional");
+                htmlFieldset.Class.Add(formDatePicker.IsRequired ? "formRequired" : "formOptional");
             }
             else
             {
                 if (!formDatePicker.IsRequired || formDatePicker.HasValue)
-                    htmlDiv.Class.Add(formDatePicker.IsValid ? "formValid" : "formInvalid");
+                    htmlFieldset.Class.Add(formDatePicker.IsValid ? "formValid" : "formInvalid");
                 else
-                    htmlDiv.Class.Add(formDatePicker.IsRequired ? "formNotEntered" : "formOptional");
+                    htmlFieldset.Class.Add(formDatePicker.IsRequired ? "formNotEntered" : "formOptional");
             }
 
-            htmlDiv.Hidden.Value = formDatePicker.IsHidden;
+            htmlFieldset.Hidden.Value = formDatePicker.IsHidden;
 
-            htmlContainer.Add(htmlDiv);
+            htmlContainer.Add(htmlFieldset);
 
             HtmlDatePicker htmlDatePicker = new HtmlDatePicker(formDatePicker.Path);
+            htmlDatePicker.Class.Add("form-control");
             htmlDatePicker.Disabled.Value = formDatePicker.IsDisabled;
             htmlDatePicker.ReadOnly.Value = formDatePicker.IsReadOnly;
             htmlDatePicker.DataDateFormat.Value = formDatePicker.DateFormat;
@@ -65,45 +68,45 @@ namespace Form2.Form.Visitors
             {
                 case OrderElements.LabelMarkInput:
 
-                    AddLabelMark(formDatePicker, htmlDatePicker, htmlDiv);
-                    htmlDiv.Add(htmlDatePicker);
+                    AddLabelMark(formDatePicker, htmlDatePicker, htmlFieldset);
+                    htmlFieldset.Add(htmlDatePicker);
 
                     break;
 
                 case OrderElements.MarkLabelInput:
 
-                    AddMarkLabel(formDatePicker, htmlDatePicker, htmlDiv);
-                    htmlDiv.Add(htmlDatePicker);
+                    AddMarkLabel(formDatePicker, htmlDatePicker, htmlFieldset);
+                    htmlFieldset.Add(htmlDatePicker);
 
                     break;
 
                 case OrderElements.InputLabelMark:
 
-                    htmlDiv.Add(htmlDatePicker);
-                    AddLabelMark(formDatePicker, htmlDatePicker, htmlDiv);
+                    htmlFieldset.Add(htmlDatePicker);
+                    AddLabelMark(formDatePicker, htmlDatePicker, htmlFieldset);
 
                     break;
 
                 case OrderElements.InputMarkLabel:
 
-                    htmlDiv.Add(htmlDatePicker);
-                    AddMarkLabel(formDatePicker, htmlDatePicker, htmlDiv);
+                    htmlFieldset.Add(htmlDatePicker);
+                    AddMarkLabel(formDatePicker, htmlDatePicker, htmlFieldset);
 
                     break;
 
                 case OrderElements.LabelInputMark:
 
-                    AddLabel(formDatePicker, htmlDatePicker, htmlDiv);
-                    htmlDiv.Add(htmlDatePicker);
-                    AddMark(formDatePicker, htmlDatePicker, htmlDiv);
+                    AddLabel(formDatePicker, htmlDatePicker, htmlFieldset);
+                    htmlFieldset.Add(htmlDatePicker);
+                    AddMark(formDatePicker, htmlDatePicker, htmlFieldset);
 
                     break;
 
                 case OrderElements.MarkInputLabel:
 
-                    AddMark(formDatePicker, htmlDatePicker, htmlDiv);
-                    htmlDiv.Add(htmlDatePicker);
-                    AddLabel(formDatePicker, htmlDatePicker, htmlDiv);
+                    AddMark(formDatePicker, htmlDatePicker, htmlFieldset);
+                    htmlFieldset.Add(htmlDatePicker);
+                    AddLabel(formDatePicker, htmlDatePicker, htmlFieldset);
 
                     break;
 
@@ -139,7 +142,7 @@ namespace Form2.Form.Visitors
             htmlLabelMessage.Class.Add("formValidationMessage");
             htmlLabelMessage.For.Value = htmlDatePicker.Id.Value;
             htmlLabelMessage.Add(new HtmlText(message));
-            htmlDiv.Add(htmlLabelMessage);
+            htmlFieldset.Add(htmlLabelMessage);
         }
     }
 }

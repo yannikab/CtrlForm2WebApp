@@ -40,20 +40,6 @@ namespace Form2.Form.Visitors
 
             if (mi != null)
                 mi.Invoke(this, new object[] { formContent });
-            else
-                throw new NotImplementedException();
-        }
-
-        public virtual void Visit(FormTitle formTitle)
-        {
-        }
-
-        public virtual void Visit(FormLabel formLabel)
-        {
-        }
-
-        public virtual void Visit(FormButton formButton)
-        {
         }
 
         public virtual void Visit(FormGroup formGroup)

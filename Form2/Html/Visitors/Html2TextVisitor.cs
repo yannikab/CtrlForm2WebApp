@@ -61,6 +61,24 @@ namespace Form2.Html.Visitors
             sb.AppendLine(string.Format("</{0}>", h.Tag));
         }
 
+        public void Visit(HtmlFieldset h)
+        {
+            sb.AppendLine();
+            sb.Append(Tabs(h.Depth));
+            sb.Append(string.Format("<{0}", h.Tag));
+
+            foreach (var a in h.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.AppendLine(">");
+
+            foreach (var c in h.Contents)
+                Visit(c);
+
+            sb.Append(Tabs(h.Depth));
+            sb.AppendLine(string.Format("</{0}>", h.Tag));
+        }
+
         public void Visit(HtmlScript h)
         {
             sb.AppendLine();
@@ -133,6 +151,33 @@ namespace Form2.Html.Visitors
                 Visit(c);
 
             sb.AppendLine(string.Format("</{0}>", h.Tag));
+        }
+
+        public void Visit(HtmlH3 h)
+        {
+            sb.Append(Tabs(h.Depth));
+            sb.Append(string.Format("<{0}", h.Tag));
+
+            foreach (var a in h.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.Append(">");
+
+            foreach (var c in h.Contents)
+                Visit(c);
+
+            sb.AppendLine(string.Format("</{0}>", h.Tag));
+        }
+
+        public void Visit(HtmlHR h)
+        {
+            sb.Append(Tabs(h.Depth));
+            sb.Append(string.Format("<{0}", h.Tag));
+
+            foreach (var a in h.Attributes.Where(a => a.IsSet))
+                sb.Append(a);
+
+            sb.Append(">");
         }
 
         public void Visit(HtmlTextBox h)

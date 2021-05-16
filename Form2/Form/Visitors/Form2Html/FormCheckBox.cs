@@ -19,9 +19,15 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = verbose ? new HtmlDiv(formCheckBox.Path) : new HtmlDiv();
+
             htmlDiv.Class.Add("formCheckBox");
+
+            if (!string.IsNullOrWhiteSpace(formCheckBox.CssClass))
+                htmlDiv.Class.AddRange(formCheckBox.CssClass.Split(' ').Where(s => s!= string.Empty));
+
             if (!string.IsNullOrWhiteSpace(formCheckBox.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formCheckBox.Path));
+
             htmlDiv.Class.Add("formField");
 
             if (initialize)
@@ -43,6 +49,10 @@ namespace Form2.Form.Visitors
             HtmlCheckBox htmlCheckBox = new HtmlCheckBox(formCheckBox.Path);
             htmlCheckBox.Disabled.Value = formCheckBox.IsDisabled;
             htmlCheckBox.Checked.Value = formCheckBox.Value;
+
+            if (!initialize && firstInvalidId == null)
+                if (formCheckBox.IsRequired && !formCheckBox.HasValue || !formCheckBox.IsValid)
+                    firstInvalidId = htmlCheckBox.Id.Value;
 
             switch (formCheckBox.OrderElements)
             {

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Form2.Html.Content.Elements.Containers
 {
-    public class HtmlDiv : HtmlContainer
+    public class HtmlFieldset : HtmlContainer
     {
         #region Properties
 
         public override string Tag
         {
-            get { return "div"; }
+            get { return "fieldset"; }
         }
 
         protected override string Prefix
         {
-            get { return "div"; }
+            get { return "fld"; }
         }
 
         #endregion
@@ -25,12 +25,12 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlDiv(string name)
+        public HtmlFieldset(string name)
             : base(name)
         {
         }
 
-        public HtmlDiv()
+        public HtmlFieldset()
             : this(string.Empty)
         {
         }

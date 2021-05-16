@@ -4,20 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Form2.Html.Attributes.Variable.String;
+
 namespace Form2.Html.Content.Elements.Containers
 {
-    public class HtmlDiv : HtmlContainer
+    public class HtmlH3 : HtmlContainer
     {
         #region Properties
 
         public override string Tag
         {
-            get { return "div"; }
+            get { return "h3"; }
         }
 
         protected override string Prefix
         {
-            get { return "div"; }
+            get { return "h3"; }
         }
 
         #endregion
@@ -25,13 +27,8 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlDiv(string name)
-            : base(name)
-        {
-        }
-
-        public HtmlDiv()
-            : this(string.Empty)
+        public HtmlH3()
+            : base(string.Empty)
         {
         }
 

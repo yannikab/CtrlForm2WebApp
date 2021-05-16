@@ -12,8 +12,6 @@ using Form2.Form.Interfaces;
 
 namespace Form2
 {
-    [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-
     public class FormCommander
     {
         private readonly FormModel formModel;
@@ -23,10 +21,10 @@ namespace Form2
             this.formModel = formModel;
         }
 
-        public void HandleRequest(bool isPostBack, HttpRequest request)
+        public void HandleRequest(HttpRequest request)
         {
-            if (!isPostBack)
-                formModel.Initialize();
+            if (formModel == null)
+                return;
 
             string eventTarget = request["__EVENTTARGET"];
             string eventArgument = request["__EVENTARGUMENT"];
@@ -50,26 +48,19 @@ namespace Form2
                 values.Add(key.ToString(), request.Form[key.ToString()]);
             }
 
+            IUpdate iUpdate = source as IUpdate;
             ISubmit iSubmit = source as ISubmit;
 
-            if (iSubmit == null)
+            if (iUpdate == null && iSubmit == null)
+                return;
+
+            if (iSubmit != null && iSubmit.Submit)
             {
-                IUpdate iUpdate = source as IUpdate;
-
-                if (iUpdate == null)
-                    return;
-
-                if (!iUpdate.Update)
-                    throw new ApplicationException();
-
-                formModel.Update(values, source, argument);
-            }
-            else
-            {
-                if (!iSubmit.Submit)
-                    throw new ApplicationException();
-
                 formModel.Submit(values, source, argument);
+            }
+            else if (iUpdate != null && iUpdate.Update)
+            {
+                formModel.Update(values, source, argument);
             }
         }
     }

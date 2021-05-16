@@ -38,6 +38,22 @@ namespace Form2.Form.Content.Items.Input
             }
         }
 
+        public override bool IsDisabled
+        {
+            get
+            {
+                if (disabled.HasValue)
+                    return disabled.Value;
+
+                FormGroup container = Container as FormGroup;
+
+                if (container == null)
+                    return false;
+
+                return container.IsDisabled || container.IsReadOnly;
+            }
+        }
+
         #endregion
 
 

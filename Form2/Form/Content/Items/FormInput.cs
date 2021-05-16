@@ -20,7 +20,7 @@ namespace Form2.Form.Content.Items
 
         private OrderElements orderElements;
 
-        private bool? disabled;
+        protected bool? disabled;
 
         private bool? required;
 
@@ -122,7 +122,7 @@ namespace Form2.Form.Content.Items
             set { disabled = value; }
         }
 
-        public bool IsDisabled
+        public virtual bool IsDisabled
         {
             get
             {

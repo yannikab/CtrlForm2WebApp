@@ -55,14 +55,19 @@ namespace Form2.Html.Content.Elements.Containers
 
         #region Constructors
 
-        public HtmlSubmit(string name, bool verbose)
-            : base(verbose ? name : "")
+        public HtmlSubmit(string name, bool verbose, string parameter)
+            : base(verbose ? name : string.Empty)
         {
             attributes.Add(attrType = new AttrType("button"));
 
             attributes.Add(attrDisabled = new AttrDisabled());
 
-            events.Add(eventClick = new EventClick(string.Format("__doPostBack('{0}', '');", name)));
+            events.Add(eventClick = new EventClick(string.Format("__doPostBack('{0}', '{1}');", name, parameter)));
+        }
+
+        public HtmlSubmit(string name, bool verbose)
+            : this(name, verbose, string.Empty)
+        {
         }
 
         #endregion

@@ -12,7 +12,7 @@ namespace Form2.Form.Content.Items
 {
     [SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
 
-    public class FormButton : FormItem, IDisabled, IUpdate, ISubmit
+    public class FormSubmit : FormItem, IDisabled, IUpdate, ISubmit
     {
         #region Fields
 
@@ -27,10 +27,6 @@ namespace Form2.Form.Content.Items
         private string parameter;
 
         private ButtonType type;
-
-        private ConfirmationType confirmationType;
-
-        private string confirmationMessage;
 
         #endregion
 
@@ -57,18 +53,6 @@ namespace Form2.Form.Content.Items
         {
             get { return type; }
             set { type = value; }
-        }
-
-        public ConfirmationType ConfirmationType
-        {
-            get { return confirmationType; }
-            set { confirmationType = value; }
-        }
-
-        public string ConfirmationMessage
-        {
-            get { return confirmationMessage; }
-            set { confirmationMessage = value; }
         }
 
         #endregion
@@ -124,7 +108,7 @@ namespace Form2.Form.Content.Items
 
         #region Constructors
 
-        public FormButton(string name, string parameter)
+        public FormSubmit(string name, string parameter)
             : base(name)
         {
             this.content = string.Empty;
@@ -135,11 +119,9 @@ namespace Form2.Form.Content.Items
             this.submit = false;
             this.parameter = parameter;
             this.type = ButtonType.NotSet;
-            this.confirmationType = ConfirmationType.NotSet;
-            this.confirmationMessage = string.Empty;
         }
 
-        public FormButton(string name)
+        public FormSubmit(string name)
             : this(name, string.Empty)
         {
         }

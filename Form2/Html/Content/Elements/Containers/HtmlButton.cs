@@ -11,7 +11,7 @@ using Form2.Html.Events;
 
 namespace Form2.Html.Content.Elements.Containers
 {
-    public class HtmlButton : HtmlElement
+    public class HtmlButton : HtmlContainer
     {
         #region fields
 

@@ -17,7 +17,12 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormButton formButton, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = verbose ? new HtmlDiv(formButton.Path) : new HtmlDiv();
+
             htmlDiv.Class.Add("formButton");
+
+            if (!string.IsNullOrWhiteSpace(formButton.CssClass))
+                htmlDiv.Class.AddRange(formButton.CssClass.Split(' ').Where(s => s != string.Empty));
+
             if (!string.IsNullOrWhiteSpace(formButton.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formButton.Path));
 
@@ -25,11 +30,11 @@ namespace Form2.Form.Visitors
 
             htmlContainer.Add(htmlDiv);
 
-            HtmlSubmit htmlSubmit = new HtmlSubmit(formButton.Path, verbose);
-            htmlSubmit.Disabled.Value = formButton.IsDisabled;
-            htmlDiv.Add(htmlSubmit);
+            HtmlButton htmlButton = new HtmlButton(formButton.Path);
+            htmlButton.Disabled.Value = formButton.IsDisabled;
+            htmlDiv.Add(htmlButton);
 
-            htmlSubmit.Add(new HtmlText(formButton.Content));
+            htmlButton.Add(new HtmlText(formButton.Content));
         }
     }
 }

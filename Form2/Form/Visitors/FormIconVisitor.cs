@@ -41,8 +41,6 @@ namespace Form2.Form.Visitors
 
             if (mi != null)
                 mi.Invoke(this, new object[] { formContent, htmlContainer });
-            else
-                throw new NotImplementedException();
         }
 
         private IEnumerable<string> IconClass(FormIcon formIcon)
@@ -83,6 +81,14 @@ namespace Form2.Form.Visitors
                     //iconClass.Add("fa-youtube-play");
                     break;
 
+                case FormIcon.Globe:
+                    iconClass.Add("fa-globe");
+                    break;
+
+                case FormIcon.Info:
+                    iconClass.Add("fa-info");
+                    break;
+
                 case FormIcon.NotSet:
                     iconClass.Clear();
                     break;
@@ -91,16 +97,15 @@ namespace Form2.Form.Visitors
             return iconClass;
         }
 
-        public virtual void Visit(FormTitle formTitle, HtmlContainer htmlContainer)
+        public virtual void Visit(FormHeader formHeader, HtmlContainer htmlContainer)
         {
-        }
+            if (formHeader.Icon == FormIcon.NotSet)
+                return;
 
-        public virtual void Visit(FormLabel formLabel, HtmlContainer htmlContainer)
-        {
-        }
+            HtmlItalic htmlItalic = new HtmlItalic();
+            htmlItalic.Class.AddRange(IconClass(formHeader.Icon));
 
-        public virtual void Visit(FormButton formButton, HtmlContainer htmlContainer)
-        {
+            htmlContainer.Insert(0, htmlItalic);
         }
 
         public virtual void Visit(FormGroup formGroup, HtmlContainer htmlContainer)
@@ -146,10 +151,6 @@ namespace Form2.Form.Visitors
             htmlContainer.Insert(i, htmlDiv);
         }
 
-        public virtual void Visit(FormTextArea formTextArea, HtmlContainer htmlContainer)
-        {
-        }
-
         public virtual void Visit(FormPasswordBox formPasswordBox, HtmlContainer htmlContainer)
         {
             if (formPasswordBox.Icon == FormIcon.NotSet)
@@ -182,10 +183,6 @@ namespace Form2.Form.Visitors
             htmlContainer.Insert(i, htmlDiv);
         }
 
-        public virtual void Visit(FormDateBox formDateBox, HtmlContainer htmlContainer)
-        {
-        }
-
         public virtual void Visit(FormDatePicker formDatePicker, HtmlContainer htmlContainer)
         {
             if (formDatePicker.Icon == FormIcon.NotSet)
@@ -216,26 +213,6 @@ namespace Form2.Form.Visitors
             htmlDiv.Insert(prepend ? 0 : 1, htmlItalic);
 
             htmlContainer.Insert(i, htmlDiv);
-        }
-
-        public virtual void Visit(FormCheckBox formCheckBox, HtmlContainer htmlContainer)
-        {
-        }
-
-        public virtual void Visit(FormNumberBox formNumberBox, HtmlContainer htmlContainer)
-        {
-        }
-
-        public virtual void Visit(FormNumberSpinner formNumberSpinner, HtmlContainer htmlContainer)
-        {
-        }
-
-        public virtual void Visit(FormSelect formSelect, HtmlContainer htmlContainer)
-        {
-        }
-
-        public virtual void Visit(FormRadioGroup formRadioGroup, HtmlContainer htmlContainer)
-        {
         }
 
         #endregion

@@ -21,6 +21,8 @@ namespace Form2.Form.Content
 
         private bool? hidden;
 
+        private string cssClass;
+
         #endregion
 
 
@@ -51,6 +53,12 @@ namespace Form2.Form.Content
         public int Depth
         {
             get { return container == null ? 0 : container.Depth + 1; }
+        }
+
+        public string CssClass
+        {
+            get { return cssClass; }
+            set { cssClass = value; }
         }
 
         #endregion
@@ -92,6 +100,8 @@ namespace Form2.Form.Content
             container = null;
 
             hidden = null;
+
+            cssClass = string.Empty;
         }
 
         #endregion

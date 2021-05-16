@@ -17,7 +17,12 @@ namespace Form2.Form.Visitors
         public virtual void Visit(FormLabel formLabel, HtmlContainer htmlContainer)
         {
             HtmlDiv htmlDiv = verbose ? new HtmlDiv(formLabel.Path) : new HtmlDiv();
+
             htmlDiv.Class.Add("formLabel");
+
+            if (!string.IsNullOrWhiteSpace(formLabel.CssClass))
+                htmlDiv.Class.AddRange(formLabel.CssClass.Split(' ').Where(s => s != string.Empty));
+
             if (!string.IsNullOrWhiteSpace(formLabel.Path))
                 htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formLabel.Path));
 
@@ -29,23 +34,6 @@ namespace Form2.Form.Visitors
             htmlDiv.Add(htmlLabel);
 
             htmlLabel.Add(new HtmlText(formLabel.Content));
-        }
-
-        public virtual void Visit(FormTitle formTitle, HtmlContainer htmlContainer)
-        {
-            HtmlDiv htmlDiv = verbose ? new HtmlDiv(formTitle.Path) : new HtmlDiv();
-            htmlDiv.Class.Add("formTitle");
-            if (!string.IsNullOrWhiteSpace(formTitle.Path))
-                htmlDiv.Class.Add(string.Format("{0}{1}", "formId", formTitle.Path));
-
-            htmlDiv.Hidden.Value = formTitle.IsHidden;
-
-            htmlContainer.Add(htmlDiv);
-
-            HtmlLabel htmlLabel = new HtmlLabel(verbose ? formTitle.Path : "");
-            htmlDiv.Add(htmlLabel);
-
-            htmlLabel.Add(new HtmlText(formTitle.Content));
         }
     }
 }

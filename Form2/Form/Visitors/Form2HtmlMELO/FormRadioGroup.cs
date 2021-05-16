@@ -15,7 +15,7 @@ using Form2.Html.Content.Elements.Input;
 
 namespace Form2.Form.Visitors
 {
-    public partial class Form2HtmlVisitor
+    public partial class Form2HtmlMELOVisitor
     {
         public virtual void Visit(FormRadioGroup formRadioGroup, HtmlContainer htmlContainer)
         {

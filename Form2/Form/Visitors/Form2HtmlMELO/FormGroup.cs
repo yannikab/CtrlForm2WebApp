@@ -11,7 +11,7 @@ using Form2.Html.Content.Elements.Containers;
 
 namespace Form2.Form.Visitors
 {
-    public partial class Form2HtmlVisitor
+    public partial class Form2HtmlMELOVisitor
     {
         public virtual void Visit(FormGroup formGroup, HtmlContainer htmlContainer)
         {

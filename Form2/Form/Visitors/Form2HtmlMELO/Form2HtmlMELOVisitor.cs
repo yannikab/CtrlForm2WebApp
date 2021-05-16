@@ -20,7 +20,7 @@ namespace Form2.Form.Visitors
     [SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "<Pending>")]
     [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 
-    public partial class Form2HtmlVisitor : IForm2HtmlVisitor
+    public partial class Form2HtmlMELOVisitor : IForm2HtmlVisitor
     {
         #region Fields
 
@@ -154,9 +154,9 @@ namespace Form2.Form.Visitors
 
         #region Constructors
 
-        static Form2HtmlVisitor()
+        static Form2HtmlMELOVisitor()
         {
-            visitorMethods = (from mi in typeof(Form2HtmlVisitor).GetMethods()
+            visitorMethods = (from mi in typeof(Form2HtmlMELOVisitor).GetMethods()
                               where
                               mi.Name == "Visit" &&
                               mi.ReturnType.Equals(typeof(void)) &&
@@ -166,7 +166,7 @@ namespace Form2.Form.Visitors
                               select mi).ToArray();
         }
 
-        public Form2HtmlVisitor(FormModel formModel, bool verbose)
+        public Form2HtmlMELOVisitor(FormModel formModel, bool verbose)
         {
             html = null;
 

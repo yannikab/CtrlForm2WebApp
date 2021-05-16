@@ -118,6 +118,47 @@ namespace Form2.Form.Content
             }
         }
 
+        public void Insert(int index, FormContent c)
+        {
+            if (c == null)
+                throw new ArgumentNullException();
+
+            if (c.Container == null)
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
+
+                contents.Insert(index, c);
+
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                c.Container = this;
+            }
+            else if (ReferenceEquals(c.Container, this))
+            {
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                return;
+            }
+            else
+            {
+                if (contents.Contains(c))
+                    throw new ApplicationException();
+
+                if (!c.Container.Remove(c))
+                    throw new ApplicationException();
+
+                contents.Insert(index, c);
+
+                if (!contents.Contains(c))
+                    throw new ApplicationException();
+
+                c.Container = this;
+            }
+        }
+
         public bool Remove(FormContent c)
         {
             if (c == null)
@@ -130,7 +171,7 @@ namespace Form2.Form.Content
 
                 return false;
             }
-             
+
             bool removed = contents.Remove(c);
 
             if (removed)
@@ -152,7 +193,39 @@ namespace Form2.Form.Content
             }
         }
 
-        public T Get<T>(string path) where T : FormItem
+        public FormGroup GetGroup(string path)
+        {
+            foreach (var g in Contents.OfType<FormGroup>())
+            {
+                if (g.Path == path)
+                    return g;
+
+                FormGroup formGroup = g.GetGroup(path);
+
+                if (formGroup != null)
+                    return formGroup;
+            }
+
+            return null;
+        }
+
+        public FormGroup GetGroupByName(string name)
+        {
+            foreach (var g in Contents.OfType<FormGroup>())
+            {
+                if (g.Name == name)
+                    return g;
+
+                FormGroup formGroup = g.GetGroup(name);
+
+                if (formGroup != null)
+                    return formGroup;
+            }
+
+            return null;
+        }
+
+        public T GetItem<T>(string path) where T : FormItem
         {
             foreach (var f in Contents.OfType<T>())
                 if (f.Path == path)
@@ -160,7 +233,7 @@ namespace Form2.Form.Content
 
             foreach (var g in Contents.OfType<FormGroup>())
             {
-                T formItem = g.Get<T>(path);
+                T formItem = g.GetItem<T>(path);
 
                 if (formItem != default(T))
                     return formItem;
@@ -169,7 +242,24 @@ namespace Form2.Form.Content
             return default(T);
         }
 
-        public FormItem Get(string path)
+        public T GetItemByName<T>(string name) where T : FormItem
+        {
+            foreach (var f in Contents.OfType<T>())
+                if (f.Name == name)
+                    return f;
+
+            foreach (var g in Contents.OfType<FormGroup>())
+            {
+                T formItem = g.GetItemByName<T>(name);
+
+                if (formItem != default(T))
+                    return formItem;
+            }
+
+            return default(T);
+        }
+
+        public FormItem GetItem(string path)
         {
             foreach (var f in Contents.OfType<FormItem>())
                 if (f.Path == path)
@@ -177,7 +267,24 @@ namespace Form2.Form.Content
 
             foreach (var g in Contents.OfType<FormGroup>())
             {
-                FormItem formItem = g.Get(path);
+                FormItem formItem = g.GetItem(path);
+
+                if (formItem != null)
+                    return formItem;
+            }
+
+            return null;
+        }
+
+        public FormItem GetItemByName(string name)
+        {
+            foreach (var f in Contents.OfType<FormItem>())
+                if (f.Name == name)
+                    return f;
+
+            foreach (var g in Contents.OfType<FormGroup>())
+            {
+                FormItem formItem = g.GetItemByName(name);
 
                 if (formItem != null)
                     return formItem;

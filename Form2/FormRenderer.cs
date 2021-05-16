@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Form2.Form.Visitors;
-using Form2.Html.Content.Elements;
+using Form2.Form.Visitors.Interfaces;
 using Form2.Html.Visitors;
 
 namespace Form2
@@ -14,27 +14,38 @@ namespace Form2
     {
         private readonly FormModel formModel;
 
-        private readonly bool verbose;
+        private readonly IForm2HtmlVisitor iForm2HtmlVisitor;
 
         public FormRenderer(FormModel formModel, bool verbose)
         {
             this.formModel = formModel;
-            this.verbose = verbose;
+
+            iForm2HtmlVisitor = new Form2HtmlVisitor(formModel, verbose);
+            //iForm2HtmlVisitor = new Form2HtmlMELOVisitor(formModel, verbose);
         }
 
         public FormRenderer(FormModel formModel)
             : this(formModel, false)
         {
-            this.formModel = formModel;
         }
 
-        public string Render()
+        public string Html
         {
-            HtmlContainer htmlContainer = new Form2HtmlVisitor(formModel, verbose).Html;
+            get
+            {
+                new FormIconVisitor(formModel.FormGroup, iForm2HtmlVisitor.Html, false);
 
-            new FormIconVisitor(formModel.FormGroup, htmlContainer, false);
+                return new Html2TextVisitor(iForm2HtmlVisitor.Html).Text;
+            }
+        }
 
-            return new Html2TextVisitor(htmlContainer).Text;
+        public IEnumerable<string> Scripts
+        {
+            get
+            {
+                foreach (var s in iForm2HtmlVisitor.Scripts)
+                    yield return new Html2TextVisitor(s).Text;
+            }
         }
     }
 }
